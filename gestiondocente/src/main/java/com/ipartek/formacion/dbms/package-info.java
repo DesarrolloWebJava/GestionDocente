@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author va00
+ * @author Alberto Fernandez
  *
  */
 package com.ipartek.formacion.dbms;
