@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author va00
+ * @author Sergio Aparicio
  *
  */
 package com.ipartek.formacion;
