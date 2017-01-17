@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author va00
+ * @author Mikel Bruce
  *
  */
 package com.ipartek.formacion;
