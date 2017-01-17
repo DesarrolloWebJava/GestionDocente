@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author va00
+ * @author XabierBerben
  *
  */
 package com.ipartek.formacion;
