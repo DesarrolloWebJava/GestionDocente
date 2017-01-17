@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author va00
+ * @author Enrique J. Ruiz
  *
  */
 package com.ipartek.formacion;
