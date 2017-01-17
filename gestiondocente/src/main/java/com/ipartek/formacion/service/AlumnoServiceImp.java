@@ -11,7 +11,7 @@ import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.exceptions.AlumnoServiceImpException;
 
 /**
- *  * @author Urko Villanueva
+ *  @author Urko Villanueva
  *  @author Raúl de Roba 17/01/17 (Añadido de comentarios.)
  *  
  * <div>
@@ -63,7 +63,7 @@ public class AlumnoServiceImp implements AlumnoService{
 			System.out.println(e.getMessage());
 		}
 
-		/* Se vuelve a instgaciar el alumno.
+		/* Se vuelve a instanciar el alumno.
 		 * (De esta manera se limpian sus atributos al estado inicial).*/
 		alumno = new Alumno();
 		/* Se crea una estructura que capturara los errores en la creación del alumno.*/
