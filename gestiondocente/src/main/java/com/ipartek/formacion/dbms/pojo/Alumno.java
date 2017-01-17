@@ -1,4 +1,4 @@
-/* paquete donde se guardan las entidades. */
+/* Paquete donde se guardan las entidades. */
 package com.ipartek.formacion.dbms.pojo;
 
 import java.io.Serializable;
