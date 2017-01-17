@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author va00
+ * @author Amaia Martija
  *
  */
 package com.ipartek.formacion;
