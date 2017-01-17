@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author va00
+ * @author Susana Urraza
  *
  */
 package com.ipartek.formacion;
