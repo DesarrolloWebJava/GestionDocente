@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description>Este servlet va a gestionar las peticiones relacionadas con los alumnos.</description>
+    <display-name>AlumnoServlet</display-name>
+    <servlet-name>AlumnoServlet</servlet-name>
+    <servlet-class>com.ipartek.formacion.controller.AlumnoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AlumnoServlet</servlet-name>
+    <url-pattern>/Alumno.do</url-pattern>
+  </servlet-mapping>
 </web-app>

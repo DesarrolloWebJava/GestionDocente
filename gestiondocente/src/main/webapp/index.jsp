@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Pagína Inicial</title>
+<title>Página Inicial</title>
 </head>
 <body>
 Bienvenidos a Gestión Alumnos
