@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author va00
+ * @author jon ander ochoa
  *
  */
 package com.ipartek.formacion;
