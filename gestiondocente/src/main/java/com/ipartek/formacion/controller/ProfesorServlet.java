@@ -38,7 +38,7 @@ public class ProfesorServlet extends HttpServlet {
 		//2. Fijamos la página de destino:
 		rd = req.getRequestDispatcher(Constantes.JSP_LISTADO_PROFESORES);
 		//3. Añadimos el atributo a request.
-		req.setAttribute("listado-profesores", profesores);
+		req.setAttribute(Constantes.ATT_LISTADO_PROFESORES, profesores);
 		//4. Hace la redirección:
 		rd.forward(req, resp);
 	

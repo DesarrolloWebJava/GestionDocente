@@ -1,3 +1,4 @@
+<%@ page import="com.ipartek.formacion.controller.Constantes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,8 +18,8 @@
 		<!-- ¡NOTA! Cuidado no copiar el path del servlet con "/" incluída, tal y 
 		como aparecen en el web.xml, porque aquí haría referencia 
 		no al parent folder, sino al directorio raíz. -->
-			<li><a href="alumno.do">G. Alumnos</a></li>
-			<li><a href="profesor.do">G. Profesores</a></li>
+			<li><a href="<%=Constantes.SERVLET_ALUMNO%>">G. Alumnos</a></li>
+			<li><a href="<%=Constantes.SERVLET_PROFESOR%>">G. Profesores</a></li>
 			<li><a href="#">G. Cursos</a></li>
 		</ul>
 	</nav>

@@ -36,7 +36,8 @@ public class Alumno extends Persona implements Comparable<Alumno>, Serializable 
 
 	@Override
 	public String toString() {
-		return this.getCodigo() + " " + this.getApellidos() + ", " + this.getNombre() + " " + this.getDni();
+		return this.getApellidos() + ", " + this.getNombre() + " " + this.getDni();
+		//this.getCodigo() + " " + 
 	}
 
 	public boolean isActivo() {

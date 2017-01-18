@@ -26,7 +26,7 @@
 		for (Map.Entry<Integer, Profesor> entry : profesores.entrySet()) {
 			int codigo = entry.getKey();
 			Profesor profesor = entry.getValue();
-			out.println("<li>" + profesor.getEmail() + "</li>");
+			out.println("<li>" + profesor.toString() + "</li>");
 		}
 		%>
 		</ul>

@@ -19,6 +19,7 @@ import com.ipartek.formacion.service.AlumnoServiceImp;
 public class AlumnoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AlumnoService aS;
+	private RequestDispatcher rd;
 	
 	//En un Servlet los métodos init y destroy SÓLO se ejecutan UNA VEZ.
 	//Cuando se llama por primera vez, cuando se sale?
@@ -56,11 +57,11 @@ public class AlumnoServlet extends HttpServlet {
 			//la request: la response mantiene esta info porque no es limpia.
 		
 		//2* Fijamos la página de destino
-		RequestDispatcher rd = req.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
+		rd = req.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
 		//el setAttr por debajo es un mapa, con k y v.
 		
 		//3* Añadimos el atribuo a la request.
-		req.setAttribute("listado-alumnos", alumnos);
+		req.setAttribute(Constantes.ATT_LISTADO_ALUMNOS, alumnos);
 		
 		//4* Hace la redirección
 		rd.forward(req, resp);
