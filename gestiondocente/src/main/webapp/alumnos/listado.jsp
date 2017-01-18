@@ -18,7 +18,7 @@
 		
 	for (Alumno alumno :alumnos){
 		
-		out.println(alumno.toString());	
+		out.println("<li>"+alumno.toString()+"</li>");	
 	}
 	
 	
