@@ -12,7 +12,7 @@
 	<nav>
 		<ul>
 			<li><a href="alumno.do">G. Alumnos</a></li>
-			<li><a href="#">G. Profesores</a></li>
+			<li><a href="Profesor.do">G. Profesores</a></li>
 			<li><a href="#">G. Cursos</a></li> 
 		</ul>
 	</nav>
