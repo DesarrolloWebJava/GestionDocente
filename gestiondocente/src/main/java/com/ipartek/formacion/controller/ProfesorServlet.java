@@ -19,7 +19,7 @@ import com.ipartek.formacion.service.ProfesorServiceImp;
 public class ProfesorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProfesorService pS;
-       
+    private RequestDispatcher rd;
   
 	/* (non-Javadoc)
 	 * @see javax.servlet.GenericServlet#init()
@@ -36,9 +36,9 @@ public class ProfesorServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Map<Integer,Profesor> profesores= pS.getAll();
 		// fijamos la página de destino
-		RequestDispatcher rd = req.getRequestDispatcher("profesores/listado.jsp");
+		rd = req.getRequestDispatcher(Constantes.JSP_LISTADO_PROFESORES);
 		// añadimos el atributo a la request
-		req.setAttribute("listado-profesores", profesores);
+		req.setAttribute(Constantes.ATT_LISTADO_PROFESORES, profesores);
 		// hace la redirección
 		rd.forward(req, resp);
 	}
@@ -48,7 +48,7 @@ public class ProfesorServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		doGet(request, response);
+		
 	}
 
 }

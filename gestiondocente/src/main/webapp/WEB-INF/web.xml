@@ -23,6 +23,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ProfesorServlet</servlet-name>
-    <url-pattern>/Profesor.do</url-pattern>
+    <url-pattern>/profesor.do</url-pattern>
   </servlet-mapping>
 </web-app>
