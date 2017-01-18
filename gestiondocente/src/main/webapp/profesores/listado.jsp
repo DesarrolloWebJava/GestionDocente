@@ -1,3 +1,4 @@
+<%@page import="com.ipartek.formacion.controler.Constantes"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Profesor"%>
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -6,27 +7,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Listado Profesores</title>
+<title>Gestión Docente-Listado Profesores</title>
 </head>
 <body>
-<h1>Listado Profesores</h1>
-	<%
-		/*esto es un criplet*/
-		//recogemos el atributo de la request y lo gardamos en un objeto lista
-		//hay q hacer un casting de request y decirle q es tipo list
-		Map<Integer, Profesor > profesores =(Map<Integer, Profesor>) request.getAttribute("listado-profesores"); 
-		//sacar la lista por pantalla	
-	%>
-	<ul>
-	<% 
-	for (Map.Entry<Integer, Profesor> entry : profesores.entrySet()) {
-		 int codigo = entry.getKey();
-		 Profesor profesor = entry.getValue();
-		 out.println("clave=" + entry.getKey() + ", valor=" + profesor.getEmail());
-	   
-	}
-	
-	%>
-	</ul>
+	<header>
+		<h1>Listado Profesores</h1>
+	</header>
+	<main>
+		<%
+			/*esto es un criplet*/
+			//recogemos el atributo de la request y lo gardamos en un objeto lista
+			//hay q hacer un casting de request y decirle q es tipo list
+			Map<Integer, Profesor > profesores =(Map<Integer, Profesor>) request.getAttribute(Constantes.ATT_LISTADO_PROFESORES); 
+			//sacar la lista por pantalla	
+		%>
+		<ul>
+		<% 
+		for (Map.Entry<Integer, Profesor> entry : profesores.entrySet()) {
+			 int codigo = entry.getKey();
+			 Profesor profesor = entry.getValue();
+			// out.println("<li>" + entry.getKey() + "  email=" + profesor.getEmail() + "</li>");
+		    out.println("<li>"+ profesor.toString() +"</li>");
+		  //  out.write(entry.getValue().)
+		}
+		
+		%>
+		</ul>
+	</main>
 </body>
 </html>

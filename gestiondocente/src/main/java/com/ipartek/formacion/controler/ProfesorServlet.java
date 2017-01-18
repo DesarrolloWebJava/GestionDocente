@@ -19,6 +19,7 @@ import com.ipartek.formacion.service.ProfesorServiceImp;
 public class ProfesorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ProfesorService aP;   
+    private RequestDispatcher rd;
   
 
 	@Override
@@ -33,10 +34,8 @@ public class ProfesorServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Map<Integer, Profesor> profesores = aP.getAll();
-		RequestDispatcher rd = request.getRequestDispatcher("profesores/listado.jsp");
-		request.setAttribute("listado-profesores", profesores);
-		//hace la redireccion
-	
+		rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_PROFESORES);
+		request.setAttribute(Constantes.ATT_LISTADO_PROFESORES, profesores);
 		rd.forward(request,response); 
 		
 	}

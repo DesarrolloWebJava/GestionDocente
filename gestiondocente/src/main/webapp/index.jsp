@@ -1,3 +1,4 @@
+<%@page import="com.ipartek.formacion.controler.Constantes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,7 +14,7 @@
 			<a href="Alumno.do">Listado de Alumnos</a>
 		</li>
 		<li>
-			<a href="profesor.do">Listado de Profesores</a>
+			<a href="<%=Constantes.SERVLET_PROFESOR%>">Listado de Profesores</a>
 		</li>
 		<li>
 			<a href="#">Listado de Alumnoss</a>
