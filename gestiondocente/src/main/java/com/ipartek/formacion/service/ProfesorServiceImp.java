@@ -12,6 +12,15 @@ import com.ipartek.formacion.dbms.pojo.Profesor;
  * @author Urko Villanueva
  * @author Raúl de Roba 17/01/17 (Añadido de comentarios.)
  * 
+ * <div>
+ * 	<p> * Esta clase se va encargar de gestionar las operaciones de CRUD de Profesor.</p>
+ * 	<ul>
+	 * <li>C: Create : Crea un Profesor.</li>
+	 * <li>R: Read : Lee un Profesor. Con los metodos GetAll y GetById. </li>
+	 * <li>D: Delete : Borra un Profesor.</li>
+	 * <li>U: Update : Modifica un Profesor.</li>
+ * 	</ul>
+ * 
  */ 
 public class ProfesorServiceImp implements ProfesorService {
 

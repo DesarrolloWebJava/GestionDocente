@@ -13,7 +13,7 @@ import com.ipartek.formacion.service.Util;
  * @author Urko Villanueva
  * @author Raúl de Roba 17/01/17 (Añadido de comentarios.)
  * 
- * Clase de la entidad Alumno (Heredada de la clase persona).
+ * <p>Clase de la entidad Alumno (Heredada de la clase persona).</p>
  *
  */
 public class Persona {

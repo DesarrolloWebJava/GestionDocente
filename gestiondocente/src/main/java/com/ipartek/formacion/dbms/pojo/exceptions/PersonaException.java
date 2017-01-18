@@ -5,11 +5,11 @@ package com.ipartek.formacion.dbms.pojo.exceptions;
  * @author Urko Villanueva
  * @author Raúl de Roba 17/01/17 (Añadido de comentarios.)
  * 
- * Esta excepcion va a controlar:
+ * <p>Esta excepcion va a controlar:</p>
  * <ul>
- * <li>cuando no se introduzca un DNI con el formato adecuado.</li>
- * <li>Que el alumno tenga al menos 18 años</li>
- * <li>El nombre >= 3.</li>
+	 * <li>Cuando no se introduzca un DNI con el formato adecuado.</li>
+	 * <li>Que el alumno tenga al menos 18 años</li>
+	 * <li>El nombre >= 3.</li>
  * </ul> 
  *
  */

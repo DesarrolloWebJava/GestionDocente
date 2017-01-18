@@ -5,7 +5,7 @@ package com.ipartek.formacion.dbms.pojo;
  * @author Urko Villanueva
  * @author Raúl de Roba 17/01/17 (Añadido de comentarios.)
  * 
- * Clase de la entidad profesor (Heredada de la clase persona).
+ * <p>Clase de la entidad Profesor (Heredada de la clase persona).</p>
  *
  */
 public class Profesor extends Persona {

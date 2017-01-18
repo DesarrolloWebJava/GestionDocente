@@ -15,15 +15,13 @@ import com.ipartek.formacion.service.exceptions.AlumnoServiceImpException;
  *  @author Raúl de Roba 17/01/17 (Añadido de comentarios.)
  *  
  * <div>
- * <p>
- * Esta clase se va encargar de gestionar las operaciones de CRUD de Alumno
- * </p>
- * <ul>
- * <li>C: Create</li>
- * <li>R: Read</li>
- * <li>D: Delete</li>
- * <li>U: Update</li>
- * </ul>
+ * 	<p> * Esta clase se va encargar de gestionar las operaciones de CRUD de Alumno.</p>
+ * 	<ul>
+	 * <li>C: Create : Crea un Alumno.</li>
+	 * <li>R: Read : Lee un Alumno. Con los metodos GetAll y GetById. </li>
+	 * <li>D: Delete : Borra un Alumno.</li>
+	 * <li>U: Update : Modifica un Alumno.</li>
+ * 	</ul>
  * </div>
  */
 public class AlumnoServiceImp implements AlumnoService{
