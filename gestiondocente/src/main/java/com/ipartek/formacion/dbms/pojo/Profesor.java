@@ -49,5 +49,12 @@ public class Profesor extends Persona {
 		/* Se asigna el codigo. */
 		this.codigo = codigo;
 	}
+	
+	@Override
+	/* Metodo que devuelve le objeto como cadena de caracteres.*/
+	public String toString() {
+		/* Se devuelve el email.*/
+		return this.getEmail();
+	}
 
 }
