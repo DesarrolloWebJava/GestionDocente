@@ -1,6 +1,12 @@
 package com.ipartek.formacion.dbms.pojo;
 
 public class Profesor extends Persona {
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.getCodigo()+" "+this.getApellidos()+" "+this.getNombre()+" "+this.getEmail();
+	}
+
 	public static final int CODIGO_NULO = -1;
 	private int nSS;
 	private int codigo;

@@ -1,6 +1,7 @@
 package com.ipartek.formacion.dbms.pojo;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 
 /**
  * 
@@ -17,6 +18,8 @@ public class Alumno extends Persona implements Comparable<Alumno>, Serializable 
 	private int codigo;
 	private boolean activo;
 	private int nHermanos;
+	private String pattern = "dd/MM/yyyy";
+	private SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
 
 	public Alumno() {
 		super();// constructor de la clase padre
@@ -36,7 +39,7 @@ public class Alumno extends Persona implements Comparable<Alumno>, Serializable 
 
 	@Override
 	public String toString() {
-		return this.getCodigo() + " " + this.getApellidos() + ", " + this.getNombre() + " " + this.getDni();
+		return this.getCodigo() + " " + this.getApellidos() + ", " + this.getNombre() + " " + this.getDni()+" "+dateFormat.format(this.getfNacimiento());
 	}
 
 	public boolean isActivo() {
