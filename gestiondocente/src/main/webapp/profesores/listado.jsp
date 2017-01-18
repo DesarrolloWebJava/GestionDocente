@@ -20,7 +20,7 @@
 	for (Map.Entry<Integer, Profesor> entry : profesores.entrySet()) {
 		int codigo = entry.getKey();
 		Profesor profesor = entry.getValue();
-		out.println(profesor.getEmail()+" "+profesor.getNombre()+" ");
+		out.println("Correo Electronico: "+profesor.getEmail()+"<p>"+"Nombre: "+profesor.getNombre()+"<p> ");
 	}
 	%>
 </body>
