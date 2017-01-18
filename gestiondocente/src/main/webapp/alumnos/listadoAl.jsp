@@ -16,11 +16,16 @@
 			//Aquí TENEMOS ACCESSO AL REQUEST Y RESPONSE
 			// * Recogemos el atributo de la request
 			List<Alumno> alumnos = (List<Alumno>)request.getAttribute("listado-alumnos");
-			for(Alumno alumno: alumnos){
+		%>
+		<ul>
+		<%	
+		for(Alumno alumno: alumnos){
 				//CÓMO IMPRIMIR HTML:
-				out.println(alumno.toString());
+				out.println("<li>"+alumno.toString()+"</li>");
 			}
 		%>
+		</ul>
+		
 	</main>
 </body>
 </html>
