@@ -11,12 +11,11 @@ package com.ipartek.formacion.service;
 public class Util {
 	
 	/* Constructor sin parametros de la clase util.*/
-	private Util() {
-	}
+	private Util() {}
 
 	/* Metodo que valida un D.N.I.*/
 	public static boolean validarDni(String dni) {
-		/* Se devuelve siempre 'True'.*/
+		/* Se devuelve siempre 'True'.o*/
 		return true;
 	}
 }
