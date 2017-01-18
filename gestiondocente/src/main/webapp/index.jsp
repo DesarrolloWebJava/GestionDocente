@@ -6,6 +6,19 @@
 <title>Página Inicial</title>
 </head>
 <body>
-	Bienvenidos a Gestión Alumnos
+	<h1>Bienvenidos a Gestión Alumnos</h1>
+<nav>
+	<ul>
+		<li>
+			<a href="Alumno.do">Listado de Alumnos</a>
+		</li>
+		<li>
+			<a href="#">Listado de Profesores</a>
+		</li>
+		<li>
+			<a href="#">Listado de Alumnoss</a>
+		</li>
+	</ul>
+</nav>
 </body>
 </html>
