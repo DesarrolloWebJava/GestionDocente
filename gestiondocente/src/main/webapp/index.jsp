@@ -4,9 +4,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Pagína Inicial</title>
+<title>Gestor Docente - Pagína Inicio</title>
 </head>
 <body>
-Bienvenidos a Gestión Alumnos
+<header>
+	<h1>Gestor Docente</h1>
+	<nav>
+		<ul>
+			<li><a href="alumno.do">G. Alumnos</a></li>
+			<li><a href="#">G. Profesores</a></li>
+			<li><a href="#">G. Cursos</a></li>
+		</ul>
+	</nav>
+</header>
+<main>
+	Bienvenidos a Gestión Alumnos
+</main>
+<footer>
+	Realizada por Ipartek
+</footer>
 </body>
 </html>
