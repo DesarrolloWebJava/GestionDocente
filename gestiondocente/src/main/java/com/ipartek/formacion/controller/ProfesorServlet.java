@@ -23,6 +23,7 @@ import com.ipartek.formacion.service.ProfesorServiceImp;
 public class ProfesorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProfesorService pS;
+	private RequestDispatcher rd;
 
        
  	/**
@@ -41,11 +42,11 @@ public class ProfesorServlet extends HttpServlet {
 		Map<Integer,Profesor> profesores = pS.getAll();
 		
 		// Añadimos el atributo a la request de la manera clave-valor
-		req.setAttribute("listado-profesores",profesores);
+		req.setAttribute(Constantes.ATT_LISTADO_PROFESORES,profesores);
 		
 		// Forma 2 -> Engancha la peticion original.
 		// Fijamos la pagina de destino
-		RequestDispatcher rd= req.getRequestDispatcher("profesores/listado.jsp");
+		rd= req.getRequestDispatcher(Constantes.JSP_LISTADO_PROFESORES);
 		// Hace la redireccion
 		rd.forward(req, resp);
 	}

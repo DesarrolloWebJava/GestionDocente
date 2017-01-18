@@ -17,7 +17,8 @@
 	// Recogemos el atributo de la request
 	List<Alumno> alumnos = (List<Alumno>)request.getAttribute("listado-alumnos");
 	for(Alumno alumno:alumnos){
-		out.print(alumno.toString());
+		out.print("<li>" + alumno.toString() + "</li>");
+		
 		
 	}
 	
