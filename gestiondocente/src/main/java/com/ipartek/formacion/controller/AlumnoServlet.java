@@ -40,12 +40,7 @@ public class AlumnoServlet extends HttpServlet {
 		request.setAttribute("listado-alumnos", alumnos);	
 		//hace la redirección
 		rd.forward(request, response);
-		
-	
-		
 	}
-
-
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -53,10 +48,4 @@ public class AlumnoServlet extends HttpServlet {
 	}
 
 
-
-	
-	
-	
-	
-	
 }
