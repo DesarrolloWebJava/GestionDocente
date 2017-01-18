@@ -56,7 +56,7 @@ public class AlumnoServlet extends HttpServlet {
 			//la request: la response mantiene esta info porque no es limpia.
 		
 		//2* Fijamos la página de destino
-		RequestDispatcher rd = req.getRequestDispatcher("alumnos/listadoAl.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
 		//el setAttr por debajo es un mapa, con k y v.
 		
 		//3* Añadimos el atribuo a la request.

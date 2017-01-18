@@ -1,3 +1,4 @@
+<%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@page import="com.ipartek.formacion.service.ProfesorServiceImp"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Profesor"%>
 <%@page import="com.ipartek.formacion.service.ProfesorService"%>
@@ -18,7 +19,7 @@
 		
 		//ProfesorService profesorService = new ProfesorServiceImp();
 		//Map<Integer, Profesor> profesores = profesorService.getAll();
-		Map<Integer, Profesor> profesores = (Map<Integer, Profesor>)request.getAttribute("listado-profesores");
+		Map<Integer, Profesor> profesores = (Map<Integer, Profesor>)request.getAttribute(Constantes.ATT_LISTADO_PROFESORES);
 %>
 <ul>
 <%
