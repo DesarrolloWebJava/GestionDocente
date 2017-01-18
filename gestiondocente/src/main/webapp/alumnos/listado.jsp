@@ -1,0 +1,27 @@
+<%@page import="com.ipartek.formacion.dbms.pojo.Alumno"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Gestión Docente - Listado Alumnos</title>
+</head>
+<body>
+	<header><h1>Página listado de Alumnos</h1></header>
+	<main>
+	<%
+	/* Esto es un scriptlet */
+	
+	// Recogemos el atributo de la request
+	List<Alumno> alumnos = (List<Alumno>)request.getAttribute("listado-alumnos");
+	for(Alumno alumno:alumnos){
+		out.print(alumno.toString());
+		
+	}
+	
+	%>
+	</main>
+</body>
+</html>
