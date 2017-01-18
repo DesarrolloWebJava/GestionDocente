@@ -53,7 +53,7 @@ public class AlumnoServiceImp implements AlumnoService {
 			alumno.setNombre("Maite");
 			alumno.setApellidos("Monasterio Herrero");
 			alumno.setDni("16071559x");
-			String date = "19/11/2000";
+			String date = "19/11/1990";
 			String pattern = "dd/MM/yyyy";
 			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
 			alumno.setfNacimiento(dateFormat.parse(date));
