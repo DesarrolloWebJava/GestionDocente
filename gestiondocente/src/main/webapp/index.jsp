@@ -13,7 +13,7 @@
 			<a href="Alumno.do">Listado de Alumnos</a>
 		</li>
 		<li>
-			<a href="#">Listado de Profesores</a>
+			<a href="profesor.do">Listado de Profesores</a>
 		</li>
 		<li>
 			<a href="#">Listado de Alumnoss</a>
