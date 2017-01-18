@@ -55,10 +55,11 @@ public class ProfesorServlet extends HttpServlet {
     	Map<Integer,Profesor> profesores = aP.getAll();
     	/* Se declara una RequestDispatcher para redireccionar a la url indicada.
 		 * No es una redireccion limpia,con lo que envia parametros.
-		 * En este caso request y response.*/
-		RequestDispatcher rd = request.getRequestDispatcher("profesores/listado.jsp");
+		 * En este caso request y response.*/    	
+		RequestDispatcher rd = 
+				     request.getRequestDispatcher(Constantes.JSP_LISTADO_PROFESOR);
 		/* Se crea un atributo en la request y se le asigna la lista de profesores.*/
-		request.setAttribute("listado-profesores", profesores);
+		request.setAttribute(Constantes.ATT_LISTADO_PROFESORES, profesores);
 		/* Se redirecciona enviando por parametro los request y response 
 		 * recibidos por parametro.*/
 		rd.forward(request, response);

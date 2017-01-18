@@ -71,7 +71,7 @@ public class AlumnoServiceImp implements AlumnoService{
 			alumno.setApellidos("Monasterio Herrero");
 			alumno.setDni("16071559x");
 			/* Se declara una variable fecha con el valor 19/11/200. */
-			String date = "19/11/2000";
+			String date = "19/11/1990";
 			/* Se declara la expresión regular para dar formato a la fecha.*/
 			String pattern = "dd/MM/yyyy";
 			/* Se guarda la fecha formateada en una variable.*/

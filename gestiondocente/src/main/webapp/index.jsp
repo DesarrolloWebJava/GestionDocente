@@ -1,3 +1,4 @@
+<%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -43,12 +44,12 @@
 				<li>
 					<!-- Enlace a la gestión de Alumno.	
 					     Se llama al servlet 'Alumno'-->	
-					<a href="alumno.do">G. Alumnos</a>
+					<a href=<%=Constantes.SERVLET_ALUMNO %>>G. Alumnos</a>
 				</li>
 				<!-- Línea de la lista.	Gestión de Profesores.-->
 				<li>
 					<!-- Enlace a la gestión de Profesor.	-->	
-					<a href="profesor.do">G. Profesores</a>
+					<a href=<%=Constantes.SERVLET_PROFESOR %>>G. Profesores</a>
 				</li>
 				<!-- Línea de la lista.	Gestión de Curso.-->
 				<li>

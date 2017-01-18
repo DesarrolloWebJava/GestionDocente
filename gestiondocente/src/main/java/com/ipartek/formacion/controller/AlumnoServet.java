@@ -54,9 +54,10 @@ public class AlumnoServet extends HttpServlet {
     	/* Se declara una RequestDispatcher para redireccionar a la url indicada.
 		 * No es una redireccion limpia,con lo que envia parametros.
 		 * En este caso request y response.*/
-		RequestDispatcher rd = request.getRequestDispatcher("alumnos/listado.jsp");
+		RequestDispatcher rd = 
+				       request.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNO);
 		/* Se crea un atributo en la request y se le asigna la lista de alumnos.*/
-		request.setAttribute("listado-alumnos", alumnos);
+		request.setAttribute(Constantes.ATT_LISTADO_ALUMNOS, alumnos);
 		/* Se redirecciona enviando por parametro los request y response 
 		 * recibidos por parametro.*/
 		rd.forward(request, response);
