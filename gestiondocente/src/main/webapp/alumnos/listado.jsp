@@ -1,13 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="java.util.List"%>
+<%@page import="com.ipartek.formacion.dbms.pojo.Alumno"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Listado de alumnos</title>
+<meta charset="UTF-8">
+<title>Gestión Docente - Listado Alumnos</title>
 </head>
 <body>
-<h1>P�gina listado de alumnossss</h1>
-
+	<header><h1>Página Listado de Alumnos</h1></header>
+	<main>
+	<%
+	/*Esto es un scriplet */
+	
+	//recogemos el atributo de la request
+	List<Alumno> alumnos = (List<Alumno>)request.getAttribute("listado-alumnos");
+	
+	for(Alumno alumno: alumnos){
+		out.println(alumno.toString());
+	}
+	%>
+	
+	
+	
+	</main>
 </body>
 </html>
