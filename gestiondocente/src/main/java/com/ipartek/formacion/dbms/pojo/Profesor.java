@@ -1,6 +1,8 @@
 package com.ipartek.formacion.dbms.pojo;
 
 public class Profesor extends Persona {
+	
+
 	public static final int CODIGO_NULO = -1;
 	private int nSS;
 	private int codigo;
@@ -27,4 +29,9 @@ public class Profesor extends Persona {
 		this.codigo = codigo;
 	}
 
+	@Override
+	public String toString() {
+		
+		return this.getCodigo() + " " + this.getEmail();
+	}
 }
