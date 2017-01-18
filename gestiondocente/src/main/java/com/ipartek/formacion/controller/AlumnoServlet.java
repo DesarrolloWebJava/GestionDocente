@@ -44,9 +44,9 @@ public class AlumnoServlet extends HttpServlet {
 		List<Alumno>alumnos = aS.getAll();
 		//RequestDispatcher permite enlazar atributos.
 		//fijamos la página de destino.
-		RequestDispatcher rd = req.getRequestDispatcher("alumnos/listado.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
 		//añadimos el atributo a la request.
-		req.setAttribute("listado-alumnos", alumnos);
+		req.setAttribute(Constantes.ATT_LISTADO_ALUMNOS, alumnos);
 		//hace la redirección
 		rd.forward(req, resp);
 	}
