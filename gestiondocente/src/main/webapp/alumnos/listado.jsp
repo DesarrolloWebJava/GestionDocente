@@ -16,10 +16,14 @@
 	
 	//recogemos el atributo de la request
 	List<Alumno> alumnos = (List<Alumno>)request.getAttribute("listado-alumnos");
-	
+	%>
+	<ul>
+	<%
 	for(Alumno alumno: alumnos){
-		out.println(alumno.toString());
+		out.println("<li>"+alumno.toString()+"</li>");
 	}
+	 %>
+	</ul>
 	%>
 	
 	
