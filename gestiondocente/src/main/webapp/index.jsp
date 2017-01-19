@@ -8,11 +8,11 @@
 	<title>Página Inicial</title>
 </head>
 <body>
-	<h1>Gestión Alumnos</h1>
+	<h1>Gestior Docente</h1>
 <header>
 	<nav>
 		<ul> 	<!-- PARA COMENTAR -->
-			<li><a href="<%=Constantes.SERVLET_ALUMNO%>">G. Alumnos</a></li>
+			<li><a href="<%=Constantes.SERVLET_ALUMNO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READE%>">G. Alumnos</a></li>
 			<li><a href="<%=Constantes.SERVLET_PROFESOR%>">G. Profesores</a></li>
 			<li><a href="#">G. Cursos</a></li>
 		</ul>
