@@ -23,7 +23,6 @@ public class AlumnoServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		
 		aS = new AlumnoServiceImp();
 		super.init();
 	}
@@ -51,6 +50,12 @@ public class AlumnoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+
+	@Override
+	public void destroy() {
+		aS = null;
+		super.destroy();
 	}
 
 }

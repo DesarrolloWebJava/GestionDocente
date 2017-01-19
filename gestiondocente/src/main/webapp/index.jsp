@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen"> 
 <title>Página Inicial</title>
 </head>
 <body>
