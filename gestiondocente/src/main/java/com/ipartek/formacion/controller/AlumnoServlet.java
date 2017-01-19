@@ -97,6 +97,7 @@ public class AlumnoServlet extends HttpServlet {
 		} catch (Exception e){
 			rd = req.getRequestDispatcher(Constantes.JSP_CREAR_ALUMNOS);
 			mensaje= e.getMessage();
+			
 		}
 		req.setAttribute("mensaje", mensaje);
 		rd.forward(req, resp);
