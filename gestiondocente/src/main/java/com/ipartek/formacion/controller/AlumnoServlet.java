@@ -1,6 +1,8 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.dbms.pojo.Alumno;
+import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.AlumnoService;
 import com.ipartek.formacion.service.AlumnoServiceImp;
 
@@ -75,6 +78,7 @@ public class AlumnoServlet extends HttpServlet {
 		}catch(Exception e){
 			//cargarListaAlumnos(req);
 			resp.sendRedirect(Constantes.JSP_HOME);
+			return;
 		}
 	
 			
@@ -103,8 +107,57 @@ public class AlumnoServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		Alumno alumno=null;
+		String mensaje="";
+		try {
+			alumno=recogerParametros(req);
+			//procesaremos UPDATE or INSERT
+			if(alumno.getCodigo()>Alumno.CODIGO_NULO){
+				//update
+				aS.update(alumno);
+				mensaje="El alumno ha sido actualizado correctamente";
+			}else{
+				//create
+				aS.create(alumno);
+				mensaje="El alumno ha sido creado correctamente";
+			}
+		} catch (Exception e) {
+			//redirigir al formulario
+			rd=req.getRequestDispatcher("alumnos/alumno.jsp");
+			mensaje=e.getMessage();
+		}
+		req.setAttribute("mensaje", mensaje);
+		rd.forward(req, resp);
+		
 	}
+	private Alumno recogerParametros(HttpServletRequest req) throws Exception {
+		Alumno alumno=new Alumno();
+		try{
+			int codigo=Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+			alumno.setCodigo(codigo);
+			alumno.setNombre(req.getParameter(Constantes.PAR_NOMBRE));
+			alumno.setApellidos(req.getParameter(Constantes.PAR_APELLIDOS));
+			alumno.setDireccion(req.getParameter(Constantes.PAR_DIRECCION));
+			alumno.setEmail(req.getParameter(Constantes.PAR_EMAIL));
+			alumno.setDni(req.getParameter(Constantes.PAR_DNI));
+			int nHermanos=Integer.parseInt(req.getParameter(Constantes.PAR_NHERMANOS));
+			alumno.setnHermanos(nHermanos);
+			alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));
+			
+			String date =req.getParameter(Constantes.PAR_FNACIMIENTO);
+			String pattern = "dd/MM/yyyy";
+			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+			alumno.setfNacimiento(dateFormat.parse(date));
+		
+		}catch(Exception e){
+			
+			throw new Exception("Los datos introducidos no son validos");
+			
+		}
+		
+		return alumno;
+	}
+
 	@Override
 	public void destroy() {
 		//cuando se destruye el servlet
