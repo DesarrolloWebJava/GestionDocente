@@ -11,6 +11,12 @@ public class Profesor extends Persona {
 		this.nSS = 0;
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.getCodigo() + ", " + this.getEmail();
+	}
+
 	public int getnSS() {
 		return nSS;
 	}
