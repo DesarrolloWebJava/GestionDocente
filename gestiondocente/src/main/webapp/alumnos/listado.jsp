@@ -17,7 +17,16 @@
 			//Aquí TENEMOS ACCESSO AL REQUEST Y RESPONSE
 			// * Recogemos el atributo de la request
 			List<Alumno> alumnos = (List<Alumno>)request.getAttribute(Constantes.ATT_LISTADO_ALUMNOS);
+		//AÑADIMOS FUNCIONALIDAD:
+			//- CRUD
+			//- Contamos con un formulario que recoja datos en un archivo jsp: alumno.jsp
+			//--> llamamos al SERVLET, que es el controlador, para acceder a ese archivo.
 		%>
+		
+		<!-- Esto es una petición get. LA tengo que diferenciar entre la que crea alumno, y la que getAll
+		todos los alumnos. ¿Cómo? CON PARÁMETROS!!! -->
+		<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_CREATE %>">Crear alumno.</a>
+		
 		<ul>
 		<%	
 		for(Alumno alumno: alumnos){

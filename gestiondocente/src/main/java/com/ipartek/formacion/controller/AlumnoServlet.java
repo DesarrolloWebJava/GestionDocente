@@ -1,6 +1,8 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.dbms.pojo.Alumno;
+import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.AlumnoService;
 import com.ipartek.formacion.service.AlumnoServiceImp;
 
@@ -33,6 +36,8 @@ public class AlumnoServlet extends HttpServlet {
 		//se creen nuevas instancias del servlet en cada
 		//doGet o doPost.
     	super.init();
+    	//OJO: en el constructor se define 1º la funcionalidad
+    	//i.e. crear la instancia, y después el método del padre.
 	}
 
 	/**
@@ -40,6 +45,59 @@ public class AlumnoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		String operacion = req.getParameter(Constantes.PAR_OPERACION);
+		//no podemos castear porque de un obj a un elemental así como así, no se puede.
+		//NO: int op = Integer.parseInt(operacion);
+		int op = -1;
+		try {
+			//Este try es para PESCAR que el ususario
+			//no haya toqueteado la URL.
+			op = Integer.parseInt(operacion);
+			switch (op) {
+			case Constantes.OP_CREATE:
+				//redirigimos a la página que crea los alumnos: 
+				//alumnos/alumno.jsp
+				rd = req.getRequestDispatcher(Constantes.JSP_CREAR_ALUMNO);
+				break;
+			case Constantes.OP_READ:
+				cargarListaAlumnos(req);
+				break;
+			case Constantes.OP_UPDATE:
+				//Diff entre create/update es que el 2º se
+				//hace sobre un registro que ya existe: 
+				//update tiene que recibir un parámetro: el 
+				//código, que lo pasamos al rd como ATRIBUTO.
+				//TODO: aS.getById(codigo)
+				rd = req.getRequestDispatcher(Constantes.JSP_CREAR_ALUMNO);
+				//TODO: req.setAttribute(arg0, arg1);
+				break;
+				default:
+					cargarListaAlumnos(req);
+					break;
+			}
+		} catch (Exception e) {
+			//el cargarListaAlumnos se puede ejecutae en 3 casos:
+			//pero aquí solo en dos, porque eln el cacth mandamos a jasp_home
+			//- default
+			//- porque algo casque (catch)
+			//- porque lo pidas
+			//cargarListaAlumnos(req); //Incluye puntos del 1 al 3.
+			resp.sendRedirect(Constantes.JSP_HOME);
+			return;
+		}
+		
+		//4* Hace la redirección
+		rd.forward(req, resp);
+		//Nosotros vamos a usar el RequestDispatcher porque nos permite añadirle aributos.
+	}
+	
+	//Abro el siguiente javadoc automáticamente.
+	/**
+	 * 
+	 * @param req
+	 */
+
+	private void cargarListaAlumnos(HttpServletRequest req) {
 		// * PUNTOS: 
 		//1* Obtenemos la lista de datos.
 		List<Alumno> alumnos = aS.getAll();
@@ -62,16 +120,59 @@ public class AlumnoServlet extends HttpServlet {
 		
 		//3* Añadimos el atribuo a la request.
 		req.setAttribute(Constantes.ATT_LISTADO_ALUMNOS, alumnos);
-		
-		//4* Hace la redirección
-		rd.forward(req, resp);
-		//Nosotros vamos a usar el RequestDispatcher porque nos permite añadirle aributos.
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		Alumno alumno = null;
+		try {
+			alumno = recogerParametros(req);
+			//procesamos update o insert
+			String mensaje = "";
+			if(alumno.getCodigo() > Alumno.CODIGO_NULO) {//update
+				aS.update(alumno);
+				mensaje = "El alumno ha sido actualizado correctamente.";
+			} else {//create
+				aS.create(alumno);
+				mensaje = "El alumno ha sido creado correctamente.";
+			}
+		} catch (Exception e) {
+			// redirigir al formulario
+			rd = req.getRequestDispatcher(Constantes.JSP_CREAR_ALUMNO); //alumno.jsp
+			req.setAttribute("mensaje",  e.getMessage());
+		}
+		rd.forward(req,  resp);
 	}
 
+	private Alumno recogerParametros(HttpServletRequest req) throws Exception {
+		Alumno alumno = new Alumno();
+		try {
+			alumno.setCodigo(Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO)));
+			alumno.setNombre(req.getParameter(Constantes.PAR_NOMBRE));
+			alumno.setApellidos(req.getParameter(Constantes.PAR_APELLIDOS));
+			alumno.setDireccion(req.getParameter(Constantes.PAR_DIRECCION));
+			alumno.setDni(req.getParameter(Constantes.PAR_DNI));
+			alumno.setEmail(req.getParameter(Constantes.PAR_EMAIL));
+			alumno.setnHermanos(Integer.parseInt(req.getParameter(Constantes.PAR_NHERMANOS)));
+			alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));
+			String date = req.getParameter(Constantes.PAR_FNACIMIENTO);
+			String pattern = "dd/MM/yyyy";
+			SimpleDateFormat dateFormat = new SimpleDateFormat();
+			alumno.setfNacimiento(dateFormat.parse(date));
+	//	} catch (PersonaException e) {
+	//		throw new PersonaException(e.getMessage());
+			} catch (Exception e) {
+				throw new Exception("Los datos no son válidos.");
+		}
+		return alumno;
+	}
+
+	@Override
+	public void destroy() {
+		aS = null; //Caso de 1º funcionalidad, después método del padre.
+		super.destroy();
+	}
+
+	
+	
 }
