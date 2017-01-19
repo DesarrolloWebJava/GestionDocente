@@ -136,6 +136,7 @@ public class AlumnoServlet extends HttpServlet {
 				aS.create(alumno);
 				mensaje = "El alumno ha sido creado correctamente.";
 			}
+			cargarListaAlumnos(req);
 		} catch (Exception e) {
 			// redirigir al formulario
 			rd = req.getRequestDispatcher(Constantes.JSP_CREAR_ALUMNO); //alumno.jsp
