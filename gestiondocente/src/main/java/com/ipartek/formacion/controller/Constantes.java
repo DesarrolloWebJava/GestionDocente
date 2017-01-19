@@ -17,7 +17,7 @@ public class Constantes {
 	public static final String SERVLET_PROFESOR = "profesor.do";
 	
 	//JSP
-	public static final String JSP_LISTADO_ALUMNOS = "Alumnos/listado.jsp";
+	public static final String JSP_LISTADO_ALUMNOS = "alumnos/listado.jsp";
 	public static final String JSP_LISTADO_PROFESORES = "profesores/listado.jsp";
 	public static final String JSP_HOME = "index.jsp";
 	
@@ -31,7 +31,7 @@ public class Constantes {
 		public static final String PAR_DNI = "dni";
 		public static final String PAR_EMAIL = "email";
 		public static final String PAR_DIRECCION = "direccion";
-		public static final String PAR_FNAIMIENTO = "fNacimiento";
+		public static final String PAR_FNACIMIENTO = "fNacimiento";
 		public static final String PAR_NHERMANOS = "nHermanos";
 		public static final String PAR_ACTIVO = "activo";
 		

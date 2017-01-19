@@ -1,6 +1,8 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.dbms.pojo.Alumno;
+import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.AlumnoService;
 import com.ipartek.formacion.service.AlumnoServiceImp;
 
@@ -53,16 +56,16 @@ public class AlumnoServlet extends HttpServlet {
 			switch(op){
 				case Constantes.OP_CREATE:
 				//Se va a redirigir a la pagina alumnos/alumno.jsp
-				rd = request.getRequestDispatcher("alumno/alumno.jsp");
+				rd = request.getRequestDispatcher("alumnos/alumno.jsp");
 				break;
 				case Constantes.OP_READ:
-					
+				cargarListaAlumnos(request);
 				break;
 				case Constantes.OP_UPDATE:
 				//TODO recogemos el codigo para coger el getById
 				//request.getParameter()
 				//Se va a redirigir a la pagina alumnos/alumno.jsp
-				rd = request.getRequestDispatcher("alumno/alumno.jsp");
+				rd = request.getRequestDispatcher("alumnos/alumno.jsp");
 				//request.setAtribute(arg0, arg1);
 				break;
 				case Constantes.OP_DELETE:
@@ -75,6 +78,7 @@ public class AlumnoServlet extends HttpServlet {
 		}catch(Exception e){
 			//cargarListaAlumnos(request);
 			response.sendRedirect(Constantes.JSP_HOME);
+			return;
 		}
 		// Hace la redireccion
 		rd.forward(request, response);
@@ -101,9 +105,52 @@ public class AlumnoServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		Alumno alumno = null;
+		//Recogemos los parametros
+		String mensaje ="";
+		try {
+			alumno = recogerParametros(request);
+			//procesaremos UPDATE or INSERT
+			//Si el codigo de alumno es mayor que el codigo de alumno
+			if(alumno.getCodigo() > Alumno.CODIGO_NULO){
+				aS.update(alumno);
+				mensaje = "El alumno ha sido actualizado correctamente";
+			}else{ 
+				aS.create(alumno);
+				mensaje = "El alumno ha sido creado correctamente";
+			}
+		} catch (Exception e) {
+			//Prepara la redireccion
+			rd = request.getRequestDispatcher("alumnos/alumno.jsp");
+			mensaje = e.getMessage();
+		}
+		request.setAttribute("mensaje", mensaje);
+		rd.forward(request, response);
 	}
-		//Solo para peticiones de formularios
+	
+	
+	private Alumno recogerParametros(HttpServletRequest request) throws Exception {
+		Alumno alumno = new Alumno();
+		try{
+			alumno.setCodigo(Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO)));
+			alumno.setNombre(request.getParameter(Constantes.PAR_NOMBRE));
+			alumno.setApellidos(request.getParameter(Constantes.PAR_APELLIDOS));
+			alumno.setDni(request.getParameter(Constantes.PAR_DNI));
+			alumno.setEmail(request.getParameter(Constantes.PAR_EMAIL));
+			alumno.setDireccion(request.getParameter(Constantes.PAR_DIRECCION));
+			alumno.setnHermanos(Integer.parseInt(request.getParameter(Constantes.PAR_NHERMANOS)));
+			alumno.setActivo(Boolean.parseBoolean(request.getParameter(Constantes.PAR_ACTIVO)));
+			String date = request.getParameter(Constantes.PAR_FNACIMIENTO);
+			String pattern = "dd/MM/yyyy";
+			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+			alumno.setfNacimiento(dateFormat.parse(date));
+		}catch(Exception e){
+			throw new Exception("Los datos no son validos");
+		}
+		return alumno;
+	}
+
+	//Solo para peticiones de formularios
 	@Override
 	public void destroy() {
 		aS = null;
