@@ -18,7 +18,8 @@ import com.ipartek.formacion.service.AlumnoServiceImp;
  */
 public class AlumnoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private AlumnoService aS;   
+    private AlumnoService aS;  
+    private RequestDispatcher rd;
    
 	@Override
 	public void init() throws ServletException {
@@ -32,20 +33,50 @@ public class AlumnoServlet extends HttpServlet {
 		//response.sendRedirect("alumnos/listado.jsp");
 		//limpia.
 		//
-		//obtenemos la lista de datos.
-		List<Alumno> alumnos = aS.getAll();
-		// fijamos pagina de destino
-		RequestDispatcher rd = request.getRequestDispatcher("alumnos/listado.jsp");
-		//añadimos el atributo de la request
-		request.setAttribute("listado-alumnos", alumnos);	
-		//hace la redirección
+		String operacion = request.getParameter(Constantes.PAR_OPERACION);
+		int op = -1;
+		try{
+			op = Integer.parseInt(operacion);
+			switch (op){
+				case Constantes.OP_CREATE:
+					rd = request.getRequestDispatcher(Constantes.JSP_CREAR_ALUMNOS);
+					break;
+				case Constantes.OP_READ:
+					cargarListaAlumnos(request);
+					break;
+				case Constantes.OP_UPDATE:
+					//aS.getById(codigo);
+					rd = request.getRequestDispatcher(Constantes.JSP_CREAR_ALUMNOS);
+					//request.setAttribute(arg0, arg1);
+					break;
+				case Constantes.OP_DELETE:
+					break;
+				default:
+					cargarListaAlumnos(request);
+					break;
+			}
+		} catch(Exception e){
+			//response.sendRedirect(Constantes.JSP_HOME);
+			cargarListaAlumnos(request);
+		}
 		rd.forward(request, response);
+	}
+	
+	private void cargarListaAlumnos(HttpServletRequest request) {
+		List<Alumno> alumnos = aS.getAll();
+		rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
+		request.setAttribute(Constantes.ATT_LISTADO_ALUMNOS, alumnos);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 	}
+	@Override
+	public void destroy() {
+		aS = null;
+		super.destroy();
+	}
 
-
+	
 }

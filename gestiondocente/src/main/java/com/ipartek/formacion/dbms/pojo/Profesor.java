@@ -27,5 +27,12 @@ public class Profesor extends Persona {
 		this.codigo = codigo;
 	}
 
+	@Override
+	public String toString() {
+		return "Profesor :Email=" + getEmail() + ", Direccion=" + getDireccion() + ", Dni=" + getDni()
+				+ ", Nombre=" + getNombre() + ", Apellidos=" + getApellidos() + ", fNacimiento="
+				+ getfNacimiento() ;
+	}
+
 	
 }

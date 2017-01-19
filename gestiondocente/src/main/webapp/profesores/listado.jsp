@@ -22,7 +22,7 @@
 			
 				for (Map.Entry<Integer, Profesor> entry : profesor.entrySet()) {
 				
-					out.println("<li>clase=" + entry.getKey()+",valor"+ entry.getValue()+"</li>");
+					out.println("<li>"+ entry.getValue()+"</li>");
 				}
 			%>
 			</ul>

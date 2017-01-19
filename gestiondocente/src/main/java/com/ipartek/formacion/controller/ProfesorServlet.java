@@ -29,8 +29,8 @@ public class ProfesorServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<Integer, Profesor> profesores = pS.getAll();
-		RequestDispatcher rd = request.getRequestDispatcher("profesores/listado.jsp");
-		request.setAttribute("listado-profesores", profesores);
+		RequestDispatcher rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_PROFESORES);
+		request.setAttribute(Constantes.ATT_LISTADO_PROFESORES, profesores);
 		rd.forward(request, response);
 	}
 
