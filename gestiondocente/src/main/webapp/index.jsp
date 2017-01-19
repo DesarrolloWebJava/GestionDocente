@@ -13,13 +13,13 @@
 <nav>
 	<ul>
 		<li>
-			<a href="alumno.do?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE %>">Listado de Alumnos</a>
+			<a href="<%=Constantes.SERVLET_ALUMNO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ %>">Listado de Alumnos</a>
 		</li>
 		<li>
 			<a href="<%=Constantes.SERVLET_PROFESOR%>">Listado de Profesores</a>
 		</li>
 		<li>
-			<a href="#">Listado de Alumnoss</a>
+			<a href="#">Listado de Alumnos</a>
 		</li>
 	</ul>
 </nav>

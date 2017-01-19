@@ -36,7 +36,7 @@
 	  <div class="form-group">
 	    <label for="<%=Constantes.PAR_FNACIMIENTO %>">Fecha de Nacimento</label>
 	    <input type="text" class="form-control" id="<%=Constantes.PAR_FNACIMIENTO %>" name="<%=Constantes.PAR_FNACIMIENTO  %>" 
-	    	placeholder="Introduce tu Fecha de nacimiento">
+	    	placeholder="Introduce tu fecha de nacimiento">
 	  </div>
 	  <div class="form-group">
 	   <label for="<%=Constantes.PAR_DIRECCION %>">Dirección</label>
@@ -46,7 +46,7 @@
 	    <div class="form-group">
 	   <label for="<%=Constantes.PAR_EMAIL%>">Email</label>
 	   <input type="text" class="form-control" id="<%=Constantes.PAR_EMAIL %>" name="<%=Constantes.PAR_EMAIL  %>" 
-	  	placeholder="Introduce tu Email">
+	  	placeholder="Introduce tu email">
 	  </div>
 	    <div class="form-group">
 	   <label for="<%=Constantes.PAR_NHERMANOS%>">Nº de hermanos</label>
@@ -55,13 +55,13 @@
 	  </div>
 	   <div class="form-group">
 	   <label for="<%=Constantes.PAR_ACTIVO%>">Activo</label>
-	   <select class="selectpicker" name"<%=Constantes.PAR_ACTIVO  %>" id="<%=Constantes.PAR_ACTIVO %>" >
+	   <select class="form-control" name"<%=Constantes.PAR_ACTIVO  %>" id="<%=Constantes.PAR_ACTIVO %>" >
  		 <option value="1">Activo</option>
  		 <option value="0">Desactivado</option>
 		</select>
 	  </div>
 	  
-	  <button type="submit" class="btn btn-default" aling="center">Crear Alumno</button>
+	  <button type="submit" class="btn btn-primary btn-lg active">Crear Alumno</button>
 	</form>
 </div>
 </body>

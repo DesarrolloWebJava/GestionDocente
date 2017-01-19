@@ -1,6 +1,8 @@
 package com.ipartek.formacion.controler;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.dbms.pojo.Alumno;
+import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.AlumnoService;
 import com.ipartek.formacion.service.AlumnoServiceImp;
 
@@ -71,6 +74,10 @@ public class AlumnoServlet extends HttpServlet {
 		rd.forward(request,response); 
 		
 	}
+	/**
+	 * Funcion que me lista todos la lista de  alumnos
+	 * @param request
+	 */
 
 	private void cargarListaAlumnos(HttpServletRequest request) {
 		//obtenemos la lista de alumnos
@@ -83,13 +90,68 @@ public class AlumnoServlet extends HttpServlet {
 		request.setAttribute("listado-alunmos", alumnos);
 		
 	}
+	
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		Alumno alumno = null;
+		String mensaje="";
+		try {
+			alumno = recogerParametros(request);
+			
+			if(alumno.getCodigo()>Alumno.CODIGO_NULO){
+				aS.update(alumno);
+				mensaje ="El alumno ha sido actualizado correctamente";
+			}else{
+				aS.create(alumno);
+				mensaje ="El alumno correctamente creado";
+			}
+			cargarListaAlumnos(request);
+			//procesaremos update or insert
+		} catch (Exception e) {
+			//redirigir al formulario
+			rd = request.getRequestDispatcher("alumnos/alumno.jsp");
+			//mensaje de error
+			mensaje= e.getMessage();
+			
+		}
+		request.setAttribute("menseje", mensaje);
+		rd.forward(request,response); 
+	}
+
+	private Alumno recogerParametros(HttpServletRequest request) throws Exception {
+		
+		Alumno alumno = new Alumno();
+		try{
+			
+			int codigo =Integer.parseInt( request.getParameter(Constantes.PAR_CODIGO));
+			alumno.setCodigo(codigo);
+			alumno.setNombre( request.getParameter(Constantes.PAR_NOMBRE));
+			alumno.setApellidos( request.getParameter(Constantes.PAR_APELLIDO));
+			alumno.setDni( request.getParameter(Constantes.PAR_DNI));
+			
+			String date= request.getParameter(Constantes.PAR_FNACIMIENTO);
+			String pattern = "dd/MM/yyyy";
+			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+			alumno.setfNacimiento( dateFormat.parse(date));
+			
+			alumno.setDireccion( request.getParameter(Constantes.PAR_DIRECCION));
+			alumno.setEmail( request.getParameter(Constantes.PAR_EMAIL));
+			alumno.setnHermanos(Integer.parseInt(request.getParameter(Constantes.PAR_NHERMANOS)));
+			alumno.setActivo(Boolean.parseBoolean( request.getParameter(Constantes.PAR_ACTIVO)));
+		}catch(Exception e){
+			
+			//throw new Exception(e.getMessage());
+			throw new Exception("los datos no son validos");
+		}
+		
+		
+		//String nombre = request.getParameter("<%Constantes.PAR_NOMBRE%>");
+		
+		return alumno;
 	}
 
 	@Override
