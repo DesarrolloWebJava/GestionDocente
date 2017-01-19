@@ -1,3 +1,4 @@
+<%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Alumno"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,11 +15,16 @@
 	<main>
 	<%
 	//esto es un script de java
-	List<Alumno> alumnos= (List<Alumno>)request.getAttribute("listado-alumnos");
-		
+	List<Alumno> alumnos= (List<Alumno>)request.getAttribute(Constantes.ATT_LISTADO_ALUMNOS);
+	
+	//CRUD
+	%>
+	<a href = "<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE%>">Crear Alumno</a>
+	
+	<%	
 	for (Alumno alumno :alumnos){
 		
-		out.println("<li>"+alumno.toString()+"</li>");	
+		out.println("<p>"+alumno.toString()+"</p>");	
 	}
 	
 	
