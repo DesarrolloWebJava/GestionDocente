@@ -68,6 +68,7 @@ public class AlumnoServlet extends HttpServlet {
 		} catch (Exception e) {
 			// cargarListaAlumnos(req);
 			resp.sendRedirect(Constantes.JSP_HOME);
+			return;
 		}
 
 		// hace la redirección
