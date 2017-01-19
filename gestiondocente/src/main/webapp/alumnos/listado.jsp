@@ -15,8 +15,11 @@
 <%
 /*Esto es un scriplet*/
 List<Alumno> alumnos=(List<Alumno>)request.getAttribute(Constantes.ATT_LISTADO_ALUMNOS);
+%>
+<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE%>">Crear Alumno</a>
+<%
 for(Alumno alumno:alumnos){
-	out.println(alumno.toString());
+	out.println("<p>"+alumno.toString()+"<p>");
 	
 }
 %>
