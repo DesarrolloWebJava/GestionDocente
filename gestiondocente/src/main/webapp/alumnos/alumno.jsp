@@ -26,7 +26,7 @@ Crear Alumno
 		</div>
 		<div>
 			<label for="<%=Constantes.PAR_EMAIL %>">Email:</label>
-			<input type="text" placeholder="Introduzca el email.." name="<%=Constantes.PAR_EMAIL %>" id="<%=Constantes.PAR_EMAIL %>">
+			<input type="email" placeholder="Introduzca el email.." name="<%=Constantes.PAR_EMAIL %>" id="<%=Constantes.PAR_EMAIL %>">
 		</div>
 		<div>
 			<label for="<%=Constantes.PAR_DIRECCION %>">Dirección:</label>

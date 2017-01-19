@@ -1,6 +1,7 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -98,7 +99,50 @@ public class AlumnoServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		Alumno alumno = null;
+		String mensaje = "";
+		try {
+			alumno = recogerParametros(req);
 
+			// procesaremos UPDATE or INSERT
+			if (alumno.getCodigo() > Alumno.CODIGO_NULO) {// update
+				aS.update(alumno);
+				mensaje = "El alumno ha sido actualizado correctamente";
+			} else {// create
+				aS.create(alumno);
+				mensaje = "El alumno ha sido creado correctamente";
+			}
+			cargarListaAlumnos(req);
+		} catch (Exception e) {
+			// redirigir al formulario
+			rd = req.getRequestDispatcher("alumnos/alumno.jsp");
+			mensaje = e.getMessage();
+		}
+		req.setAttribute("mensaje", mensaje);
+		rd.forward(req, resp);
+	}
+
+	private Alumno recogerParametros(HttpServletRequest req) throws Exception {
+		Alumno alumno = new Alumno();
+		try {
+			int codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+			alumno.setCodigo(codigo);
+			alumno.setNombre(req.getParameter(Constantes.PAR_NOMBRE));
+			alumno.setApellidos(req.getParameter(Constantes.PAR_APELLIDOS));
+			alumno.setDireccion(req.getParameter(Constantes.PAR_DIRECCION));
+			alumno.setDni(req.getParameter(Constantes.PAR_DNI));
+			alumno.setEmail(req.getParameter(Constantes.PAR_EMAIL));
+			alumno.setnHermanos(Integer.parseInt(req.getParameter(Constantes.PAR_NHERMANOS)));
+			alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));
+
+			String date = req.getParameter(Constantes.PAR_FNACIMIENTO);
+			String pattern = "dd/MM/yyyy";
+			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+			alumno.setfNacimiento(dateFormat.parse(date));
+		} catch (Exception e) {
+			throw new Exception("Los datos no son validos");
+		}
+		return alumno;
 	}
 
 	/*
