@@ -34,6 +34,13 @@ public class ProfesorServlet extends HttpServlet {
 		super.init();
 	}
 
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		proSe=null;
+		super.destroy();
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
