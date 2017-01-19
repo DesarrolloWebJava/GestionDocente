@@ -44,7 +44,9 @@
 				<li>
 					<!-- Enlace a la gestión de Alumno.	
 					     Se llama al servlet 'Alumno'-->	
-					<a href=<%=Constantes.SERVLET_ALUMNO %>>G. Alumnos</a>
+					<a href="<%=Constantes.SERVLET_ALUMNO%>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_READ%>">
+						G. Alumnos
+					</a>
 				</li>
 				<!-- Línea de la lista.	Gestión de Profesores.-->
 				<li>

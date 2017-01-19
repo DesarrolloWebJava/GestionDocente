@@ -1,4 +1,5 @@
 <!-- Importación de clases. -->
+<%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Alumno"%>
 <%@page import="java.util.List"%>
 
@@ -33,17 +34,24 @@
 <body>
 	<h1>Página Listado de Alumno.</h1>
 	<main>
-	<!-- ScriptLet que contiene codigo java. -->
+		<!-- ScriptLet que contiene codigo java. -->
 		<%
 			/* Se recoge el atributo que contiene la lista de alumnos.
 				(Previamente asignado en AlumnoServlet).*/
 			List<Alumno> alumnos = 
 			                (List<Alumno>) request.getAttribute("listado-alumnos");
-			/* Se recorre la lista de alumnos recogida del request.*/
-			for(Alumno alumno:alumnos){
-				/* Se imprime el alumno en la página.*/
-				out.println("<p>" + alumno.toString() + "</p>");	
-			}			
+		%>
+			<!-- Enlace al Servlet para crear el alumno. -->
+			<a href="<%= Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_CREATE%>">
+				Crear Alumno
+			</a>
+		
+		<%
+		/* Se recorre la lista de alumnos recogida del request.*/
+		for(Alumno alumno:alumnos){
+			/* Se imprime el alumno en la página.*/
+			out.println("<p>" + alumno.toString() + "</p>");	
+		}	
 		%>
 	</main>
 </body>

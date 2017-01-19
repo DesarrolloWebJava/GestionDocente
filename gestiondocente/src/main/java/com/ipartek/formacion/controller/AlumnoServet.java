@@ -26,6 +26,8 @@ public class AlumnoServet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	/* Se declara el servicio que gestiona Alumnos.*/
 	private AlumnoService aS;
+	/* Se declara una RequestDispatcher para redireccionar una url indicada. */
+	RequestDispatcher rd;
        
     @Override
     /* Metodo que que se ejecuta crear la pagina.
@@ -41,30 +43,73 @@ public class AlumnoServet extends HttpServlet {
 	}
 
 	/* Metodo a ejecutar al recibir una petición Get. */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			                                         throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
+			             throws ServletException, IOException {
 		/* Se redirecciona a la url : 'alumno/listado.jsp' 	
 		 * Es una redirección limpia,es decir sin parametros.*/
 		//response.sendRedirect("alumnos/listado.jsp");
 		
+		/* Se declara una variable para recoger el numero de operación.*/
+		int op = -1;		
+		/* Se recoge la operación a realizar. (En String)*/
+		String operacion = req.getParameter(Constantes.PAR_OPERACION);		
+		/* Se monta estructura para la captura de excepciones.*/
+		try{
+			/* Se castea la operacion a un entero.*/
+			op = Integer.parseInt(operacion);
+			/* Se compreuba la operación recibida.*/
+			switch (op) {
+				/* Se comprueba si se ha recibido la operación de crear.*/
+				case Constantes.OP_CREATE :
+					/* Se redirecciona a la url del formulario del alumno.*/
+					rd = req.getRequestDispatcher("alumnos/alumno.jsp");
+					/* Se sale de la estructura 'Swicth'*/
+					break;
+				/* Se comprueba si se ha recibido la operación de modificar.*/
+				case Constantes.OP_UPDATE :
+					/* Se redirecciona a la url del formulario del alumno.*/
+					rd = req.getRequestDispatcher("alumnos/alumno.jsp");
+					/* Se sale de la estructura 'Swicth'*/
+					break;
+					/* Se comprueba si se ha recibido la operación de modificar.*/
+				case Constantes.OP_READ :	
+					/* Se llama al metodo que cargar la lista de los alumnos 
+					 * en el request. */
+					cargarListaAlumnos(req);
+					/* Se sale de la estructura 'Swicth'*/
+					break;
+			default:
+				/* Se llama al metodo que cargar la lista de los alumnos en el request. */
+				cargarListaAlumnos(req);
+				break;
+			}
+		}catch (Exception e){
+			/* En caso que la operacion recibida no sea entero,
+			 * se llama al manda a la página inicial. */
+			resp.sendRedirect(Constantes.JSP_HOME);			
+		}
 		
-		/* Sde declara la lista de alumnos 
-		 * donde se recorre la lista de los alumnos.*/
-    	List<Alumno> alumnos = aS.getAll();
-    	/* Se declara una RequestDispatcher para redireccionar a la url indicada.
-		 * No es una redireccion limpia,con lo que envia parametros.
-		 * En este caso request y response.*/
-		RequestDispatcher rd = 
-				       request.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNO);
-		/* Se crea un atributo en la request y se le asigna la lista de alumnos.*/
-		request.setAttribute(Constantes.ATT_LISTADO_ALUMNOS, alumnos);
+		
 		/* Se redirecciona enviando por parametro los request y response 
 		 * recibidos por parametro.*/
-		rd.forward(request, response);
+		rd.forward(req, resp);
+	}
+
+	/* Metodo que carga la lista de los alumnos en el request pasada por parametro. */
+	private void cargarListaAlumnos(HttpServletRequest req) {
+		/* Se declara la lista de alumnos 
+		 * donde se recorre la lista de los alumnos.*/
+    	List<Alumno> alumnos = aS.getAll();
+    	/* Sobre el RequestDispatcher se indica una url pra redireccionar.
+		 * No es una redireccion limpia,con lo que envia parametros.
+		 * En este caso request y response.*/
+		 rd =  req.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNO);
+		/* Se crea un atributo en la request y se le asigna la lista de alumnos.*/
+		 req.setAttribute(Constantes.ATT_LISTADO_ALUMNOS, alumnos);
 	}
 
 	/* Metodo a ejecutar al recibir una petición Post. */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) 
 			                                        throws ServletException, IOException {
 		
 	}
