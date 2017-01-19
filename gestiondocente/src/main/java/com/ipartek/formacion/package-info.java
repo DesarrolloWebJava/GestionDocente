@@ -2,7 +2,8 @@
  * 
  */
 /**
- * @author Asier Larrea prueba subida
+ * @author Asier Larrea 
  *
+ *Clase usada para la documentación
  */
 package com.ipartek.formacion;
