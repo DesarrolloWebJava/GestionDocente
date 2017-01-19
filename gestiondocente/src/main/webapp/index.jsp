@@ -11,10 +11,10 @@
 <body>
 
 <header>
-	<h1>Gestor Docente</h1>
+	<h1 style="color: blue;""font-size: 15">Gestor Docente</h1>
 	<nav>
 		<ul>
-			<li><a href=<%=Constantes.SERVLET_ALUMNO %>>G. Alumnos</a></li>
+			<li><a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ%>">G. Alumnos</a></li>
 			<li><a href=<%=Constantes.SERVLET_PROFESOR%>>G. Profesores</a></li>
 			<li><a href="#">G. Cursos</a></li>
 		</ul>

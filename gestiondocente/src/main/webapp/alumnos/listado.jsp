@@ -11,7 +11,9 @@
 <img src="images/ipartek.png"/>
 </head>
 <body>
-	<header><h1>Página Listado de Alumnos</h1></header>
+	<header>
+		<h1 style="color: blue;""font-size: 15">Página Listado de Alumnos</h1>
+	</header>
 	<main>
 	<%
 	/* Esto es un scriplet*/
@@ -20,6 +22,10 @@
 	
 	List<Alumno> alumnos=(List<Alumno>)request.getAttribute(Constantes.ATT_LISTADO_ALUMNOS);
 	
+	//CRUD
+	%>
+	<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE%>">Crear Alumno</a>
+	<% 
 	for(Alumno alumno: alumnos){
 		out.print("<li>"+alumno.toString()+"</li>");
 	}
