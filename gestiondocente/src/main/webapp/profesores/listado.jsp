@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen"> 
+<script src="js/bootstrap.min.js"></script>
 <title>Gestión Docente-Listado Profesores</title>
 </head>
 <body>

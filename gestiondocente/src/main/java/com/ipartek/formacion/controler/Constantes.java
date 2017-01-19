@@ -20,4 +20,25 @@ public class Constantes {
 	public static final String JSP_LISTADO_PROFESORES="profesores/listado.jsp";
 	public static final String JSP_HOME = "index.jsp";
 	
+	public static final String PAR_OPERACION ="op";
+
+	//nombre de parametros de la clase alumno
+	public static final String PAR_CODIGO = "codigo";
+	public static final  String PAR_NOMBRE = "nombre";
+	public static final String PAR_APELLIDO = "apellido";
+	public static final String PAR_DNI = "dni";
+	public static final String PAR_FNACIMIENTO = "fNacimiento";
+	public static final String PAR_DIRECCION = "direccion";
+	public static final String PAR_EMAIL = "email";
+	public static final String PAR_NHERMANOS = "nHermanos";
+	public static final String PAR_ACTIVO = "activo";
+	
+	public static final int OP_CREATE =1;
+	public static final int OP_READ = 2;
+	public static final int OP_UPDATE = 3;
+	public static final int OP_DELETE = 4;
+	
+	
+	
+	
 }
