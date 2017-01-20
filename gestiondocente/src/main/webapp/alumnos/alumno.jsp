@@ -1,12 +1,9 @@
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Gestión docente - Crear Alumno</title>
-</head>
+<jsp:include page="../includes/header.jsp" />
+<main>
+Crear Alumno
 <body>
 <form action="<%=Constantes.SERVLET_ALUMNO %>" method="post">
 
@@ -50,8 +47,8 @@
 <div>
 <input type="submit" value="Enviar"/>
 </div>
-<%=request.getAttribute("mensaje") %>
 </form>
-
+</main>
+<%@ include file="../includes/footer.html"%>
 </body>
 </html>

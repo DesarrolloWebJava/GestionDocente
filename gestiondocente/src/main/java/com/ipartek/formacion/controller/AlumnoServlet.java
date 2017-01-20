@@ -43,14 +43,14 @@ public class AlumnoServlet extends HttpServlet {
 			op=Integer.parseInt(operacion);
 			switch (op){
 			case Constantes.OP_CREATE:
-				rd=request.getRequestDispatcher("alumnos/alumno.jsp");
+				rd=request.getRequestDispatcher(Constantes.JSP_FORM_ALUMNO);
 				break;
 			case Constantes.OP_READ:
 				cargarListaAlumnos(request);
 				break;
 			case Constantes.OP_UPDATE:
-				
-				rd=request.getRequestDispatcher("alumnos/alumno.jsp");
+
+				rd=request.getRequestDispatcher(Constantes.JSP_FORM_ALUMNO);
 				break;
 				default:
 					cargarListaAlumnos(request);
@@ -99,7 +99,7 @@ public class AlumnoServlet extends HttpServlet {
 		}
 		
 		}catch(Exception e){
-			rd=req.getRequestDispatcher("alumnos/alumno.jsp");
+			rd=req.getRequestDispatcher(Constantes.JSP_FORM_ALUMNO);
 			mensaje=e.getMessage();
 		}
 		req.setAttribute("mensaje",mensaje);
@@ -118,7 +118,9 @@ public class AlumnoServlet extends HttpServlet {
 			alumno.setDireccion(req.getParameter(Constantes.PAR_DIRECCION));
 			alumno.setDni(req.getParameter(Constantes.PAR_DNI));
 			alumno.setEmail(req.getParameter(Constantes.PAR_EMAIL));
-			alumno.setnHermanos(Integer.parseInt(req.getParameter(Constantes.PAR_NHERMANOS)));
+			if(!"".equalsIgnoreCase(req.getParameter(Constantes.PAR_NHERMANOS))){
+				alumno.setnHermanos(Integer.parseInt(req.getParameter(Constantes.PAR_NHERMANOS)));			
+			}		
 			alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));
 			String date=req.getParameter(Constantes.PAR_FNACIMIENTO);
 			String pattern = "dd/MM/yyyy";

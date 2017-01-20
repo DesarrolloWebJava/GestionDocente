@@ -3,26 +3,26 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Gestion Docente - Listado Alumnos</title>
-</head>
-<body>
-<header><h1>Página Listado Alumnos</h1></header>
+<jsp:include page="../includes/header.jsp" />
+Página Listado Alumnos
 <main>
 <%
 /*Esto es un scriplet*/
 List<Alumno> alumnos=(List<Alumno>)request.getAttribute(Constantes.ATT_LISTADO_ALUMNOS);
 %>
-<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE%>">Crear Alumno</a>
+<a href="<%=Constantes.SERVLET_ALUMNO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE%>">Crear Alumno</a>
+
+<ul>
+
 <%
 for(Alumno alumno:alumnos){
-	out.println("<p>"+alumno.toString()+"<p>");
+	out.println("<li>"+alumno.toString()+"</li>");
+	
 	
 }
 %>
+</ul>
 </main>
+<%@ include file="../includes/footer.html"%>
 </body>
 </html>
