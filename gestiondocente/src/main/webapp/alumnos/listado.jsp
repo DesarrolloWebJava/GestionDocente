@@ -3,14 +3,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Gestión Docente - Listado Alumnos</title>
-</head>
-<body>
-	<header><h1>Página de Listado de Alumnos</h1></header>
+<jsp:include page="../includes/header.jsp"></jsp:include>
 	<main>
 		<%
 			//Dentro de estas tags, esto es puro Java en un Scriplet.
@@ -26,7 +19,7 @@
 		<!-- Esto es una petición get. LA tengo que diferenciar entre la que crea alumno, y la que getAll
 		todos los alumnos. ¿Cómo? CON PARÁMETROS!!! -->
 		<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_CREATE %>">Crear alumno.</a>
-		
+		<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_UPDATE %>">Actualizar alumno.</a>
 		<ul>
 		<%	
 		for(Alumno alumno: alumnos){
@@ -37,5 +30,6 @@
 		</ul>
 		
 	</main>
+<%@ include file="../includes/footer.html" %>
 </body>
 </html>

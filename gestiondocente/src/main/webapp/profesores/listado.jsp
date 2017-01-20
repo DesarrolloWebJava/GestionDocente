@@ -5,14 +5,7 @@
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Gestión Docente - Listado Profesores</title>
-</head>
-<body>
-	<header><h1>Página de Listado de Profesores</h1></header>
+<jsp:include page="../includes/header.jsp"></jsp:include>
 	<main>
 		<%
 		//List<Alumno> alumnos = (List<Alumno>)request.getAttribute("listado-alumnos");
@@ -21,15 +14,30 @@
 		//Map<Integer, Profesor> profesores = profesorService.getAll();
 		Map<Integer, Profesor> profesores = (Map<Integer, Profesor>)request.getAttribute(Constantes.ATT_LISTADO_PROFESORES);
 %>
-<ul>
-<%
+
+	<div>
+			<a href="<%=Constantes.SERVLET_PROFESOR %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_CREATE %>">Crear profesor</a>
+			<a href="<%=Constantes.SERVLET_PROFESOR %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_UPDATE %>">Actualizar profesor</a>
+	</div>
+	
+	<ul>
+	<%
 		for (Map.Entry<Integer, Profesor> entry : profesores.entrySet()) {
 			int codigo = entry.getKey();
 			Profesor profesor = entry.getValue();
 			out.println("<li>" + profesor.toString() + "</li>");
 		}
-		%>
-		</ul>
+	%>
+	</ul>
+		
 	</main>
+	
+	<div>
+		<p></p>
+	</div>
+	
+	<div>
+		<%@ include file="../includes/footer.html" %>
+	</div>
 </body>
 </html>

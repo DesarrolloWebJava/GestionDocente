@@ -1,37 +1,11 @@
 <%@ page import="com.ipartek.formacion.controller.Constantes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8" />
-	<title>Gestión Docente: Página de Inicio</title>
-</head>
-<body>
-<header>
-<h1>Gestor Docente Ipartek</h1>
-	<nav>
-<!-- marca que lo que hay dentro es un elemento de navegación-->
-		<ul>
-		<!-- Al hacer un enlace: poner SIEMPRE # 
-		defecto, aunque luego lo sustituyamos. -->
-		<!-- ¡NOTA! Cuidado no copiar el path del servlet con "/" incluída, tal y 
-		como aparecen en el web.xml, porque aquí haría referencia 
-		no al parent folder, sino al directorio raíz. -->
-			<li><a href="<%=Constantes.SERVLET_ALUMNO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ%>">G. Alumnos</a></li>
-			<li><a href="<%=Constantes.SERVLET_PROFESOR%>">G. Profesores</a></li>
-			<li><a href="#">G. Cursos</a></li>
-		</ul>
-	</nav>
-</header>
+<jsp:include page="includes/header.jsp" />
 <main>
-<!--solo puede haber uno;  marca que no es un contenido estático -->
+<!--solo puede haber un main;  marca que no es un contenido estático -->
 Bienvenidos a Gestión Alumnos
 </main>
-
-<footer>
-Realizada por Ipartek S. Coop.
-</footer>
-
+<%@  include file="includes/footer.html" %>
 </body>
 </html>
