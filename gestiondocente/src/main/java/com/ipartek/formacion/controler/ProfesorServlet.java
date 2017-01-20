@@ -145,6 +145,12 @@ private Profesor recogerParametros(HttpServletRequest request) throws Exception 
 		
 		return profesor;
 	}
-	
+
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		super.destroy();
+	}
+		
 
 }

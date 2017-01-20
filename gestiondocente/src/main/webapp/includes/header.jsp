@@ -6,8 +6,9 @@
 <meta charset="UTF-8">
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="css/style.css" rel="stylesheet" media="screen">  
+<link rel="icon" href="images/favicon.ico">
 <script src="js/bootstrap.min.js"></script>
-<title>Página Inicial</title>
+<title>Inicio-Gestión</title>
 </head>
 <body>
 
