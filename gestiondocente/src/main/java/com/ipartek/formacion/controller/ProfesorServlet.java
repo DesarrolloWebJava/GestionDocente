@@ -134,13 +134,19 @@ public class ProfesorServlet extends HttpServlet {
 		 profesor.setDni(req.getParameter(Constantes.PAR_DNI));
 		 profesor.setEmail(req.getParameter(Constantes.PAR_EMAIL));
 		 profesor.setEmail(req.getParameter(Constantes.PAR_EMAIL));
-			
-		 String date = req.getParameter(Constantes.PAR_FNACIMIENTO);
-		 String pattern = "dd/MM/yyyy";
-		 SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-		 profesor.setfNacimiento(dateFormat.parse(date));
+		
+		 if (req.getParameter(Constantes.PAR_FNACIMIENTO)!= null && !"".equals(req.getParameter(Constantes.PAR_FNACIMIENTO)))
+		 {
+		  String date = req.getParameter(Constantes.PAR_FNACIMIENTO);
+		  String pattern = "dd/MM/yyyy";
+		  SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+		  profesor.setfNacimiento(dateFormat.parse(date));
+		 }
 		 
-		 profesor.setnSS(Integer.parseInt(req.getParameter(Constantes.PAR_NSS)));
+		 if (req.getParameter(Constantes.PAR_NSS)!= null && !"".equals(req.getParameter(Constantes.PAR_NSS)))
+		 {	 
+		   profesor.setnSS(Integer.parseInt(req.getParameter(Constantes.PAR_NSS)));
+		 }
 		 
 	} catch (Exception e) {
 		
