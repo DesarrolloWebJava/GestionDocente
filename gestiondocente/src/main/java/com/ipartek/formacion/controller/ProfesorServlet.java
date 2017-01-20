@@ -84,9 +84,12 @@ public class ProfesorServlet extends HttpServlet {
 				mensaje = "El profesort a sido creado correctamente";
 			}
 			cargarListaProfesores(req);
+		}catch(NumberFormatException e) {
+			resp.sendRedirect(Constantes.JSP_HOME);
 		}catch(Exception e){
 			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESORES);
 			mensaje= e.getMessage();
+			e.printStackTrace();
 		}
 		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);
 		rd.forward(req, resp);	
@@ -111,9 +114,11 @@ public class ProfesorServlet extends HttpServlet {
  		
 			
 			String date = req.getParameter(Constantes.PAR_FNACIMIENTO);
-			String pattern = "dd/MM/yyyy";
-			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-			profesor.setfNacimiento(dateFormat.parse(date));
+			if (date != null && !"".equals(date)){
+				String pattern = "dd/MM/yyyy";
+				SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+				profesor.setfNacimiento(dateFormat.parse(date));
+			}
 			
 		} catch(Exception e){
 			throw new Exception("Los datos son incorrectos: " + e.getMessage());
