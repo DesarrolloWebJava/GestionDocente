@@ -3,9 +3,9 @@
     pageEncoding="UTF-8"%>
 <%
 if(request.getAttribute(Constantes.ATT_MENSAJE)!=null){
-	String mensaje = (String)request.getAttribute(Constantes.ATT_MENSAJE);
+	String mensajes = (String)request.getAttribute(Constantes.ATT_MENSAJE);
 %>
 <div>
-	<%=mensaje %>
+	<%=mensajes %>
 </div>
 <% }%>

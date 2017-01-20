@@ -17,5 +17,5 @@
 			<li><a href="#">G. Cursos</a></li>
 		</ul>
 	</nav>
-	<jsp:include page="mensaje.jsp"/>
+	<jsp:include page="mensajes.jsp"/>
 </header>

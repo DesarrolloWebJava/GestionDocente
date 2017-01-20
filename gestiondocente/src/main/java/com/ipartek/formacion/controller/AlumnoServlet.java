@@ -122,7 +122,14 @@ public class AlumnoServlet extends HttpServlet {
 			alumno.setDireccion(req.getParameter(Constantes.PAR_DIRECCION));
 			alumno.setDni(req.getParameter(Constantes.PAR_DNI));
 			alumno.setEmail(req.getParameter(Constantes.PAR_EMAIL));
-			alumno.setnHermanos(Integer.parseInt(req.getParameter(Constantes.PAR_NHERMANOS)));
+			
+			String nHermanos = req.getParameter(Constantes.PAR_NHERMANOS);
+			if("".equalsIgnoreCase(nHermanos)){
+				//nHermanos = "0"; //es lo mismo la linea de abajo con las dos
+				alumno.setnHermanos(Integer.parseInt(nHermanos));
+			}
+			//alumno.setnHermanos(Integer.parseInt(nHermanos));
+			
 			alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));
 			String date = req.getParameter(Constantes.PAR_FNACIMIENTO);
 			String pattern = "dd/MM/yyyy";
@@ -131,7 +138,7 @@ public class AlumnoServlet extends HttpServlet {
 			alumno.setCodigo(Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO)));
 	
 		} catch (Exception e) {
-			throw new Exception("Los datos no son validos."); // desde aquí
+			throw new Exception("Los datos no son validos." + e.getMessage()); // desde aquí
 		}
 		return alumno;
 		
