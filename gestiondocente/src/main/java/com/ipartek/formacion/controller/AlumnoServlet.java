@@ -49,14 +49,14 @@ public class AlumnoServlet extends HttpServlet {
 			op = Integer.parseInt(operacion);
 			switch (op){
 				case Constantes.OP_CREATE:
-					rd = req.getRequestDispatcher(Constantes.JSP_CREAR_ALUMNOS);
+					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNOS);
 					break;
 				case Constantes.OP_READ:
 					cargarListaAlumnos(req);
 					break;
 				case Constantes.OP_UPDATE:
 					//aS.getById(codigo);
-					rd = req.getRequestDispatcher(Constantes.JSP_CREAR_ALUMNOS);
+					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNOS);
 					//request.setAttribute(arg0, arg1);
 					break;
 				case Constantes.OP_DELETE:
@@ -95,11 +95,11 @@ public class AlumnoServlet extends HttpServlet {
 			}
 			cargarListaAlumnos(req);
 		} catch (Exception e){
-			rd = req.getRequestDispatcher(Constantes.JSP_CREAR_ALUMNOS);
+			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNOS);
 			mensaje= e.getMessage();
 			
 		}
-		req.setAttribute("mensaje", mensaje);
+		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);
 		rd.forward(req, resp);
 	}
 	private Alumno recogerParametros(HttpServletRequest req) throws Exception {
@@ -111,8 +111,13 @@ public class AlumnoServlet extends HttpServlet {
 			alumno.setDni(req.getParameter(Constantes.PAR_DNI));
 			alumno.setEmail(req.getParameter(Constantes.PAR_EMAIL));
 			alumno.setDireccion(req.getParameter(Constantes.PAR_DIRECCION));
-			alumno.setnHermanos(Integer.parseInt(req.getParameter(Constantes.PAR_NHERMANOS)));
 			alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));
+			
+			
+			String nHermanos = req.getParameter(Constantes.PAR_NHERMANOS);
+			 			if (!"".equalsIgnoreCase(nHermanos)) {
+			 				alumno.setnHermanos(Integer.parseInt(nHermanos));
+			 			}
 			
 			String date = req.getParameter(Constantes.PAR_FNACIMIENTO);
 			String pattern = "dd/MM/yyyy";
@@ -120,7 +125,8 @@ public class AlumnoServlet extends HttpServlet {
 			alumno.setfNacimiento(dateFormat.parse(date));
 			
 		} catch(Exception e){
-			throw new Exception("Los datos son incorrectos");
+			throw new Exception("Los datos son incorrectos: " + e.getMessage());
+			
 		}
 		
 		return alumno;
