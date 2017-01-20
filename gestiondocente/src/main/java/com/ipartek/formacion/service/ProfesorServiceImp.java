@@ -23,15 +23,28 @@ public class ProfesorServiceImp implements ProfesorService {
 		try {
 			profesor.setNombre("Urko");
 			profesor.setDni("78998555X");
+			profesor.setApellidos("Villanueva");
+			profesor.setEmail("uvillanueva@ipartek.com");
+			profesor.setDireccion("Direccion 1");
+			profesor.setnSS(51651651);
 		} catch (PersonaException e) {
 			e.printStackTrace();
 		}
-		profesor.setApellidos("Villanueva");
-		profesor.setEmail("uvillanueva@ipartek.com");
+		
 		create(profesor);
-
+		
 		profesor = new Profesor();
-		profesor.setEmail("auraga@ipartek.com");
+		try {			
+			profesor.setNombre("Profesor A");
+			profesor.setDni("78945455X");
+			profesor.setApellidos("Apellidos");
+			profesor.setEmail("auraga@ipartek.com");
+			profesor.setDireccion("Direccion 2");
+			profesor.setnSS(4554551);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		create(profesor);
 	}
 

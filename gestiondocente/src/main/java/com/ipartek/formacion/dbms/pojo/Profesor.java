@@ -29,7 +29,7 @@ public class Profesor extends Persona {
 	
 	@Override
 	public String toString() {
-		return this.getCodigo() + " " + this.getApellidos() + ", " + this.getNombre() + " " + this.getDni()+" "+this.getEmail();
+		return this.getCodigo() + " " + this.getApellidos() + ", " + this.getNombre() + " " + this.getDni()+" "+this.getEmail()+" "+this.getDireccion()+" "+this.getnSS();
 	}
 
 }
