@@ -50,7 +50,7 @@ public class AlumnoServlet extends HttpServlet {
 			switch (op) {
 				case Constantes.OP_CREATE:
 					// se va redirigir a la pagina alumnos/alumno.jsp
-					rd = req.getRequestDispatcher("alumnos/alumno.jsp");
+					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 					break;
 				case Constantes.OP_READ:
 					cargarListaAlumnos(req);
@@ -58,7 +58,7 @@ public class AlumnoServlet extends HttpServlet {
 				case Constantes.OP_UPDATE:
 					// aS.getById(codigo)
 					// se va redirigir a la pagina alumnos/alumno.jsp
-					rd = req.getRequestDispatcher("alumnos/alumno.jsp");
+					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 					// req.setAttribute(arg0, arg1);
 					break;
 				default:
@@ -115,10 +115,11 @@ public class AlumnoServlet extends HttpServlet {
 			cargarListaAlumnos(req);
 		} catch (Exception e) {
 			// redirigir al formulario
-			rd = req.getRequestDispatcher("alumnos/alumno.jsp");
+			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 			mensaje = e.getMessage();
+			System.out.println(mensaje);
 		}
-		req.setAttribute("mensaje", mensaje);
+		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);
 		rd.forward(req, resp);
 	}
 
@@ -132,7 +133,12 @@ public class AlumnoServlet extends HttpServlet {
 			alumno.setDireccion(req.getParameter(Constantes.PAR_DIRECCION));
 			alumno.setDni(req.getParameter(Constantes.PAR_DNI));
 			alumno.setEmail(req.getParameter(Constantes.PAR_EMAIL));
-			alumno.setnHermanos(Integer.parseInt(req.getParameter(Constantes.PAR_NHERMANOS)));
+
+			String nHermanos = req.getParameter(Constantes.PAR_NHERMANOS);
+			if (!"".equalsIgnoreCase(nHermanos)) {
+				alumno.setnHermanos(Integer.parseInt(nHermanos));
+			}
+
 			alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));
 
 			String date = req.getParameter(Constantes.PAR_FNACIMIENTO);
@@ -140,7 +146,7 @@ public class AlumnoServlet extends HttpServlet {
 			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
 			alumno.setfNacimiento(dateFormat.parse(date));
 		} catch (Exception e) {
-			throw new Exception("Los datos no son validos");
+			throw new Exception("Los datos no son validos: " + e.getMessage());
 		}
 		return alumno;
 	}
