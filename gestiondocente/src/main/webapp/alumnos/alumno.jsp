@@ -5,7 +5,7 @@
 Crear Alumno
 <body>
 	<main> 	
-	<form action="<%=Constantes.SERVLET_ALUMNO %>" method="post">
+		<form action="<%=Constantes.SERVLET_ALUMNO %>" method="post">
 			<input type="hidden" name="<%=Constantes.PAR_CODIGO%>" id="<%=Constantes.PAR_CODIGO%>" value="-1">
 		<div>
 			<label for = "<%=Constantes.PAR_NOMBRE %>">Nombre:</label>
