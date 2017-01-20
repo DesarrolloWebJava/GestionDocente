@@ -7,7 +7,7 @@
 <jsp:include page="../includes/header.jsp"/>
 
 
-<main>
+<main >
 	<div class="container">
 		<h1>Página Listado Profesor</h1>
 		<%

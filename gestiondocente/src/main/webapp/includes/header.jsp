@@ -13,7 +13,7 @@
 
 <header>
 <div id="header">
-	<h1>Gestion Docente</h1>
+	<h1>Gestión Docente</h1>
 </div>
 	<nav class="navbar navbar-default">
 		<ul class="nav navbar-nav">

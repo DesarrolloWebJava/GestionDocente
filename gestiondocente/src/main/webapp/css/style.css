@@ -11,3 +11,13 @@
    text-align: center;
    padding: 10px;
  }
+ .navbar-default {
+ 
+    display: inline-block;
+    float: none;
+   
+}
+
+.navbar-defaul .navbar-collapse {
+    text-align: center;
+}
