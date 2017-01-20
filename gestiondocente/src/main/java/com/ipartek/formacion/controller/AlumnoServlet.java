@@ -103,7 +103,6 @@ public class AlumnoServlet extends HttpServlet {
 		String mensaje = "";
 		try {
 			alumno = recogerParametros(req);
-
 			// procesaremos UPDATE or INSERT
 			if (alumno.getCodigo() > Alumno.CODIGO_NULO) {// update
 				aS.update(alumno);
