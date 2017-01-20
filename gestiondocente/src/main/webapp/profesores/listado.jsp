@@ -1,31 +1,33 @@
+<%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Profesor"%>
 <%@page import="java.util.Map"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Gestion Docente -Listado de Profesores</title>
-</head>
-<body>
 
-<header><h1>Pagina Listado de Profesores</h1></header>
+
+<jsp:include page="../includes/header.jsp"/>
+
 	<main>
 	<%
 	
-	Map<Integer,Profesor> profesor = (Map<Integer, Profesor>)request.getAttribute("listado-profesores");
-	
+	Map<Integer,Profesor> profesor = (Map<Integer, Profesor>)request.getAttribute(Constantes.ATT_LISTADO_PROFESORES);
+	%>
+	<a href="<%=Constantes.SERVLET_PROFESOR %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_CREATE %>">Crear Profesor</a>
+	<ul>
+	<%
 	for(Map.Entry<Integer,Profesor> entry:profesor.entrySet()){
-		out.println("clave="+entry.getKey()+",valor"+entry.getValue());
+		out.println("<li>clave="+entry.getKey()+",valor"+entry.getValue()+"</li>");
 	}
 	
 	/*Esto es un scriplet*/
 	//Recogemos el atributo de la request
 	
 	%>
-
+	</ul>
+	</main>
+	<%@include file="../includes/footer.html" %>
 
 </body>
 </html>
