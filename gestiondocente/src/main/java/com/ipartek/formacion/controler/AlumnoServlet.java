@@ -118,7 +118,7 @@ public class AlumnoServlet extends HttpServlet {
 			mensaje= e.getMessage();
 			
 		}
-		request.setAttribute("menseje", mensaje);
+		request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
 		rd.forward(request,response); 
 	}
 
@@ -140,7 +140,13 @@ public class AlumnoServlet extends HttpServlet {
 			
 			alumno.setDireccion( request.getParameter(Constantes.PAR_DIRECCION));
 			alumno.setEmail( request.getParameter(Constantes.PAR_EMAIL));
-			alumno.setnHermanos(Integer.parseInt(request.getParameter(Constantes.PAR_NHERMANOS)));
+			
+			String nHermanos=request.getParameter(Constantes.PAR_NHERMANOS);
+			if("".equalsIgnoreCase(nHermanos))
+			{
+				alumno.setnHermanos(Integer.parseInt(request.getParameter(Constantes.PAR_NHERMANOS)));
+			}
+			
 			alumno.setActivo(Boolean.parseBoolean( request.getParameter(Constantes.PAR_ACTIVO)));
 		}catch(Exception e){
 			

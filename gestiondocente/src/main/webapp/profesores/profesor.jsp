@@ -1,15 +1,14 @@
 <%@page import="com.ipartek.formacion.controler.Constantes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
+	
 <jsp:include page="../includes/header.jsp"/>
-
+	
 <main>
 	<div  class="container">
-	<h1>Crear Alumno</h1>
+	<h1>Crear Profesor</h1>
 	
-		<form role="form" action="<%=Constantes.SERVLET_ALUMNO%>" method="post">
+		<form role="form" action="<%=Constantes.SERVLET_PROFESOR%>" method="post">
 			<div class="form-group">
 		    <input type="hidden" class="form-control" id="<%=Constantes.PAR_CODIGO %>"  name="<%=Constantes.PAR_CODIGO %>" value="-1">
 		  </div>
@@ -44,23 +43,19 @@
 		   <input type="text" class="form-control" id="<%=Constantes.PAR_EMAIL %>" name="<%=Constantes.PAR_EMAIL  %>" 
 		  	placeholder="Introduce tu email">
 		  </div>
-		    <div class="form-group">
-		   <label for="<%=Constantes.PAR_NHERMANOS%>">Nº de hermanos</label>
-		   <input type="number" class="form-control" id="<%=Constantes.PAR_NHERMANOS %>" name="<%=Constantes.PAR_NHERMANOS  %>" 
-		  	placeholder="Introduce tu nº de hermanos">
-		  </div>
 		   <div class="form-group">
-		   <label for="<%=Constantes.PAR_ACTIVO%>">Activo</label>
-		   <select class="form-control" name"<%=Constantes.PAR_ACTIVO  %>" id="<%=Constantes.PAR_ACTIVO %>" >
-	 		 <option value="1">Activo</option>
-	 		 <option value="0">Desactivado</option>
-			</select>
+		   <label for="<%=Constantes.PAR_nSS%>">Nº Seguridad Social</label>
+		   <input type="text" class="form-control" id="<%=Constantes.PAR_nSS %>" name="<%=Constantes.PAR_nSS  %>" 
+		  	placeholder="Introduce tu nº de ss">
 		  </div>
-		 
-		  <button type="submit" class="btn btn-primary btn-lg">Insertar Alumno</button>
+		  
+		  
+		  <button type="submit" class="btn btn-primary btn-lg">Insertar Profesor</button>
 		</form>
 	</div>
 </main>
+
 <%@ include file="../includes/footer.html" %>
+
 </body>
 </html>

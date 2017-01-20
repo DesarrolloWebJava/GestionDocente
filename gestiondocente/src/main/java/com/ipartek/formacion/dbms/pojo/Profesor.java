@@ -8,7 +8,7 @@ public class Profesor extends Persona {
 	}
 
 	public static final int CODIGO_NULO = -1;
-	private int nSS;
+	private long nSS;
 	private int codigo;
 
 	public Profesor() {
@@ -17,11 +17,11 @@ public class Profesor extends Persona {
 		this.nSS = 0;
 	}
 
-	public int getnSS() {
+	public long getnSS() {
 		return nSS;
 	}
 
-	public void setnSS(int nSS) {
+	public void setnSS(long nSS) {
 		this.nSS = nSS;
 	}
 

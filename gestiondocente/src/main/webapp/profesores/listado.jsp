@@ -1,21 +1,15 @@
 <%@page import="com.ipartek.formacion.controler.Constantes"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Profesor"%>
 <%@page import="java.util.Map"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta charset="UTF-8">
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen"> 
-<script src="js/bootstrap.min.js"></script>
-<title>Gestión Docente-Listado Profesores</title>
-</head>
-<body>
-	<header>
-		<h1>Listado Profesores</h1>
-	</header>
-	<main>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+	
+<jsp:include page="../includes/header.jsp"/>
+
+
+<main>
+	<div class="container">
+		<h1>PÃ¡gina Listado Profesor</h1>
 		<%
 			/*esto es un criplet*/
 			//recogemos el atributo de la request y lo gardamos en un objeto lista
@@ -23,6 +17,7 @@
 			Map<Integer, Profesor > profesores =(Map<Integer, Profesor>) request.getAttribute(Constantes.ATT_LISTADO_PROFESORES); 
 			//sacar la lista por pantalla	
 		%>
+		<a href="<%=Constantes.SERVLET_PROFESOR%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE %>" class="btn btn-primary btn-lg active" role="button"> Crear Profesor</a>
 		<ul>
 		<% 
 		for (Map.Entry<Integer, Profesor> entry : profesores.entrySet()) {
@@ -35,6 +30,8 @@
 		
 		%>
 		</ul>
-	</main>
+	</div>
+</main>
+<%@ include file="../includes/footer.html" %>
 </body>
 </html>
