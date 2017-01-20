@@ -3,25 +3,18 @@
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Gestión Docente - Listado Profesores</title>
-</head>
-<body>
-<header><h1>Listado Profesores</h1></header>
-<main>
+<jsp:include page="../includes/header.jsp" />
+	<main>
 	<%
 		Map<Integer,Profesor> profesores = (Map<Integer,Profesor>) request.getAttribute(Constantes.ATT_LISTADO_PROFESORES);
-	
+	%>
+	<a href="<%=Constantes.SERVLET_PROFESOR %>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE%>">Crear Profeeeee</a>
+	<%
 	for(Map.Entry<Integer,Profesor> entry: profesores.entrySet()){
 		out.write("<p>"+entry.getValue().toString()+"</p>");
 	}
 	%>
-</main>
-<footer>
-</footer>
-
+	</main>
+<%@ include file="../includes/footer.html" %>
 </body>
 </html>
