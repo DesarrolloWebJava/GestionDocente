@@ -89,11 +89,18 @@ public class ProfesorServlet extends HttpServlet {
 			}else{
 				//introducimos uno nuevo
 				pS.create(profesor);
-				mensaje="El profesor ha sido introducido con exito";
+				mensaje="El profesor ha sido introducido con exito";	
 			}
+			//muestra el listado de profesores
+			cargarProfesores(request);
+		}catch(NumberFormatException e){
+			response.sendRedirect(Constantes.JSP_HOME);
+			return;
 		}catch(Exception e){
 			rd=request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
 			mensaje=e.getMessage();
+			//escribir el error en un fichero de trazas
+			e.printStackTrace();
 		}
 		request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
 		rd.forward(request, response);
@@ -108,12 +115,14 @@ public class ProfesorServlet extends HttpServlet {
 			//intoduzco una validacion en el campo nss ya que es int y 
 			// si no se introduce nada en el campo el parseint falla
 			String codNss=request.getParameter(Constantes.PAR_NSS);
-			if("".equalsIgnoreCase(codNss)){
+			/*if("".equalsIgnoreCase(codNss)){
 				codNss="11111111";
+			}*/
+			if (codNss!=null && !"".equals(codNss)){
+				int codNss2=Integer.parseInt(codNss);
+				profesor.setnSS(codNss2);
 			}
 				
-			int codNss2=Integer.parseInt(codNss);
-			profesor.setnSS(codNss2);
 		
 			profesor.setNombre(request.getParameter(Constantes.PAR_NOMBRE));
 			profesor.setApellidos(request.getParameter(Constantes.PAR_APELLIDOS));
@@ -122,10 +131,13 @@ public class ProfesorServlet extends HttpServlet {
 			profesor.setDni(request.getParameter(Constantes.PAR_DNI));
 		
 			String date =request.getParameter(Constantes.PAR_FNACIMIENTO);
-			String pattern = "dd/MM/yyyy";
-			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-			profesor.setfNacimiento(dateFormat.parse(date));
-		
+			if(date !=null && !"".equals(date)){
+				String pattern = "dd/MM/yyyy";
+				SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+				profesor.setfNacimiento(dateFormat.parse(date));
+			}
+		}catch(NumberFormatException e){
+			throw new Exception("Alguien esta tocando el codigo");
 		}catch(Exception e){
 			throw new Exception("Los datos introducidos no son validos"+e.getMessage());
 		}
