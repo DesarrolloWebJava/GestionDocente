@@ -91,7 +91,7 @@ public class ProfesorServlet extends HttpServlet {
 				mensaje = "El profesor ha sido creado correctamente";
 			}
 		}catch(NumberFormatException e){
-			//
+			//En caso de excepcion prepara la redireccion a index.jsp
 			response.sendRedirect(Constantes.JSP_HOME);
 		}catch(Exception e){
 			//Prepara la redireccion
