@@ -1,11 +1,14 @@
 /* Paquete donde se guardan las entidades. */
 package com.ipartek.formacion.dbms.pojo;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.ipartek.formacion.controller.Constantes;
 import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.Util;
 /**
@@ -168,6 +171,24 @@ public class Persona {
 		}
         /* Se asigna la fecha de naciemiento.*/
 		this.fNacimiento = fNacimiento;
+	}
+
+	@Override
+	/* Metodo que devuelve la clase covertida a cadena de caracteres.*/
+	public String toString() {
+		/* Se declara e instancia la clase gregoriana para trabajar con la fecha.*/
+		//GregorianCalendar calendar;
+		//calendar = new GregorianCalendar();
+		/* Se asigna le fecha de nacimiento de la clase al gregoriaono.*/
+		//calendar.setTime(fNacimiento);
+		/* Se monta la fecha en una variable String */
+		//String fNacimiento = calendar.get(Calendar.DAY_OF_MONTH) + "/" + 
+		  //            calendar.get(Calendar.MONTH)  + "/" + 
+		  //            calendar.get(Calendar.YEAR); 
+				
+		/* Se devuelve los atributos de la clase.*/
+		return this.codigo + " " + this.dni + " " + this.nombre + " " + this.apellidos /*+ " " + 
+			   fNacimiento + " " + this.email*/;
 	}
 
 }

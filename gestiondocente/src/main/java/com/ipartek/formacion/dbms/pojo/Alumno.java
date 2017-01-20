@@ -20,7 +20,7 @@ public class Alumno extends Persona implements Comparable<Alumno>, Serializable 
 	public static final int CODIGO_NULO = -1;
 	/* Atributo identificativo de la 'Alumno'. */
 	private int codigo;
-	/* Atributo //TODO */
+	/* Atributo Activo */
 	private boolean activo;
 	/* Atributo nº de Hermanos de la 'Alumno'.*/
 	private int nHermanos;
@@ -53,9 +53,10 @@ public class Alumno extends Persona implements Comparable<Alumno>, Serializable 
 	@Override
 	/* Metodo que devuelve una versión (personalizada) de la clase como String.*/
 	public String toString() {
-		/* Se devuelve un String con el codigo, apellido , el nombre y D.N.I.*/
-		return this.getCodigo() + " " + this.getApellidos() + ", " + 
-			   this.getNombre() + " " + this.getDni();
+		/* Se llama a la clase del padre que conviente la clase a cadena de caracteres.
+		 * (Se devuelve un String con el codigo, apellido , el nombre y D.N.I.)
+		 * y el nhermanos de la clase.*/
+		return super.toString() + this.nHermanos;
 	}
 
 	/**

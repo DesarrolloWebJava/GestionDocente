@@ -53,8 +53,10 @@ public class Profesor extends Persona {
 	@Override
 	/* Metodo que devuelve le objeto como cadena de caracteres.*/
 	public String toString() {
-		/* Se devuelve el email.*/
-		return this.getEmail();
+		/* Se llama a la clase del padre que conviente la clase a cadena de caracteres.
+		 * (Se devuelve un String con el codigo, apellido , el nombre y D.N.I.)
+		 * y el nss de la clase.*/
+		return super.toString() + this.nSS;
 	}
 
 }

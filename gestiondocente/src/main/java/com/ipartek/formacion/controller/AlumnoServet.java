@@ -35,8 +35,6 @@ public class AlumnoServet extends HttpServlet {
     /* Metodo que que se ejecuta crear la pagina.
      * Solo se ejecuta 1 vez,al acceder más veces no se crea.*/
 	public void init() throws ServletException {
-    	
-    	
     	/* Se instancia la clase que gestiona los Alumnos. */
     	aS = new AlumnoServiceImp();
 		/* Se llama al init del padre.En los servlets tiene que ser la última línea,
@@ -64,15 +62,13 @@ public class AlumnoServet extends HttpServlet {
 				/* Se comprueba si se ha recibido la operación de crear.*/
 				case Constantes.OP_CREATE :
 					/* Se redirecciona a la url del formulario del alumno.*/
-					// TODO Constante alumno.jsp
-					rd = req.getRequestDispatcher("alumnos/alumno.jsp");
+					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO );
 					/* Se sale de la estructura 'Swicth'*/
 					break;
 				/* Se comprueba si se ha recibido la operación de modificar.*/
 				case Constantes.OP_UPDATE :
 					/* Se redirecciona a la url del formulario del alumno.*/
-					// TODO Constante alumno.jsp
-					rd = req.getRequestDispatcher("alumnos/alumno.jsp");
+					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 					/* Se sale de la estructura 'Swicth'*/
 					break;
 					/* Se comprueba si se ha recibido la operación de modificar.*/
@@ -85,6 +81,7 @@ public class AlumnoServet extends HttpServlet {
 			default:
 				/* Se llama al metodo que cargar la lista de los alumnos en el request. */
 				cargarListaAlumnos(req);
+				/* Se sale de la estructura 'Swicth'*/
 				break;
 			}
 		/* Se captura la excepción.*/	
@@ -118,14 +115,14 @@ public class AlumnoServet extends HttpServlet {
 			                                        throws ServletException, IOException {
 		/* Se declara y se instancia el objeto donde trabajar con el alumno.*/
 		Alumno alumno = new Alumno();
+		/* Se declara la variable para transmitir el mensaje auditoria 
+		 * de la operacion.*/
+		String mensaje ="";
 		/* Se monta estructura para la captura de excepciones.*/
 		try {
 			/* Se llama al metodo que devuelve el alumno 
 			 * pasado por los parametros de la request.*/
-			alumno =recogerParametros(req);
-			/* Se declara la variable para transmitir el mensaje auditoria 
-			 * de la operacion.*/
-			String mensaje ="";
+			alumno =recogerParametros(req);			
 			/* Se comprueba si se pretende añadir alumno o modificarlo en función si
 			 * el codigo del alumno es mayor que la cosntante de 
 			 * codigo nulo(codigo inicial). */
@@ -137,19 +134,21 @@ public class AlumnoServet extends HttpServlet {
 			} else{
 				/* Se crea el alumno.*/
 				aS.create(alumno);
+				System.out.println(alumno.toString());
 				/* Se asigna el mensaje de creación satisfactoria.*/
 				mensaje = "El alumno ha sido creado correctamente.";				
 			}
-		
+		/* Se carga la lista de los alumnos para actualizar los datos introducidos.*/	
+		cargarListaAlumnos(req);
 		/* Se captura la excepción.*/	
 		} catch (Exception e) {
 			/* Se asigna la url del formulario 'alumno.jsp' 
 			 * para redireccionar tras el error.*/
-			// TODO Constante alumno.jsp
-			rd = req.getRequestDispatcher("alumnos/alumno.jsp");
+			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 			/* Se asigna el atributo del error del mensaje para pasarlo al request.*/
-			req.setAttribute("mensaje",e.getMessage());
+			mensaje = e.getMessage();
 		}
+		req.setAttribute(Constantes.ATT_MENSAJES,mensaje);
 		/* Se redirije a la url que se haya indicado.*/
 		rd.forward(req, resp);
 		
@@ -165,11 +164,15 @@ public class AlumnoServet extends HttpServlet {
 			int codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
 			/* Se asigna el codigo al alumno.*/
 			alumno.setCodigo(codigo);
+			/* Se asigna el nombre al alumno con el nombre recogido por parametro.*/
+			alumno.setNombre(req.getParameter(Constantes.PAR_NOMBRE));	
 			/* Se asigna los apellidos al alumno con los apellidos 
 			 * recogidos por parametro.*/
-			alumno.setApellidos(req.getParameter(Constantes.PAR_APELLIDOS));				
+			alumno.setApellidos(req.getParameter(Constantes.PAR_APELLIDOS));
+			/* Se asigna el dni al alumno con el dni recogido por parametro.*/
+			alumno.setDni(req.getParameter(Constantes.PAR_DNI));
 			/* Se asigna la fecha de nacimiento al alumno con los fecha de nacimiento 
-			 * recogidos por parametro.*/
+			 * recogidos por parametro.*/			
 			String date = req.getParameter(Constantes.PAR_FNACIMIENTO);
 			String pattern = "dd/MM/yyyy";
 			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
@@ -193,7 +196,7 @@ public class AlumnoServet extends HttpServlet {
 		/* Se captura la excepción.*/	
 		}catch (Exception e){
 			/* Se trasfiere la excepcion a la clase padre.*/
-			throw new Exception(e.getMessage());		
+			throw new Exception("Los datos del alumno contienen un error: "+e.getMessage());		
 		}
 		/* Se devuelve el alumno creado.*/
 		return alumno;
