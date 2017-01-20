@@ -3,9 +3,11 @@ package com.ipartek.formacion.controller;
 public class Constantes {
 	private Constantes(){
 	}
-	
+	//atributos
 	public static final String ATT_LISTADO_PROFESORES="listado-profesores";
 	public static final String ATT_LISTADO_ALUMNOS="listado-alumnos";
+	public static final String ATT_MENSAJE="mensaje";
+	public static final String ATT_ALUMNO="alumno";
 	
 	
 	public static final String SERVLET_ALUMNO="alumno.do";
@@ -15,6 +17,9 @@ public class Constantes {
 	public static final String JSP_LISTADO_PROFESORES="profesores/listado.jsp";
 	
 	public static final String JSP_HOME="index.jsp"; 
+	
+	public static final String JSP_FORMULARIO_ALUMNO="alumnos/alumno.jsp";
+	public static final String JSP_FORMULARIO_PROFESOR="profesores/profesor.jsp";
 	
 	public static final String PAR_OPERACION="op";
 	//nombres de parametros de la clase de alumnos
@@ -27,6 +32,7 @@ public class Constantes {
 	public static final String PAR_DIRECCION="direccion";
 	public static final String PAR_NHERMANOS="nHermanos";
 	public static final String PAR_ACTIVO="activo";
+	public static final String PAR_NSS="nss";
 	
 	
 	public static final int OP_CREATE=1;

@@ -59,14 +59,14 @@ public class AlumnoServlet extends HttpServlet {
 			switch(op){
 				case Constantes.OP_CREATE:
 					//redirigiremos a la pagina alumnos.alumno.jsp
-					rd = req.getRequestDispatcher("alumnos/alumno.jsp");
+					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 					break;
 				case Constantes.OP_READ:
 					cargarListaAlumnos(req);
 					break;
 				case Constantes.OP_UPDATE:
 					//falta el getbyid
-					rd = req.getRequestDispatcher("alumnos/alumno.jsp");
+					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 					//req.setAttribute();
 					break;
 				default:
@@ -123,10 +123,10 @@ public class AlumnoServlet extends HttpServlet {
 			}
 		} catch (Exception e) {
 			//redirigir al formulario
-			rd=req.getRequestDispatcher("alumnos/alumno.jsp");
+			rd=req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 			mensaje=e.getMessage();
 		}
-		req.setAttribute("mensaje", mensaje);
+		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);
 		rd.forward(req, resp);
 		
 	}
@@ -140,7 +140,11 @@ public class AlumnoServlet extends HttpServlet {
 			alumno.setDireccion(req.getParameter(Constantes.PAR_DIRECCION));
 			alumno.setEmail(req.getParameter(Constantes.PAR_EMAIL));
 			alumno.setDni(req.getParameter(Constantes.PAR_DNI));
-			int nHermanos=Integer.parseInt(req.getParameter(Constantes.PAR_NHERMANOS));
+			String nHermanos2=req.getParameter(Constantes.PAR_NHERMANOS);
+			if("".equalsIgnoreCase(nHermanos2)){
+				nHermanos2="0";
+			}
+			int nHermanos=Integer.parseInt(nHermanos2);
 			alumno.setnHermanos(nHermanos);
 			alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));
 			
@@ -151,7 +155,7 @@ public class AlumnoServlet extends HttpServlet {
 		
 		}catch(Exception e){
 			
-			throw new Exception("Los datos introducidos no son validos");
+			throw new Exception("Los datos introducidos no son validos"+e.getMessage());
 			
 		}
 		

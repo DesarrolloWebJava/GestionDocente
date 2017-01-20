@@ -1,6 +1,7 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -34,21 +35,100 @@ public class ProfesorServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest req, HttpServletResponse resp)
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	//recogemos el indicativo de la operacion y lo tratamos en el switch con los case
+	//Crear, leer y por defecto
+	String operacion=req.getParameter(Constantes.PAR_OPERACION);
+	int op=-1;
+	try{
+		op= Integer.parseInt(operacion);
+		
+		switch (op){
+		case Constantes.OP_CREATE:
+		//se manda al formulario para introducir un nuevo profesor
+			rd=req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+			break;
+		case Constantes.OP_READ:
+		//se manda al metodo de listar profesores
+			cargarProfesores(req);
+			break;
+		default:
+		//mandamos por defecto que muestre la lista de profesores
+			cargarProfesores(req);
+			break;
+		}
+	}catch(Exception e){
+	//si salta la excepcion lo redireccionamos a la pagina inicial
+		resp.sendRedirect(Constantes.JSP_HOME);
+		return;
+	}
+	
+	// hace la redirección
+	rd.forward(req, resp);
+	}
+
+	private void cargarProfesores(HttpServletRequest req) {
 		Map<Integer,Profesor> profesores= pS.getAll();
 		// fijamos la página de destino
 		rd = req.getRequestDispatcher(Constantes.JSP_LISTADO_PROFESORES);
 		// añadimos el atributo a la request
 		req.setAttribute(Constantes.ATT_LISTADO_PROFESORES, profesores);
-		// hace la redirección
-		rd.forward(req, resp);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+		Profesor profesor=null;
+		String mensaje="";
+		try{
+			profesor=recogerParametrosProfesor(request);
+			if(profesor.getCodigo()>profesor.CODIGO_NULO){
+				//realizamos un update
+				pS.update(profesor);
+				mensaje="El profesor ha sido actualizado correctamente";
+			}else{
+				//introducimos uno nuevo
+				pS.create(profesor);
+				mensaje="El profesor ha sido introducido con exito";
+			}
+		}catch(Exception e){
+			rd=request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+			mensaje=e.getMessage();
+		}
+		request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
+		rd.forward(request, response);
 	}
 
+	private Profesor recogerParametrosProfesor(HttpServletRequest request) throws Exception {
+	Profesor profesor=new Profesor();
+		try{
+			//request.getParameter recoge la información introducida
+			int codigo=Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+			profesor.setCodigo(codigo);
+			//intoduzco una validacion en el campo nss ya que es int y 
+			// si no se introduce nada en el campo el parseint falla
+			String codNss=request.getParameter(Constantes.PAR_NSS);
+			if("".equalsIgnoreCase(codNss)){
+				codNss="11111111";
+			}
+				
+			int codNss2=Integer.parseInt(codNss);
+			profesor.setnSS(codNss2);
+		
+			profesor.setNombre(request.getParameter(Constantes.PAR_NOMBRE));
+			profesor.setApellidos(request.getParameter(Constantes.PAR_APELLIDOS));
+			profesor.setDireccion(request.getParameter(Constantes.PAR_DIRECCION));
+			profesor.setEmail(request.getParameter(Constantes.PAR_EMAIL));
+			profesor.setDni(request.getParameter(Constantes.PAR_DNI));
+		
+			String date =request.getParameter(Constantes.PAR_FNACIMIENTO);
+			String pattern = "dd/MM/yyyy";
+			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+			profesor.setfNacimiento(dateFormat.parse(date));
+		
+		}catch(Exception e){
+			throw new Exception("Los datos introducidos no son validos"+e.getMessage());
+		}
+		return profesor;
+	}
 }
