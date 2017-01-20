@@ -4,12 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Gestion Docente - Listado Alumnos</title>
-</head>
-<body>
+<jsp:include page="../includes/header.jsp"/>
 	<header><h1>Pagina listado de Alumnos</h1></header>
 	
 	<main>
@@ -31,5 +26,6 @@
 	%>
 	
 	</main>
+	<%@ include file = "../includes/footer.html" %>
 </body>
 </html>

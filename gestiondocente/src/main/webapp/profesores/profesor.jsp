@@ -2,10 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="../includes/header.jsp"/>
-Crear Alumno
+Crear Profesor
 
 <main>
-		<form action="<%=Constantes.SERVLET_ALUMNO%>" method="post">
+		<form action="<%=Constantes.SERVLET_PROFESOR%>" method="post">
 			<div>
 				<input type="hidden" name ="<%=Constantes.PAR_CODIGO%>" id="<%=Constantes.PAR_CODIGO%>" value="-1">
 				<label for ="<%=Constantes.PAR_NOMBRE%>">Nombre:</label>
@@ -32,17 +32,10 @@ Crear Alumno
 				<input type ="text" placeholder = "Introduzac la fecha de nacimiento ..." name = "<%=Constantes.PAR_FNACIMIENTO%>" id ="<%=Constantes.PAR_FNACIMIENTO%>">
 			</div>
 			<div>
-				<label for ="<%=Constantes.PAR_NHERMANOS%>">Numero Hermanos:</label>
-				<input type ="text" placeholder = "Introduzca el numero de hermanos ..." name = "<%=Constantes.PAR_NHERMANOS%>" id ="<%=Constantes.PAR_NHERMANOS%>">
+				<label for ="<%=Constantes.PAR_NSS%>">Numero Seguridad Social:</label>
+				<input type ="text" placeholder = "Introduzca el numero de la seguridad social ..." name = "<%=Constantes.PAR_NSS%>" id ="<%=Constantes.PAR_NSS%>">
 			</div>
-			<div>
-				<label for ="<%=Constantes.PAR_ACTIVO%>">Activo:</label>
-				<select>
-					<option value="1">Activo</option>
-					<option value ="0">Desactivo</option>
-				
-				</select>
-			</div>
+
 			<input type ="submit" value ="Enviar">
 		</form>
 	</main>
