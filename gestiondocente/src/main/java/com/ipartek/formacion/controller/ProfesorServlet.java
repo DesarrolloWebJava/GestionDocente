@@ -97,6 +97,9 @@ public class ProfesorServlet extends HttpServlet {
 				mensaje = "El profesor ha sido creado correctamente";
 			}
 			cargarListaProfesores(request);
+		} catch (NumberFormatException e) {
+			response.sendRedirect(Constantes.JSP_HOME);
+			return;
 		} catch (Exception e) {
 			// redirigir al formulario
 			rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
@@ -117,13 +120,22 @@ public class ProfesorServlet extends HttpServlet {
 			profesor.setDireccion(request.getParameter(Constantes.PAR_DIRECCION));
 			profesor.setDni(request.getParameter(Constantes.PAR_DNI));
 			profesor.setEmail(request.getParameter(Constantes.PAR_EMAIL));
-			int nss = Integer.parseInt(request.getParameter(Constantes.PAR_NSS));
-			profesor.setnSS(nss);
+
+			String nSS_s = request.getParameter(Constantes.PAR_NSS);
+			if (nSS_s != null && !nSS_s.equals("")) {
+				int nss = Integer.parseInt(nSS_s);
+				profesor.setnSS(nss);
+			}
 
 			String date = request.getParameter(Constantes.PAR_FNACIMIENTO);
-			String pattern = "dd/MM/yyyy";
-			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-			profesor.setfNacimiento(dateFormat.parse(date));
+			if (date != null && !"".equals(date)) {
+				String pattern = "dd/MM/yyyy";
+				SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+				profesor.setfNacimiento(dateFormat.parse(date));
+			}
+
+		} catch (NumberFormatException e) {
+			throw new NumberFormatException("Alguien manipula el codigo");
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception("Los datos no son validos: " + e.getMessage());
