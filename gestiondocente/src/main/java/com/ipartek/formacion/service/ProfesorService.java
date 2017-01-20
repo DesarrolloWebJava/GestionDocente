@@ -20,4 +20,6 @@ public interface ProfesorService {
 	public Profesor update(Profesor profesor);
 
 	public void delete(int codigo);
+
+	public void delate(int codigo);
 }

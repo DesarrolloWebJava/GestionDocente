@@ -19,6 +19,7 @@ public class Constantes {
 	public static final String JSP_LISTADO_PROFESORES ="profesores/listado.jsp";
 	public static final String JSP_HOME = "index.jsp";
 	public static final String JSP_FORMULARIO_ALUMNO = "alumnos/alumno.jsp";
+	public static final String JSP_FORMULARIO_PROFESOR = "profesores/profesor.jsp";
 	
 	
 	public static final String PAR_OPERACION = "op";
@@ -32,6 +33,8 @@ public class Constantes {
 	public static final String PAR_DIRECCION = "direccion";
 	public static final String PAR_NHERMANOS = "nHermanos";
 	public static final String PAR_ACTIVO = "activo";
+	// nombres de parametros de la clase Profesor
+	public static final String PAR_NSS = "nss";
 	
 	
 	public static final int OP_CREATE = 1;

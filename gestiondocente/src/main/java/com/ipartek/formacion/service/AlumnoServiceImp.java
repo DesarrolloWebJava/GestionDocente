@@ -42,7 +42,6 @@ public class AlumnoServiceImp implements AlumnoService{
 			alumno.setDni("44974398z");
 			create(alumno);
 		} catch (PersonaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -53,7 +52,6 @@ public class AlumnoServiceImp implements AlumnoService{
 			alumno.setDni("16071559x");
 			create(alumno);
 		} catch (PersonaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -64,7 +62,6 @@ public class AlumnoServiceImp implements AlumnoService{
 			alumno.setDni("16071559x");
 			create(alumno);
 		} catch (PersonaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -101,7 +98,6 @@ public class AlumnoServiceImp implements AlumnoService{
 			posicion = buscarAlumno(codigo);
 			alumnos.remove(posicion);
 		} catch (AlumnoServiceImpException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 
@@ -134,7 +130,6 @@ public class AlumnoServiceImp implements AlumnoService{
 			posicion = buscarAlumno(alumno.getCodigo());
 			alumnos.set(posicion, alumno);
 		} catch (AlumnoServiceImpException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 		return alumno;
@@ -142,7 +137,6 @@ public class AlumnoServiceImp implements AlumnoService{
 
 	@Override
 	public void delate(int codigo) {
-		// TODO Auto-generated method stub
 		
 	}
 }

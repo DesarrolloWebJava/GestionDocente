@@ -4,14 +4,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html >
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Gestión Docente- Listado Profesores</title>
-</head>
-<body>
-<header><h1>Listado de Profesores</h1></header>
+<jsp:include page="../includes/header.jsp"/>
 	<main>
 	<% /* Esto es un scriplet */
 	// recogemos el atributo de la request
@@ -22,4 +15,5 @@
 	}
 	%>
 </body>
+<%@ include file="../includes/footer.html" %>
 </html>

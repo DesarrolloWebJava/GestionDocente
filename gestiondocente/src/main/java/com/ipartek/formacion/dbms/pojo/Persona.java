@@ -104,4 +104,8 @@ public class Persona {
 		this.fNacimiento = fNacimiento;
 	}
 
+	public int compareTo(Profesor o) {
+		return this.getApellidos().compareToIgnoreCase(o.getApellidos());
+	}
+
 }
