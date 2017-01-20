@@ -19,7 +19,6 @@
     <description></description>
     <display-name>ProfesorServlet</display-name>
     <servlet-name>ProfesorServlet</servlet-name>
-
     <servlet-class>com.ipartek.formacion.controller.ProfesorServlet</servlet-class>
   </servlet>
   <servlet-mapping>

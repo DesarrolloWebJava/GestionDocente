@@ -3,14 +3,7 @@
 <%@page import="com.ipartek.formacion.dbms.pojo.Alumno"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Gestión Docente - Listado Alumnos</title>
-</head>
-<body>
-	<header><h1>Página Listado de Alumnos</h1></header>
+<jsp:include page="../includes/header.jsp" />
 	<main>
 	<%
 	/*Esto es un scriplet */
@@ -24,11 +17,7 @@
 		out.println("<li>"+alumno.toString()+"</li>");
 	}
 	 %>
-
-
-	
-	
-	
 	</main>
+<%@ include file="../includes/footer.html" %>
 </body>
 </html>
