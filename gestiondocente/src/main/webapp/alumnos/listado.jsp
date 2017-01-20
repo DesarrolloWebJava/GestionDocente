@@ -3,14 +3,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Gestión Docente - Listado Alumnos</title>
-</head>
-<body>
-	<header><h1>Página listado de Alumnos</h1></header>
+<jsp:include page="../includes/header.jsp"/>
 	<main>
 	<%
 	/* Esto es un scriptlet */
@@ -28,5 +21,6 @@
 	%>
 	
 	</main>
+<%@ include file="../includes/footer.html" %>
 </body>
 </html>

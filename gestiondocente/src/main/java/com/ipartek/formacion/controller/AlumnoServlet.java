@@ -3,6 +3,7 @@ package com.ipartek.formacion.controller;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -44,20 +45,21 @@ public class AlumnoServlet extends HttpServlet {
 			{
 			case Constantes.OP_CREATE:
 				// Se va redirigir a la pagina alumnos/alumno.jsp
-				rd = req.getRequestDispatcher( "alumnos/alumno.jsp");
+				rd = req.getRequestDispatcher( Constantes.JSP_FORMULARIO_ALUMNO);
 			break;
 			case Constantes.OP_READ:
-				
 				cargarListaAlumnos(req);
+		
 			break;
 			case Constantes.OP_UPDATE:
 				//aS.getById(codigo);
 				//req.setAttribute(name, o);
 				// Se va redirigir a la pagina alumnos/alumno.jsp
-				rd = req.getRequestDispatcher("alumnos/alumno.jsp");
+				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 			break;
 			default :
 				cargarListaAlumnos(req);
+				
 			break;
 			}
 			
@@ -86,6 +88,7 @@ public class AlumnoServlet extends HttpServlet {
 		// Forma 2 -> Engancha la peticion original.
 		// Fijamos la pagina de destino
 		rd= req.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
+	
 	}
 
 	@Override
@@ -110,7 +113,7 @@ public class AlumnoServlet extends HttpServlet {
 			
 		} catch (Exception e) {
 		   // redirigir al formulario 	
-			rd = req.getRequestDispatcher("alumnos/alumno.jsp");
+			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 			mensaje = e.getMessage();
 		}
 		
@@ -122,24 +125,32 @@ public class AlumnoServlet extends HttpServlet {
 	private Alumno recogerParametros(HttpServletRequest req) throws  Exception{
 		Alumno alumno = new Alumno();
 		try{
-			String pattern = "dd/MM/yyyy";
-			SimpleDateFormat formato = new SimpleDateFormat(pattern);
-			Date fecha = new Date();
-			
+		
 			alumno.setCodigo(Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO)));
 			alumno.setNombre(req.getParameter(Constantes.PAR_NOMBRE));
 			alumno.setApellidos(req.getParameter(Constantes.PAR_APELLIDOS));
 			alumno.setDni(req.getParameter(Constantes.PAR_DNI));
 			alumno.setEmail(req.getParameter(Constantes.PAR_EMAIL));
 			alumno.setEmail(req.getParameter(Constantes.PAR_EMAIL));
-			formato.parse(req.getParameter(Constantes.PAR_FNACIMIENTO));
-			alumno.setfNacimiento(fecha);
-				
-			alumno.setnHermanos(Integer.parseInt(req.getParameter(Constantes.PAR_NHERMANOS)));
-			alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));
+			
+			String date = req.getParameter(Constantes.PAR_FNACIMIENTO);
+			String pattern = "dd/MM/yyyy";
+			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+			alumno.setfNacimiento(dateFormat.parse(date));
+			
+		    String nHermanos = req.getParameter(Constantes.PAR_NHERMANOS);
+		    if ("".equals(nHermanos))
+		    { 
+		    	nHermanos = "0";
+		    
+		    }
+		    alumno.setnHermanos(Integer.parseInt(nHermanos));
+		 	alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));
 		}
 		catch (Exception e){
-			throw new Exception("Los datos No son validos");
+			e.printStackTrace();
+			throw new Exception("Los datos No son validos " + e.getMessage() );
+			
 		}
 		
 		return alumno;

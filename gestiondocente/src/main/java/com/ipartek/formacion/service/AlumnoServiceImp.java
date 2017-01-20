@@ -59,16 +59,9 @@ public class AlumnoServiceImp implements AlumnoService {
 			alumno.setNombre("Maite");
 			alumno.setApellidos("Monasterio Herrero");
 			alumno.setDni("16071559x");
-			String date = "19/11/1970";
-			String pattern = "dd/MM/yyyy";
-			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-			alumno.setfNacimiento(dateFormat.parse(date));
 			create(alumno);
 		} catch (PersonaException e) {
 			System.out.println(e.getMessage());
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
 			System.out.println("Error no controlado" + e.getMessage());
@@ -79,8 +72,15 @@ public class AlumnoServiceImp implements AlumnoService {
 			alumno.setNombre("Jon");
 			alumno.setApellidos("Martinez Perez");
 			alumno.setDni("16071559x");
+			String date = "19/11/1970";
+			String pattern = "dd/MM/yyyy";
+			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+			alumno.setfNacimiento(dateFormat.parse(date));
 			create(alumno);
 		} catch (PersonaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

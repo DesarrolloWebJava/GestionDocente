@@ -1,10 +1,12 @@
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <jsp:include page="../includes/header.jsp"/>
+
 <main>
-Crear Alumno
-	<form action="<%=Constantes.SERVLET_ALUMNO%>" method="post">
+Crear Profesor
+	<form action="<%=Constantes.SERVLET_PROFESOR%>" method="post">
      <input type="hidden" id="<%=Constantes.PAR_CODIGO%>" name="<%=Constantes.PAR_CODIGO%>" value="-1">
      <div>
        <label for="<%=Constantes.PAR_NOMBRE%>">Nombre:</label>
@@ -31,16 +33,10 @@ Crear Alumno
       <input type="text" placeholder="Introduzca aqui la fecha de nacimiento.." id="<%=Constantes.PAR_FNACIMIENTO %>" name="<%=Constantes.PAR_FNACIMIENTO%>" value="">
     </div>
     <div>
-      <label for="<%=Constantes.PAR_NHERMANOS %>">Numero Hermanos:</label>
-      <input type="number" placeholder="Introduzca aqui el numero de hermanos.." id="<%=Constantes.PAR_NHERMANOS %>" name="<%=Constantes.PAR_NHERMANOS%>" value="">
+      <label for="<%=Constantes.PAR_NSS %>">Número Seguridad Social:</label>
+      <input type="number" placeholder="Introduzca aqui el número de la SS.." id="<%=Constantes.PAR_NSS %>" name="<%=Constantes.PAR_NSS%>" value="">
     </div>
-    <div>
-      <label for="<%=Constantes.PAR_ACTIVO %>">Activo:</label>
-      <select id="<%=Constantes.PAR_ACTIVO %>" name="<%=Constantes.PAR_ACTIVO %>">
-        <option value="1">Activo</option>
-        <option value="0">Desactivo</option>
-      </select>
-    </div>
+
     <input type="submit" value="Enviar"/>
 	</form>
 </main>

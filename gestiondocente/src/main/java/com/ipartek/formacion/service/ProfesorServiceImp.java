@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.ipartek.formacion.dbms.pojo.Profesor;
+import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 
 public class ProfesorServiceImp implements ProfesorService {
 
@@ -16,16 +17,28 @@ public class ProfesorServiceImp implements ProfesorService {
 		init();
 	}
 
-	private void init() {
+private void init() {
 		contador = 0;
 		Profesor profesor = new Profesor();
+		
+	try {
+		profesor.setNombre("Txomin");
+		profesor.setApellidos("Barullo Garcia");
+		profesor.setDni("44974397L");
 		profesor.setEmail("uvillanueva@ipartek.com");
 		create(profesor);
 
 		profesor = new Profesor();
+		profesor.setNombre("Salvador");
+		profesor.setApellidos("Perez Etxebarria");
+		profesor.setDni("44974394X");
 		profesor.setEmail("auraga@ipartek.com");
 		create(profesor);
+	} catch (PersonaException e) {
+		e.printStackTrace();
 	}
+}
+	
 
 	@Override
 	public Profesor create(Profesor profesor) {
