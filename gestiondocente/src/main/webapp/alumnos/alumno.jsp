@@ -1,15 +1,9 @@
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Gestion docente - Crear alumno</title>
-</head>
-<body>
-	Crear alumno
-	
+	<jsp:include page="../includes/header.jsp"></jsp:include>
+	<main>
+	CREAR ALUMNO
 	<form action="<%=Constantes.SERVLET_ALUMNO %>" method="post">
 		<input type="hidden" name="<%=Constantes.PAR_CODIGO %>" id="<%=Constantes.PAR_CODIGO %>" value="-1">
 	<div>
@@ -33,15 +27,15 @@
 		<input type="text" placeholder="Introduzca la dirección..." name="<%=Constantes.PAR_DIRECCION %>" id="<%=Constantes.PAR_DIRECCION %>">
 	</div>
 	<div>
-		<label for="<%=Constantes.PAR_FNAIMIENTO %>">Fecha de nacimiento: </label>
-		<input type="text" placeholder="Introduzca la fecha de nacimiento..." name="<%=Constantes.PAR_FNAIMIENTO %>" id="<%=Constantes.PAR_FNAIMIENTO %>">
+		<label for="<%=Constantes.PAR_FNACIMIENTO %>">Fecha de nacimiento: </label>
+		<input type="text" placeholder="Introduzca la fecha de nacimiento..." name="<%=Constantes.PAR_FNACIMIENTO %>" id="<%=Constantes.PAR_FNACIMIENTO %>">
 	</div>
 	<div>
 		<label for="<%=Constantes.PAR_NHERMANOS %>">Número de hermanos: </label>
 		<input type="number" placeholder="Introduzca el numero de hermanos..." name="<%=Constantes.PAR_NHERMANOS %>" id="<%=Constantes.PAR_NHERMANOS %>">
 	</div>
 	<div>
-		<label for="<%=Constantes.PAR_DNI %>">Activo: </label>
+		<label for="<%=Constantes.PAR_ACTIVO %>">Activo: </label>
 		<select name="<%=Constantes.PAR_ACTIVO %>">
 			<option value="1">Activo</option>
 			<option value="0">Desactivado</option>
@@ -49,5 +43,7 @@
 	</div>
 	<input type="submit" value ="Enviar" />
 	</form>
+	</main>
+	<%@ include file="../includes/footer.html" %>
 </body>
 </html>

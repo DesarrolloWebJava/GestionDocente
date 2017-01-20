@@ -3,14 +3,7 @@
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Gestion Docente - Listado Profesores</title>
-</head>
-<body>
-	<h1>Pagina listado de profesores</h1>
+	<jsp:include page="../includes/header.jsp"></jsp:include>
 	<main>
 		<%
 		/*Esto es un Scriptlet*/
@@ -19,6 +12,10 @@
 		 * Hacemos el casting porque es un objeto que queremos meter en una lista
 		 */
 		 Map<Integer,Profesor> profesores = (Map<Integer,Profesor>)request.getAttribute(Constantes.ATT_LISTADO_PROFESORES);
+		//Vamos a hacer el resto de operaciones de CRUD en el SERVLET
+		%>
+		<a href="<%=Constantes.SERVLET_PROFESOR %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_CREATE %>" >Crear Profesor</a>
+		<%
 		//Recorremos la lista con un Entry porque es un Map
 		for (Map.Entry<Integer,Profesor> entry: profesores.entrySet()){
 			//mostrar en la web
@@ -26,5 +23,6 @@
 		}
 		%>
 	</main>
+	<%@ include file="../includes/footer.html" %>
 </body>
 </html>

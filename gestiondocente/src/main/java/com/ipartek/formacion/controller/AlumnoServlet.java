@@ -4,13 +4,11 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.AlumnoService;
@@ -46,17 +44,18 @@ public class AlumnoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//Recogemos el parametro
+		//Recogemos el parametro de lo que queremos hacer: create, delete, update, ...
 		String operacion = request.getParameter(Constantes.PAR_OPERACION);
+		//Variable que controla si es correcto o no el parametro 
 		int op = -1;
 		try{
-			//Hacer parse a int
+			//Cambiamos el valor del parametro de String a Integer
 			op = Integer.parseInt(operacion);
-			//Switch para gestionar que hacer
+			//Switch para gestionar a donde redirecciona en funcion del parametro
 			switch(op){
 				case Constantes.OP_CREATE:
 				//Se va a redirigir a la pagina alumnos/alumno.jsp
-				rd = request.getRequestDispatcher("alumnos/alumno.jsp");
+				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 				break;
 				case Constantes.OP_READ:
 				cargarListaAlumnos(request);
@@ -65,7 +64,7 @@ public class AlumnoServlet extends HttpServlet {
 				//TODO recogemos el codigo para coger el getById
 				//request.getParameter()
 				//Se va a redirigir a la pagina alumnos/alumno.jsp
-				rd = request.getRequestDispatcher("alumnos/alumno.jsp");
+				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 				//request.setAtribute(arg0, arg1);
 				break;
 				case Constantes.OP_DELETE:
@@ -76,7 +75,7 @@ public class AlumnoServlet extends HttpServlet {
 				break;
 			}
 		}catch(Exception e){
-			//cargarListaAlumnos(request);
+			//En caso de excepcion prepara la redireccion a index.jsp
 			response.sendRedirect(Constantes.JSP_HOME);
 			return;
 		}
@@ -84,47 +83,42 @@ public class AlumnoServlet extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	/**
-	 * @param request
-	 */
 	private void cargarListaAlumnos(HttpServletRequest request) {
 		// Obtenemos los datos de los alumnos y los cargamos en la variable alumnos
 		List<Alumno> alumnos = aS.getAll();
 		// Fijamos la pagina de destino
 		rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
-		/*
-		 * listado-alumno es una key
-		 * Y alumno es el objeto lista
-		 * request lo manda a la VISTA
-		 *  Añadimos el atributo a la request(peticion)
-		 */
+		//Añadimos la lista y una key para identificarla al request
 		request.setAttribute(Constantes.ATT_LISTADO_ALUMNOS, alumnos);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Creamos una variable alumno nula
 		Alumno alumno = null;
 		//Recogemos los parametros
 		String mensaje ="";
 		try {
+			//Cargamos la variable con los parametros
 			alumno = recogerParametros(request);
-			//procesaremos UPDATE or INSERT
-			//Si el codigo de alumno es mayor que el codigo de alumno
+			//Si existe el codigo lo actualiza, sino lo crea
 			if(alumno.getCodigo() > Alumno.CODIGO_NULO){
+				//actualiza aS con alumno
 				aS.update(alumno);
 				mensaje = "El alumno ha sido actualizado correctamente";
 			}else{ 
+				//Crea aS con alumno
 				aS.create(alumno);
 				mensaje = "El alumno ha sido creado correctamente";
 			}
 		} catch (Exception e) {
 			//Prepara la redireccion
-			rd = request.getRequestDispatcher("alumnos/alumno.jsp");
+			rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
+			//Guarda la excepcion como mensaje
 			mensaje = e.getMessage();
 		}
-		request.setAttribute("mensaje", mensaje);
+		//Prepara la redireccion. Envia el mensaje
+		request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
+		//Realiza la redireccion
 		rd.forward(request, response);
 	}
 	
@@ -138,14 +132,17 @@ public class AlumnoServlet extends HttpServlet {
 			alumno.setDni(request.getParameter(Constantes.PAR_DNI));
 			alumno.setEmail(request.getParameter(Constantes.PAR_EMAIL));
 			alumno.setDireccion(request.getParameter(Constantes.PAR_DIRECCION));
-			alumno.setnHermanos(Integer.parseInt(request.getParameter(Constantes.PAR_NHERMANOS)));
+			String nHermanos = request.getParameter(Constantes.PAR_NHERMANOS);
+			if("".equalsIgnoreCase(nHermanos)) {
+				nHermanos = "0";
+			}
 			alumno.setActivo(Boolean.parseBoolean(request.getParameter(Constantes.PAR_ACTIVO)));
 			String date = request.getParameter(Constantes.PAR_FNACIMIENTO);
 			String pattern = "dd/MM/yyyy";
 			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
 			alumno.setfNacimiento(dateFormat.parse(date));
 		}catch(Exception e){
-			throw new Exception("Los datos no son validos");
+			throw new Exception("Los datos no son validos: "+e.getMessage());
 		}
 		return alumno;
 	}
