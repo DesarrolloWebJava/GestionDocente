@@ -51,10 +51,7 @@ public class ProfesorServlet extends HttpServlet {
 					cargarListaProfesores(request);
 					break;
 				case Constantes.OP_UPDATE:
-					// aS.getById(codigo)
-					// se va redirigir a la pagina alumnos/alumno.jsp
 					rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
-					// req.setAttribute(arg0, arg1);
 					break;
 				default:
 					cargarListaProfesores(request);
@@ -104,7 +101,7 @@ public class ProfesorServlet extends HttpServlet {
 			// redirigir al formulario
 			rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
 			mensaje = e.getMessage();
-			System.out.println(mensaje);
+			e.printStackTrace();
 		}
 		request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
 		rd.forward(request, response);
