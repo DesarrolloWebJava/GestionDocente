@@ -46,7 +46,7 @@ public class AlumnoServlet extends HttpServlet {
 			switch (op){
 				case Constantes.OP_CREATE:
 					//se va a redirigir a la pagina alumnos/alumno.jsp
-					rd = request.getRequestDispatcher("alumnos/alumno.jsp");
+					rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 					break;
 				case Constantes.OP_READE:
 					cargarListaAlumnos(request);
@@ -54,7 +54,7 @@ public class AlumnoServlet extends HttpServlet {
 				case Constantes.OP_UPDATE:
 					// falta de hacer TODO aS.getById(codigo)
 					//se va a redirigir a la pagina alumnos/alumno.jsp
-					rd = request.getRequestDispatcher("alumnos/alumno.jsp"); //programar el formulario
+					rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO); //programar el formulario
 					// falta de hacer TODO request.setAttribute(arg0, arg1);
 					break;
 				default:
@@ -104,7 +104,7 @@ public class AlumnoServlet extends HttpServlet {
 		}
 		cargarListaAlumnos(req);
 		} catch (Exception e){
-			rd = req.getRequestDispatcher("alumnos/alumno.jsp");
+			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 			req.setAttribute("mensaje", e.getMessage());
 			//req.setAttribute("mensaje", mensaje);
 		}

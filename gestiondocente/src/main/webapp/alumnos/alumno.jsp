@@ -1,17 +1,11 @@
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Gestión Docente - Crear Alumno</title>
-</head>
-<body>
+<jsp: include page="../include/header.jsp">
 Crear Alumno
-	
+<main> 	
 	<form action="<%=Constantes.SERVLET_ALUMNO %>" method="post">
-			<input type="hidden" name="<%=Constantes.PAR_CODIGO%>" id="%=Constantes.PAR_CODIGO%>" value="-1">
+			<input type="hidden" name="<%=Constantes.PAR_CODIGO%>" id="<%=Constantes.PAR_CODIGO%>" value="-1">
 		<div>
 			<label for = "<%=Constantes.PAR_NOMBRE %>">Nombre:</label>
 			<input type="text" placeholder="Introduzca su nombre.." name="<%=Constantes.PAR_NOMBRE %>" id="<%=Constantes.PAR_NOMBRE %>">
@@ -49,14 +43,8 @@ Crear Alumno
 		</div>
 		
 		<input type="submit" value="enviar">
-		
-		
 	</form>
-	
-	
-	
-	
-	
-	
+</main>
+	<%@ include file="../includes/footer.html" %>
 </body>
 </html>
