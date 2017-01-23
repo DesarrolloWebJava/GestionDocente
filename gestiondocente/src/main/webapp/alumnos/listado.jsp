@@ -14,8 +14,14 @@
 	%>
 	<a href="<%=Constantes.SERVLET_ALUMNO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE %>">Crear Alumnos </a>
 	<% 
+	
 	for(Alumno alumno: alumnos){
-		out.println("<p>"+alumno.toString()+"</p>");
+		//para el borrado
+		String btn_delete="<a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+
+		Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+alumno.getCodigo()+"'>Borrar</a>";
+		//redireccion para la update
+		out.println("<p>"+alumno.toString()+"<a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+
+		Constantes.PAR_CODIGO+"="+alumno.getCodigo()+"'>Editar</a>"+btn_delete);
 	}
 	%>
 	</main>

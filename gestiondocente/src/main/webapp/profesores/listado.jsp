@@ -16,7 +16,9 @@
 	<% 
 	for (Map.Entry<Integer, Profesor> entry : profesores.entrySet()) {
 		
-		out.println("<p>"+entry.getValue().toString()+"</p>");
+		out.println("<p>"+entry.getValue().toString()+"</p>"+"<a href='"+
+		Constantes.SERVLET_PROFESOR+"?"+
+		Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"'>Editar</a>");
 	}
 	%>
 	</main>
