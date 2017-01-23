@@ -1,5 +1,5 @@
 <%@page import="java.util.GregorianCalendar"%>
-<%@page import="java.text.SimpleDateFormat"%>
+
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Alumno"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

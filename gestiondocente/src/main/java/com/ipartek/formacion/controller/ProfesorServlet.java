@@ -42,12 +42,21 @@ public class ProfesorServlet extends HttpServlet {
 				case Constantes.OP_READ:
 					cargarListaProfesores(req);
 					break;
-				case Constantes.OP_UPDATE:
-					//aS.getById(codigo);
+				case Constantes.OP_UPDATE:{
+					int codigo = -1;
+					codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+					Profesor profesor =pS.getById(codigo);
 					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESORES);
-					//request.setAttribute(arg0, arg1);
+					req.setAttribute(Constantes.ATT_PROFESOR, profesor);
+				}
 					break;
-				case Constantes.OP_DELETE:
+				case Constantes.OP_DELETE:{
+					int codigo = -1;
+					codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+					pS.delete(codigo);
+					req.setAttribute(Constantes.ATT_MENSAJE, "el porfesor a sido borrado Correctamente");
+					cargarListaProfesores(req);
+				}
 					break;
 				default:
 					cargarListaProfesores(req);
@@ -73,22 +82,31 @@ public class ProfesorServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Profesor profesor = null;
 		String mensaje="";
+		int codigo = -1;
 		try{
 			profesor = recogerParametros(req);
-			
+			codigo= Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
 			if(profesor.getCodigo() > Profesor.CODIGO_NULO){
 				pS.update(profesor);
 				mensaje = "El profesor a sido actualizado correctamente";
 			}else{
 				pS.create(profesor);
-				mensaje = "El profesort a sido creado correctamente";
+				mensaje = "El profesor a sido creado correctamente";
 			}
 			cargarListaProfesores(req);
 		}catch(NumberFormatException e) {
 			resp.sendRedirect(Constantes.JSP_HOME);
 		}catch(Exception e){
-			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESORES);
-			mensaje= e.getMessage();
+			if (codigo == -1){
+				cargarListaProfesores(req);
+				mensaje="Se ha producido un error inesperado";
+			}else{
+				profesor = pS.getById(codigo);
+				req.setAttribute(Constantes.ATT_PROFESOR, profesor);
+				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESORES);
+				mensaje= e.getMessage();
+			}
+			System.out.println(mensaje);
 			e.printStackTrace();
 		}
 		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);

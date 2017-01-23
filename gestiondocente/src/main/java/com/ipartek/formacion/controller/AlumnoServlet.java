@@ -132,8 +132,13 @@ public class AlumnoServlet extends HttpServlet {
 			alumno.setDni(req.getParameter(Constantes.PAR_DNI));
 			alumno.setEmail(req.getParameter(Constantes.PAR_EMAIL));
 			alumno.setDireccion(req.getParameter(Constantes.PAR_DIRECCION));
-			alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));
 			
+			
+			if ("1".equals(req.getParameter(Constantes.PAR_ACTIVO))){
+				alumno.setActivo(true);
+			} else {
+				alumno.setActivo(false);
+			}
 			
 			String nHermanos = req.getParameter(Constantes.PAR_NHERMANOS);
 			 			if (!"".equalsIgnoreCase(nHermanos)) {
