@@ -15,10 +15,12 @@
 	<a href="<%=Constantes.SERVLET_PROFESOR%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE %>">Crear Profesores </a>
 	<% 
 	for (Map.Entry<Integer, Profesor> entry : profesores.entrySet()) {
-		
+		String btn_delete="<a href='"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+
+		Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+entry.getValue().getCodigo()+"'>Borrar</a>";
 		out.println("<p>"+entry.getValue().toString()+"</p>"+"<a href='"+
 		Constantes.SERVLET_PROFESOR+"?"+
-		Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"'>Editar</a>");
+		Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+
+		"="+entry.getValue().getCodigo()+"'>Editar</a>"+btn_delete);
 	}
 	%>
 	</main>

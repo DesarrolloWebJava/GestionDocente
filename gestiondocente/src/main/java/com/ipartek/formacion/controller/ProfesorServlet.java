@@ -51,6 +51,24 @@ public class ProfesorServlet extends HttpServlet {
 		//se manda al metodo de listar profesores
 			cargarProfesores(req);
 			break;
+		case Constantes.OP_UPDATE:
+		{
+			int codigo=-1;
+			codigo=Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+			Profesor profesor=pS.getById(codigo);
+			rd=req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+			req.setAttribute(Constantes.ATT_PROFESOR, profesor);
+		}
+			break;
+		case Constantes.OP_DELETE:
+		{
+			int codigo=-1;
+			codigo=Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+			pS.delete(codigo);
+			req.setAttribute(Constantes.ATT_MENSAJE, "El profesor ha sido borrado correctamente");
+			cargarProfesores(req);
+		}
+			break;
 		default:
 		//mandamos por defecto que muestre la lista de profesores
 			cargarProfesores(req);

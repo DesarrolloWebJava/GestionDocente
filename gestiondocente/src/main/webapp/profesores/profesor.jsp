@@ -17,10 +17,10 @@
 <main>
 <header><h2><%=titulo %></h2></header>
 <form action="<%=Constantes.SERVLET_PROFESOR%>" method="post">
-	<input type="hidden" name="<%=Constantes.PAR_CODIGO %>"  id="<%=Constantes.PAR_CODIGO %>" value="value="<%=profesor.getCodigo()%>">
+	<input type="hidden" name="<%=Constantes.PAR_CODIGO %>"  id="<%=Constantes.PAR_CODIGO %>" value="<%=profesor.getCodigo()%>">
 		<div>
 			<label for="<%=Constantes.PAR_NOMBRE %>">Nombre:</label>
-			<input value="<%=profesor.getNombre()%>"type="text" placeholder="Introduzca el nombre" name="<%=Constantes.PAR_NOMBRE %>"  id="<%=Constantes.PAR_NOMBRE %>" >
+			<input value="<%=profesor.getNombre()%>" type="text" placeholder="Introduzca el nombre" name="<%=Constantes.PAR_NOMBRE %>"  id="<%=Constantes.PAR_NOMBRE %>" >
 		</div>
 		<div>
 			<label for="<%=Constantes.PAR_APELLIDOS %>">Apellidos:</label>
