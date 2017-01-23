@@ -25,8 +25,7 @@ else{
 }
 %>
 
-<main>
-	<div  class="container">
+<div class="container">
 	
 	<h1><%=titulo %></h1>
 	
@@ -100,7 +99,7 @@ else{
 		  <button type="submit" class="btn btn-primary btn-lg"><%=titulo_boton %></button>
 		</form>
 	</div>
-</main>
+
 <%@ include file="../includes/footer.html" %>
 </body>
 </html>

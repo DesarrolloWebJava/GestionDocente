@@ -63,7 +63,7 @@ public class ProfesorServlet extends HttpServlet {
 			 }
 				 break;
 			 case Constantes.OP_DELETE:{
-				 {
+				 
 					 int codigo = -1;
 					 codigo=Integer.parseInt( request.getParameter(Constantes.PAR_CODIGO));
 					// recoger variable profesor
@@ -71,7 +71,7 @@ public class ProfesorServlet extends HttpServlet {
 					 //sacar un mensaje en la vista
 					 request.setAttribute(Constantes.ATT_MENSAJE,"El profesor ha sido borrado");
 					 cargarListaProfesor(request);
-				 } 
+				
 			 }
 				 
 			default:
@@ -125,11 +125,15 @@ public class ProfesorServlet extends HttpServlet {
 			}
 			cargarListaProfesor(request);
 			//procesaremos update or insert
-		} catch (Exception e) {
+		}catch (NumberFormatException e) {
+			
+			mensaje="Error Critico. Contacte con el Administrado del sistema";
+			rd = request.getRequestDispatcher(Constantes.JSP_HOME);
+		}catch (Exception e) {
 			
 			
 			if ( codigo == -1){
-				rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_PROFESORES);
+				rd = request.getRequestDispatcher(Constantes.JSP_CREAR_PROFESOR);
 				mensaje= "Se ha producido una operación inesperada";
 			}else{
 				//validamos datos

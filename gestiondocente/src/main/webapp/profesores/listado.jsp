@@ -7,8 +7,7 @@
 <jsp:include page="../includes/header.jsp"/>
 
 
-<main >
-	<div class="container">
+<div class="container">
 		<h1>Página Listado Profesor</h1>
 		<%
 			/*esto es un criplet*/
@@ -17,23 +16,28 @@
 			Map<Integer, Profesor > profesores =(Map<Integer, Profesor>) request.getAttribute(Constantes.ATT_LISTADO_PROFESORES); 
 			//sacar la lista por pantalla	
 		%>
-		<a href="<%=Constantes.SERVLET_PROFESOR%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE %>" class="btn btn-primary btn-lg active" role="button"> Crear Profesor</a>
+		<br>
+		<br>
+		<a href="<%=Constantes.SERVLET_PROFESOR%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE %>" class="btn btn-primary btn-lg active " role="button"> Crear Profesor</a>
 		<ul>
+		<br>
+		<br>
 		<% 
 		for (Map.Entry<Integer, Profesor> entry : profesores.entrySet()) {
 			 int codigo = entry.getKey();
 			 Profesor profesor = entry.getValue();
 			// out.println("<li>" + entry.getKey() + "  email=" + profesor.getEmail() + "</li>");
 		    out.println("<li>"+ profesor.toString()+ " "
-		    	+"<a href='"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+profesor.getCodigo()+"' class='btn btn-warning' role='button' >UPDATE</a>"
-		   		+"<a href='"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+profesor.getCodigo()+"' class='btn btn-danger' role='button' >Borrar</a>"+"</li>");	
+		    	+"<a href='"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+profesor.getCodigo()+"' class='btn btn-warning btn-xs' role='button' >UPDATE</a>"
+		   		+"<a href='"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+profesor.getCodigo()+"' class='btn btn-danger btn-xs' role='button' >Borrar</a>"+"</li>");	
 		  //  out.write(entry.getValue().)
+		  
 		}
 		
 		%>
 		</ul>
 	</div>
-</main>
+
 <%@ include file="../includes/footer.html" %>
 </body>
 </html>

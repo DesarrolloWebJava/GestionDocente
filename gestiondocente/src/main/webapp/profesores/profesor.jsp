@@ -18,13 +18,12 @@ if(profesor == null){
 	profesor = new Profesor();
 }
 else{
-	titulo ="Actualizar Profesor";
+	titulo ="Editar Profesor";
 	titulo_boton="Actualizar Profesor";
 }
 %>	
-<main>
-	<div  class="container">
-	<h1>Crear Profesor</h1>
+<div class="container">
+	<h1><%=titulo %></h1>
 	
 		<form role="form" action="<%=Constantes.SERVLET_PROFESOR%>" method="post">
 			<div class="form-group">
@@ -78,7 +77,7 @@ else{
 		  <button type="submit" class="btn btn-primary btn-lg"><%=titulo_boton %></button>
 		</form>
 	</div>
-</main>
+
 
 <%@ include file="../includes/footer.html" %>
 

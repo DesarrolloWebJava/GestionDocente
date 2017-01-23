@@ -140,7 +140,8 @@ public class AlumnoServlet extends HttpServlet {
 		} catch (Exception e) {
 			
 			if ( codigo == -1){
-				rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
+				rd = request.getRequestDispatcher(Constantes.JSP_CREAR_ALUMNOS);
+				
 				mensaje= "Se ha producido una operación inesperada";
 			}else{
 				//validamos datos

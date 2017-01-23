@@ -4,10 +4,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
 <jsp:include page="../includes/header.jsp"/>
-	
-<main>
+
 	<div class="container">
 		<h1>Página Listado Alumnos</h1>
 			<%
@@ -27,8 +25,8 @@
 				for(Alumno alumno : alumnos){
 					String btn_delete ="";
 					out.println("<p>"+alumno.toString()+"  "
-					+"<a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+alumno.getCodigo()+"' class='btn btn-warning' role='button' >UPDATE</a>"+
-					"<a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+alumno.getCodigo()+"' class='btn btn-danger' role='button' >Borrar</a>"+"</p>");	
+					+"<a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+alumno.getCodigo()+"' class='btn btn-warning btn-xs' role='button' >UPDATE</a>"+
+					"<a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+alumno.getCodigo()+"' class='btn btn-danger btn-xs' role='button' >Borrar</a>"+"</p>");	
 				}
 				%>
 				</a>
@@ -36,7 +34,7 @@
 			%>
 		</div>
 	</div>
-</main>
+
 <%@ include file="../includes/footer.html" %>
 </body>
 </html>
