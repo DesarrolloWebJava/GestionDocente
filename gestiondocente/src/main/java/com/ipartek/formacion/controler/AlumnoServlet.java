@@ -54,8 +54,31 @@ public class AlumnoServlet extends HttpServlet {
 			 case Constantes.OP_READ:
 				 cargarListaAlumnos(request);
 				 break;
-			 case Constantes.OP_UPDATE:
+			 case Constantes.OP_UPDATE:{
 				 //tendriamos q recibir como parametro el codigo del alumno a modificar
+				 int codigo = -1;
+				 codigo=Integer.parseInt( request.getParameter(Constantes.PAR_CODIGO));
+				
+				// recoger variable alumno
+				 Alumno alumno = aS.getById(codigo);
+				 rd=  request.getRequestDispatcher(Constantes.JSP_CREAR_ALUMNOS);
+				 request.setAttribute(Constantes.ATT_ALUMNO, alumno);
+				// cargarListaAlumnos(request);
+				 
+			 } 
+				 break;
+			 case Constantes.OP_DELETE:
+				 //ponemos llaves para crear ambito y asi tengo m nreserva de nombre
+			 {
+				 int codigo = -1;
+				 codigo=Integer.parseInt( request.getParameter(Constantes.PAR_CODIGO));
+				// recoger variable alumno
+				// Alumno alumno = aS.getById(codigo);
+				 aS.delete(codigo);
+				 //sacar un mensaje en la vista
+				 request.setAttribute(Constantes.ATT_MENSAJE,"El alumno ha sido borrado");
+				 cargarListaAlumnos(request);
+			 } 
 				 break;
 			default:
 				cargarListaAlumnos(request);

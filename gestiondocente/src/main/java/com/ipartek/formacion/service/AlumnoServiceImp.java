@@ -41,7 +41,9 @@ public class AlumnoServiceImp implements AlumnoService {
 			alumno.setNombre("Sergio");
 			alumno.setApellidos("Aparicio Vegas");
 			alumno.setDni("44974398z");
-
+			
+			
+			
 			create(alumno);
 		} catch (PersonaException e) {
 			// TODO Auto-generated catch block
