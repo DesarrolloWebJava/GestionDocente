@@ -64,10 +64,10 @@ public class Persona {
 	}
 
 	public void setDni(String dni) throws PersonaException {
-		final String regex = "\\d{8}[A-Za-z]";
+		final String regex = "(\\d{8}[A-Za-z])";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(dni);
-		if (!matcher.find() && !Util.validarDni(dni)) {
+		if (!matcher.find() && Util.validarDni(dni)) {
 			throw new PersonaException(PersonaException.COD_DNI_ERROR, PersonaException.MSG_DNI_ERROR);
 		}
 		this.dni = dni;
