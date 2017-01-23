@@ -184,8 +184,14 @@ public class AlumnoServlet extends HttpServlet {
 			{
 				alumno.setnHermanos(Integer.parseInt(request.getParameter(Constantes.PAR_NHERMANOS)));
 			}
-			
-			alumno.setActivo(Boolean.parseBoolean( request.getParameter(Constantes.PAR_ACTIVO)));
+			if("1".equals(request.getParameter(Constantes.PAR_ACTIVO))){
+				alumno.setActivo(true);
+			}
+			else{
+				alumno.setActivo(false);
+			}
+				
+			//alumno.setActivo(Boolean.parseBoolean( request.getParameter(Constantes.PAR_ACTIVO)));
 		}catch(Exception e){
 			
 			//throw new Exception(e.getMessage());
