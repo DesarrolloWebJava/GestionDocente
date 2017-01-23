@@ -20,8 +20,8 @@ public class Persona {
 
 	public Persona() {
 		super();
+		this.dni = "";
 		this.email = "";
-		this.direccion = "";
 		this.nombre = "";
 		this.apellidos = "";
 		this.email = "";

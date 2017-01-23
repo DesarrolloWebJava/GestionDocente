@@ -68,6 +68,7 @@ public class AlumnoServlet extends HttpServlet {
 					codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
 					aS.delete(codigo);
 					req.setAttribute(Constantes.ATT_MENSAJE, "El alumno ha sido borrado correctamente");
+					cargarListaAlumnos(req);
 				}
 					break;
 				default:
