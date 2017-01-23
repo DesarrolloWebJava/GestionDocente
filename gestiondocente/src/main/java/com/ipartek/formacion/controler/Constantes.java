@@ -11,9 +11,11 @@ public class Constantes {
 		
 	}
 	public static final String ATT_LISTADO_PROFESORES = "listado-profesores";
-	public static final String ATT_LISTADO_ALUMNOS = "listado-alunmos";
+	public static final String ATT_LISTADO_ALUMNOS = "listado-alumnos";
 	public static final String ATT_MENSAJE="mesaje";
 	public static final String ATT_ALUMNO="alumno";
+	public static final String ATT_PROFESOR="profesor";
+	
 	
 	
 	public static final String SERVLET_ALUMNO ="alumno.do";
@@ -21,6 +23,7 @@ public class Constantes {
 	
 	public static final String JSP_LISTADO_ALUMNOS="alumnos/listado.jsp";
 	public static final String JSP_CREAR_ALUMNOS="alumnos/alumno.jsp";
+	
 	public static final String JSP_CREAR_PROFESOR="profesores/profesor.jsp";
 	public static final String JSP_LISTADO_PROFESORES="profesores/listado.jsp";
 	public static final String JSP_HOME = "index.jsp";

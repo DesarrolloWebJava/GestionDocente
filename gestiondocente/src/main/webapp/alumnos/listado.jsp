@@ -14,7 +14,7 @@
 				/*esto es un criplet*/
 				//recogemos el atributo de la request y lo gardamos en un objeto lista
 				//hay q hacer un casting de request y decirle q es tipo list
-				List<Alumno> alumnos =(List<Alumno>) request.getAttribute("listado-alunmos"); 
+				List<Alumno> alumnos =(List<Alumno>) request.getAttribute(Constantes.ATT_LISTADO_ALUMNOS); 
 				//sacar la lista por pantalla	
 			%>
 		<br>

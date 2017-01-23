@@ -108,9 +108,9 @@ public class AlumnoServlet extends HttpServlet {
 		//(Redireccion limpia)response.sendRedirect("alumnos/listado.jsp");-->hace una direccion limpia
 		//(FOWARD)trabajar con objeto tipo requestDispacher--> te da la url del Servlet
 		//fijamos la landing page
-		rd = request.getRequestDispatcher("alumnos/listado.jsp");
+		rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
 		//añadimos el atributo a la request
-		request.setAttribute("listado-alunmos", alumnos);
+		request.setAttribute(Constantes.ATT_LISTADO_ALUMNOS, alumnos);
 		
 	}
 	
@@ -122,9 +122,12 @@ public class AlumnoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Alumno alumno = null;
 		String mensaje="";
+		int  codigo = -1;
 		try {
-			alumno = recogerParametros(request);
 			
+			codigo =Integer.parseInt( request.getParameter(Constantes.PAR_CODIGO));
+			alumno = recogerParametros(request);
+			alumno.setCodigo(codigo);
 			if(alumno.getCodigo()>Alumno.CODIGO_NULO){
 				aS.update(alumno);
 				mensaje ="El alumno ha sido actualizado correctamente";
@@ -135,10 +138,21 @@ public class AlumnoServlet extends HttpServlet {
 			cargarListaAlumnos(request);
 			//procesaremos update or insert
 		} catch (Exception e) {
-			//redirigir al formulario
-			rd = request.getRequestDispatcher("alumnos/alumno.jsp");
-			//mensaje de error
-			mensaje= e.getMessage();
+			
+			if ( codigo == -1){
+				rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
+				mensaje= "Se ha producido una operación inesperada";
+			}else{
+				//validamos datos
+				alumno = aS.getById(codigo);
+				
+				//redirigir al formulario
+				rd = request.getRequestDispatcher(Constantes.JSP_CREAR_ALUMNOS);
+				request.setAttribute(Constantes.ATT_ALUMNO, alumno);
+				//mensaje de error
+				mensaje= e.getMessage();
+			}
+			
 			
 		}
 		request.setAttribute(Constantes.ATT_MENSAJE, mensaje);

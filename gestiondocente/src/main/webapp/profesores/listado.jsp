@@ -24,7 +24,9 @@
 			 int codigo = entry.getKey();
 			 Profesor profesor = entry.getValue();
 			// out.println("<li>" + entry.getKey() + "  email=" + profesor.getEmail() + "</li>");
-		    out.println("<li>"+ profesor.toString() +"</li>");
+		    out.println("<li>"+ profesor.toString()+ " "
+		    	+"<a href='"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+profesor.getCodigo()+"' class='btn btn-warning' role='button' >UPDATE</a>"
+		   		+"<a href='"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+profesor.getCodigo()+"' class='btn btn-danger' role='button' >Borrar</a>"+"</li>");	
 		  //  out.write(entry.getValue().)
 		}
 		

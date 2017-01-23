@@ -53,9 +53,27 @@ public class ProfesorServlet extends HttpServlet {
 			 case Constantes.OP_READ:
 				 cargarListaProfesor(request);
 				 break;
-			 case Constantes.OP_UPDATE:
-				 //tendriamos q recibir como parametro el codigo del profesor a modificar
+			 case Constantes.OP_UPDATE:{
+				 int codigo = -1;
+				 codigo=Integer.parseInt( request.getParameter(Constantes.PAR_CODIGO));
+				// recoger variable profesor
+				 Profesor profesor = aP.getById(codigo);
+				 rd=  request.getRequestDispatcher(Constantes.JSP_CREAR_PROFESOR);
+				 request.setAttribute(Constantes.ATT_PROFESOR, profesor);
+			 }
 				 break;
+			 case Constantes.OP_DELETE:{
+				 {
+					 int codigo = -1;
+					 codigo=Integer.parseInt( request.getParameter(Constantes.PAR_CODIGO));
+					// recoger variable profesor
+					 aP.delete(codigo);
+					 //sacar un mensaje en la vista
+					 request.setAttribute(Constantes.ATT_MENSAJE,"El profesor ha sido borrado");
+					 cargarListaProfesor(request);
+				 } 
+			 }
+				 
 			default:
 				cargarListaProfesor(request);
 				break;
@@ -92,9 +110,12 @@ public class ProfesorServlet extends HttpServlet {
 		
 		Profesor profesor = null;
 		String mensaje="";
+		int codigo= -1;
 		try {
-			profesor = recogerParametros(request);
 			
+			codigo =Integer.parseInt( request.getParameter(Constantes.PAR_CODIGO));
+			profesor = recogerParametros(request);
+			profesor.setCodigo(codigo);
 			if(profesor.getCodigo() > Profesor.CODIGO_NULO){
 				aP.update(profesor);
 				mensaje ="El Profesor ha sido actualizado correctamente";
@@ -105,15 +126,28 @@ public class ProfesorServlet extends HttpServlet {
 			cargarListaProfesor(request);
 			//procesaremos update or insert
 		} catch (Exception e) {
-			//redirigir al formulario
-			rd = request.getRequestDispatcher(Constantes.JSP_CREAR_PROFESOR);
-			//mensaje de error
-			mensaje= e.getMessage();
+			
+			
+			if ( codigo == -1){
+				rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_PROFESORES);
+				mensaje= "Se ha producido una operación inesperada";
+			}else{
+				//validamos datos
+				profesor = aP.getById(codigo);
+				
+				//redirigir al formulario
+				rd = request.getRequestDispatcher(Constantes.JSP_CREAR_PROFESOR);
+				request.setAttribute(Constantes.ATT_PROFESOR, profesor);
+				//mensaje de error
+				mensaje= e.getMessage();
+			}
 			
 		}
 		request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
 		rd.forward(request,response); 
 	}
+	
+	
 private Profesor recogerParametros(HttpServletRequest request) throws Exception {
 		
 		Profesor profesor = new Profesor();
@@ -134,7 +168,7 @@ private Profesor recogerParametros(HttpServletRequest request) throws Exception 
 			profesor.setEmail( request.getParameter(Constantes.PAR_EMAIL));
 			String nSS_s =request.getParameter(Constantes.PAR_nSS);
 			
-			if (nSS_s != null && "".equals(nSS_s))
+			if (nSS_s != null && !"".equals(nSS_s))
 			{
 				long nSS=Long.parseLong(request.getParameter(Constantes.PAR_nSS));
 				profesor.setnSS(nSS);
@@ -153,7 +187,7 @@ private Profesor recogerParametros(HttpServletRequest request) throws Exception 
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
+		aP = null;
 		super.destroy();
 	}
 		

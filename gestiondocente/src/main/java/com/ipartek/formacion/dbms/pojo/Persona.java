@@ -22,6 +22,9 @@ public class Persona {
 		super();
 		this.email = "";
 		this.direccion = "";
+		this.apellidos="";
+		this.nombre="";
+		this.dni="";
 		this.fNacimiento = new Date();
 	}
 
