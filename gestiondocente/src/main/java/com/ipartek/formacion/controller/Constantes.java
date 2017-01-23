@@ -3,6 +3,8 @@
  */
 package com.ipartek.formacion.controller;
 
+import com.ipartek.formacion.dbms.pojo.Alumno;
+
 /**
  * @author Raúl de Roba 18/01/17
  *
@@ -16,7 +18,7 @@ public class Constantes {
 	public static final String ATT_LISTADO_PROFESORES = "listado-profesores";
 	public static final String ATT_MENSAJES = "mensajes";
 	public static final String ATT_ALUMNOS = "alumno";
-
+	
 	/* Constantes de redireccionamiento de Servlets.*/
 	public static final String SERVLET_ALUMNO = "alumno.do";
 	public static final String SERVLET_PROFESOR = "profesor.do";
@@ -38,7 +40,8 @@ public class Constantes {
 	 *  operaciones de Servlets.*/
 	public static final int OP_CREATE = 1;	
 	public static final int OP_READ = 2;	
-	public static final int OP_UPDATE = 3;	
+	public static final int OP_UPDATE = 3;
+	public static final int OP_DELETE = 4;		
 	
 	/* Constantes para identificar los parametros de los atributos de la clase Persona.*/
 	public static final String PAR_CODIGO = "codigo";

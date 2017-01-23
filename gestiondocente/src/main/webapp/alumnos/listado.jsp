@@ -21,16 +21,33 @@
 		%>
 			<!-- Enlace al Servlet para crear el alumno. -->
 			<a href="<%= Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_CREATE%>">
-				Crear Profesor
+				Crear Alumno
 			</a>
 		
 		<%
 		/* Se recorre la lista de alumnos recogida del request.*/
 		for(Alumno alumno:alumnos){
-			/* Se imprime el alumno en la página.*/
-			out.println("<p>" + alumno.toString() + "</p>");	
-		}	
-		%>
+			/* Se declara en enlace para el borrado.*/
+			String btn_delete = "<a href ='" + 
+									Constantes.SERVLET_ALUMNO + "?" + 
+                                   	Constantes.PAR_OPERACION + "=" + 
+																	Constantes.OP_DELETE + "&" +
+								   	Constantes.PAR_CODIGO + "=" +  alumno.getCodigo()+"'>" +
+									"Borrar</a>";
+											                 
+			/* Se declara en enlace para el modificado.*/
+			String btn_update = "<a href ='" + 
+									Constantes.SERVLET_ALUMNO + "?" + 
+                                   	Constantes.PAR_OPERACION + "=" + 
+																	Constantes.OP_UPDATE + "&" +
+                                   	Constantes.PAR_CODIGO+"="+ alumno.getCodigo()+"'>" +
+            					   	"Modificar</a>";
+                                   
+			/* Se imprime el alumno en la página con los botones modificar y borrar.*/
+			out.println("<p>" + alumno.toString() + " " + 
+			                                           btn_update + " " + btn_delete + "</p>" );
+		}
+		 %>
 	</main>
 	<!-- Include del Pie de la página.	
 	  Se llama al include estetico 

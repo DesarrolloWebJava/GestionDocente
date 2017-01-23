@@ -34,8 +34,16 @@ public class Persona {
 	public Persona() {
 		/* Se llama al constructor padre.*/
 		super();
+		/* Se inicializa el atributo 'dni'. */
+		this.dni = "";
 		/* Se inicializa el atributo 'email'. */
+		this.nombre = "";
+		/* Se inicializa el atributo 'nombre'. */
+		this.apellidos = "";
+		/* Se inicializa el atributo 'apellidos'. */
 		this.email = "";
+		/* Se inicializa el atributo 'fnacimiento' con la fecha actual. */
+		this.fNacimiento = new Date();
 		/* Se inicializa el atributo 'dirección'. */
 		this.direccion = "";
 	}
@@ -177,18 +185,18 @@ public class Persona {
 	/* Metodo que devuelve la clase covertida a cadena de caracteres.*/
 	public String toString() {
 		/* Se declara e instancia la clase gregoriana para trabajar con la fecha.*/
-		//GregorianCalendar calendar;
-		//calendar = new GregorianCalendar();
+		GregorianCalendar calendar;
+		calendar = new GregorianCalendar();
 		/* Se asigna le fecha de nacimiento de la clase al gregoriaono.*/
-		//calendar.setTime(fNacimiento);
+		calendar.setTime(fNacimiento);
 		/* Se monta la fecha en una variable String */
-		//String fNacimiento = calendar.get(Calendar.DAY_OF_MONTH) + "/" + 
-		  //            calendar.get(Calendar.MONTH)  + "/" + 
-		  //            calendar.get(Calendar.YEAR); 
+		String fNacimiento = calendar.get(Calendar.DAY_OF_MONTH) + "/" + 
+		              calendar.get(Calendar.MONTH+1)  + "/" + 
+		              calendar.get(Calendar.YEAR); 
 				
 		/* Se devuelve los atributos de la clase.*/
-		return this.codigo + " " + this.dni + " " + this.nombre + " " + this.apellidos /*+ " " + 
-			   fNacimiento + " " + this.email*/;
+		return this.codigo + " " + this.dni + " " + this.nombre + " " + this.apellidos + " " + 
+			   fNacimiento + " " + this.email;
 	}
 
 }

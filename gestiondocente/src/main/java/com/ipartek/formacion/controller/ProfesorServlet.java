@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.dbms.pojo.Profesor;
 import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.ProfesorService;
@@ -61,13 +62,43 @@ public class ProfesorServlet extends HttpServlet {
 					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR );
 					/* Se sale de la estructura 'Swicth'*/
 					break;
-				/* Se comprueba si se ha recibido la operación de modificar.*/
-				case Constantes.OP_UPDATE :
+				/* Se comprueba si se ha recibido la operación de modificar.
+				 * Para que la variable 'codigo' se limite al ambito creamos este con {... }.*/
+				case Constantes.OP_UPDATE :{
+					/* Se declara la variable para recoger el codigo de profesor.*/
+					int codigo=-1;
+					/* Se recoge el codigo del profesor pasada por el request.*/
+					codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+					/* Se recoge el profesor recibido cuyo codigo se ha recogido del request.*/
+					Profesor profesor = aP.getById(codigo);
 					/* Se redirecciona a la url del formulario del profesor.*/
 					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+					/* Se asigna el profesor resultante al request.*/
+					req.setAttribute(Constantes.ATT_LISTADO_PROFESORES, profesor);
 					/* Se sale de la estructura 'Swicth'*/
 					break;
-					/* Se comprueba si se ha recibido la operación de modificar.*/
+				}
+				/* Se comprueba si se ha recibido la operación de modificar.
+				 * Para que la variable 'codigo' se limite al ambito creamos este con {... }.*/
+				case Constantes.OP_DELETE :{
+					/* Se declara la variable para recoger el codigo de profesor.*/
+					int codigo=-1;
+					/* Se recoge el codigo del profesor pasada por el request.*/
+					codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+					/* Se recoge el profesor recibido cuyo codigo se ha recogido del request.*/
+					Profesor profesor = aP.getById(codigo);
+					/* Se borra el alumno.*/
+					aP.delete(codigo);
+					/* Se llama al metodo que cargar la lista de los profesores 
+					 * en el request. */
+					cargaListaProfesores(req);
+					/* Se envia al request el mensaje del borrado satisfactorio.*/
+					req.setAttribute(Constantes.ATT_MENSAJES, 
+							                       "El profesor ha sido borrado correctamente.");
+					/* Se sale de la estructura 'Swicth'*/
+					break;
+				}	
+				/* Se comprueba si se ha recibido la operación de modificar.*/
 				case Constantes.OP_READ :	
 					/* Se llama al metodo que cargar la lista de los profesores 
 					 * en el request. */
