@@ -62,14 +62,30 @@ public class AlumnoServlet extends HttpServlet {
 				cargarListaAlumnos(request);
 				break;
 				case Constantes.OP_UPDATE:
-				//TODO recogemos el codigo para coger el getById
-				//request.getParameter()
-				//Se va a redirigir a la pagina alumnos/alumno.jsp
-				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
-				//request.setAtribute(arg0, arg1);
+				{
+					int codigo = -1;
+					//Recogemos el parametro(codigo)
+					codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+					//Recogemos el alumno que buscamos mediante el codigo y lo guardamos en la variable alumno
+					Alumno alumno = aS.getByID(codigo);
+					//Se va a redirigir a la pagina alumnos/alumno.jsp
+					rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
+					//Preparamos el redireccionamiento pasando el alumno
+					request.setAttribute(Constantes.ATT_ALUMNO, alumno);
+				}
 				break;
 				case Constantes.OP_DELETE:
-					
+				{
+					int codigo = -1;
+					//Recogemos el parametro(codigo)
+					codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+					//Ahora borramos 
+					aS.delete(codigo);
+					//Mesanje
+					request.setAttribute(Constantes.ATT_MENSAJE, "El alumno a sido borrado correctamente");
+					//Muestra la lista de alumnos
+					cargarListaAlumnos(request);
+				}
 				break;
 				default:
 					
@@ -98,24 +114,46 @@ public class AlumnoServlet extends HttpServlet {
 		Alumno alumno = null;
 		//Recogemos los parametros
 		String mensaje ="";
+		
+		int codigo = -1;
 		try {
+			//Intentamos hacer parse a el codigo. Por si intentan meter un valor no integer
+			codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
 			//Cargamos la variable con los parametros
 			alumno = recogerParametros(request);
-			//Si existe el codigo lo actualiza, sino lo crea
+			//Si existe el codigo...
 			if(alumno.getCodigo() > Alumno.CODIGO_NULO){
-				//actualiza aS con alumno
+				//UPDATE aS con alumno
 				aS.update(alumno);
 				mensaje = "El alumno ha sido actualizado correctamente";
 			}else{ 
-				//Crea aS con alumno
+				//CREATE aS con alumno
 				aS.create(alumno);
 				mensaje = "El alumno ha sido creado correctamente";
 			}
+			cargarListaAlumnos(request);
+		}catch (NumberFormatException e){
+			//Si el parse tiene un problema se ejecuta este catch
 		} catch (Exception e) {
-			//Prepara la redireccion
-			rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
-			//Guarda la excepcion como mensaje
-			mensaje = e.getMessage();
+			//Si el codigo es diferente de -1...
+			mensaje = "Se ha producido un error inesperado. \nContacte con el administrador";
+			response.sendRedirect(Constantes.JSP_HOME);
+			if(codigo == -1){
+				rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
+				request.setAttribute(Constantes.ATT_ALUMNO, alumno);
+				mensaje = "Se ha introducido una operacion inesperada."+ 
+				"\nContacte con el administrador del sistema";
+			//Si no	
+			}else{
+				alumno = aS.getByID(codigo);
+				//Prepara la redireccion. Envia alumno
+				request.setAttribute(Constantes.ATT_ALUMNO, alumno);
+				//Prepara la redireccion
+				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
+				//Guarda la excepcion como mensaje
+				mensaje = e.getMessage();
+			}
+			
 		}
 		//Prepara la redireccion. Envia el mensaje
 		request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
@@ -137,6 +175,7 @@ public class AlumnoServlet extends HttpServlet {
 			if("".equalsIgnoreCase(nHermanos)) {
 				nHermanos = "0";
 			}
+			alumno.setnHermanos(Integer.parseInt(nHermanos));
 			alumno.setActivo(Boolean.parseBoolean(request.getParameter(Constantes.PAR_ACTIVO)));
 			String date = request.getParameter(Constantes.PAR_FNACIMIENTO);
 			String pattern = "dd/MM/yyyy";
