@@ -23,8 +23,9 @@
 	for (Map.Entry<Integer, Profesor> profesor : profesores.entrySet()){
 		
 		Profesor p = profesor.getValue();
-		//out.println("<li>"+p.getCodigo()+" "+p.getEmail()+"</li>");	
-		out.write("<li>"+p.toString()+"</li>");
+		//out.println("<li>"+p.getCodigo()+" "+p.getEmail()+"</li>");
+		String btn_delete = "<a href = '"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+p.getCodigo()+"'>Borrar</a>";
+		out.write(""+p.toString()+"<a href = '"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+p.getCodigo()+"'>Editar</a>"+btn_delete);
 	}
 	
 	

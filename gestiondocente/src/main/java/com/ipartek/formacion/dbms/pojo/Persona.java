@@ -20,6 +20,11 @@ public class Persona {
 
 	public Persona() {
 		super();
+
+		this.dni = "";
+		this.nombre = "";
+		this.apellidos = "";
+		this.fNacimiento = new Date();
 		this.email = "";
 		this.direccion = "";
 	}
@@ -62,7 +67,7 @@ public class Persona {
 		final String regex = "\\d{8}[A-Za-z]";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(dni);
-		if (!matcher.find() && !Util.validarDni(dni)) {
+		if (!matcher.find() && Util.validarDni(dni)) {
 			throw new PersonaException(PersonaException.COD_DNI_ERROR, PersonaException.MSG_DNI_ERROR);
 		}
 		this.dni = dni;

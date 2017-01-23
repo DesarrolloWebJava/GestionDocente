@@ -48,9 +48,22 @@ public class AlumnoServlet extends HttpServlet {
 			case Constantes.OP_READ:
 				cargarListaAlumnos(request);
 				break;
-			case Constantes.OP_UPDATE:
-
+			case Constantes.OP_UPDATE: {
+				int codigo = -1;
+				codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+				Alumno alumno = as.getById(codigo);
 				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNOS);
+				request.setAttribute(Constantes.ATT_ALUMNO, alumno);
+
+			}
+				break;
+			case Constantes.OP_DELETE: {
+				int codigo = -1;
+				codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+				as.delete(codigo);
+				request.setAttribute(Constantes.ATT_MENSAJE, "El alumno ha sido borrado correctamente");
+				cargarListaAlumnos(request);
+			}
 				break;
 			default:
 				cargarListaAlumnos(request);
@@ -85,9 +98,13 @@ public class AlumnoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Alumno alumno = null;
 		String mensaje = null;
+		int codigo = -1;
 		try {
-			alumno = recogerParametros(req);
 
+			codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+
+			alumno = recogerParametros(req);
+			alumno.setCodigo(codigo);
 			// procesar insert y update
 			if (alumno.getCodigo() > Alumno.CODIGO_NULO) {// update
 				as.update(alumno);
@@ -100,8 +117,17 @@ public class AlumnoServlet extends HttpServlet {
 
 		} catch (Exception e) {
 			// redirijo formulario de crear usuario
-			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNOS);
-			mensaje = e.getMessage();
+			if (codigo == -1) {
+				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNOS);
+				System.out.println("Se ha producido un operacion inesperada");
+				mensaje = e.getMessage();
+			} else {
+				alumno = as.getById(codigo);
+				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNOS);
+				req.setAttribute(Constantes.ATT_ALUMNO, alumno);
+				mensaje = e.getMessage();
+			}
+			System.out.println(mensaje);
 		}
 		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);
 		rd.forward(req, resp);
@@ -110,8 +136,7 @@ public class AlumnoServlet extends HttpServlet {
 	private Alumno recogerParametros(HttpServletRequest req) throws Exception {
 		Alumno alumno = new Alumno();
 		try {
-			int codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
-			alumno.setCodigo(codigo);
+
 			alumno.setNombre(req.getParameter(Constantes.PAR_NOMBRE));
 			alumno.setApellidos(req.getParameter(Constantes.PAR_APELLIDOS));
 			alumno.setDireccion(req.getParameter(Constantes.PAR_DIRECCION));
@@ -122,8 +147,14 @@ public class AlumnoServlet extends HttpServlet {
 					&& !"".equals(req.getParameter(Constantes.PAR_NHERMANOS))) {
 				alumno.setnHermanos(Integer.parseInt(req.getParameter(Constantes.PAR_NHERMANOS)));
 			}
+			if ("1".equals(req.getParameter(Constantes.PAR_ACTIVO))) {
+				alumno.setActivo(true);
 
-			alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));
+			} else {
+
+				alumno.setActivo(false);
+			}
+
 			String date = req.getParameter(Constantes.PAR_FNACIMIENTO);
 			if (date != null && "" != date) {
 				String pattern = "dd/MM/yyyy";
@@ -131,9 +162,7 @@ public class AlumnoServlet extends HttpServlet {
 				alumno.setfNacimiento(dateFormat.parse(date));
 			}
 
-		} catch (
-
-		Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersonaException("Los datos son incorrectos " + e.getMessage());
 		}
