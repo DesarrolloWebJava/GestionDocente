@@ -31,6 +31,7 @@ public class ProfesorServlet extends HttpServlet {
 		String operacion = request.getParameter(Constantes.PAR_OPERACION);
 		//Variable que controla si es correcto o no el parametro 
 		int op = -1;
+		
 		try{
 			//Cambiamos el valor del parametro de String a Integer
 			op = Integer.parseInt(operacion);
