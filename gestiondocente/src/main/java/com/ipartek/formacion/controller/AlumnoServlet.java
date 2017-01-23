@@ -54,12 +54,22 @@ public class AlumnoServlet extends HttpServlet {
 				case Constantes.OP_READ:
 					cargarListaAlumnos(req);
 					break;
-				case Constantes.OP_UPDATE:
-					//aS.getById(codigo);
+				case Constantes.OP_UPDATE:{
+					int codigo = -1;
+					codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+					Alumno alumno = aS.getById(codigo);
 					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNOS);
-					//request.setAttribute(arg0, arg1);
+					req.setAttribute(Constantes.ATT_ALUMNO, alumno);
+				}
 					break;
-				case Constantes.OP_DELETE:
+				case Constantes.OP_DELETE:{
+					int codigo = -1;
+					codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+					aS.delete(codigo);
+					req.setAttribute(Constantes.ATT_MENSAJE, "el alumno a sido borrado Correctamente");
+					cargarListaAlumnos(req);
+				}
+					
 					break;
 				default:
 					cargarListaAlumnos(req);
@@ -83,9 +93,12 @@ public class AlumnoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Alumno alumno = null; 
 		String mensaje = "";
+		int codigo =-1;
 		try{
-			alumno = recogerParametros(req);
+			codigo= Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
 			
+			alumno = recogerParametros(req);
+			alumno.setCodigo(codigo);
 			if(alumno.getCodigo() > Alumno.CODIGO_NULO){
 				aS.update(alumno);
 				mensaje = "El alumno a sido actualizado correctamente";
@@ -95,8 +108,16 @@ public class AlumnoServlet extends HttpServlet {
 			}
 			cargarListaAlumnos(req);
 		} catch (Exception e){
-			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNOS);
-			mensaje= e.getMessage();
+			if (codigo == -1){
+				cargarListaAlumnos(req);
+				mensaje="Se ha producido un error inesperado";
+			}else{
+				alumno = aS.getById(codigo);
+				req.setAttribute(Constantes.ATT_ALUMNO, alumno);
+				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNOS);
+				mensaje= e.getMessage();
+			}
+			System.out.println(mensaje);
 			
 		}
 		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);

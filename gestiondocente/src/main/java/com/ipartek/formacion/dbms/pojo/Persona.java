@@ -20,8 +20,17 @@ public class Persona {
 
 	public Persona() {
 		super();
+		this.nombre= "";
+		this.apellidos = "";
+		this.dni = "";
 		this.email = "";
 		this.direccion = "";
+		this.fNacimiento = new Date();
+		
+		
+		
+		
+		
 	}
 
 	public Persona(String email, String direccion) {
