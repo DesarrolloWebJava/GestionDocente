@@ -45,11 +45,32 @@ public class ProfesorServlet extends HttpServlet {
 					cargarListaProfesores(request);
 				break;
 				case Constantes.OP_UPDATE:
+				{
+					//Creamos e inicializamos variable
+					int codigo = -1;
+					//Recogemos el parametro(codigo) en la variable que acabamos de crear
+					codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+					//Recogemos el profesor que buscamos mediante el codigo y lo guardamos en la variable
+					Profesor profesor = pS.getById(codigo);
 					//Prepara la redireccion al formulario
 					rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+					//Preparamos la redireccion pasando el alumno
+					request.setAttribute(Constantes.ATT_PROFESOR, profesor);
+				}
 				break;
 				case Constantes.OP_DELETE:
-					
+				{
+					//Creamos e inicializamos variable
+					int codigo = -1;
+					//Recogemos el parametro(codigo) en la variable que acabamos de crear
+					codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+					//Ahora borramos
+					pS.delete(codigo);
+					//Mostramos un mensaje
+					request.setAttribute(Constantes.ATT_MENSAJE, "El profesor ha sido borrado correctamente");
+					//Muestra la lista de profesores
+					cargarListaProfesores(request);
+				}
 				break;
 				default:
 					
@@ -77,21 +98,25 @@ public class ProfesorServlet extends HttpServlet {
 		//Creamos una variable profesor nula
 		Profesor profesor = null;
 		String mensaje = "";
+		int codigo = -1;
 		try{
+			//Intentamos hacer parse a el codigo. Por si intentan meter un valor no integer
+			codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
 			//Cargamos la variable con los parametros
 			profesor = recogerParametros(request);
-			//Si existe el codigo lo actualiza, sino lo crea
-			if(profesor.getCodigo() > profesor.CODIGO_NULO){
+			//Si existe el codigo...
+			if(profesor.getCodigo() > profesor.CODIGO_NULO){//UPDATE
 				//actualiza pS con profesor
 				pS.update(profesor);
 				mensaje = "El profesor ha sido actualizado correctamente";
-			}else{
-				//Crea un nuevo pS profesor
+			}else{//CREATE
 				pS.create(profesor);
 				mensaje = "El profesor ha sido creado correctamente";
 			}
+			cargarListaProfesores(request);
 		}catch(NumberFormatException e){
-			//
+			//Si el codigo no es numero...
+			mensaje = "Se ha producido un error inesperado. \nContacte con el administrador";
 			response.sendRedirect(Constantes.JSP_HOME);
 		}catch(Exception e){
 			//Prepara la redireccion
