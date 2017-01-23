@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.ipartek.formacion.controller.Constantes;
 import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.Util;
 
@@ -18,16 +19,28 @@ public class Persona {
 	private String email;
 	private String direccion;
 
+	
 	public Persona() {
 		super();
+		long tiempo=0L;
+		this.nombre="";
+		this.apellidos="";
+		this.dni="";
 		this.email = "";
 		this.direccion = "";
+		this.fNacimiento = new Date();
+		
+		tiempo = (long)new Date().getTime();
+		tiempo -=   (18 * Constantes.YEAR_MILISEGUNDOS + Constantes.DAY_MILISEGUNDOS);
+		Date fecha = new Date(tiempo);
+		this.fNacimiento = fecha;
 	}
 
 	public Persona(String email, String direccion) {
 		super();
 		this.email = email;
 		this.direccion = direccion;
+		this.fNacimiento = new Date();
 	}
 
 	public String getEmail() {
@@ -62,7 +75,7 @@ public class Persona {
 		final String regex = "\\d{8}[A-Za-z]";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(dni);
-		if (!matcher.find() && !Util.validarDni(dni)) {
+		if (!matcher.find() && Util.validarDni(dni)) {
 			throw new PersonaException(PersonaException.COD_DNI_ERROR, PersonaException.MSG_DNI_ERROR);
 		}
 		this.dni = dni;

@@ -9,6 +9,7 @@ public class Constantes {
 	public static final String ATT_LISTADO_ALUMNOS = "listado-alumnos";
 	public static final String ATT_MENSAJE="mensaje";
 	public static final String ATT_ALUMNO="alumno";
+	public static final String ATT_PROFESOR="profesor";
 	
 	public static final String SERVLET_ALUMNO = "alumno.do";
 	public static final String SERVLET_PROFESOR = "profesor.do";
@@ -36,7 +37,9 @@ public class Constantes {
 	public static final int OP_UPDATE = 3;
 	public static final int OP_DELETE = 4;
 	
-	
+	public static final long YEAR_MILISEGUNDOS = 31556900000L;
+	public static final long DAY_MILISEGUNDOS = 86400001L;
+	 
 	
 	
 	

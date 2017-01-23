@@ -109,8 +109,10 @@ public class AlumnoServlet extends HttpServlet {
 		// Procesamos la peticion de create
 		
 		Alumno alumno = null;
+		int codigo = -1;
 		String mensaje = "";
 		try {
+			codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
 			// Recoger Parametros y generar objeto Alumno
 			alumno = recogerParametros(req);
 			// Llamar a la capa service y realizar el create/insert
@@ -124,10 +126,33 @@ public class AlumnoServlet extends HttpServlet {
 			
 			cargarListaAlumnos(req);
 			
-		} catch (Exception e) {
+		} 
+		catch (NumberFormatException e)
+		{
+			mensaje = "Se ha producido un error inesperado, contacte con el administrador";
+			rd = req.getRequestDispatcher(Constantes.JSP_HOME);
+		}
+		catch (Exception e) {
 		   // redirigir al formulario 	
-			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
+			
+			if (codigo == -1){
+			 // rd = req.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
+			 // req.setAttribute(Constantes.ATT_LISTADO_ALUMNO, alumno);
+			 // mensaje = "Se ha producido una operacion inesperada contacte con el administrador";
+			 //cargarListaAlumnos(req);
+			 	 
 			mensaje = e.getMessage();
+	     	rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
+		 	req.setAttribute(Constantes.ATT_ALUMNO, alumno);
+			}
+			else
+			{
+			 alumno = aS.getById(codigo);
+			 rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
+			 req.setAttribute(Constantes.ATT_ALUMNO, alumno);
+			 mensaje = e.getMessage();
+			
+			}
 		}
 		
 		req.setAttribute("mensaje",mensaje);

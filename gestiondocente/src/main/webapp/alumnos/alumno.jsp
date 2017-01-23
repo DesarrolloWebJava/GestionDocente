@@ -46,7 +46,7 @@ String titulo;
       String  date = "";
       GregorianCalendar gc = new GregorianCalendar();
       gc.setTime(alumno.getfNacimiento());
-      date = gc.get(GregorianCalendar.DAY_OF_MONTH) + "/" + gc.get(GregorianCalendar.MONTH) + "/" + gc.get(GregorianCalendar.YEAR);
+      date = gc.get(GregorianCalendar.DAY_OF_MONTH) + "/" + (gc.get(GregorianCalendar.MONTH)+1) + "/" + gc.get(GregorianCalendar.YEAR);
      %>
       <label for="<%=Constantes.PAR_FNACIMIENTO %>">Fecha Nacimiento:</label>
       <input type="text" placeholder="Introduzca aqui la fecha de nacimiento.." id="<%=Constantes.PAR_FNACIMIENTO %>" name="<%=Constantes.PAR_FNACIMIENTO%>" value="<%=date%>">

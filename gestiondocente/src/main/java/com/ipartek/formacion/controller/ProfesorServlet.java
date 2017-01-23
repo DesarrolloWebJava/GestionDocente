@@ -58,10 +58,25 @@ public class ProfesorServlet extends HttpServlet {
 			break;
 		
 			case Constantes.OP_UPDATE:
+			{
+				int codigo = -1;
+				codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+				Profesor profesor = pS.getById(codigo);
+				req.setAttribute(Constantes.ATT_PROFESOR, profesor);
 				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+			}
 			break;
 			case Constantes.OP_DELETE:
+			{
+			  int codigo = -1;
+			  codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+			  pS.delete(codigo);
+			  req.setAttribute(Constantes.ATT_MENSAJE,"El profesor ha sido fulminado");
+			  cargarListaProfesores(req);
+			}
+			break;
 			default:
+				
 				cargarListaProfesores(req);
 				
 			break;
@@ -94,6 +109,8 @@ public class ProfesorServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Profesor profesor = null;
 		String mensaje="";
+		int codigo = -1;
+		codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
 		try {
 			profesor = recogerParametros(request);
 			
@@ -112,11 +129,31 @@ public class ProfesorServlet extends HttpServlet {
 			
 			cargarListaProfesores(request);
 		} 
-		
+		catch (NumberFormatException e)
+		{
+			mensaje = "Se ha producido un error inesperado, contacte con el administrador";
+			rd = request.getRequestDispatcher(Constantes.JSP_HOME);
+		}
 		catch (Exception e) {
-			// TODO Auto-generated catch block
-			mensaje = e.getMessage();
-			rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+			if (codigo == -1)
+			{
+				//mensaje = "Se ha producido un error inesperado, contacte con el administrador";
+				//rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_PROFESORES);
+				//cargarListaProfesores(request);
+				mensaje = e.getMessage();
+				request.setAttribute(Constantes.ATT_PROFESOR, profesor);
+				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+				  
+			}
+			else
+			{
+			  profesor = pS.getById(codigo);
+			  mensaje = e.getMessage();
+			  request.setAttribute(Constantes.ATT_PROFESOR, profesor);
+			  rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+			  
+			}
+			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 		

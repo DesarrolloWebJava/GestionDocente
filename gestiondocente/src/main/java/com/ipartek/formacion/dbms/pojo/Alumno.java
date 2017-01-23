@@ -1,6 +1,9 @@
 package com.ipartek.formacion.dbms.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
+
+import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 
 /**
  * 
@@ -23,6 +26,7 @@ public class Alumno extends Persona implements Comparable<Alumno>, Serializable 
 		this.codigo = CODIGO_NULO;
 		this.activo = true;
 		this.nHermanos = 0;
+		
 
 	}
 

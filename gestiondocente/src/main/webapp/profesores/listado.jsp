@@ -19,7 +19,11 @@
 	for (Map.Entry<Integer, Profesor> entry : profesores.entrySet()) {
 		int codigo = entry.getKey();
 		Profesor profesor = entry.getValue();
-		out.print("<li>" + profesor.toString() + "</li>");
+		String btn_delete = "<a href='"+ Constantes.SERVLET_PROFESOR + "?" + Constantes.PAR_OPERACION +"="+ Constantes.OP_DELETE +"&" + Constantes.PAR_CODIGO+"="+ profesor.getCodigo()+"'>Borrar</a>";
+		String btn_update = "<a href='"+ Constantes.SERVLET_PROFESOR + "?" + Constantes.PAR_OPERACION +"="+ Constantes.OP_UPDATE +"&" + Constantes.PAR_CODIGO+"="+ profesor.getCodigo()+"'>Editar</a>";
+		
+		out.print("<p>" + profesor.toString() + " " + btn_update + " " + btn_delete + "</p>");
+		
 		//out.write("<p>" + profesor.toString() + "</p>");
 	}
 	
