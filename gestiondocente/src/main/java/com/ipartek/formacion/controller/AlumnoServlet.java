@@ -128,19 +128,19 @@ public class AlumnoServlet extends HttpServlet {
 				mensaje = "El alumno ha sido creado correctamente";
 			}
 			cargarListaAlumnos(req);
+		} catch (NumberFormatException e) {
+			mensaje = "Se ha producido una operación inesperada contacte con el administrador del sistema.";
+			rd = req.getRequestDispatcher(Constantes.JSP_HOME);
 		} catch (Exception e) {
-			// redirigir al formulario
+			if (codigo == -1) {// CREATE
+				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 
-			if (codigo == -1) {
-				rd = req.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
-				mensaje = "Se ha producido una operación inesperada contacte con el administrador del sistema.";
-			} else {
+			} else {// UPDATE
 				alumno = aS.getById(codigo);
 				req.setAttribute(Constantes.ATT_ALUMNO, alumno);
 				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
-
-				mensaje = e.getMessage();
 			}
+			mensaje = e.getMessage();
 			System.out.println(mensaje);
 		}
 		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);
@@ -161,8 +161,8 @@ public class AlumnoServlet extends HttpServlet {
 			if (!"".equalsIgnoreCase(nHermanos)) {
 				alumno.setnHermanos(Integer.parseInt(nHermanos));
 			}
-			System.out.println(req.getParameter(Constantes.PAR_ACTIVO));
-			if (req.getParameter(Constantes.PAR_ACTIVO) == "1") {
+
+			if ("1".equals(req.getParameter(Constantes.PAR_ACTIVO))) {
 				alumno.setActivo(true);
 			} else {
 				alumno.setActivo(false);

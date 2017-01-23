@@ -50,8 +50,22 @@ public class ProfesorServlet extends HttpServlet {
 				case Constantes.OP_READ:
 					cargarListaProfesores(request);
 					break;
-				case Constantes.OP_UPDATE:
+				case Constantes.OP_UPDATE: {
+					int codigo = -1;
+					codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+					Profesor profesor = pS.getById(codigo);
 					rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+					request.setAttribute(Constantes.ATT_PROFESOR, profesor);
+
+				}
+					break;
+				case Constantes.OP_DELETE: {
+					int codigo = -1;
+					codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+					pS.delete(codigo);
+					request.setAttribute(Constantes.ATT_MENSAJE, "El profesor ha sido borrado correctamente");
+					cargarListaProfesores(request);
+				}
 					break;
 				default:
 					cargarListaProfesores(request);
@@ -86,8 +100,11 @@ public class ProfesorServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Profesor profesor = null;
 		String mensaje = "";
+		int codigo = -1;
 		try {
+			codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
 			profesor = recogerParametros(request);
+			profesor.setCodigo(codigo);
 			// procesaremos UPDATE or INSERT
 			if (profesor.getCodigo() > Profesor.CODIGO_NULO) {// update
 				pS.update(profesor);
@@ -99,13 +116,19 @@ public class ProfesorServlet extends HttpServlet {
 			}
 			cargarListaProfesores(request);
 		} catch (NumberFormatException e) {
-			response.sendRedirect(Constantes.JSP_HOME);
-			return;
+			mensaje = "Se ha producido una operación inesperada contacte con el administrador del sistema.";
+			rd = request.getRequestDispatcher(Constantes.JSP_HOME);
 		} catch (Exception e) {
-			// redirigir al formulario
-			rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+			if (codigo == -1) {// CREATE
+				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+
+			} else {// UPDATE
+				profesor = pS.getById(codigo);
+				request.setAttribute(Constantes.ATT_ALUMNO, profesor);
+				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+			}
 			mensaje = e.getMessage();
-			e.printStackTrace();
+			System.out.println(mensaje);
 		}
 		request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
 		rd.forward(request, response);
@@ -114,8 +137,7 @@ public class ProfesorServlet extends HttpServlet {
 	private Profesor recogerParametros(HttpServletRequest request) throws Exception {
 		Profesor profesor = new Profesor();
 		try {
-			int codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
-			profesor.setCodigo(codigo);
+
 			profesor.setNombre(request.getParameter(Constantes.PAR_NOMBRE));
 			profesor.setApellidos(request.getParameter(Constantes.PAR_APELLIDOS));
 			profesor.setDireccion(request.getParameter(Constantes.PAR_DIRECCION));
@@ -135,8 +157,6 @@ public class ProfesorServlet extends HttpServlet {
 				profesor.setfNacimiento(dateFormat.parse(date));
 			}
 
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException("Alguien manipula el codigo");
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception("Los datos no son validos: " + e.getMessage());

@@ -1,8 +1,11 @@
 package com.ipartek.formacion;
 
-public class Main {
+public final class Main {
 
-	public static void main(String[] args) {
+	private Main() {
+	}
+
+	public static void main(final String[] args) {
 
 	}
 

@@ -8,6 +8,7 @@ public class Constantes {
 	public static final String ATT_LISTADO_ALUMNOS = "listado-alumnos";
 	public static final String ATT_MENSAJE = "mensaje";
 	public static final String ATT_ALUMNO = "alumno";
+	public static final String ATT_PROFESOR = "profesor";
 
 	public static final String SERVLET_ALUMNO = "alumno.do";
 	public static final String SERVLET_PROFESOR = "profesor.do";

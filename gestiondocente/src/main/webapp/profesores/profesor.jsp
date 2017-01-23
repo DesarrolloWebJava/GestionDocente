@@ -1,18 +1,30 @@
+<%@page import="com.ipartek.formacion.dbms.pojo.Profesor"%>
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="../includes/header.jsp"/>
-Crear Profesor
+<%
+	String titulo = "";
+	Profesor profesor = (Profesor)request.getAttribute(Constantes.ATT_PROFESOR);
+	if(profesor==null){//create
+		titulo = "Crear Profesor";
+		profesor = new Profesor();
+	}else{//update
+		titulo = "Editar Profesor";
+	}
+%>
+
 <main>
+	<header><h2><%=titulo %></h2></header>
 	<form action="<%=Constantes.SERVLET_PROFESOR %>" method="post">
 		<input type="hidden" name="<%=Constantes.PAR_CODIGO %>" id="<%=Constantes.PAR_CODIGO %>" value="-1">
 		<div>
 			<label for="<%=Constantes.PAR_NOMBRE %>">Nombre:</label>
-			<input type="text" required placeholder="Indroduzca el nombre.." name="<%=Constantes.PAR_NOMBRE %>" id="<%=Constantes.PAR_NOMBRE %>">
+			<input value="<%=profesor.getNombre()%>" type="text" required placeholder="Indroduzca el nombre.." name="<%=Constantes.PAR_NOMBRE %>" id="<%=Constantes.PAR_NOMBRE %>">
 		</div>
 		<div>
 			<label for="<%=Constantes.PAR_APELLIDOS %>">Apellidos:</label>
-			<input type="text" placeholder="Introduzca el apellido.." name="<%=Constantes.PAR_APELLIDOS %>" id="<%=Constantes.PAR_APELLIDOS %>">
+			<input value="<%=profesor.getApellidos()%>" type="text" placeholder="Introduzca el apellido.." name="<%=Constantes.PAR_APELLIDOS %>" id="<%=Constantes.PAR_APELLIDOS %>">
 		</div>
 		<div>
 			<label for="<%=Constantes.PAR_DNI %>">DNI:</label>
