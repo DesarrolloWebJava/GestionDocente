@@ -95,6 +95,7 @@ public class ProfesorServlet extends HttpServlet {
 			} else {// create
 				pS.create(profesor);
 				mensaje = "El profesor ha sido creado correctamente";
+
 			}
 			cargarListaProfesores(request);
 		} catch (NumberFormatException e) {

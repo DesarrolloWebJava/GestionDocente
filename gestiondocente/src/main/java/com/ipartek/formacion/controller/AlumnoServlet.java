@@ -56,10 +56,11 @@ public class AlumnoServlet extends HttpServlet {
 					cargarListaAlumnos(req);
 					break;
 				case Constantes.OP_UPDATE:
-					// aS.getById(codigo)
-					// se va redirigir a la pagina alumnos/alumno.jsp
+					int codigo = -1;
+					codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+					Alumno alumno = aS.getById(codigo);
 					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
-					// req.setAttribute(arg0, arg1);
+					req.setAttribute(Constantes.ATT_ALUMNO, alumno);
 					break;
 				default:
 					cargarListaAlumnos(req);
