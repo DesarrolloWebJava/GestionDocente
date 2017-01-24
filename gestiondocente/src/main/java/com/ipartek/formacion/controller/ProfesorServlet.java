@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.dbms.pojo.Profesor;
 import com.ipartek.formacion.service.ProfesorService;
 import com.ipartek.formacion.service.ProfesorServiceImp;
@@ -65,10 +65,20 @@ public class ProfesorServlet extends HttpServlet {
 					cargarListaProfesores(req);
 					break;
 				case Constantes.OP_UPDATE:
-					// aS.getById(codigo)
-					// se va redirigir a la pagina "profesores/profesor.jsp"
+					
+					int codigo = -1;
+					codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+					Profesor profe = proSe.getById(codigo);
 					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
-					// req.setAttribute(arg0, arg1);
+					req.setAttribute("profesor", profe);
+					break;
+				case Constantes.OP_DELETE: {
+					 codigo = -1;
+					codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+					proSe.delete(codigo);
+					req.setAttribute(Constantes.ATT_MENSAJE, "El profesor ha sido borrado correctamente");
+					cargarListaProfesores(req);
+				}
 					break;
 				default:
 					cargarListaProfesores(req);
@@ -102,8 +112,11 @@ public class ProfesorServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Profesor profe = null;
 		String mensaje = "";
+		int codigo=-1;
 		try {
+			codigo=Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
 			profe = recogerParametros(req);
+			profe.setCodigo(codigo);
 
 			// procesaremos UPDATE or INSERT
 			if (profe.getCodigo() > profe.CODIGO_NULO) {// update
@@ -115,8 +128,17 @@ public class ProfesorServlet extends HttpServlet {
 			}
 			cargarListaProfesores(req);
 		} catch (Exception e) {
+			if(codigo==-1){
+				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+			}
+			else{
+				profe=proSe.getById(codigo);
+				req.setAttribute("profesor", profe);
+				rd=req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+				
+			}
 			// redirigir al formulario
-			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+					
 			mensaje = e.getMessage();
 			System.out.println(mensaje);
 		}

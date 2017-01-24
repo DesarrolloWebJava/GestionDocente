@@ -25,7 +25,7 @@ import com.ipartek.formacion.service.exceptions.AlumnoServiceImpException;
  * @author va00
  *
  */
-public class AlumnoServiceImp implements AlumnoService{
+public class AlumnoServiceImp implements AlumnoService {
 
 	private List<Alumno> alumnos;
 	private static int i = 0;
@@ -42,19 +42,7 @@ public class AlumnoServiceImp implements AlumnoService{
 			alumno.setNombre("Sergio");
 			alumno.setApellidos("Aparicio Vegas");
 			alumno.setDni("44974398z");
-
-			create(alumno);
-		} catch (PersonaException e) {
-			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
-		}
-
-		alumno = new Alumno();
-		try {
-			alumno.setNombre("Maite");
-			alumno.setApellidos("Monasterio Herrero");
-			alumno.setDni("16071559x");
-			String date = "19/11/1997";
+			String date = "19/11/1990";
 			String pattern = "dd/MM/yyyy";
 			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
 			alumno.setfNacimiento(dateFormat.parse(date));
@@ -63,7 +51,24 @@ public class AlumnoServiceImp implements AlumnoService{
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Error no controlado" + e.getMessage());
+		}
+		alumno = new Alumno();
+		try {
+			alumno.setNombre("Maite");
+			alumno.setApellidos("Monasterio Herrero");
+			alumno.setDni("16071559x");
+			String date = "19/11/1990";
+			String pattern = "dd/MM/yyyy";
+			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+			alumno.setfNacimiento(dateFormat.parse(date));
+			create(alumno);
+		} catch (PersonaException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		} catch (ParseException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			System.out.println("Error no controlado" + e.getMessage());
@@ -74,10 +79,18 @@ public class AlumnoServiceImp implements AlumnoService{
 			alumno.setNombre("Jon");
 			alumno.setApellidos("Martinez Perez");
 			alumno.setDni("16071559x");
+			String date = "19/11/1990";
+			String pattern = "dd/MM/yyyy";
+			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+			alumno.setfNacimiento(dateFormat.parse(date));
 			create(alumno);
 		} catch (PersonaException e) {
-			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
 			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Error no controlado" + e.getMessage());
 		}
 
 	}
@@ -113,7 +126,7 @@ public class AlumnoServiceImp implements AlumnoService{
 			posicion = buscarAlumno(codigo);
 			alumnos.remove(posicion);
 		} catch (AlumnoServiceImpException e) {
-			// TODO Auto-generated catch block
+
 			System.out.println(e.getMessage());
 		}
 
@@ -146,10 +159,8 @@ public class AlumnoServiceImp implements AlumnoService{
 			posicion = buscarAlumno(alumno.getCodigo());
 			alumnos.set(posicion, alumno);
 		} catch (AlumnoServiceImpException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 		return alumno;
-
 	}
 }

@@ -55,11 +55,21 @@ public class AlumnoServlet extends HttpServlet {
 				case Constantes.OP_READ:
 					cargarListaAlumnos(req);
 					break;
-				case Constantes.OP_UPDATE:
-					// aS.getById(codigo)
-					// se va redirigir a la pagina alumnos/alumno.jsp
+				case Constantes.OP_UPDATE: {
+					int codigo = -1;
+					codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+					Alumno alumno = aS.getById(codigo);
 					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
-					// req.setAttribute(arg0, arg1);
+					req.setAttribute(Constantes.ATT_ALUMNO, alumno);
+				}
+					break;
+				case Constantes.OP_DELETE: {
+					int codigo = -1;
+					codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+					aS.delete(codigo);
+					req.setAttribute(Constantes.ATT_MENSAJE, "El alumno ha sido borrado correctamente");
+					cargarListaAlumnos(req);
+				}
 					break;
 				default:
 					cargarListaAlumnos(req);
@@ -68,6 +78,7 @@ public class AlumnoServlet extends HttpServlet {
 
 		} catch (Exception e) {
 			// cargarListaAlumnos(req);
+			System.out.println(e.getMessage());
 			resp.sendRedirect(Constantes.JSP_HOME);
 			return;
 		}
@@ -103,7 +114,6 @@ public class AlumnoServlet extends HttpServlet {
 		String mensaje = "";
 		try {
 			alumno = recogerParametros(req);
-
 			// procesaremos UPDATE or INSERT
 			if (alumno.getCodigo() > Alumno.CODIGO_NULO) {// update
 				aS.update(alumno);

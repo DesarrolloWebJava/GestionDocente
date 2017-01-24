@@ -28,7 +28,7 @@ public class Constantes {
 	public static final String PAR_EMAIL = "email";
 	public static final String PAR_NHERMANOS = "nHermanos";
 	public static final String PAR_ACTIVO = "activo";
-	public static final String PAR_NSS = "nSS";
+	public static final String PAR_NSS = "nss";
 
 	public static final int OP_CREATE = 1;
 	public static final int OP_READ = 2;
