@@ -153,11 +153,6 @@ public class ProfesorServlet extends HttpServlet {
 			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
 			profesor.setfNacimiento(dateFormat.parse(date));
 			
-			String nHermanos = req.getParameter(Constantes.PAR_NHERMANOS);
-			if("".equalsIgnoreCase(nHermanos)){
-				//nHermanos = "0"; //es lo mismo la linea de abajo con las dos
-				profesor.setnHermanos(Integer.parseInt(nHermanos));
-			}
 			
 			profesor.setNombre(req.getParameter(Constantes.PAR_NOMBRE));
 			profesor.setApellidos(req.getParameter(Constantes.PAR_APELLIDOS));

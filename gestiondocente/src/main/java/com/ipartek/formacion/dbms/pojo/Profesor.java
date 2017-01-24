@@ -11,8 +11,6 @@ public class Profesor extends Persona {
 	public static final int CODIGO_NULO = -1;
 	private int nSS;
 	private int codigo;
-	private boolean activo;
-	private int nHermanos;
 
 	public Profesor() {
 		super();
@@ -40,21 +38,6 @@ public class Profesor extends Persona {
 		this.codigo = codigo;
 	}
 	
-	public int getnHermanos() {
-		return nHermanos;
-	}
-
-	public void setnHermanos(int nHermanos) {
-		this.nHermanos = nHermanos;
-	}
-	
-	public boolean isActivo() {
-		return activo;
-	}
-
-	public void setActivo(boolean activo) {
-		this.activo = activo;
-	}
 
 	@Override
 	public String toString() {

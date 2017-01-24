@@ -29,12 +29,6 @@ public class Persona {
 		
 	}
 
-	public Persona(String email, String direccion) {
-		super();
-		this.email = email;
-		this.direccion = direccion;
-	}
-
 	public String getEmail() {
 		return email;
 	}

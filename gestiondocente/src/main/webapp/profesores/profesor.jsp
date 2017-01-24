@@ -1,5 +1,5 @@
-<%@page import="com.ipartek.formacion.dbms.pojo.Profesor"%>
-<%@page import="com.ipartek.formacion.controller.Constantes"%>
+<%@page import="com.ipartek.formacion.dbms.pojo.Profesor"%><%@page import="com.ipartek.formacion.controller.Constantes"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,10 +17,10 @@
 	<main> 
 	<%=titulo %>
 		<form action="<%=Constantes.SERVLET_PROFESOR %>" method="post">
-		<input type="hidden" name="<%=Constantes.PAR_CODIGO%>" id="<%=Constantes.PAR_CODIGO%>" value="-1">
+		<input type="hidden" name="<%=Constantes.PAR_CODIGO%>" id="<%=Constantes.PAR_CODIGO%>" value="<%=profesor.getCodigo()%>">
 		<div>
 			<label for="<%=Constantes.PAR_NOMBRE %>">Nombre:</label>
-			<input type="text" placeholder="Introduzca su nombre.." name="<%=Constantes.PAR_NOMBRE %>" id="<%=Constantes.PAR_NOMBRE %>">
+			<input value="<%=profesor.getNombre() %>" type="text" placeholder="Introduzca su nombre.." name="<%=Constantes.PAR_NOMBRE %>" id="<%=Constantes.PAR_NOMBRE %>">
 		</div>
 				<div>
 			<label for="<%=Constantes.PAR_NSS %>">NSS:</label>
@@ -46,18 +46,6 @@
 			<label for="<%=Constantes.PAR_FNACIMIENTO %>">Fecha de nacimiento:</label>
 			<input type="text" placeholder="Introduzca su fecha de nacimiento.." name="<%=Constantes.PAR_FNACIMIENTO %>" id="<%=Constantes.PAR_FNACIMIENTO %>">
 		</div>
-		<div>
-			<label for="<%=Constantes.PAR_NHERMANOS %>">Numero de hermanos:</label>
-			<input type="number" placeholder="Introduzca el numero de hermanos.." name="<%=Constantes.PAR_NHERMANOS %>" id="<%=Constantes.PAR_NHERMANOS %>">
-		</div>
-		<div>
-			<label for="<%=Constantes.PAR_ACTIVO %>">Activo:</label>
-			<select name="<%=Constantes.PAR_ACTIVO %>">
-				<option value="1">Activo </option>
-				<option value="0">Desctivado </option>
-			</select>
-		</div>
-		
 		<input type="submit" value="enviar">
 
 		</form>
