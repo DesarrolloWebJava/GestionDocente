@@ -13,12 +13,14 @@
 	
 	Map<Integer, Profesor> profesores=(Map <Integer, Profesor>)request.getAttribute(Constantes.ATT_LISTADO_PROFESORES);
 	%>
-	<a href="<%=Constantes.SERVLET_PROFESOR %>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE%>">Crear Profesor</a>
+	<a href="<%=Constantes.SERVLET_PROFESOR %>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE%>">Crear Profesor</a><br>
 	<%
 	for(Map.Entry<Integer, Profesor> entry: profesores.entrySet()){
 		int codigo = entry.getKey();
 		Profesor profesor = entry.getValue();
-		out.write("<p>"+entry.getValue().toString()+"</p>");
+		String btn_delete = "<a href='"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+profesor.getCodigo()+"'>Borrar</a>";
+		out.write(""+entry.getValue().toString()+"<a href='"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+profesor.getCodigo()+"'>Editar</a>"+btn_delete);
+		%><br><%
 	}
 	%>
 	</main>

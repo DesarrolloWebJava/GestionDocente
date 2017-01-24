@@ -22,7 +22,7 @@ import com.ipartek.formacion.service.exceptions.AlumnoServiceImpException;
  * </ul>
  * </div>
  * 
- * @author va00
+ * @author Mikel Bruce
  *
  */
 public class AlumnoServiceImp implements AlumnoService{

@@ -111,9 +111,12 @@ public class AlumnoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Alumno alumno = null;
 		String mensaje = "";
+		int codigo = -1;
 		try {
+			codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+			
 			alumno = recogerParametros(req);
-
+			alumno.setCodigo(codigo);
 			// procesaremos UPDATE or INSERT
 			if (alumno.getCodigo() > Alumno.CODIGO_NULO) {// update
 				aS.update(alumno);
@@ -125,8 +128,17 @@ public class AlumnoServlet extends HttpServlet {
 			cargarListaAlumnos(req);
 		} catch (Exception e) {
 			// redirigir al formulario
-			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
-			mensaje = e.getMessage();
+			
+			if(codigo == -1){
+				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
+				req.setAttribute(Constantes.ATT_ALUMNO, alumno);
+				mensaje = "Se ha producido una operacion inesperada contacte con el adminstrador";
+			}else{
+				alumno = aS.getById(codigo);
+				req.setAttribute(Constantes.ATT_ALUMNO, alumno);
+				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
+				mensaje = e.getMessage();
+			}
 			System.out.println(mensaje);
 		}
 		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);
@@ -136,8 +148,6 @@ public class AlumnoServlet extends HttpServlet {
 	private Alumno recogerParametros(HttpServletRequest req) throws Exception {
 		Alumno alumno = new Alumno();
 		try {
-			int codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
-			alumno.setCodigo(codigo);
 			alumno.setNombre(req.getParameter(Constantes.PAR_NOMBRE));
 			alumno.setApellidos(req.getParameter(Constantes.PAR_APELLIDOS));
 			alumno.setDireccion(req.getParameter(Constantes.PAR_DIRECCION));

@@ -47,7 +47,11 @@ public class ProfesorServlet extends HttpServlet {
 					cargarListaProfesores(req);
 					break;
 				case Constantes.OP_UPDATE:
+					int codigo = -1;
+					codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+					Profesor profesor = pS.getById(codigo);
 					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+					req.setAttribute(Constantes.ATT_PROFESOR, profesor);
 					break;
 				default:
 					cargarListaProfesores(req);
@@ -79,8 +83,11 @@ public class ProfesorServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Profesor profesor = null;
 		String mensaje = "";
+		int codigo = -1;
 		try {
+			codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
 			profesor = recogerParametros(req);
+			profesor.setCodigo(codigo);
 
 			// procesaremos UPDATE or INSERT
 			if (profesor.getCodigo() > Profesor.CODIGO_NULO) {// update
@@ -92,9 +99,19 @@ public class ProfesorServlet extends HttpServlet {
 			}
 			cargarListaProfesores(req);
 		} catch (Exception e) {
+			
+			if(codigo==-1){
+				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+				req.setAttribute(Constantes.ATT_PROFESOR, profesor);
+				mensaje = "Se ha producido una operacion inesperada contacte con el adminstrador";
+			}else{
+				profesor = pS.getById(codigo);
+				req.setAttribute(Constantes.ATT_PROFESOR, profesor);
+				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+				mensaje = e.getMessage();
+			}
 			// redirigir al formulario
-			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
-			mensaje = e.getMessage();
+			
 			System.out.println(mensaje);
 		}
 		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);
@@ -104,8 +121,6 @@ public class ProfesorServlet extends HttpServlet {
 	private Profesor recogerParametros(HttpServletRequest req) throws Exception {
 		Profesor profesor = new Profesor();
 		try {
-			int codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
-			profesor.setCodigo(codigo);
 			profesor.setNombre(req.getParameter(Constantes.PAR_NOMBRE));
 			profesor.setApellidos(req.getParameter(Constantes.PAR_APELLIDOS));
 			profesor.setDireccion(req.getParameter(Constantes.PAR_DIRECCION));
