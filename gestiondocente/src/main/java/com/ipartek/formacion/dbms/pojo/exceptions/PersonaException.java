@@ -21,17 +21,17 @@ public class PersonaException extends Exception {
 	public final static String MSG_EDAD_ERROR = "Debe de ser mayor de 18 años";
 	public final static String MSG_LONGITUD_NOMBRE = "El nombre introducido debe de tener tres letras o mas";
 	private int codigo;
-	private String mensaje;
+
 
 	public PersonaException(int codigo, String mensaje) {
 		super(mensaje);
-		this.codigo = codigo;
-		this.mensaje = mensaje;
+
+	
 	}
 
 	public PersonaException(String message) {
 		super(message);
-		this.mensaje = message;
+	
 	}
 
 	public int getCodigo() {

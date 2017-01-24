@@ -70,8 +70,8 @@ public class Profesor extends Persona {
 	public boolean equals(Object obj) {
 		boolean iguales = false;
 		if (obj instanceof Profesor) {
-			Profesor alum = (Profesor) obj;
-			if (this.codigo == alum.getCodigo()) {
+			Profesor prof = (Profesor) obj;
+			if (this.codigo == prof.getCodigo()) {
 				iguales = true;
 			}
 		}

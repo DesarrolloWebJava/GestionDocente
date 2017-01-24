@@ -1,5 +1,7 @@
 package com.ipartek.formacion.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,9 +52,17 @@ public class AlumnoServiceImp implements AlumnoService{
 			alumno.setNombre("Maite");
 			alumno.setApellidos("Monasterio Herrero");
 			alumno.setDni("16071559x");
+			String date = "19/11/1990";
+			String pattern = "dd/MM/yyyy";
+			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+			alumno.setfNacimiento(dateFormat.parse(date));
 			create(alumno);
 		} catch (PersonaException e) {
 			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Error no controlado" + e.getMessage());
 		}
 
 		alumno = new Alumno();

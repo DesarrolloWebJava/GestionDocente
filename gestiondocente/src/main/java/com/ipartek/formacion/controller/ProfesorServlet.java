@@ -46,7 +46,7 @@ public class ProfesorServlet extends HttpServlet {
 					//se va a redirigir a la pagina alumnos/alumno.jsp
 					rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
 					break;
-				case Constantes.OP_READE:
+				case Constantes.OP_READ:
 					cargarListaProferos(request);
 					break;
 				case Constantes.OP_UPDATE:
@@ -54,7 +54,16 @@ public class ProfesorServlet extends HttpServlet {
 					//se va a redirigir a la pagina alumnos/alumno.jsp
 					rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR); //programar el formulario
 					// falta de hacer TODO request.setAttribute(arg0, arg1);
+					
 					break;
+				case Constantes.OP_DELATE:
+					int codigo = -1;
+					codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+					pS.delate(codigo);
+					request.setAttribute(Constantes.ATT_MENSAJE, "El profesor a sido...");
+					cargarListaProferos(request);
+					break;
+				
 				default:
 					cargarListaProferos(request);
 					break;
