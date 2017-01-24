@@ -9,15 +9,20 @@ public class Constantes {
 	public static final String ATT_MENSAJE = "mensaje";
 	public static final String ATT_ALUMNO = "alumno";
 	public static final String ATT_PROFESOR = "profesor";
+	public static final String ATT_CURSO = "curso";
+	public static final String ATT_LISTADO_CURSOS = "listado-cursos";
 
 	public static final String SERVLET_ALUMNO = "alumno.do";
 	public static final String SERVLET_PROFESOR = "profesor.do";
+	public static final String SERVLET_CURSO = "curso.do";
 
 	public static final String JSP_LISTADO_ALUMNOS = "alumnos/listado.jsp";
 	public static final String JSP_LISTADO_PROFESORES = "profesores/listado.jsp";
 	public static final String JSP_HOME = "index.jsp";
 	public static final String JSP_FORMULARIO_ALUMNO = "alumnos/alumno.jsp";
 	public static final String JSP_FORMULARIO_PROFESOR = "profesores/profesor.jsp";
+	public static final String JSP_LISTADO_CURSOS = "cursos/listado.jsp";
+	public static final String JSP_FORMULARIO_CURSO = "cursos/curso.jsp";
 
 	public static final String PAR_OPERACION = "op";
 	public static final String PAR_CODIGO = "codigo";
