@@ -117,7 +117,7 @@ public class AlumnoServlet extends HttpServlet {
 				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNOS);
 				mensaje= e.getMessage();
 			}
-			System.out.println(mensaje);
+			System.out.println(e.getMessage());
 			
 		}
 		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);
