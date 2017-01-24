@@ -49,17 +49,27 @@ public class AlumnoServlet extends HttpServlet {
 			op = Integer.parseInt(operacion);
 			switch (op){
 				case Constantes.OP_CREATE:
-					rd = req.getRequestDispatcher(Constantes.JSP_CREAR_ALUMNOS);
+					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNOS);
 					break;
 				case Constantes.OP_READ:
 					cargarListaAlumnos(req);
 					break;
-				case Constantes.OP_UPDATE:
-					//aS.getById(codigo);
-					rd = req.getRequestDispatcher(Constantes.JSP_CREAR_ALUMNOS);
-					//request.setAttribute(arg0, arg1);
+				case Constantes.OP_UPDATE:{
+					int codigo = -1;
+					codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+					Alumno alumno = aS.getById(codigo);
+					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNOS);
+					req.setAttribute(Constantes.ATT_ALUMNO, alumno);
+				}
 					break;
-				case Constantes.OP_DELETE:
+				case Constantes.OP_DELETE:{
+					int codigo = -1;
+					codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+					aS.delete(codigo);
+					req.setAttribute(Constantes.ATT_MENSAJE, "el alumno a sido borrado Correctamente");
+					cargarListaAlumnos(req);
+				}
+					
 					break;
 				default:
 					cargarListaAlumnos(req);
@@ -83,9 +93,12 @@ public class AlumnoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Alumno alumno = null; 
 		String mensaje = "";
+		int codigo =-1;
 		try{
-			alumno = recogerParametros(req);
+			codigo= Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
 			
+			alumno = recogerParametros(req);
+			alumno.setCodigo(codigo);
 			if(alumno.getCodigo() > Alumno.CODIGO_NULO){
 				aS.update(alumno);
 				mensaje = "El alumno a sido actualizado correctamente";
@@ -95,11 +108,19 @@ public class AlumnoServlet extends HttpServlet {
 			}
 			cargarListaAlumnos(req);
 		} catch (Exception e){
-			rd = req.getRequestDispatcher(Constantes.JSP_CREAR_ALUMNOS);
-			mensaje= e.getMessage();
+			if (codigo == -1){
+				cargarListaAlumnos(req);
+				mensaje="Se ha producido un error inesperado";
+			}else{
+				alumno = aS.getById(codigo);
+				req.setAttribute(Constantes.ATT_ALUMNO, alumno);
+				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNOS);
+				mensaje= e.getMessage();
+			}
+			System.out.println(e.getMessage());
 			
 		}
-		req.setAttribute("mensaje", mensaje);
+		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);
 		rd.forward(req, resp);
 	}
 	private Alumno recogerParametros(HttpServletRequest req) throws Exception {
@@ -111,8 +132,18 @@ public class AlumnoServlet extends HttpServlet {
 			alumno.setDni(req.getParameter(Constantes.PAR_DNI));
 			alumno.setEmail(req.getParameter(Constantes.PAR_EMAIL));
 			alumno.setDireccion(req.getParameter(Constantes.PAR_DIRECCION));
-			alumno.setnHermanos(Integer.parseInt(req.getParameter(Constantes.PAR_NHERMANOS)));
-			alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));
+			
+			
+			if ("1".equals(req.getParameter(Constantes.PAR_ACTIVO))){
+				alumno.setActivo(true);
+			} else {
+				alumno.setActivo(false);
+			}
+			
+			String nHermanos = req.getParameter(Constantes.PAR_NHERMANOS);
+			 			if (!"".equalsIgnoreCase(nHermanos)) {
+			 				alumno.setnHermanos(Integer.parseInt(nHermanos));
+			 			}
 			
 			String date = req.getParameter(Constantes.PAR_FNACIMIENTO);
 			String pattern = "dd/MM/yyyy";
@@ -120,7 +151,8 @@ public class AlumnoServlet extends HttpServlet {
 			alumno.setfNacimiento(dateFormat.parse(date));
 			
 		} catch(Exception e){
-			throw new Exception("Los datos son incorrectos");
+			throw new Exception("Los datos son incorrectos: " + e.getMessage());
+			
 		}
 		
 		return alumno;
