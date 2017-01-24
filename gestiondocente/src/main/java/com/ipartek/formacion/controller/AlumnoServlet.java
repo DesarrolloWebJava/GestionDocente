@@ -141,7 +141,7 @@ public class AlumnoServlet extends HttpServlet {
 			//redirigir al formulario
 			if(codigo==-1){
 				rd=req.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
-				mensaje="Se ha prodeucido una operacion inesperada contacte con el administracion del sistema";
+				mensaje="Se ha producido una operacion inesperada contacte con el administracion del sistema";
 			}else{
 				alumno=aS.getById(codigo);
 				rd=req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
@@ -170,8 +170,12 @@ public class AlumnoServlet extends HttpServlet {
 			}
 			int nHermanos=Integer.parseInt(nHermanos2);
 			alumno.setnHermanos(nHermanos);
-			alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));
-			
+			//alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));
+			if("1".equals(req.getParameter(Constantes.PAR_ACTIVO))){
+				alumno.setActivo(true);
+			}else{
+				alumno.setActivo(false);
+			}
 			String date =req.getParameter(Constantes.PAR_FNACIMIENTO);
 			String pattern = "dd/MM/yyyy";
 			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);

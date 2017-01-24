@@ -112,7 +112,8 @@ public class ProfesorServlet extends HttpServlet {
 			//muestra el listado de profesores
 			cargarProfesores(request);
 		}catch(NumberFormatException e){
-			response.sendRedirect(Constantes.JSP_HOME);
+			mensaje="Se ha producido una operacion inesperada";
+			rd=request.getRequestDispatcher(Constantes.JSP_HOME);
 			return;
 		}catch(Exception e){
 			rd=request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
