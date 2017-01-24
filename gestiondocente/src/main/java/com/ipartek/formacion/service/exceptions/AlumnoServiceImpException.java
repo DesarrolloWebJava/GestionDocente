@@ -12,11 +12,20 @@ public class AlumnoServiceImpException extends Exception {
 	private int codigo;
 	private String mensaje;
 
+	/**
+	 * Constructor al que le pasamos unicamente el mensaje
+	 * @param message mensaje a mostrar en caso de ese error
+	 */
 	public AlumnoServiceImpException(String message) {
 		super(message);
 		this.mensaje = message;
 	}
 
+	/**
+	 * Constructor al que le pasamos el mensaje y el codigo
+	 * @param codigo codigo de error
+	 * @param mensaje mensaje a mostrar en caso de ese error
+	 */
 	public AlumnoServiceImpException(int codigo, String mensaje) {
 		super(mensaje);
 		this.codigo = codigo;

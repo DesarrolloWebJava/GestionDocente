@@ -26,25 +26,31 @@ import com.ipartek.formacion.service.exceptions.AlumnoServiceImpException;
  */
 public class AlumnoServiceImp implements AlumnoService{
 
+	//Reservamos espacio para una lista de alumnos
 	private List<Alumno> alumnos;
+	//Inicializa el codigo del alumno
 	private static int i = 0;
 
 	public AlumnoServiceImp() {
 		super();
+		//Inicializamos la lista
 		alumnos = new ArrayList<Alumno>();
+		//Llamamos al metodo init()
 		init();
 	}
 
+	/*
+	 * En este metodo vamos a iniciualizar valores para pruebas
+	 */
 	private void init() {
+		//Creamos un nuevo alumno
 		Alumno alumno = new Alumno();
 		try {
 			alumno.setNombre("Sergio");
 			alumno.setApellidos("Aparicio Vegas");
 			alumno.setDni("44974398z");
-
 			create(alumno);
 		} catch (PersonaException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 
@@ -62,7 +68,6 @@ public class AlumnoServiceImp implements AlumnoService{
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
 			System.out.println("Error no controlado" + e.getMessage());
@@ -75,7 +80,6 @@ public class AlumnoServiceImp implements AlumnoService{
 			alumno.setDni("16071559x");
 			create(alumno);
 		} catch (PersonaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -98,26 +102,24 @@ public class AlumnoServiceImp implements AlumnoService{
 			posicion = buscarAlumno(codigo);
 			alumnos.remove(posicion);
 		} catch (AlumnoServiceImpException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
-
 	}
 
 	private int buscarAlumno(int codigo) throws AlumnoServiceImpException {
 
 		int i = 0, posicion = -1;
 		boolean encontrado = false;
-
 		while (encontrado == false && i < alumnos.size()) {
+			//Guarda el objeto i de la lista en el objeto aux
 			Alumno aux = alumnos.get(i);
+			//Si el codigo del objeto aux es igual que el codigo...
 			if (aux.getCodigo() == codigo) {
 				encontrado = true;
 				posicion = i;
 			}
 			i++;
 		}
-
 		if (posicion == -1) {
 			throw new AlumnoServiceImpException(AlumnoServiceImpException.COD_ALUMNO_NO_ENCONTRADO,
 					AlumnoServiceImpException.MSG_ALUMNO_NO_ENCONTRADO);
@@ -128,10 +130,11 @@ public class AlumnoServiceImp implements AlumnoService{
 	public Alumno update(Alumno alumno) {
 		int posicion = -1;
 		try {
+			//Busca la posicion del alumno con ese codigo
 			posicion = buscarAlumno(alumno.getCodigo());
+			//Modifica la lista
 			alumnos.set(posicion, alumno);
 		} catch (AlumnoServiceImpException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 		return alumno;
@@ -142,15 +145,15 @@ public class AlumnoServiceImp implements AlumnoService{
 		Alumno alumno = null;
 		int posicion = -1;
 		try {
+			//Busca la posicion del alumno con ese codigo
 			posicion = buscarAlumno(codigo);
+			//guarda en la variable alumno el objeto con esa posicion
 			alumno = alumnos.get(posicion);
 		} catch (AlumnoServiceImpException e) {
 			System.out.println(e.getMessage());
+			//Creamos un nuevo alumno para evitar NullpointerException
 			alumno = new Alumno();
 		}
-
 		return alumno;
 	}
-
-	
 }

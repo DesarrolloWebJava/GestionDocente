@@ -100,7 +100,7 @@ public class AlumnoServlet extends HttpServlet {
 	}
 
 	private void cargarListaAlumnos(HttpServletRequest request) {
-		// Obtenemos los datos de los alumnos y los cargamos en la variable alumnos
+		// Obtenemos los objetos alumnos y los cargamos en la lista alumnos
 		List<Alumno> alumnos = aS.getAll();
 		// Fijamos la pagina de destino
 		rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
@@ -111,7 +111,7 @@ public class AlumnoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Creamos una variable alumno nula
 		Alumno alumno = null;
-		//Recogemos los parametros
+		//Variable que contiene el mensaje
 		String mensaje ="";
 		
 		int codigo = -1;
@@ -159,7 +159,6 @@ public class AlumnoServlet extends HttpServlet {
 		//Realiza la redireccion
 		rd.forward(request, response);
 	}
-	
 	
 	private Alumno recogerParametros(HttpServletRequest request) throws Exception {
 		Alumno alumno = new Alumno();

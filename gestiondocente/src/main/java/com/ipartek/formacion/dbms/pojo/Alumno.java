@@ -63,6 +63,7 @@ public class Alumno extends Persona implements Comparable<Alumno>, Serializable 
 	 */
 	@Override
 	public int compareTo(Alumno o) {
+		
 		return this.getApellidos().compareToIgnoreCase(o.getApellidos());
 	}
 
