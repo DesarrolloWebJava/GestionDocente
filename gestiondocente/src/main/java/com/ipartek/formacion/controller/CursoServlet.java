@@ -1,6 +1,8 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -26,10 +28,10 @@ public class CursoServlet extends HttpServlet {
 	private CursoService cS;
 	private RequestDispatcher rd;
    
-	    @Override
+	@Override
 	public void init() throws ServletException {
-		cS = new CursoServiceImp();
-		super.init();
+	    	cS = new CursoServiceImp();
+	    super.init();
 	}
 	    
 	/**
@@ -52,7 +54,7 @@ public class CursoServlet extends HttpServlet {
 		String operacion = request.getParameter(Constantes.PAR_OPERACION);
 		int op= -1;
 		op= Integer.parseInt(operacion);
-		System.out.println(op);
+		
 		switch (op){
 			case Constantes.OP_CREATE:
 				// a la vista cursos/curso.jsp
@@ -93,7 +95,6 @@ public class CursoServlet extends HttpServlet {
 	private void cargarListaCursos(HttpServletRequest request) {
 		
 		List<Curso> cursos = cS.getAll(); // OPERACION getAll()
-		System.out.println(cursos.size());
 		rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_CURSOS); // va a "cursos/listado.jsp"
 		request.setAttribute(Constantes.ATT_LISTADO_CURSOS, cursos);  // atributo "listado-cursos"
 		
@@ -104,19 +105,64 @@ public class CursoServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		/*
 		 * <form>
 		 * ---> Operacion de Crear
 		 * ---> Operacion de Update
 		 */
+		
+		Curso curso = null;
+		String mensaje = "";
+			
+		try{
+			curso = recogerParametros(request);
+			if(curso.getCodigo()> Curso.CODIGO_NULO){ //update
+				cS.update(curso);
+				mensaje = "El curso ha sido actualizado";	
+			}else {  // create
+				cS.create(curso);
+				mensaje= "El curso ha sido creado correctamente";
+			}
+			cargarListaCursos(request);
+			
+		}catch (Exception e) {
+			
+			//rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_CURSOS);
+			//mensaje = "Se ha producido un error inesperado.";	
+		}
+		
+		request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
+		rd.forward(request,response);
 	}
 
 	
+	private Curso recogerParametros(HttpServletRequest request) throws ParseException {
+		Curso curso = new Curso();
+		
+		try{
+			int codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+			curso.setCodigo(codigo);
+			curso.setNombreCurso(request.getParameter(Constantes.PAR_NOMBRE_CURSO));
+			
+			String duracion= request.getParameter(Constantes.PAR_DURACION);
+			curso.setDuracion(Integer.parseInt(duracion));
+			
+			String inicio= request.getParameter(Constantes.PAR_FECHA_INICIO);
+			String fin= request.getParameter(Constantes.PAR_FECHA_FIN);
+			String pattern = "dd/MM/yyyy";
+			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+			curso.setFechaFin(dateFormat.parse(inicio));
+			curso.setFechaFin(dateFormat.parse(fin));
+			
+		}catch (Exception e) {
+		}
+		return curso;
+	}
+
 	@Override
 	public void destroy() {
 		cS = null;
 		super.destroy();
 	}
-	
-	
 }

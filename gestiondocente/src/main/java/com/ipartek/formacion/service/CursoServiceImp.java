@@ -9,7 +9,6 @@ import com.ipartek.formacion.dbms.pojo.Curso;
 import com.ipartek.formacion.dbms.pojo.exceptions.CursoException;
 
 public class CursoServiceImp implements CursoService{
-
 	private List<Curso> cursos;
 	private static int i = 0;
 	
@@ -27,18 +26,16 @@ public class CursoServiceImp implements CursoService{
 			curso.setNombreCurso("Primer Curso");
 			curso.setDuracion(80);
 			String pattern = "dd/MM/yyyy";
-			String inicio = "24/01/2017";
-			
-			String fin = "24/06/2017";
 			
 			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+			String inicio = "24/01/2017";
 			curso.setFechaInicio(dateFormat.parse(inicio));
+			String fin = "24/06/2017";
 			curso.setFechaFin(dateFormat.parse(fin));
 			create(curso);
-			
-
+				
 		} catch (ParseException e) {
-
+			
 			e.printStackTrace();
 		}
 		
@@ -47,12 +44,12 @@ public class CursoServiceImp implements CursoService{
 			curso.setNombreCurso("Segundo Curso");
 			curso.setDuracion(80);
 			String pattern = "dd/MM/yyyy";
-			String inicio = "24/01/2017";
-			
-			String fin = "24/06/2017";
 
 			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+			String inicio = "24/01/2017";
 			curso.setFechaInicio(dateFormat.parse(inicio));
+			String fin = "24/06/2017";
+			curso.setFechaFin(dateFormat.parse(fin));
 			create(curso);
 
 		} catch (ParseException e) {
@@ -64,12 +61,12 @@ public class CursoServiceImp implements CursoService{
 			curso.setNombreCurso("Tercer Curso");
 			curso.setDuracion(80);
 			String pattern = "dd/MM/yyyy";
-			String inicio = "24/01/2017";
-			
-			String fin = "24/06/2017";
-			
+		
 			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+			String inicio = "24/01/2017";
 			curso.setFechaInicio(dateFormat.parse(inicio));
+			String fin = "24/06/2017";
+			curso.setFechaFin(dateFormat.parse(fin));
 			create(curso);
 			
 		} catch (ParseException e) {
@@ -92,8 +89,7 @@ public class CursoServiceImp implements CursoService{
 		int posicion = -1;
 		
 		posicion =buscarCurso(codigo);
-		curso = cursos.get(posicion);
-		
+		curso = cursos.get(posicion);	
 		return curso;
 	}
 	
@@ -126,7 +122,6 @@ public class CursoServiceImp implements CursoService{
 	
 		 	posicion = buscarCurso(curso.getCodigo());
 		 	cursos.set(posicion, curso);
-		
 		return curso;
 	}
 
@@ -137,17 +132,6 @@ public class CursoServiceImp implements CursoService{
 		
 		posicion = buscarCurso(codigo);
 		cursos.remove(posicion);
-	}
-	
-	
-	
-	
-	
-	
+	}	
 
-	
-	
-	
-	
-	
 }

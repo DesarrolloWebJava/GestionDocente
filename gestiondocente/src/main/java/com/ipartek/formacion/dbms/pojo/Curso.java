@@ -29,20 +29,15 @@ public class Curso {
 	public int getDuracion() {
 		return duracion;
 	}
-
-
 	public Date getFechaInicio() {
 		return fechaInicio;
 	}
-
-
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
 	public int getCodigo() {
 		return codigo;
 	}
-
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}

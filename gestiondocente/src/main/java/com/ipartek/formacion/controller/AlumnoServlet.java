@@ -75,7 +75,6 @@ public class AlumnoServlet extends HttpServlet {
 			}
 			
 		} catch (Exception e){
-			System.out.println(e.getMessage());
 			resp.sendRedirect(Constantes.JSP_HOME);
 			return;
 			//cargarListaAlumnos(request);
@@ -121,7 +120,7 @@ public class AlumnoServlet extends HttpServlet {
 			
 			rd = req.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
 			mensaje = "Se ha producido un error inesperado.";
-			System.out.println(mensaje);
+			
 			//req.setAttribute("mensaje", mensaje);
 		}
 		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);
