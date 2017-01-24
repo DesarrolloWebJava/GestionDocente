@@ -29,4 +29,14 @@
     <servlet-name>ProfesorServlet</servlet-name>
     <url-pattern>/profesor.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CursoServlet</display-name>
+    <servlet-name>CursoServlet</servlet-name>
+    <servlet-class>com.ipartek.formacion.controler.CursoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CursoServlet</servlet-name>
+    <url-pattern>/curso.do</url-pattern>
+  </servlet-mapping>
 </web-app>

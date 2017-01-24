@@ -29,7 +29,7 @@
 				<a href="<%=Constantes.SERVLET_PROFESOR%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ %>" class="btn btn-info">Listado de Profesores</a>
 			</li>
 			<li>
-				<a href="#" class="btn btn-info">Listado de Cursos</a>
+				<a href="<%=Constantes.SERVLET_CURSO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ %>" class="btn btn-info">Listado de Cursos</a>
 			</li>
 		</ul>
 	</nav>

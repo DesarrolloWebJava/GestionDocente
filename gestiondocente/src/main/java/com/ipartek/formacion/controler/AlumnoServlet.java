@@ -86,8 +86,7 @@ public class AlumnoServlet extends HttpServlet {
 				 
 			}
 			
-		}
-		catch (Exception e){
+		}catch (Exception e){
 			response.sendRedirect(Constantes.JSP_HOME);
 			return;
 			//cargarListaAlumnos(request);
