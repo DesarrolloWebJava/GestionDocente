@@ -162,5 +162,4 @@ public class AlumnoServlet extends HttpServlet {
 		aS = null;
 		super.destroy();
 	}
-
 }
