@@ -131,5 +131,4 @@ public class AlumnoServlet extends HttpServlet {
 		super.destroy();
 	}
 
-	
 }
