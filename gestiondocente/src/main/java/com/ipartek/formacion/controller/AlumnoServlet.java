@@ -58,6 +58,7 @@ public class AlumnoServlet extends HttpServlet {
 				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 				break;
 				case Constantes.OP_READ:
+				//Carga la lista de los alumnos
 				cargarListaAlumnos(request);
 				break;
 				case Constantes.OP_UPDATE:
