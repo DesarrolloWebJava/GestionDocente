@@ -2,7 +2,6 @@ package com.ipartek.formacion.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.ipartek.formacion.dbms.pojo.Alumno;
-import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.AlumnoService;
 import com.ipartek.formacion.service.AlumnoServiceImp;
 
@@ -20,6 +18,7 @@ import com.ipartek.formacion.service.AlumnoServiceImp;
 public class AlumnoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AlumnoService aS;
+	//
 	private RequestDispatcher rd;
 	
 	/**
@@ -114,7 +113,6 @@ public class AlumnoServlet extends HttpServlet {
 		Alumno alumno = null;
 		//Variable que contiene el mensaje
 		String mensaje ="";
-		
 		int codigo = -1;
 		try {
 			//Intentamos hacer parse a el codigo. Por si intentan meter un valor no integer

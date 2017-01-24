@@ -94,6 +94,7 @@ public class CursoServlet extends HttpServlet {
 		//Añadimos la lista al request
 		request.setAttribute(Constantes.ATT_CURSO, cursos);
 	}
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -120,10 +121,31 @@ public class CursoServlet extends HttpServlet {
 			}
 			//Cargamos la lista de cursos
 			cargarListaCursos(request);
-		}catch(Exception e){
+		}catch(NullPointerException e){
 			
+		}catch(Exception e){
+			mensaje = "Se ha producido un error inesperado. \nContacte con el administrador";
+			response.sendRedirect(Constantes.JSP_HOME);
+			if(codigo == -1){
+				rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_CURSOS);
+				request.setAttribute(Constantes.ATT_CURSO, curso);
+				mensaje = "Se ha introducido una operacion inesperada."+ 
+				"\nContacte con el administrador del sistema";
+			//Si no	
+			}else{
+				curso = cS.getById(codigo);
+				//Prepara la redireccion. Envia el curso
+				request.setAttribute(Constantes.ATT_CURSO, curso);
+				//Prepara la redireccion
+				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_CURSO);
+				//Guarda la excepcion como mensaje
+				mensaje = e.getMessage();
+			}
 		}
-		
+		//Prepara la redireccion. Envia el mensaje
+		request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
+		//Realiza la redireccion
+		rd.forward(request, response);
 	}
 
     private Curso recogerParametros(HttpServletRequest request) throws Exception {
@@ -147,6 +169,7 @@ public class CursoServlet extends HttpServlet {
 		}
 		return curso;
 	}
+    
 	@Override
 	public void destroy() {
     	//Le damos valor a nulo

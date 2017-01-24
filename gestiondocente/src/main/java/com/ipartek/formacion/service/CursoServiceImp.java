@@ -15,7 +15,7 @@ public class CursoServiceImp implements CursoService {
 	private List<Curso> cursos;
 	//Reservamos espacio para una lista de alumnos
 	private List<Alumno> alumnos;
-	//Reservamos espacio para una lista de profesor
+	//Reservamos espacio para un objeto profesor
 	private Profesor profesor;
 	//Inicializa el codigo del curso
 		private static int codigoCurso = 0;
@@ -47,9 +47,14 @@ public class CursoServiceImp implements CursoService {
 			SimpleDateFormat formatoFecha = new SimpleDateFormat(pattern);
 			nuevoCurso.setfInicio(formatoFecha.parse(fechaIni));
 			nuevoCurso.setfFin(formatoFecha.parse(fechaFin));
-			//?
+			//Creo 2 alumnos
+			Alumno alumno = new Alumno();
+			Alumno alumno2 = new Alumno();
+			//Añado los alumnos a la lista
+			alumnos.add(alumno);
+			alumnos.add(alumno2);
+			//Cargo la lista
 			nuevoCurso.setAlumnos(alumnos);
-			nuevoCurso.setProfesor(profesor);
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}

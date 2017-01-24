@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Curso implements Comparable<Curso>, Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private int codigo;
 	private String nombre;
 	private int duracion;
@@ -16,36 +17,6 @@ public class Curso implements Comparable<Curso>, Serializable {
 	private Profesor profesor;
 	public static final int CODIGO_NULO = -1;
 
-	@Override
-	public boolean equals(Object obj) {
-		boolean iguales = false;
-		//Si obj es del tipo Curso...
-		if(obj instanceof Curso){
-			//Transforma el objeto a tipo curso y lo guarda en la variable
-			Curso curso = (Curso) obj;
-			//Si el codigo de esta clase es igual que el codigo del objeto...
-			if(this.codigo == curso.getCodigo()){
-				iguales = true;
-			}
-		}
-		return iguales;
-	}
-	
-
-	@Override
-	public int compareTo(Curso o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "Curso [codigo=" + codigo + ", nombre=" + nombre + ", duracion=" + duracion + ", fInicio=" + fInicio
-				+ ", fFin=" + fFin + "]";
-	}
-
 	public Curso() {
 		super();
 		this.codigo = CODIGO_NULO;
@@ -54,7 +25,7 @@ public class Curso implements Comparable<Curso>, Serializable {
 		this.fInicio = new Date();
 		this.fFin = new Date();
 		alumnos = new ArrayList<Alumno>();
-		this.profesor = null;
+		this.profesor = new Profesor();
 	}
 
 	public int getCodigo() {
@@ -113,7 +84,30 @@ public class Curso implements Comparable<Curso>, Serializable {
 		this.profesor = profesor;
 	}
 	
-	
-	
-	
+	@Override
+	public boolean equals(Object obj) {
+		boolean iguales = false;
+		//Si obj es del tipo Curso...
+		if(obj instanceof Curso){
+			//Transforma el objeto a tipo curso y lo guarda en la variable
+			Curso curso = (Curso) obj;
+			//Si el codigo de esta clase es igual que el codigo del objeto...
+			if(this.codigo == curso.getCodigo()){
+				iguales = true;
+			}
+		}
+		return iguales;
+	}
+
+	@Override
+	public int compareTo(Curso o) {
+		// TODO No entiendo el compareTo
+		return 0;
+	}
+
+	@Override
+	public String toString() {
+		return "Curso [codigo=" + codigo + ", nombre=" + nombre + ", duracion=" + duracion + ", fInicio=" + fInicio
+				+ ", fFin=" + fFin + "]";
+	}
 }

@@ -13,6 +13,7 @@ package com.ipartek.formacion.dbms.pojo.exceptions;
  */
 public class PersonaException extends Exception {
 
+	private static final long serialVersionUID = 1L;
 	public final static int COD_DNI_ERROR = 500;
 	public final static int COD_EDAD_ERROR = 510;
 	public final static int COD_LONGITUD_NOMBRE = 520;
