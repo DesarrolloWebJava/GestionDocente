@@ -145,8 +145,14 @@ public class AlumnoServiceImp implements AlumnoService{
 		return alumno;
 	}
 
-	@Override
 	public void delate(int codigo) {
-		
+		int posicion = -1;
+		 	try {
+		 		posicion = buscarAlumno(codigo);
+		 		alumnos.remove(posicion);
+		 	} catch (AlumnoServiceImpException e) {
+		 		System.out.println(e.getMessage());
+		 	}
+		 
 	}
 }

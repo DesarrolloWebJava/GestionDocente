@@ -20,7 +20,7 @@ public interface AlumnoService {
 	
 	public Alumno update(Alumno alumno);
 	
-	public void delate(int codigo);
+	public void delete(int codigo);
 	
 
 }

@@ -61,10 +61,10 @@ public class AlumnoServlet extends HttpServlet {
 					request.setAttribute(Constantes.ATT_ALUMNO, alumno); //la redireccion
 				}	
 					break;
-				case Constantes.OP_DELATE:	{
+				case Constantes.OP_DELETE:	{
 					int codigo = -1;
 					codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
-					aS.delate(codigo);
+					aS.delete(codigo);
 					request.setAttribute(Constantes.ATT_MENSAJE, "El alumno ha sido borrado correctamente.");
 					cargarListaAlumnos(request);
 				}

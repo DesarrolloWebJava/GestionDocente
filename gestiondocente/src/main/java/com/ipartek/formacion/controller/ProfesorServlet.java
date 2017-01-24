@@ -22,8 +22,8 @@ public class ProfesorServlet extends HttpServlet {
 	
 	
 	private static final long serialVersionUID = 1L;
-    private ProfesorService pS;
-    private RequestDispatcher rd;
+	 private ProfesorService pS;
+	    private RequestDispatcher rd;
 
 	@Override
 	public void init() throws ServletException {
@@ -56,7 +56,7 @@ public class ProfesorServlet extends HttpServlet {
 					// falta de hacer TODO request.setAttribute(arg0, arg1);
 					
 					break;
-				case Constantes.OP_DELATE:
+				case Constantes.OP_DELETE:
 					int codigo = -1;
 					codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
 					pS.delate(codigo);

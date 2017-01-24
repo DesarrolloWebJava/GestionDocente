@@ -4,7 +4,6 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-
   </welcome-file-list>
   <servlet>
     <description>Este servlet va a gestionar las peticiones relacionadas con los alumnos.</description>
@@ -25,5 +24,15 @@
   <servlet-mapping>
     <servlet-name>ProfesorServlet</servlet-name>
     <url-pattern>/profesor.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CursoServlet</display-name>
+    <servlet-name>CursoServlet</servlet-name>
+    <servlet-class>com.ipartek.formacion.controller.CursoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CursoServlet</servlet-name>
+    <url-pattern>/curso.do</url-pattern>
   </servlet-mapping>
 </web-app>
