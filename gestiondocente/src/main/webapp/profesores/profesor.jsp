@@ -47,7 +47,6 @@
 			<input type="text" placeholder="Introduzca su fecha de nacimiento.." name="<%=Constantes.PAR_FNACIMIENTO %>" id="<%=Constantes.PAR_FNACIMIENTO %>">
 		</div>
 		<input type="submit" value="enviar">
-
 		</form>
 	</main> 
 </body>
