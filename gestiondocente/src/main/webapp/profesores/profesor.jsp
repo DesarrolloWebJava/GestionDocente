@@ -20,11 +20,13 @@
 %>
 
 <main>
-<header><h2>Crear/Editar Profesor</h2></header>
+<header><h2><%=titulo%></h2></header>
 
 		<form action="<%=Constantes.SERVLET_PROFESOR%>" method="post">
 			<div>
 				<input type="hidden" name ="<%=Constantes.PAR_CODIGO%>" id="<%=Constantes.PAR_CODIGO%>" value="<%=profesor.getCodigo()%>">
+			</div>
+			<div>
 				<label for ="<%=Constantes.PAR_NOMBRE%>">Nombre:</label>
 				<input value ="<%=profesor.getNombre()%>" type="text" placeholder = "Introduzca el nombre ..." name ="<%=Constantes.PAR_NOMBRE%>" id="<%=Constantes.PAR_NOMBRE%>">
 			</div>

@@ -4,7 +4,7 @@
 <jsp:include page = "includes/header.jsp"/>
 
 <main>
-	Bienvenidos a Gestión Alumnos y Profesores
+	Bienvenidos a Gestión Alumnos, Profesores y Cursos
 </main>
 <%@include file = "includes/footer.html" %>
 </body>

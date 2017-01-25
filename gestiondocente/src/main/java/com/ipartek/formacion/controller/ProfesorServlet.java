@@ -54,7 +54,7 @@ public class ProfesorServlet extends HttpServlet {
 				break;
 			case Constantes.OP_UPDATE: {
 				int codigo = -1;
-				codigo = Integer.parseInt(Constantes.PAR_CODIGO);
+				codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
 				Profesor profesor = ps.getById(codigo);
 				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESORES);
 				request.setAttribute(Constantes.ATT_PROFESOR, profesor);
@@ -62,7 +62,7 @@ public class ProfesorServlet extends HttpServlet {
 				break;
 			case Constantes.OP_DELETE: {
 				int codigo = -1;
-				codigo = Integer.parseInt(Constantes.PAR_CODIGO);
+				codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
 				ps.delete(codigo);
 				request.setAttribute(Constantes.ATT_MENSAJE, "El profesor ha sido borrado correctamente");
 				cargarListaProfesores(request);
