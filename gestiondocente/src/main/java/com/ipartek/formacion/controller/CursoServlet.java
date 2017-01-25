@@ -1,8 +1,6 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ipartek.formacion.dbms.pojo.Curso;
 import com.ipartek.formacion.service.CursoService;
 import com.ipartek.formacion.service.CursoServiceImp;
+import com.ipartek.formacion.service.Util;
 
 
 
@@ -25,85 +24,118 @@ public class CursoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CursoService cS;
 	private RequestDispatcher rd;
-   
-	@Override
+	
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
 	public void init() throws ServletException {
 	    cS = new CursoServiceImp();
 	    super.init();
 	}
 	    
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, 
+	 * 		HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		/*
-		 * <a>
-		 * <button>
-		 * --> Operacion getAll()
-		 * --> Update -->Formulario con el curso
-		 * --> Create ---> Formulario
-		 * --> Operacion Delete
-		 * 1º Recoger OPCION (Constantes)
-		 * 2º Switch para realizar la operacion demandada
-		 */
+			/*
+			 * <a>
+			 * <button>
+			 * --> Operacion getAll()
+			 * --> Update -->Formulario con el curso
+			 * --> Create ---> Formulario
+			 * --> Operacion Delete
+			 * 1º Recoger OPCION (Constantes)
+			 * 2º Switch para realizar la operacion demandada
+			 */
 		
-		//Recoger el parametro "op"
-		String operacion = request.getParameter(Constantes.PAR_OPERACION);
-		int op= -1;
+			//Recoger el parametro "op"
+			//String operacion = request.getParameter(Constantes.PAR_OPERACION);
+			// op= -1;
 		
-		try{
-		op= Integer.parseInt(operacion);
+			int operacion = -1;
+			String mensaje = "";
+			try{
+				//op= Integer.parseInt(operacion);
+				operacion= recogerOperacion(request);
 		
-		switch (op){
-			case Constantes.OP_CREATE:
-				// a la vista cursos/curso.jsp
-				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_CURSO);
-				break;
-			case Constantes.OP_READ:
-				// REDIRECCIONA cursos/listado.jsp
-				cargarListaCursos(request);
-				break;
-
-			case Constantes.OP_UPDATE:{
-				int codigo = -1;
-				
-				codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
-				Curso curso = cS.getById(codigo); 
-				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_CURSO); // redirigir a: /curso.jsp
-				request.setAttribute(Constantes.ATT_CURSO, curso); 
-				break;
-			} //cerrar el ciclo de la variable codigo = -1.
-			case Constantes.OP_DELETE:{
-				int codigo = -1;
-				
-				codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
-				request.setAttribute(Constantes.ATT_MENSAJE, "Curso borrado.");
-				cS.delete(codigo);
-				
-				cargarListaCursos(request);
-			}
-				break;
-				
-				default:
+				switch (operacion){
+					case Constantes.OP_CREATE:{
+						// a la vista cursos/curso.jsp
+						//rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_CURSO);
+						
+						procesarCreateOrUpdate(request);
+				}	
+						break;
+				case Constantes.OP_READ: {
+					// REDIRECCIONA cursos/listado.jsp
+					
 					cargarListaCursos(request);
-					break;	
+				}	
+					break;
+	
+				case Constantes.OP_UPDATE:{
+					//int codigo = -1;
+					//codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+					//rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_CURSO); // redirigir a: /curso.jsp
+					
+					int codigo = cargarCodigo(request);
+					Curso curso = cS.getById(codigo); 
+					request.setAttribute(Constantes.ATT_CURSO,curso);
+					
+					procesarCreateOrUpdate(request);
+					
+					break;
+				} //cerrar el ciclo de la variable codigo = -1.
+				case Constantes.OP_DELETE:{
+					//int codigo = -1;
+					//codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+					//request.setAttribute(Constantes.ATT_MENSAJE, "Curso borrado.");
+					
+					int codigo = cargarCodigo(request);
+					cS.delete(codigo);
+					
+					cargarListaCursos(request);
+				}
+					break;
+					
+					default:
+					
+				}
+			} catch (Exception e){
+				
+				cargarListaCursos(request);
+				e.printStackTrace();
+	
 			}
-		} catch (Exception e){
-			response.sendRedirect(Constantes.JSP_LISTADO_PROFESORES);
-			return;
-
-		}
-		rd.forward(request, response);
+			rd.forward(request, response);
 	}
 	
-	private void cargarListaCursos(HttpServletRequest request) {
-		
-		List<Curso> cursos = cS.getAll(); // OPERACION getAll()
-		rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_CURSOS); // va a "cursos/listado.jsp"
-		request.setAttribute(Constantes.ATT_LISTADO_CURSOS, cursos);  // atributo "listado-cursos"
+	private void procesarCreateOrUpdate(HttpServletRequest request) {
+		rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_CURSO);
 		
 	}
+	
+	private int cargarCodigo(HttpServletRequest request) {
+		int codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+		return codigo;
+	}
+
+	private void cargarListaCursos(HttpServletRequest request) {
+		
+		//List<Curso> cursos = cS.getAll(); // OPERACION getAll()
+		rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_CURSOS); // va a "cursos/listado.jsp"
+		request.setAttribute(Constantes.ATT_LISTADO_CURSOS, cS.getAll());  // atributo "listado-cursos"
+		
+	}
+	
+	private int recogerOperacion(HttpServletRequest request) {
+		int op = Integer.parseInt(request.getParameter(Constantes.PAR_OPERACION));
+		return op;
+	}
+
+	
 	
 
 	/**
@@ -124,6 +156,7 @@ public class CursoServlet extends HttpServlet {
 			codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));	
 			curso = recogerParametros(request);
 			curso.setCodigo(codigo);
+			
 			if(curso.getCodigo()> Curso.CODIGO_NULO){ //update
 				cS.update(curso);
 				mensaje = "El curso ha sido actualizado";	
@@ -134,12 +167,19 @@ public class CursoServlet extends HttpServlet {
 			cargarListaCursos(request);
 			
 		} catch (NumberFormatException e){
-			response.sendRedirect(Constantes.JSP_HOME);
-			return;	
-		}catch (Exception e) {
+			mensaje = "Se ha producido una operacion inesperada contacte con el administrador del sistema.";
+			rd = request.getRequestDispatcher(Constantes.JSP_HOME);
 			
-			rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_CURSOS);
-			mensaje = "Se ha producido un error inesperado.";	
+		}catch (Exception e) {
+			if (codigo == -1){ //Create
+				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_CURSO);	
+			}else{ // Update
+				curso = cS.getById(codigo);
+				request.setAttribute(Constantes.ATT_CURSO, curso);
+				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_CURSO);
+			}
+			mensaje = e.getMessage();
+			System.out.println(mensaje);
 		}
 		
 		request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
@@ -151,22 +191,26 @@ public class CursoServlet extends HttpServlet {
 		Curso curso = new Curso();
 		
 		try{
-			int codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
-			curso.setCodigo(codigo);
-			curso.setNombreCurso(request.getParameter(Constantes.PAR_NOMBRE_CURSO));
 			
-			
-			String duracion= request.getParameter(Constantes.PAR_DURACION);
-			curso.setDuracion(Integer.parseInt(duracion));
-			
-			
+			String duracion = request.getParameter(Constantes.PAR_DURACION);
+			int nDuracion = Integer.parseInt(duracion);
+			curso.setDuracion(nDuracion);
+		
 			String inicio= request.getParameter(Constantes.PAR_FECHA_INICIO);
 			String fin= request.getParameter(Constantes.PAR_FECHA_FIN);
 			
-			String pattern = "dd/MM/yyyy";
-			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-			curso.setFechaFin(dateFormat.parse(inicio));
-			curso.setFechaFin(dateFormat.parse(fin));
+			if (inicio != null && !"".equalsIgnoreCase(fin)){
+				curso.setFechaInicio(Util.parseLatinDate(inicio));
+			}
+			if (fin != null && !"".equalsIgnoreCase(fin)){
+				curso.setFechaFin(Util.parseLatinDate(fin));
+			}
+			//String duracion= request.getParameter(Constantes.PAR_DURACION);
+			//curso.setDuracion(Integer.parseInt(duracion));
+			//String pattern = "dd/MM/yyyy";
+			//SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+			//curso.setFechaFin(dateFormat.parse(inicio));
+			//curso.setFechaFin(dateFormat.parse(fin));
 			
 		}catch (Exception e) {
 			e.printStackTrace();
