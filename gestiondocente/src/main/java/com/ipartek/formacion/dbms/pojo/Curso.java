@@ -68,13 +68,7 @@ public class Curso {
 	}
 
 	public void setFechaFin(Date fechaFin) throws CursoException {
-		GregorianCalendar gc = new GregorianCalendar();
-		gc.setTime(new Date());
-		int fechoy = gc.get(GregorianCalendar.DATE);
-		gc.set(GregorianCalendar.DATE, fechoy);
-		if(gc.getTime().after(fechaFin)){
-			throw new CursoException(CursoException.COD_FECFIN_ERROR,CursoException.MSG_FECFIN_ERROR);
-		}
+		
 		this.fechaFin = fechaFin;
 	}
 

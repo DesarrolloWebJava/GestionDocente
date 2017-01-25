@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Alumno"%>
 <%@page import="java.util.List"%>
@@ -12,10 +13,13 @@
 			%>
 			<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_CREATE %>">Crear Alumno</a>
 			<ul>
+			
 			<%
 				for(Alumno alumno: alumnos){
+				
 					String btn_delete="<a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+alumno.getCodigo()+ "'> Borrar </a>";
 					out.println("<li>"+alumno.toString()+"<a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+alumno.getCodigo()+ "'> Editar</a>"+btn_delete+"</li>");
+				
 				}
 			%>
 			</ul>

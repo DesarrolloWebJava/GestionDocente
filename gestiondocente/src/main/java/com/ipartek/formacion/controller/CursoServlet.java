@@ -131,7 +131,7 @@ public class CursoServlet extends HttpServlet {
 			String datefin = request.getParameter(Constantes.PAR_FECHAFIN);
 			String patternfin = "dd/MM/yyyy";
 			SimpleDateFormat dateFormatfin = new SimpleDateFormat(patternfin);
-			curso.setFechaInicio(dateFormatfin.parse(datefin));
+			curso.setFechaFin(dateFormatfin.parse(datefin));
 			
 			
 		} catch (Exception e){

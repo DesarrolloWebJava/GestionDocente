@@ -13,7 +13,7 @@ public final class Util {
 	}
 	
 	public static String fechaFormateada(Date fecha){
-	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
 	    return sdf.format(fecha);
 	} 
 }

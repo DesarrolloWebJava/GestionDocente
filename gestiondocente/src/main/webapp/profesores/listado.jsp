@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>

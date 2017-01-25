@@ -1,5 +1,5 @@
 <%@page import="java.util.GregorianCalendar"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Curso"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -36,7 +36,7 @@
 				gci.setTime(curso.getFechaInicio());
 				dateini = gci.get(GregorianCalendar.DAY_OF_MONTH)+"/"+(gci.get(GregorianCalendar.MONTH)+1)+"/"+gci.get(GregorianCalendar.YEAR);
 				%>
-					<label for="<%=Constantes.PAR_FECHAINICIO%>">NOMBRE: </label>
+					<label for="<%=Constantes.PAR_FECHAINICIO%>">FECHA INICIO: </label>
 					<input type="text" value="<%=dateini%>" id="<%=Constantes.PAR_FECHAINICIO%>" name="<%=Constantes.PAR_FECHAINICIO%>" placeholder="Introduce la fecha de inicio..." required >
 				</div>
 				<div>
@@ -46,7 +46,7 @@
 				gcf.setTime(curso.getFechaFin());
 				datefin = gcf.get(GregorianCalendar.DAY_OF_MONTH)+"/"+(gcf.get(GregorianCalendar.MONTH)+1)+"/"+gcf.get(GregorianCalendar.YEAR);
 				%>
-					<label for="<%=Constantes.PAR_FECHAFIN%>">NOMBRE: </label>
+					<label for="<%=Constantes.PAR_FECHAFIN%>">FECHA FIN: </label>
 					<input type="text" value="<%=datefin%>" id="<%=Constantes.PAR_FECHAFIN%>" name="<%=Constantes.PAR_FECHAFIN%>" placeholder="Introduce la fecha fin..." required >
 				</div>
 				<input  type="submit" value="Enviar" />

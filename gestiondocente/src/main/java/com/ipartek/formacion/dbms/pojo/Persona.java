@@ -10,6 +10,13 @@ import com.ipartek.formacion.service.Util;
 
 public class Persona {
 
+	
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+
 	protected int codigo;
 	private String dni;
 	private String nombre;
@@ -112,5 +119,5 @@ public class Persona {
 
 		this.fNacimiento = fNacimiento;
 	}
-
+	
 }
