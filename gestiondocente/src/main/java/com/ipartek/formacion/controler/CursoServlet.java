@@ -15,6 +15,7 @@ import com.ipartek.formacion.dbms.pojo.Curso;
 import com.ipartek.formacion.service.AlumnoService;
 import com.ipartek.formacion.service.CursoService;
 import com.ipartek.formacion.service.CursoServiceImp;
+import com.ipartek.formacion.service.Util;
 
 /**
  * Servlet implementation class CursoServlet
@@ -164,21 +165,14 @@ public class CursoServlet extends HttpServlet {
 				curso.setDuracion(Integer.parseInt(request.getParameter(Constantes.PAR_DURACION)));
 			}			
 				
-			
-			{
-				String date= request.getParameter(Constantes.PAR_FINICIO);
-				String pattern = "dd/MM/yyyy";
-				SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-				curso.setfInicio( dateFormat.parse(date));
+			String fInicio = request.getParameter(Constantes.PAR_FINICIO);
+			String fFin = request.getParameter(Constantes.PAR_FFIN);
+			if (fInicio != null && !"".equalsIgnoreCase(fInicio)) {
+				curso.setfInicio(Util.parseLatinDate(fInicio));
 			}
-			{
-				String date= request.getParameter(Constantes.PAR_FFIN);
-				String pattern = "dd/MM/yyyy";
-				SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-				curso.setfFin( dateFormat.parse(date));
+			if (fFin != null && !"".equalsIgnoreCase(fFin)) {
+				curso.setfFin(Util.parseLatinDate(fFin));
 			}
-			
-			
 			//alumno.setActivo(Boolean.parseBoolean( request.getParameter(Constantes.PAR_ACTIVO)));
 			}catch(Exception e){
 				
