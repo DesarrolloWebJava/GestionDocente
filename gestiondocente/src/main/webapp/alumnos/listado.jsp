@@ -24,7 +24,6 @@
 			%>
 			</ul>
 		</main>
-		
 			<%@ include file="../includes/footer.html" %>
 		
 	</body>
