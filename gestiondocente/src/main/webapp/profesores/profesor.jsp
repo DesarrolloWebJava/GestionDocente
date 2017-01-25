@@ -68,8 +68,8 @@ else{
 		  	 value="<%=profesor.getEmail() %>" placeholder="Introduce tu email">
 		  </div>
 		   <div class="form-group">
-		   <label for="<%=Constantes.PAR_nSS%>">Nº Seguridad Social</label>
-		   <input type="text" class="form-control" id="<%=Constantes.PAR_nSS %>" name="<%=Constantes.PAR_nSS  %>" 
+		   <label for="<%=Constantes.PAR_NSS%>">Nº Seguridad Social</label>
+		   <input type="text" class="form-control" id="<%=Constantes.PAR_NSS %>" name="<%=Constantes.PAR_NSS  %>" 
 		  	value="<%=profesor.getnSS() %>" placeholder="Introduce tu nº de ss">
 		  </div>
 		  

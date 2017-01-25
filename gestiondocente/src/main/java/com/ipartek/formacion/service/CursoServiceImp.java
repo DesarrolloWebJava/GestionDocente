@@ -30,64 +30,64 @@ public class CursoServiceImp implements CursoService {
 		init();
 	}
 
-	private void init() {
+	private final void init() {
 		
 		Curso curso = new Curso();
 		
 		try {
-			curso.setNombre("POO-Programacion orientada a objetos");
-			curso.setDuracion(100);
-			String dateinicio = "20/01/2017";
-			String pattern = "dd/MM/yyyy";
-			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-			curso.setfInicio(dateFormat.parse(dateinicio));
-				
-			String datefin = "20/03/2017";
-			String patternfin = "dd/MM/yyyy";
-			SimpleDateFormat dateFormatfin = new SimpleDateFormat(patternfin);
-				
-			curso.setfFin(dateFormat.parse(datefin));
-
-			create(curso);
-			} catch (CursoException e1) {
-				System.out.println(e1.getMessage());
-				e1.printStackTrace();
-				
-			} catch (ParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}catch (Exception e) {
-				System.out.println("Error no controlado" + e.getMessage());
-			}
+				curso.setNombre("POO-Programacion orientada a objetos");
+				curso.setDuracion(100);
+				String dateinicio = "20/01/2017";
+				String pattern = "dd/MM/yyyy";
+				SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+				curso.setfInicio(dateFormat.parse(dateinicio));
+					
+				String datefin = "20/03/2017";
+				String patternfin = "dd/MM/yyyy";
+				SimpleDateFormat dateFormatfin = new SimpleDateFormat(patternfin);
+					
+				curso.setfFin(dateFormat.parse(datefin));
+	
+				create(curso);
+				} catch (CursoException e1) {
+					//System.out.println(e1.getMessage());
+					e1.printStackTrace();
+					
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}catch (Exception e) {
+					//System.out.println("Error no controlado" + e.getMessage());
+				}
 	
 	
 		
 		
 		curso= new Curso();
 		try {
-			curso.setNombre("JAVA J2EE-Programacion web java");
-			curso.setDuracion(0);
-			//System.out.println(curso.setDuracion(0));
-			String dateinicio1 = "10/02/2017";
-			String pattern1 = "dd/MM/yyyy";
-			SimpleDateFormat dateFormat1 = new SimpleDateFormat(pattern1);
-			curso.setfInicio(dateFormat1.parse(dateinicio1));
-			String datefin2 = "10/06/2017";
-			String patternfin2 = "dd/MM/yyyy";
-			SimpleDateFormat dateFormatfin2 = new SimpleDateFormat(patternfin2);
-			curso.setfFin(dateFormatfin2.parse(datefin2));
-			
-			create(curso);
-			} catch (CursoException e1) {
-				System.out.println(e1.getMessage());
+				curso.setNombre("JAVA J2EE-Programacion web java");
+				curso.setDuracion(100);
+				//System.out.println(curso.setDuracion(0));
+				String dateinicio1 = "10/02/2017";
+				String pattern1 = "dd/MM/yyyy";
+				SimpleDateFormat dateFormat1 = new SimpleDateFormat(pattern1);
+				curso.setfInicio(dateFormat1.parse(dateinicio1));
+				String datefin2 = "10/06/2017";
+				String patternfin2 = "dd/MM/yyyy";
+				SimpleDateFormat dateFormatfin2 = new SimpleDateFormat(patternfin2);
+				curso.setfFin(dateFormatfin2.parse(datefin2));
 				
-				e1.printStackTrace();
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}catch (Exception e) {
-				System.out.println("Error no controlado" + e.getMessage());
-			}
+				create(curso);
+				} catch (CursoException e1) {
+					//System.out.println(e1.getMessage());
+					
+					e1.printStackTrace();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}catch (Exception e) {
+					//System.out.println("Error no controlado" + e.getMessage());
+				}
 	}
 
 	@Override

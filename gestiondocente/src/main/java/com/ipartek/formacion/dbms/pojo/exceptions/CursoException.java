@@ -14,7 +14,7 @@ public class CursoException extends Exception {
 	public final static int COD_FFIN_NOMBRE = 620;
 
 	public final static String MSG_NOMBRE_ERROR = "El Nombre debe  tener minimo 8 caracteres";
-	public final static String MSG_DURACION_ERROR = "La duración ";
+	public final static String MSG_DURACION_ERROR = "La duración no debe de ser negativa";
 	public final static String MSG_FFIN_NOMBRE = "El nombre introducido debe de tener tres letras o mas";
 	private int codigo;
 	private String mensaje;

@@ -1,6 +1,6 @@
 package com.ipartek.formacion.service;
 
-public class Util {
+public final class Util {
 
 	private Util() {
 	}

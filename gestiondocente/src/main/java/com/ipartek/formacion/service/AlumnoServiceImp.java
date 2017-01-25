@@ -35,19 +35,16 @@ public class AlumnoServiceImp implements AlumnoService {
 		init();
 	}
 
-	private void init() {
+	private final void init() {
 		Alumno alumno = new Alumno();
 		try {
 			alumno.setNombre("Sergio");
 			alumno.setApellidos("Aparicio Vegas");
 			alumno.setDni("44974398z");
-			
-			
-			
 			create(alumno);
 		} catch (PersonaException e) {
 			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 		}
 
 		alumno = new Alumno();
@@ -61,13 +58,13 @@ public class AlumnoServiceImp implements AlumnoService {
 			alumno.setfNacimiento(dateFormat.parse(date));
 			create(alumno);
 		} catch (PersonaException e) {
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 			e.printStackTrace();
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.out.println("Error no controlado" + e.getMessage());
+			//System.out.println("Error no controlado" + e.getMessage());
 		}
 
 		alumno = new Alumno();
@@ -101,7 +98,7 @@ public class AlumnoServiceImp implements AlumnoService {
 			posicion = buscarAlumno(codigo);
 			alumno = alumnos.get(posicion);
 		} catch (AlumnoServiceImpException e) {
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 			alumno = new Alumno();
 		}
 
@@ -115,7 +112,7 @@ public class AlumnoServiceImp implements AlumnoService {
 			alumnos.remove(posicion);
 		} catch (AlumnoServiceImpException e) {
 			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 		}
 
 	}
@@ -149,7 +146,7 @@ public class AlumnoServiceImp implements AlumnoService {
 			
 		} catch (AlumnoServiceImpException e) {
 			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 		}
 		return alumno;
 	}

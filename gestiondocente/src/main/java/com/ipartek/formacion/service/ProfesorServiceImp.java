@@ -13,10 +13,10 @@ public class ProfesorServiceImp implements ProfesorService {
 	public ProfesorServiceImp() {
 		super();
 		profesores = new HashMap<Integer, Profesor>();
-		init();
+		init(); 
 	}
 
-	private void init() {
+	private final void init() {
 		contador = 0;
 		Profesor profesor = new Profesor();
 		profesor.setEmail("uvillanueva@ipartek.com");

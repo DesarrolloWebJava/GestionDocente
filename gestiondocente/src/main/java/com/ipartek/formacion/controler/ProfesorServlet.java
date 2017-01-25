@@ -170,11 +170,11 @@ private Profesor recogerParametros(HttpServletRequest request) throws Exception 
 			
 			profesor.setDireccion( request.getParameter(Constantes.PAR_DIRECCION));
 			profesor.setEmail( request.getParameter(Constantes.PAR_EMAIL));
-			String nSS_s =request.getParameter(Constantes.PAR_nSS);
+			String nSSs =request.getParameter(Constantes.PAR_NSS);
 			
-			if (nSS_s != null && !"".equals(nSS_s))
+			if (nSSs != null && !"".equals(nSSs))
 			{
-				long nSS=Long.parseLong(request.getParameter(Constantes.PAR_nSS));
+				long nSS=Long.parseLong(request.getParameter(Constantes.PAR_NSS));
 				profesor.setnSS(nSS);
 			}
 		}catch(Exception e){

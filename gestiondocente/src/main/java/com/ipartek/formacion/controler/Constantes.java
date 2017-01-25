@@ -5,11 +5,8 @@ package com.ipartek.formacion.controler;
  * @author Mai
  *
  */
-public class Constantes {
-
-	private Constantes() {
-		
-	}
+public final class Constantes {
+	
 	public static final String ATT_LISTADO_PROFESORES = "listado-profesores";
 	public static final String ATT_LISTADO_ALUMNOS = "listado-alumnos";
 	public static final String ATT_MENSAJE="mesaje";
@@ -42,8 +39,7 @@ public class Constantes {
 	public static final String PAR_EMAIL = "email";
 	public static final String PAR_NHERMANOS = "nHermanos";
 	public static final String PAR_ACTIVO = "activo";
-	//nombre prametros de la clase proefesor
-	public static final String PAR_nSS = "nSS";
+	public static final String PAR_NSS = "nSS";
 	
 	//nombre paarmetros de la clase curso
 	public static final String PAR_DURACION = "duracion";
@@ -57,7 +53,9 @@ public class Constantes {
 	public static final int OP_UPDATE = 3;
 	public static final int OP_DELETE = 4;
 	
-	
+	private Constantes() {
+		
+	}
 	
 	
 }
