@@ -1,12 +1,13 @@
 package com.ipartek.formacion.dbms.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 import com.ipartek.formacion.dbms.pojo.exceptions.CursoException;
 import com.ipartek.formacion.service.Util;
 
-public class Curso {
+public class Curso implements Serializable, Comparable<Curso> {
 
 	protected int codigo;
 	private String nombre;
@@ -78,6 +79,19 @@ public class Curso {
 				+ Util.fechaFormateada(getFechaFin()) ;
 	}
 
-	
-	
+	@Override
+	public int compareTo(Curso o) {
+		return this.nombre.compareToIgnoreCase(o.nombre);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		boolean iguales = false;
+		if (obj instanceof Curso) {
+			Curso curso = (Curso) obj;
+			if (curso.getCodigo() == this.codigo) {
+				iguales = true;
+			}
+		}
+		return iguales;
+	}
 }

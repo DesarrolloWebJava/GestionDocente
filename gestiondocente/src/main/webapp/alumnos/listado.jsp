@@ -10,6 +10,7 @@
 			<%
 			/* esto es un scriplet */
 				List<Alumno> alumnos = (List<Alumno>)request.getAttribute(Constantes.ATT_LISTADO_ALUMNOS);
+			alumnos.sort(null);
 			%>
 			<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_CREATE %>">Crear Alumno</a>
 			<ul>

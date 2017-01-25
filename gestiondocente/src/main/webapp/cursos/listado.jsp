@@ -9,6 +9,7 @@
 			
 			<%
 				List<Curso> cursos = (List<Curso>)request.getAttribute(Constantes.ATT_LISTADO_CURSOS);
+				cursos.sort(null);
 			%>
 			<a href="<%=Constantes.SERVLET_CURSO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE%>">Crear Curso</a>
 			<ul>
