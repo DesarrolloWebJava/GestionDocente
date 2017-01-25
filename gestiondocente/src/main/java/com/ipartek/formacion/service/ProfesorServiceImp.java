@@ -17,7 +17,7 @@ public class ProfesorServiceImp implements ProfesorService {
 		init();
 	}
 
-	private void init() {
+	private final void init() {
 		contador = 0;
 		Profesor profesor = new Profesor();
 		
@@ -45,7 +45,7 @@ public class ProfesorServiceImp implements ProfesorService {
 	}
 
 	@Override
-	public Profesor create(Profesor profesor) {
+	public final Profesor create(Profesor profesor) {
 		contador++;
 		profesor.setCodigo(contador);
 		profesores.put(profesor.getCodigo(), profesor);

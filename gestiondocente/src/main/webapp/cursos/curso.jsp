@@ -6,7 +6,7 @@
     pageEncoding="UTF-8"%>
 	<%
  String titulo = "";	
- Curso curso = (Curso)request.getAttribute(Constantes.ATT_ALUMNO);
+ Curso curso = (Curso)request.getAttribute(Constantes.ATT_CURSO);
  
  if(curso == null){
 	 titulo = "Crear Curso";
@@ -20,7 +20,7 @@
 		<main>
 			<header><h2><%=titulo%></h2></header>
 			<form action=<%=Constantes.SERVLET_CURSO%> method="post">
-				<input type="hidden" id="<%=Constantes.PAR_CODIGO%>" name="<%=Constantes.PAR_CODIGO%>" value=""<%=curso.getCodigo()%>"">
+				<input type="hidden" id="<%=Constantes.PAR_CODIGO%>" name="<%=Constantes.PAR_CODIGO%>" value="<%=curso.getCodigo()%>">
 				<div>
 					<label for="<%=Constantes.PAR_NOMBRE%>">*NOMBRE: </label>
 					<input type="text" value="<%=curso.getNombre()%>" id="<%=Constantes.PAR_NOMBRE%>" name="<%=Constantes.PAR_NOMBRE%>" placeholder="Introduce el nombre..." required >
@@ -43,7 +43,7 @@
 				<%
 				String datefin = "";
 				GregorianCalendar gcf = new GregorianCalendar();
-				gcf.setTime(curso.getFechaInicio());
+				gcf.setTime(curso.getFechaFin());
 				datefin = gcf.get(GregorianCalendar.DAY_OF_MONTH)+"/"+(gcf.get(GregorianCalendar.MONTH)+1)+"/"+gcf.get(GregorianCalendar.YEAR);
 				%>
 					<label for="<%=Constantes.PAR_FECHAFIN%>">NOMBRE: </label>

@@ -20,7 +20,7 @@ public class CursoServiceImp implements CursoService {
 		init();
 	}
 	
-	private void init() {
+	private final void init() {
 		Curso curso = new Curso();
 		try {
 			curso.setNombre("Sergio Aparicio");
@@ -33,18 +33,18 @@ public class CursoServiceImp implements CursoService {
 			curso.setFechaFin(dateFormat.parse(dateFin));
 			create(curso);
 		} catch (CursoException e) {
-			System.out.println(e.getMessage());
+			
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.out.println("Error no controlado" + e.getMessage());
+			
 		}
 		
 	}
 	
-	public Curso create(Curso curso){
+	public final Curso create(Curso curso){
 		curso.setCodigo(i);
 		i++;
 		cursos.add(curso);
@@ -64,7 +64,7 @@ public class CursoServiceImp implements CursoService {
 		posicion = buscarCurso(codigo);
 		curso = cursos.get(posicion);
 		} catch(CursoServiceImpException e) {
-			System.out.println(e.getMessage());
+			
 			curso = new Curso(); 
 		}
 		return curso;
@@ -77,7 +77,7 @@ public class CursoServiceImp implements CursoService {
 			posicion = buscarCurso(codigo);
 			cursos.remove(posicion);
 		} catch (CursoServiceImpException e) {
-			System.out.println(e.getMessage());
+			
 		}
 	}
 	
@@ -87,7 +87,7 @@ public class CursoServiceImp implements CursoService {
 			posicion=buscarCurso(curso.getCodigo());
 			cursos.set(posicion, curso);
 		}catch(CursoServiceImpException e){
-			System.out.println(e.getMessage());
+			
 		}
 		return curso;
 	}
@@ -106,7 +106,7 @@ public class CursoServiceImp implements CursoService {
 		}
 		if (posicion == -1){
 			throw new CursoServiceImpException(CursoServiceImpException.COD_CURSO_NO_ENCONTRADO,
-					CursoServiceImpException.MSG_Curso_NO_ENCONTRADO );
+					CursoServiceImpException.MSG_CURSO_NO_ENCONTRADO );
 		}
 		return posicion;
 	}

@@ -1,6 +1,6 @@
 package com.ipartek.formacion.controller;
 
-public class Constantes {
+public final class Constantes {
 	private Constantes(){
 		
 	}

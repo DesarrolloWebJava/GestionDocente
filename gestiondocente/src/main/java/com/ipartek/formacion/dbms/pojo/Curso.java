@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import com.ipartek.formacion.dbms.pojo.exceptions.CursoException;
+import com.ipartek.formacion.service.Util;
 
 public class Curso {
 
@@ -36,9 +37,9 @@ public class Curso {
 	}
 
 	public void setNombre(String nombre) throws CursoException {
-		//if(nombre.length() < 8){
-		//	throw new CursoException(CursoException.COD_LONGITUD_NOMBRE,CursoException.MSG_LONGITUD_NOMBRE);
-		//}
+		if(nombre.length() < 8){
+			throw new CursoException(CursoException.COD_LONGITUD_NOMBRE,CursoException.MSG_LONGITUD_NOMBRE);
+		}
 		this.nombre = nombre;
 	}
 
@@ -47,9 +48,9 @@ public class Curso {
 	}
 
 	public void setDuracion(int duracion) throws CursoException {
-		//if(duracion<1){
-			//throw new CursoException(CursoException.COD_DURACION_ERROR,CursoException.MSG_DURACION_ERROR);
-		//}
+		if(duracion<1){
+			throw new CursoException(CursoException.COD_DURACION_ERROR,CursoException.MSG_DURACION_ERROR);
+		}
 		this.duracion = duracion;
 	}
 
@@ -67,14 +68,20 @@ public class Curso {
 	}
 
 	public void setFechaFin(Date fechaFin) throws CursoException {
-		//GregorianCalendar gc = new GregorianCalendar();
-		//gc.setTime(new Date());
-		//int fechoy = gc.get(GregorianCalendar.DATE);
-		///gc.set(GregorianCalendar.DATE, fechoy);
-		//if(gc.getTime().after(fechaFin)){
-		//	throw new CursoException(CursoException.COD_FECFIN_ERROR,CursoException.MSG_FECFIN_ERROR);
-		//}
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.setTime(new Date());
+		int fechoy = gc.get(GregorianCalendar.DATE);
+		gc.set(GregorianCalendar.DATE, fechoy);
+		if(gc.getTime().after(fechaFin)){
+			throw new CursoException(CursoException.COD_FECFIN_ERROR,CursoException.MSG_FECFIN_ERROR);
+		}
 		this.fechaFin = fechaFin;
+	}
+
+	@Override
+	public String toString() {
+		return "Curso nombre:" + getNombre() + ", duracion:" + getDuracion() + ", fechaInicio:" + Util.fechaFormateada(getFechaInicio()) + ", fechaFin:"
+				+ Util.fechaFormateada(getFechaFin()) ;
 	}
 
 	

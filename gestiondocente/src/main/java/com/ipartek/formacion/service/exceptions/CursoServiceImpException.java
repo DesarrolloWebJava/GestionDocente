@@ -3,7 +3,7 @@ package com.ipartek.formacion.service.exceptions;
 public class CursoServiceImpException extends Exception{
 
 	public static final int COD_CURSO_NO_ENCONTRADO = 500;
-	public static final String MSG_Curso_NO_ENCONTRADO = "No se encuentra el curso solicitado";
+	public static final String MSG_CURSO_NO_ENCONTRADO = "No se encuentra el curso solicitado";
 
 	private int codigo;
 	private String mensaje;

@@ -13,8 +13,9 @@
 			<ul>
 			<%
 				for(Curso curso: cursos){
+					String btn_update="<a href='"+Constantes.SERVLET_CURSO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+curso.getCodigo()+ "'> Modificar </a>";
 					String btn_delete="<a href='"+Constantes.SERVLET_CURSO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+curso.getCodigo()+ "'> Borrar </a>";
-					out.println("<li>"+curso.toString()+" "+btn_delete+ "</li>");
+					out.println("<li>"+curso.toString()+" "+btn_update+" "+btn_delete+ "</li>");
 				}
 			
 			%>

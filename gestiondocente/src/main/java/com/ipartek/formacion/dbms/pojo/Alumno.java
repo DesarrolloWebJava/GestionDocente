@@ -2,6 +2,8 @@ package com.ipartek.formacion.dbms.pojo;
 
 import java.io.Serializable;
 
+import com.ipartek.formacion.service.Util;
+
 /**
  * 
  * @author Urko Villanueva
@@ -36,7 +38,7 @@ public class Alumno extends Persona implements Comparable<Alumno>, Serializable 
 
 	@Override
 	public String toString() {
-		return this.getCodigo() + " " + this.getApellidos() + ", " + this.getNombre() + " " + this.getDni();
+		return this.getCodigo() + " " + this.getApellidos() + ", " + this.getNombre() + " " + this.getDni() +" "+ Util.fechaFormateada(this.getfNacimiento());
 	}
 
 	public boolean isActivo() {

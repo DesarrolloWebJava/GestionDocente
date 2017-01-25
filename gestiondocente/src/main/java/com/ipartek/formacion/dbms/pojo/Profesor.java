@@ -1,4 +1,6 @@
 package com.ipartek.formacion.dbms.pojo;
+import com.ipartek.formacion.service.Util;
+
 
 public class Profesor extends Persona {
 	public static final int CODIGO_NULO = -1;
@@ -31,8 +33,9 @@ public class Profesor extends Persona {
 	public String toString() {
 		return "Profesor :Email=" + getEmail() + ", Direccion=" + getDireccion() + ", Dni=" + getDni()
 				+ ", Nombre=" + getNombre() + ", Apellidos=" + getApellidos() + ", fNacimiento="
-				+ getfNacimiento() ;
+				+ Util.fechaFormateada( getfNacimiento()) ;
 	}
 
+	
 	
 }

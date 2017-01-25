@@ -106,7 +106,7 @@ public class ProfesorServlet extends HttpServlet {
 				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESORES);
 				mensaje= e.getMessage();
 			}
-			System.out.println(mensaje);
+			//System.out.println(mensaje);
 			e.printStackTrace();
 		}
 		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);
