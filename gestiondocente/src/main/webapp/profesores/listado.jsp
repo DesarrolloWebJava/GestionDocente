@@ -27,7 +27,9 @@
 		<%
 			/* Se recorre la lista de profesores recogida del request.*/
 			for (Map.Entry<Integer, Profesor> entry : profesores.entrySet()) {
+				/* Se declara y recoge el codigo del profesor(clave del mapa).*/
 				int codigo = entry.getKey();
+				/* Se declara y recoger el profesor del mapa.*/
 				Profesor profesor = entry.getValue();
 				
 				/* Se declara en enlace para el borrado.*/

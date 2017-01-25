@@ -20,12 +20,12 @@ public class PersonaException extends Exception {
 	/* Se declaran las constantes de codigo de error para la excepción. */
 	public final static int COD_DNI_ERROR = 500;
 	public final static int COD_EDAD_ERROR = 510;
-	public final static int COD_LONGITUD_NOMBRE = 520;
+	public final static int COD_LONGITUD_ERROR = 520;
 	
 	/* Se declaran las constantes de mensajes de error para la excepción. */
 	public final static String MSG_DNI_ERROR = "El DNI introducido no es valido";
 	public final static String MSG_EDAD_ERROR = "Debe de ser mayor de 18 años";
-	public final static String MSG_LONGITUD_NOMBRE = 
+	public final static String MSG_LONGITUD_ERROR = 
 			                     "El nombre introducido debe de tener tres letras o mas";
 	
 	/* Atributo 'codigo' con el que trabajar el codigo de error.*/

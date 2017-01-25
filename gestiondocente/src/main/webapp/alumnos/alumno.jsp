@@ -25,7 +25,7 @@
 	    	 alumno = new Alumno();    	 
 	     } else {
 	    	 /* Se asigna el titulo de la modificación de alumno.*/
-	    	 titulo = "Crear Alumno.";
+	    	 titulo = "Modificar Alumno.";
 	     }	    	 
 	  %>
 	<main>
@@ -82,7 +82,7 @@
 				/* Se construye la fecha sobre un String.
 				   (Enero lo interpreta como mes 0,por lo que se ha de sumar 1).*/
 				date = gc.get(GregorianCalendar.DAY_OF_MONTH) + "/" + 
-					   gc.get(GregorianCalendar.MONTH+1) + "/" + 
+					   (gc.get(GregorianCalendar.MONTH) + 1) + "/" + 
 					   gc.get(GregorianCalendar.YEAR);
 				%>
 				<!--  Etiqueta y campo de entrada para el dato alumno.fnacimiento. -->

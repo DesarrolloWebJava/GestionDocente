@@ -19,12 +19,12 @@
      	  (En caso de recibirlo se quiere modificar,de lo contrario es para modificar.)*/
 	     if(profesor == null){
 	    	 /* Se asigna el titulo de la creación de profesor.*/
-	    	 titulo = "Crear Alumno.";
+	    	 titulo = "Crear Profesor.";
 	    	 /* Se crea el profesor*/
 	    	 profesor = new Profesor();    	 
 	     } else {
 	    	 /* Se asigna el titulo de la modificación de profesor.*/
-	    	 titulo = "Crear Alumno.";
+	    	 titulo = "Modificar Profesor.";
 	     }	    	 
 	  %>
 	<main>
@@ -77,7 +77,7 @@
 				/* Se construye la fecha sobre un String.
 				   (Enero lo interpreta como mes 0,por lo que se ha de sumar 1).*/
 				date = gc.get(GregorianCalendar.DAY_OF_MONTH) + "/" + 
-					   gc.get(GregorianCalendar.MONTH+1) + "/" + 
+					   (gc.get(GregorianCalendar.MONTH) + 1)  + "/" + 
 					   gc.get(GregorianCalendar.YEAR);
 				%>	
 				<!--  Etiqueta y campo de entrada para el dato profesor.fnacimiento. -->

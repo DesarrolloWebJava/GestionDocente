@@ -5,8 +5,9 @@ import java.util.HashMap;
 
 import java.util.Map;
 
-
+import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.dbms.pojo.Profesor;
+import com.ipartek.formacion.service.exceptions.AlumnoServiceImpException;
 
 /** 
  * @author Urko Villanueva
@@ -35,12 +36,14 @@ public class ProfesorServiceImp implements ProfesorService {
 		super();
 		/* Se crea una instancia de lsita para guardar (y trabajar) con los alumnos.*/
 		profesores = new HashMap<Integer, Profesor>();
-		/* Metodo que inicializa los valores de prueba de los alumnos.*/
+		/* Metodo que inicializa los valores de prueba de los alumnos. 
+	     * (Cualquier metodo llamado desde un constructor ha de ser final).*/
 		init();
 	}
 	
-	/* Metodo que inicializa los valores de prueba de los alumnos.*/
-	private void init() {
+	/* Metodo que inicializa los valores de prueba de los alumnos. 
+	     * (Cualquier metodo llamado desde un constructor ha de ser final).*/
+	private final void init() {
 		/* Se inicizaliza el contador autoincremental que asigna el codigo de profesor.*/
 		contador = 0;
 		/* Se instancia un objeto 'Profesor' con el que trabajar.*/
@@ -60,8 +63,9 @@ public class ProfesorServiceImp implements ProfesorService {
 	}
 
 	@Override
-	/* Metodo que crea e introduce en la lista un profesor pasado por parametro.*/
-	public Profesor create(Profesor profesor) {
+	/* Metodo que crea e introduce en la lista un profesor pasado por parametro.	  
+    * (Cualquier metodo llamado desde un constructor o metodo que se llama desde un metodo del constructor ha de ser final).*/
+	public final Profesor create(Profesor profesor) {
 		/* Se incrementa el contador de profesores.*/
 		contador++;
 		/* Se asigna el codigo autoincremental. */

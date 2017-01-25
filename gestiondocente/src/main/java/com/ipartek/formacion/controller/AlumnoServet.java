@@ -164,7 +164,6 @@ public class AlumnoServet extends HttpServlet {
 			} else{
 				/* Se crea el alumno.*/
 				aS.create(alumno);
-				System.out.println(alumno.toString());
 				/* Se asigna el mensaje de creación satisfactoria.*/
 				mensaje = "El alumno ha sido creado correctamente.";				
 			}
@@ -210,12 +209,21 @@ public class AlumnoServet extends HttpServlet {
 			/* Se asigna los email al alumno con los email 
 			 * recogidos por parametro.*/
 			alumno.setEmail(req.getParameter(Constantes.PAR_EMAIL));
-			/* Se asigna el numero de hermanos al alumno con el numero de hermanos 
-			 * recogidos por parametro.*/
-			alumno.setnHermanos(
-					       Integer.parseInt(req.getParameter(Constantes.PAR_NHERMANOS)));
+			
+			/* Se declara una variable String para comprobar si el valor 
+			 * recibido es un entero,asignado a dicha variable el valor de nHermano
+			 * recibido de la request.*/
+			String nHermanos = req.getParameter(Constantes.PAR_NHERMANOS);
+			/* Se compara el valor recibido con vacio.*/
+			if (!"".equalsIgnoreCase(nHermanos)) {
+				/* Se asigna el numero de hermanos al alumno con el numero de hermanos 
+				 * recogidos por parametro.*/
+				alumno.setnHermanos(Integer.parseInt(nHermanos));
+			}
+			
 			/* Se asigna el estado activo al alumno con el estado activo
 			 * recogidos por parametro.*/
+			//TODO quitar casteo automatico del booleano.
 			alumno.setActivo(
 					      Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));			
 			

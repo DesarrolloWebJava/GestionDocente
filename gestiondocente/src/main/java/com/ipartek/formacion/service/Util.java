@@ -2,13 +2,13 @@
 package com.ipartek.formacion.service;
 
 /** 
- * @author Urko Villanueva
- * @author Raúl de Roba 18/01/17 (Añadido de comentarios.)
+ * @author Urko Villanueva.
+ * @author Raúl de Roba 18/01/17 (Añadido de comentarios).
  * 
  *  <p> * Esta clase se va encargar de gestionar las operaciones generales de las distintas 
  *        clases del paquete 'Servcice'.</p> * 
  */ 
-public class Util {
+public final class Util {
 	
 	/* Constructor sin parametros de la clase util.*/
 	private Util() {}

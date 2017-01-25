@@ -17,7 +17,7 @@
 			/* Se recoge el atributo que contiene la lista de alumnos.
 				(Previamente asignado en AlumnoServlet).*/
 			List<Alumno> alumnos = 
-			                (List<Alumno>) request.getAttribute("listado-alumnos");
+			                (List<Alumno>) request.getAttribute(Constantes.ATT_LISTADO_ALUMNOS);
 		%>
 			<!-- Enlace al Servlet para crear el alumno. -->
 			<a href="<%= Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_CREATE%>">

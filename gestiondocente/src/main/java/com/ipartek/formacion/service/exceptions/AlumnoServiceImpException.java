@@ -5,7 +5,7 @@ package com.ipartek.formacion.service.exceptions;
  * 
  * @author Raúl de Roba 18/01/17.
  * 
- * <p>Clase que gestiona las excepciones de la clase Alumno.</p>
+ * <p>Clase que gestiona las excepciones de las operaciones en la clase Alumno.</p>
  *
  */
 

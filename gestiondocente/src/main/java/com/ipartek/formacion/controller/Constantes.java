@@ -3,33 +3,43 @@
  */
 package com.ipartek.formacion.controller;
 
+import java.util.Date;
+import java.util.List;
+
 import com.ipartek.formacion.dbms.pojo.Alumno;
+import com.ipartek.formacion.dbms.pojo.Profesor;
 
 /**
  * @author Raúl de Roba 18/01/17
- *
+ * 
  */
-public class Constantes {
+/* Si una clase tiene el constructor privado la clase será final.*/
+public final class  Constantes {
 	/* Constantes de página inicial.*/
 	public static final String JSP_HOME = "index.jsp";
 	
 	/* Constantes de atributos de Servlets.*/
 	public static final String ATT_LISTADO_ALUMNOS = "listado-alumnos";
 	public static final String ATT_LISTADO_PROFESORES = "listado-profesores";
+	public static final String ATT_LISTADO_CURSOS = "listado-cursos";
 	public static final String ATT_MENSAJES = "mensajes";
 	public static final String ATT_ALUMNOS = "alumno";
+	public static final String ATT_CURSOS = "curso";
 	
 	/* Constantes de redireccionamiento de Servlets.*/
 	public static final String SERVLET_ALUMNO = "alumno.do";
 	public static final String SERVLET_PROFESOR = "profesor.do";
+	public static final String SERVLET_CURSO = "curso.do";
 	
 	/* Constantes de listados de Servlets.*/
 	public static final String JSP_LISTADO_ALUMNO = "alumnos/listado.jsp";
 	public static final String JSP_LISTADO_PROFESOR = "profesores/listado.jsp";	
+	public static final String JSP_LISTADO_CURSO = "cursos/listado.jsp";	
 	
 	/* Constantes de formularios de Servlets.*/
 	public static final String JSP_FORMULARIO_ALUMNO = "alumnos/alumno.jsp";
 	public static final String JSP_FORMULARIO_PROFESOR = "profesores/profesor.jsp";
+	public static final String JSP_FORMULARIO_CURSO = "cursos/curso.jsp";
 	
 	
 	
@@ -56,6 +66,10 @@ public class Constantes {
 	public static final String PAR_ACTIVO = "activo";
 	/* Constantes para identificar los parametros de los atributos de la clase profesor.*/
 	public static final String PAR_NSS = "N.S.S.";
+	/* Constantes para identificar los parametros de los atributos de la clase curso.*/
+	public static final String PAR_DURACION = "duracion";	
+	public static final String PAR_FINICIO = "finicio";
+	public static final String PAR_FFIN = "ffin";
 	
 	private Constantes(){
 		

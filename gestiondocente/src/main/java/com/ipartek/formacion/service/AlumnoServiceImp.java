@@ -11,8 +11,8 @@ import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.exceptions.AlumnoServiceImpException;
 
 /**
- *  @author Urko Villanueva
- *  @author Raúl de Roba 17/01/17 (Añadido de comentarios.)
+ *  @author Urko Villanueva.
+ *  @author Raúl de Roba 17/01/17 (Añadido de comentarios).
  *  
  * <div>
  * 	<p> * Esta clase se va encargar de gestionar las operaciones de CRUD de Alumno.</p>
@@ -24,7 +24,7 @@ import com.ipartek.formacion.service.exceptions.AlumnoServiceImpException;
  * 	</ul>
  * </div>
  */
-public class AlumnoServiceImp implements AlumnoService{
+public final class AlumnoServiceImp implements AlumnoService{
 
 	/* Se declara la lista para trabajar con la relación de alumnos.*/
 	private List<Alumno> alumnos;
@@ -44,7 +44,7 @@ public class AlumnoServiceImp implements AlumnoService{
 	}
 
 	/* Metodo que inicializa los valores de prueba de los alumnos.*/
-	private void init() {
+	private final void init() {
 		/* Se instancia un objeto 'Alumno' con el que trabajar.*/
 		Alumno alumno = new Alumno();
 		/* Se crea una estructura que capturara los errores en la creación del alumno.*/
@@ -57,8 +57,6 @@ public class AlumnoServiceImp implements AlumnoService{
 			create(alumno);
 		/* Se captura la posible excepción en la asignación de los atributos del alumno. */
 		} catch (PersonaException e) {
-			/* Se muestra por consola el error generado.*/
-			System.out.println(e.getMessage());
 		}
 
 		/* Se vuelve a instanciar el alumno.
@@ -82,17 +80,11 @@ public class AlumnoServiceImp implements AlumnoService{
 			create(alumno);
 		/* Se captura las excepciones de tipo 'PersonaException'.*/	
 		} catch (PersonaException e) {
-			/* Se muestra por consola el error generado.*/
-			System.out.println(e.getMessage());
-			//TODO
-			e.printStackTrace();
 		/*//TODO Se captura las excepciones de tipo 'ParseException'.*/	
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			/* Se muestra por consola el error generado.*/
-			System.out.println("Error no controlado" + e.getMessage());
 		}
 
 		/* Se vuelve a instgaciar el alumno.
@@ -114,7 +106,7 @@ public class AlumnoServiceImp implements AlumnoService{
 	}
 
 	/* Metodo que crea los Alumnos.*/
-	public Alumno create(Alumno alumno) {
+	public final Alumno create(Alumno alumno) {
 		/* Se asigna el codigo de la variable autoincremental al 
 		 * alumno pasado por parametros.*/
 		alumno.setCodigo(i);
@@ -147,9 +139,9 @@ public class AlumnoServiceImp implements AlumnoService{
 			alumno = alumnos.get(posicion);
 		/* Se captura las excepciones de tipo 'AlumnoServiceImpException'.*/		
 		} catch (AlumnoServiceImpException e) {
-			/* Se muestra por consola el error capturado.*/
-			System.out.println(e.getMessage());
-			/* Se instancia el alumno para inicianizarlo.*/
+			/* Se instancia el alumno para inicianizarlo.
+			 * Al instaciarlo asignamos un codigo nulo en el alumno,de manera
+			 * que al devolverlo se gestionará como un alumno nuevo.*/
 			alumno = new Alumno();
 		}
 		/* Se devuelve el alumno obtenido.*/
@@ -168,8 +160,6 @@ public class AlumnoServiceImp implements AlumnoService{
 			/* Se borra el alumno situado en la posición obtenida.*/
 			alumnos.remove(posicion);
 		} catch (AlumnoServiceImpException e) {
-			/* Se muestra por consola el error capturado.*/
-			System.out.println(e.getMessage());
 		}
 	}
 	
@@ -185,8 +175,6 @@ public class AlumnoServiceImp implements AlumnoService{
 			/* Se actuliza el alumno situado en la posición obtenida.*/
 			alumnos.set(posicion, alumno);
 		} catch (AlumnoServiceImpException e) {
-			/* Se muestra por consola el error capturado.*/
-			System.out.println(e.getMessage());
 		}
 		/* Se devuelve el alumno actualizado.*/
 		return alumno;

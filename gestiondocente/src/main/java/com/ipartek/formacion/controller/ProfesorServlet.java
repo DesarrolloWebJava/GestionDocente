@@ -28,7 +28,7 @@ public class ProfesorServlet extends HttpServlet {
 	/* Constante de serialición. */
 	private static final long serialVersionUID = 1L;
 	/* Se declara el servicio que gestiona Profesores.*/
-	private ProfesorService aP;
+	private ProfesorService pS;
 	/* Se declara una RequestDispatcher para redireccionar una url indicada. */
 	RequestDispatcher rd;
        
@@ -37,7 +37,7 @@ public class ProfesorServlet extends HttpServlet {
      * Solo se ejecuta 1 vez,al acceder más veces no se crea.*/
 	public void init() throws ServletException {
     	/* Se instancia la clase que gestiona los Profesores. */
-    	aP = new ProfesorServiceImp();
+		pS = new ProfesorServiceImp();
 		/* Se llama al init del padre.En los servlets tiene que ser la última línea,
 		 * porque al llamar al padre se sale del metodo.*/
 		super.init();
@@ -70,7 +70,7 @@ public class ProfesorServlet extends HttpServlet {
 					/* Se recoge el codigo del profesor pasada por el request.*/
 					codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
 					/* Se recoge el profesor recibido cuyo codigo se ha recogido del request.*/
-					Profesor profesor = aP.getById(codigo);
+					Profesor profesor = pS.getById(codigo);
 					/* Se redirecciona a la url del formulario del profesor.*/
 					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
 					/* Se asigna el profesor resultante al request.*/
@@ -86,9 +86,9 @@ public class ProfesorServlet extends HttpServlet {
 					/* Se recoge el codigo del profesor pasada por el request.*/
 					codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
 					/* Se recoge el profesor recibido cuyo codigo se ha recogido del request.*/
-					Profesor profesor = aP.getById(codigo);
+					Profesor profesor = pS.getById(codigo);
 					/* Se borra el alumno.*/
-					aP.delete(codigo);
+					pS.delete(codigo);
 					/* Se llama al metodo que cargar la lista de los profesores 
 					 * en el request. */
 					cargaListaProfesores(req);
@@ -125,7 +125,7 @@ public class ProfesorServlet extends HttpServlet {
 	/* Metodo que carga la lista de los prodfesores en el request pasada por parametro. */
 	private void cargaListaProfesores(HttpServletRequest request) {
 		/* Sde declara la lista de profesores donde se recorre la lista de los profesores.*/
-    	Map<Integer,Profesor> profesores = aP.getAll();
+    	Map<Integer,Profesor> profesores = pS.getAll();
     	/* Se declara una RequestDispatcher para redireccionar a la url indicada.
 		 * No es una redireccion limpia,con lo que envia parametros.
 		 * En este caso request y response.*/    	
@@ -154,13 +154,12 @@ public class ProfesorServlet extends HttpServlet {
 			 * codigo nulo(codigo inicial). */
 			if(profesor.getCodigo()>profesor.CODIGO_NULO){
 				/* Se actualiza el alumno.*/
-				aP.update(profesor);
+				pS.update(profesor);
 				/* Se asigna el mensaje de actualización satisfactoria.*/
 				mensaje = "El alumno ha sido actualizado correctamente.";
 			} else{
 				/* Se crea el alumno.*/
-				aP.create(profesor);
-				System.out.println(profesor.toString());
+				pS.create(profesor);
 				/* Se asigna el mensaje de creación satisfactoria.*/
 				mensaje = "El alumno ha sido creado correctamente.";				
 			}

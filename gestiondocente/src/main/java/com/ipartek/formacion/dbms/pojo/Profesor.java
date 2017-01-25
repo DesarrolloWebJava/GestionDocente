@@ -57,7 +57,6 @@ public class Profesor extends Persona {
 		 * (Se devuelve un String con el codigo, apellido , el nombre y D.N.I.)
 		 * y el nss de la clase.*/
 		return super.toString() + " " + this.nSS;
-		//return this.getNombre() + " " + this.getApellidos();
 	}
 
 }

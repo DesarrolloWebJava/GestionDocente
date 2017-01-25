@@ -54,8 +54,9 @@
 				</li>
 				<!-- Línea de la lista.	Gestión de Curso.-->
 				<li>
-					<!-- Enlace a la gestión de Curso.	-->	
-					<a href="#">G. Cursos</a>
+					<!-- Enlace a la gestión de Cursos. Se llama al servlet 'Curso' -->	
+					<a href="<%=Constantes.SERVLET_CURSO%>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_READ%>">
+						G. Cursos</a>
 				</li>			
 			</ul>
 		</nav>

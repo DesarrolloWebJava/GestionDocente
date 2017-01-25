@@ -133,8 +133,8 @@ public class Persona {
 		 * No vamos a dejar introducir nombres de menos de 3 caracteres.*/
 		if (nombre.length() < 3) {
 			/* Se envia una excepcion de tipo Persona.*/
-			throw new PersonaException(PersonaException.COD_LONGITUD_NOMBRE, 
-					  PersonaException.MSG_LONGITUD_NOMBRE);
+			throw new PersonaException(PersonaException.COD_LONGITUD_ERROR, 
+					  PersonaException.MSG_LONGITUD_ERROR);
 		}
 		/* Se asigna el atributo 'nombre'.*/
 		this.nombre = nombre;
@@ -189,9 +189,10 @@ public class Persona {
 		calendar = new GregorianCalendar();
 		/* Se asigna le fecha de nacimiento de la clase al gregoriaono.*/
 		calendar.setTime(fNacimiento);
-		/* Se monta la fecha en una variable String */
+		/* Se monta la fecha en una variable String 
+		   (Enero lo interpreta como mes 0,por lo que se ha de sumar 1).*/
 		String fNacimiento = calendar.get(Calendar.DAY_OF_MONTH) + "/" + 
-		              calendar.get(Calendar.MONTH+1)  + "/" + 
+		              (calendar.get(Calendar.MONTH) + 1) + "/" + 
 		              calendar.get(Calendar.YEAR); 
 				
 		/* Se devuelve los atributos de la clase.*/
