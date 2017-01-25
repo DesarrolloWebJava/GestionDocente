@@ -15,6 +15,7 @@ import com.ipartek.formacion.service.ProfesorService;
 import com.ipartek.formacion.service.ProfesorServiceImp;
 
 /**
+ * @author
  * Servlet implementation class ProfesorServlet
  */
 public class ProfesorServlet extends HttpServlet {
@@ -46,16 +47,37 @@ public class ProfesorServlet extends HttpServlet {
 				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
 				break;
 			case Constantes.OP_READ:
-				//TODO: cargarListaProfesores(req);
 				cargarListaProfesores(req);
 				break;
-			case Constantes.OP_UPDATE:
+			case Constantes.OP_UPDATE: {
 				//TODO: updateListaProfesores(req);
 				//de momento redirect...
+				//rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+				
+			//DOING:
+				//1º Parseamos el parámetro codigo por si acaso
+				int codigo = -1;
+				codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));	
+				//2º Creamos un obj y le asignamos aquél que indica el PARA de la req
+				Profesor profesor = pS.getById(codigo);
+				
+				//4º Redirigimos a la vista/jsp correspondiente a los atributos
 				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
+				
+				//3º Atribuímos en forma de atributo el obj creado a un nuevo request
+				req.setAttribute(Constantes.ATT_PROFESOR, profesor);
+			}
 				break;
+			case Constantes.OP_DELETE: {
+				int codigo = -1;
+				codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+				pS.delete(codigo);
+				req.setAttribute(Constantes.ATT_MENSAJE, "El profesor ha sido borrado correctamente.");
+				cargarListaProfesores(req);				
+			}
+			break;
 				default:
-					//TODO: cargarListaProfesores(req);
+					cargarListaProfesores(req);
 					break;
 			}
 		} catch (Exception e) {
@@ -71,7 +93,7 @@ public class ProfesorServlet extends HttpServlet {
 	private void cargarListaProfesores(HttpServletRequest req) {
 		//1. Obtener lista de datos:
 		Map<Integer, Profesor> profesores = pS.getAll();
-		//2. Fijamos la página de destino:
+		//2. Fijamos la página-vista de destino:
 		rd = req.getRequestDispatcher(Constantes.JSP_LISTADO_PROFESORES);
 		//3. Añadimos el atributo a request.
 		req.setAttribute(Constantes.ATT_LISTADO_PROFESORES, profesores);
@@ -98,6 +120,7 @@ public class ProfesorServlet extends HttpServlet {
 				pS.create(profesor);
 				mensaje = "El profesor ha sido creado correctamente.";
 			}
+				
 			cargarListaProfesores(req);
 		} catch (Exception e) {
 			// redirigir al formulario
@@ -120,9 +143,9 @@ public class ProfesorServlet extends HttpServlet {
 			
 			//¡MUY IMP!
 			//Controlamos posibles fallos de input para que no casque el programa.			
-			String nSS_s = req.getParameter(Constantes.PAR_nSS);
-			if (nSS_s != null && !"".equals(nSS_s)) {
-				int nSS = Integer.parseInt(nSS_s);
+			String nSStmp = req.getParameter(Constantes.PAR_nSS);
+			if (nSStmp != null && !"".equals(nSStmp)) {
+				int nSS = Integer.parseInt(nSStmp);
 				profesor.setnSS(nSS);
 			}
 						
@@ -139,7 +162,7 @@ public class ProfesorServlet extends HttpServlet {
 			//	return;
 			
 		} catch (Exception e) {
-				throw new Exception("Los datos no son válidos: "+e.getMessage());
+				throw new Exception("Los datos no son válidos: "+ e.getMessage());
 		}
 		return profesor;
 	}		

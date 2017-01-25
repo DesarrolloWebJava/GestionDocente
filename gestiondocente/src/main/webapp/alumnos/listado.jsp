@@ -19,12 +19,40 @@
 		<!-- Esto es una petición get. LA tengo que diferenciar entre la que crea alumno, y la que getAll
 		todos los alumnos. ¿Cómo? CON PARÁMETROS!!! -->
 		<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_CREATE %>">Crear alumno.</a>
-		<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_UPDATE %>">Actualizar alumno.</a>
+	
+		<!-- Chapuza mía: 
+		<a href="<=Constantes.SERVLET_ALUMNO %>?<=Constantes.PAR_OPERACION %>=<=Constantes.OP_UPDATE >">Actualizar alumno.</a>
+		-->
+		
 		<ul>
 		<%	
 		for(Alumno alumno: alumnos){
+			String btn_delete = "<a href='"
+					+Constantes.SERVLET_ALUMNO
+					+"?"
+					+Constantes.PAR_OPERACION
+					+"="
+					+Constantes.OP_DELETE
+					+"&"
+					+Constantes.PAR_CODIGO
+					+"="
+					+alumno.getCodigo()
+					+"'> Borrar </a>";
 				//CÓMO IMPRIMIR HTML:
-				out.println("<li>"+alumno.toString()+"</li>");
+				out.println("<li>"
+							+alumno.toString()
+							+"<a href='"
+							+Constantes.SERVLET_ALUMNO
+							+"?"
+							+Constantes.PAR_OPERACION
+							+"="
+							+Constantes.OP_UPDATE
+							+"&"
+							+Constantes.PAR_CODIGO
+							+"="
+							+alumno.getCodigo()
+							+"'>  Editar  </a>" + btn_delete
+							+"</li>");
 			}
 		%>
 		</ul>

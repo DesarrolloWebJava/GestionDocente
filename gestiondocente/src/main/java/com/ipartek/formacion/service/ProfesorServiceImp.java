@@ -23,6 +23,7 @@ public class ProfesorServiceImp implements ProfesorService {
 		Profesor profesor = new Profesor();
 		
 		try {
+			
 		profesor.setApellidos("Pérez López");
 		profesor.setNombre("Pepito");
 		profesor.setEmail("pepelo@ipartek.com");

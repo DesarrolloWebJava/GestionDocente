@@ -62,15 +62,31 @@ public class AlumnoServlet extends HttpServlet {
 			case Constantes.OP_READ:
 				cargarListaAlumnos(req);
 				break;
-			case Constantes.OP_UPDATE:
-				//Diff entre create/update es que el 2º se
-				//hace sobre un registro que ya existe: 
-				//update tiene que recibir un parámetro: el 
-				//código, que lo pasamos al rd como ATRIBUTO.
+			case Constantes.OP_UPDATE: {//llaves para usar variables como código as locales to case, y así poder reusarel nombre en todos los cases
+				//Diff entre create/update es que el 2º se hace sobre un registro que ya existe: 
+				
 				//TODO: aS.getById(codigo)
-				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
+				//DOING...
+				int codigo = -1;
+				codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+				Alumno alumno = aS.getById(codigo);
+		
 				//TODO: req.setAttribute(arg0, arg1);
+				//DOING... la redirección, enganchado att codigo con el alumno
+				
+				//update tiene que recibir un parámetro: el código, que lo pasamos al rd como ATRIBUTO.
+				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
+				req.setAttribute(Constantes.ATT_ALUMNO, alumno);				
+			}
 				break;
+			case Constantes.OP_DELETE:	{
+				int codigo = -1;
+				codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+				aS.delete(codigo);
+				req.setAttribute(Constantes.ATT_MENSAJE, "El alumno ha sido borrado correctamente.");
+				cargarListaAlumnos(req);
+			}
+			break;
 				default:
 					cargarListaAlumnos(req);
 					break;
@@ -126,7 +142,11 @@ public class AlumnoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Alumno alumno = null;
 		String mensaje = "";
+		int codigo = -1;
+		
 		try {
+			codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+			
 			alumno = recogerParametros(req);
 			//procesamos update o insert
 			
@@ -138,10 +158,20 @@ public class AlumnoServlet extends HttpServlet {
 				mensaje = "El alumno ha sido creado correctamente.";
 			}
 			cargarListaAlumnos(req);
+		} catch (NumberFormatException e) {
+			
 		} catch (Exception e) {
-			// redirigir al formulario
-			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO); //alumno.jsp
-			mensaje =e.getMessage();
+			if (codigo == -1) {
+				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO); //alumno.jsp
+				mensaje = "Error inesperado: contacte con el administrador del sistema.";
+			} else {
+				// redirigir al formulario
+				alumno = aS.getById(codigo);
+				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO); //alumno.jsp
+				req.setAttribute(Constantes.ATT_ALUMNO, alumno);
+				mensaje =e.getMessage();
+			}
+			
 		}
 		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);
 		rd.forward(req,  resp);
@@ -159,8 +189,8 @@ public class AlumnoServlet extends HttpServlet {
 			
 			//evitar error si no meten ningún número de hermanos
 			String nHermanos = req.getParameter(Constantes.PAR_NHERMANOS);
-			if("".equalsIgnoreCase(nHermanos)) {
-				nHermanos = "0";
+			if(!"".equalsIgnoreCase(nHermanos)) {
+				alumno.setnHermanos(Integer.parseInt(nHermanos));;
 			}
 			alumno.setnHermanos(Integer.parseInt(nHermanos));
 			

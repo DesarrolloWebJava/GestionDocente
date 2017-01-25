@@ -13,11 +13,12 @@
 		//ProfesorService profesorService = new ProfesorServiceImp();
 		//Map<Integer, Profesor> profesores = profesorService.getAll();
 		Map<Integer, Profesor> profesores = (Map<Integer, Profesor>)request.getAttribute(Constantes.ATT_LISTADO_PROFESORES);
+		String btnUpdate;
+		String btnDelete;
 %>
 
 	<div>
 			<a href="<%=Constantes.SERVLET_PROFESOR %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_CREATE %>">Crear profesor</a>
-			<a href="<%=Constantes.SERVLET_PROFESOR %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_UPDATE %>">Actualizar profesor</a>
 	</div>
 	
 	<ul>
@@ -25,7 +26,27 @@
 		for (Map.Entry<Integer, Profesor> entry : profesores.entrySet()) {
 			int codigo = entry.getKey();
 			Profesor profesor = entry.getValue();
-			out.println("<li>" + profesor.toString() + "</li>");
+			btnUpdate = "<a href='" 
+					+ Constantes.SERVLET_PROFESOR 
+					+ "?"
+					+ Constantes.PAR_OPERACION 
+					+ "=" 
+					+ Constantes.OP_UPDATE 
+					+ "&" 
+					+ Constantes.PAR_CODIGO 
+					+ "="
+					+ profesor.getCodigo()
+					+ "'> Actualizar </a>";
+		btnDelete = "<a href='" 
+					+ Constantes.SERVLET_PROFESOR 
+					+ "?"
+					+ Constantes.PAR_OPERACION 
+					+ "=" 
+					+ Constantes.OP_DELETE
+					+ "&" 
+					+ Constantes.PAR_CODIGO 
+					+ "'> Delete </a>";
+			out.println("<li>" + profesor.getCodigo() + ". " + profesor.toString() + " " + btnUpdate + " " + btnDelete + "</li>");
 		}
 	%>
 	</ul>
