@@ -34,7 +34,7 @@ else{
 	</div>
 	<div class="form-group">
 		<label for="<%=Constantes.PAR_DURACION %>">Duración del curso</label>
-		<input type="text" class="form-control" id="<%=Constantes.PAR_DURACION %>" name="<%=Constantes.PAR_DIRECCION %>"
+		<input type="text" class="form-control" id="<%=Constantes.PAR_DURACION %>" name="<%=Constantes.PAR_DURACION %>"
 		value="<%=curso.getDuracion()%>"  placeholder="Introduce la duración del curso">
 	</div>
 	<%
