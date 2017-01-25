@@ -6,7 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ipartek.formacion.dbms.pojo.Curso;
-import com.ipartek.formacion.dbms.pojo.exceptions.CursoException;
+/**
+ * 
+ * 
+ * @author Alberto Fernandez.
+ *
+ */
 
 public class CursoServiceImp implements CursoService{
 	private List<Curso> cursos;
@@ -32,13 +37,10 @@ public class CursoServiceImp implements CursoService{
 			curso.setFechaInicio(dateFormat.parse(inicio));
 			String fin = "24/06/2017";
 			curso.setFechaFin(dateFormat.parse(fin));
-			create(curso);
-				
-		} catch (ParseException e) {
-			
+			create(curso);	
+		} catch (ParseException e) {	
 			e.printStackTrace();
 		}
-		
 		curso = new Curso();
 		try {
 			curso.setNombreCurso("Segundo Curso");
@@ -51,9 +53,10 @@ public class CursoServiceImp implements CursoService{
 			String fin = "24/06/2017";
 			curso.setFechaFin(dateFormat.parse(fin));
 			create(curso);
-
 		} catch (ParseException e) {
 			e.printStackTrace();
+		//} catch (Exception e) {
+			//System.out.println("Error no controlado" + e.getMessage());
 		}
 		
 		curso = new Curso();
@@ -67,8 +70,7 @@ public class CursoServiceImp implements CursoService{
 			curso.setFechaInicio(dateFormat.parse(inicio));
 			String fin = "24/06/2017";
 			curso.setFechaFin(dateFormat.parse(fin));
-			create(curso);
-			
+			create(curso);	
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

@@ -15,8 +15,7 @@
 		titulo = "Actualizar Alumno";
 	}
 %>
-<body>
-	<main> 
+<main> 
 	<header><h2><%=titulo %></h2> </header>	
 		<form action="<%=Constantes.SERVLET_ALUMNO%>" method="post">
 			<input type="hidden" name="<%=Constantes.PAR_CODIGO %>" id="<%=Constantes.PAR_CODIGO%>" value="<%=alumno.getCodigo()%>">
@@ -71,10 +70,8 @@
 			%>
 			</select>
 		</div>
-		
 		<input type="submit" value="enviar">
 	</form>
-	</main>
-	<%@ include file="../includes/footer.html" %>
-</body>
+</main>
+<%@ include file="../includes/footer.html" %>
 </html>

@@ -1,13 +1,11 @@
 package com.ipartek.formacion.dbms.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 
-public class Curso {
-
-
-
+public class Curso implements Serializable, Comparable<Curso>{ 
 
 	public static final int CODIGO_NULO = -1;
 	private int codigo;
@@ -74,8 +72,10 @@ public class Curso {
 	
 	@Override
 	public String toString() {
-		return this.getCodigo()+ " " + this.getNombreCurso();
+		return this.nombreCurso +", "+ this.duracion;
 	}
+	
+	
 	
 	
 	@Override
@@ -88,5 +88,10 @@ public class Curso {
 			}
 		}
 		return iguales;
+	}
+
+	@Override
+	public int compareTo(Curso o) {
+		return this.getNombreCurso().compareTo(o.getNombreCurso());
 	}
 }

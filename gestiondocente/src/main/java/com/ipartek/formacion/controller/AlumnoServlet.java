@@ -116,8 +116,10 @@ public class AlumnoServlet extends HttpServlet {
 					//mensaje = e.getMessage();
 				}
 			cargarListaAlumnos(req);
+		} catch (NumberFormatException e){
+			resp.sendRedirect(Constantes.JSP_HOME);
+			return;		
 		} catch (Exception e){
-			
 			rd = req.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
 			mensaje = "Se ha producido un error inesperado.";
 			

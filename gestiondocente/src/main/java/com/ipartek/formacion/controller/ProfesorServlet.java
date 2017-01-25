@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.dbms.pojo.Alumno;
+import com.ipartek.formacion.dbms.pojo.Curso;
 import com.ipartek.formacion.dbms.pojo.Profesor;
 import com.ipartek.formacion.service.ProfesorService;
 import com.ipartek.formacion.service.ProfesorServiceImp;
@@ -49,21 +50,27 @@ public class ProfesorServlet extends HttpServlet {
 				case Constantes.OP_READ:
 					cargarListaProferos(request);
 					break;
-				case Constantes.OP_UPDATE:
+				case Constantes.OP_UPDATE:{
 					// falta de hacer TODO aS.getById(codigo)
+					int codigo = -1;
+					
+					codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+					Profesor profesor = pS.getById(codigo); 
 					//se va a redirigir a la pagina alumnos/alumno.jsp
 					rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR); //programar el formulario
 					// falta de hacer TODO request.setAttribute(arg0, arg1);
+					request.setAttribute(Constantes.ATT_PROFESOR, profesor);
 					
 					break;
-				case Constantes.OP_DELETE:
+				}
+				case Constantes.OP_DELETE:{
 					int codigo = -1;
 					codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
 					pS.delate(codigo);
 					request.setAttribute(Constantes.ATT_MENSAJE, "El profesor a sido...");
 					cargarListaProferos(request);
 					break;
-				
+				}
 				default:
 					cargarListaProferos(request);
 					break;
@@ -111,11 +118,11 @@ public class ProfesorServlet extends HttpServlet {
 			//String mensaje = "";
 			// procesamos UPDATE or INTERT
 			if(profesor.getCodigo()> Profesor.CODIGO_NULO){//UPDATE
-			pS.update(profesor);
-			mensaje = "El profesor ha sido actualizado correctamente";
+				pS.update(profesor);
+				mensaje = "El profesor ha sido actualizado correctamente";
 			}else { //CREATE
-			pS.create(profesor);
-			mensaje = "El profesor ha sido creado correctamente";
+				pS.create(profesor);
+				mensaje = "El profesor ha sido creado correctamente";
 			//mensaje = e.getMessage();
 			}
 			cargarListaProferos(request);
@@ -126,7 +133,7 @@ public class ProfesorServlet extends HttpServlet {
 			rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
 			//request.setAttribute("mensaje", e.getMessage());
 			mensaje = e.getMessage();
-			System.out.println(mensaje);
+			//System.out.println(mensaje);
 			//req.setAttribute("mensaje", mensaje);
 		}
 		request.setAttribute(Constantes.ATT_MENSAJE, mensaje);

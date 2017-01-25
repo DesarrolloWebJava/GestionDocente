@@ -1,10 +1,8 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +28,7 @@ public class CursoServlet extends HttpServlet {
    
 	@Override
 	public void init() throws ServletException {
-	    	cS = new CursoServiceImp();
+	    cS = new CursoServiceImp();
 	    super.init();
 	}
 	    
@@ -53,6 +51,8 @@ public class CursoServlet extends HttpServlet {
 		//Recoger el parametro "op"
 		String operacion = request.getParameter(Constantes.PAR_OPERACION);
 		int op= -1;
+		
+		try{
 		op= Integer.parseInt(operacion);
 		
 		switch (op){
@@ -88,7 +88,12 @@ public class CursoServlet extends HttpServlet {
 				default:
 					cargarListaCursos(request);
 					break;	
-		}	
+			}
+		} catch (Exception e){
+			response.sendRedirect(Constantes.JSP_LISTADO_PROFESORES);
+			return;
+
+		}
 		rd.forward(request, response);
 	}
 	
@@ -114,9 +119,11 @@ public class CursoServlet extends HttpServlet {
 		
 		Curso curso = null;
 		String mensaje = "";
-			
+		int codigo = -1;
 		try{
+			codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));	
 			curso = recogerParametros(request);
+			curso.setCodigo(codigo);
 			if(curso.getCodigo()> Curso.CODIGO_NULO){ //update
 				cS.update(curso);
 				mensaje = "El curso ha sido actualizado";	
@@ -126,10 +133,13 @@ public class CursoServlet extends HttpServlet {
 			}
 			cargarListaCursos(request);
 			
+		} catch (NumberFormatException e){
+			response.sendRedirect(Constantes.JSP_HOME);
+			return;	
 		}catch (Exception e) {
 			
-			//rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_CURSOS);
-			//mensaje = "Se ha producido un error inesperado.";	
+			rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_CURSOS);
+			mensaje = "Se ha producido un error inesperado.";	
 		}
 		
 		request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
@@ -137,7 +147,7 @@ public class CursoServlet extends HttpServlet {
 	}
 
 	
-	private Curso recogerParametros(HttpServletRequest request) throws ParseException {
+	private Curso recogerParametros(HttpServletRequest request) throws Exception {
 		Curso curso = new Curso();
 		
 		try{
@@ -145,24 +155,29 @@ public class CursoServlet extends HttpServlet {
 			curso.setCodigo(codigo);
 			curso.setNombreCurso(request.getParameter(Constantes.PAR_NOMBRE_CURSO));
 			
+			
 			String duracion= request.getParameter(Constantes.PAR_DURACION);
 			curso.setDuracion(Integer.parseInt(duracion));
 			
+			
 			String inicio= request.getParameter(Constantes.PAR_FECHA_INICIO);
 			String fin= request.getParameter(Constantes.PAR_FECHA_FIN);
+			
 			String pattern = "dd/MM/yyyy";
 			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
 			curso.setFechaFin(dateFormat.parse(inicio));
 			curso.setFechaFin(dateFormat.parse(fin));
 			
 		}catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception(e.getMessage());
 		}
 		return curso;
 	}
 
 	@Override
 	public void destroy() {
-		cS = null;
+		this.cS = null;
 		super.destroy();
 	}
 }

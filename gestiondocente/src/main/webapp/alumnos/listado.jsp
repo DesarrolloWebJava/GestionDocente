@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@page import="java.util.List"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Alumno"%>
@@ -12,15 +13,16 @@
 	//CRUD
 	%>
 	<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE%>">Crear Alumno</a> <!-- petición get  -->
+	
+	
 	<%
-	
-	
 	for(Alumno alumno: alumnos){ //for each para recorrer la lista
 		String btn_delete ="<a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+alumno.getCodigo()+"'>Borrar</a>";
 	// no sera un syso. syso es para sacar por consolo y esto es un html
 		out.println(alumno.toString()+" <a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+alumno.getCodigo()+"'>Editar</a>" +btn_delete);
 	}
 	%>
+	
 </main>
 <%@ include file="../includes/footer.html" %>
 </body>
