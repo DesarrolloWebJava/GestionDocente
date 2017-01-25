@@ -35,6 +35,9 @@ public class Constantes {
 	public static final String PAR_NHERMANOS = "nHermanos";
 	public static final String PAR_ACTIVO = "activo";
 	public static final String PAR_NSS = "nss";
+	public static final String PAR_DURACION = "duracion";
+	public static final String PAR_FINICIO = "fInicio";
+	public static final String PAR_FFIN = "fFin";
 
 	public static final int OP_CREATE = 1;
 	public static final int OP_READ = 2;

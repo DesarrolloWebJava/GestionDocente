@@ -2,10 +2,17 @@ package com.ipartek.formacion.service;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.ipartek.formacion.dbms.pojo.Curso;
+import com.ipartek.formacion.dbms.pojo.CursoDuracionComparator;
 
+/**
+ * 
+ * @author Urko Villanueva.
+ *
+ */
 public class CursoServiceImp implements CursoService {
 
 	private List<Curso> cursos;
@@ -17,7 +24,7 @@ public class CursoServiceImp implements CursoService {
 		init();
 	}
 
-	private void init() {
+	private final void init() {
 		Curso curso = new Curso();
 
 		try {
@@ -30,6 +37,9 @@ public class CursoServiceImp implements CursoService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		Collections.sort(cursos, new CursoDuracionComparator());
+		Collections.reverse(cursos);
 	}
 
 	@Override

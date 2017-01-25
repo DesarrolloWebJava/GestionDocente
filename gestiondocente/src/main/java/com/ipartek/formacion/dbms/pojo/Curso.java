@@ -136,8 +136,18 @@ public class Curso implements Serializable, Comparable<Curso> {
 
 	@Override
 	public int compareTo(Curso o) {
+		return this.nombre.compareToIgnoreCase(o.nombre);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.nombre + ", " + this.duracion;
 	}
 
 	/*
