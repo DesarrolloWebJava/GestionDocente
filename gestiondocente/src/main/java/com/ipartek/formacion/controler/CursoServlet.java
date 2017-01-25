@@ -125,7 +125,7 @@ public class CursoServlet extends HttpServlet {
 			if ( codigo == -1){
 				rd = request.getRequestDispatcher(Constantes.JSP_CREAR_CURSO);
 				
-				mensaje= "Se ha producido una operación inesperada";
+				mensaje= ("Se ha producido una operación inesperada"+e.getMessage());
 			}else{
 				//validamos datos
 				curso = cS.getById(codigo);

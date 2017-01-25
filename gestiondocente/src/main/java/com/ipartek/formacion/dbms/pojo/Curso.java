@@ -3,7 +3,11 @@ package com.ipartek.formacion.dbms.pojo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+
+import com.ipartek.formacion.dbms.pojo.exceptions.CursoException;
+import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 
 
 
@@ -52,7 +56,10 @@ public class Curso implements Comparable<Curso>, Serializable{
 	}
 
 
-	public void setNombre(String nombre) {
+	public void setNombre(String nombre) throws CursoException {
+		if (nombre.length() < 8) {
+			throw new CursoException(CursoException.COD_NOMBRE_ERROR,CursoException.MSG_NOMBRE_ERROR);
+		}
 		
 		this.nombre = nombre;
 	}
@@ -65,7 +72,11 @@ public class Curso implements Comparable<Curso>, Serializable{
 
 
 
-	public void setDuracion(int duracion) {
+	public void setDuracion(int duracion) throws CursoException {
+		
+		if (duracion < 1) {
+			throw new CursoException(CursoException.COD_DURACION_ERROR,CursoException.MSG_DURACION_ERROR);
+		}
 		this.duracion = duracion;
 	}
 
@@ -84,13 +95,29 @@ public class Curso implements Comparable<Curso>, Serializable{
 	public Date getfFin() {
 		return fFin;
 	}
+	
+	
+	public void setfFin(Date fFin) throws CursoException {
+		
+		this.fFin = fFin;	
+	}
 
+/*
+	public void setfFin(Date fFin) throws CursoException {
 
-	public void setfFin(Date fFin) {
+		GregorianCalendar gc = new GregorianCalendar();
+		
+		gc.setTime(new Date());
+		//int anyo18ago = gc.get(GregorianCalendar.YEAR) - 18;// 1999
+		
+		if (gc.getTime().before(fFin)) {
+			throw new CursoException(CursoException.COD_FFIN_NOMBRE, CursoException.MSG_FFIN_NOMBRE);
+		}
+
 		this.fFin = fFin;
 	}
 
-
+*/
 	public List<Alumno> getAlumnos() {
 		return alumnos;
 	}
