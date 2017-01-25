@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.dbms.pojo.Curso;
+import com.ipartek.formacion.dbms.pojo.exceptions.CursoException;
 import com.ipartek.formacion.service.AlumnoService;
 import com.ipartek.formacion.service.AlumnoServiceImp;
 import com.ipartek.formacion.service.CursoService;
@@ -135,26 +136,27 @@ public class CursoServlet extends HttpServlet {
 		rd.forward(req, resp);
 	}
 
-	private Curso recogerParametros(HttpServletRequest req) throws ParseException {
+	private Curso recogerParametros(HttpServletRequest req) throws Exception  {
 		Curso curso = new Curso();
-		curso.setNombre(req.getParameter(Constantes.PAR_NOMBRE));
-		
-		curso.setDuracion(Integer.parseInt(req.getParameter(Constantes.PAR_DURACION)));
-		
-		String date = req.getParameter(Constantes.PAR_FECHAINICIO);
-		if (date != null && !"".equals(date)) {
-			String pattern = "dd/MM/yyyy";
-			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-			curso.setFechaInicio(dateFormat.parse(date));
+		try {
+			curso.setNombre(req.getParameter(Constantes.PAR_NOMBRE));
+			curso.setDuracion(Integer.parseInt(req.getParameter(Constantes.PAR_DURACION)));
+			String date = req.getParameter(Constantes.PAR_FECHAINICIO);
+			if (date != null && !"".equals(date)) {
+				String pattern = "dd/MM/yyyy";
+				SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+				curso.setFechaInicio(dateFormat.parse(date));
+			}
+			date = req.getParameter(Constantes.PAR_FECHAFIN);
+			if (date != null && !"".equals(date)) {
+				String pattern = "dd/MM/yyyy";
+				SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+				curso.setFechaFin(dateFormat.parse(date));
+			}	
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception(e.getMessage());
 		}
-		
-		date = req.getParameter(Constantes.PAR_FECHAFIN);
-		if (date != null && !"".equals(date)) {
-			String pattern = "dd/MM/yyyy";
-			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-			curso.setFechaFin(dateFormat.parse(date));
-		}
-		
 		return curso;
 	}
 	

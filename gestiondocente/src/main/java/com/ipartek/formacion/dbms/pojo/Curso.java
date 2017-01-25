@@ -2,6 +2,8 @@ package com.ipartek.formacion.dbms.pojo;
 
 import java.util.Date;
 
+import com.ipartek.formacion.dbms.pojo.exceptions.CursoException;
+
 public class Curso {
 	
 	public static final int CODIGO_NULO = -1;	
@@ -13,7 +15,7 @@ public class Curso {
 	
 	public Curso() {
 		super();
-		this.codigo = 0;
+		this.codigo = CODIGO_NULO; 
 		this.nombre = "";
 		this.duracion = 0;
 		this.fechaInicio = new Date();
@@ -32,7 +34,12 @@ public class Curso {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
+	public void setNombre(String nombre) throws CursoException {
+		
+		if(nombre.length()<8){
+			throw new CursoException(CursoException.COD_NOMBRECURSO_ERROR, CursoException.MSG_NOMBRECURSO_ERROR);
+		}
+		
 		this.nombre = nombre;
 	}
 
@@ -40,7 +47,10 @@ public class Curso {
 		return duracion;
 	}
 
-	public void setDuracion(int duracion) {
+	public void setDuracion(int duracion) throws CursoException {
+		if(duracion<0){
+			throw new CursoException(CursoException.COD_DURACION_ERROR, CursoException.MSG_DURACION_ERROR);
+		}
 		this.duracion = duracion;
 	}
 
@@ -49,6 +59,7 @@ public class Curso {
 	}
 
 	public void setFechaInicio(Date fechaInicio) {
+		
 		this.fechaInicio = fechaInicio;
 	}
 
@@ -56,14 +67,21 @@ public class Curso {
 		return fechaFin;
 	}
 
-	public void setFechaFin(Date fechaFin) {
+	public void setFechaFin(Date fechaFin) throws CursoException {
+		Date aux = new Date();
+		long fecha1=fechaFin.getTime();
+		long fecha2=aux.getTime();
+				
+		if(fecha1<fecha2){
+			throw new CursoException(CursoException.COD_FECHAFIN_ERROR, CursoException.MSG_FECHAFIN_ERROR);			
+		}
 		this.fechaFin = fechaFin;
 	}
 
 	@Override
 	public String toString() {
-		return "Curso [codigo=" + codigo + ", nombre=" + nombre + ", duracion=" + duracion + ", fechaInicio="
-				+ fechaInicio + ", fechaFin=" + fechaFin + "]";
+		return "Codigo: " + codigo + ", Nombre: " + nombre + ", Duracion: " + duracion + ", Fecha de inicio: "
+				+ fechaInicio + ", Fecha de fin: " + fechaFin;
 	}
 
 

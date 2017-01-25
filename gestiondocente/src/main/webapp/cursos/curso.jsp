@@ -32,12 +32,12 @@
 		
 		<div>
 			<label for="<%=Constantes.PAR_FECHAINICIO %>">Fecha inicio:</label>
-			<input type="text" required placeholder="Introduzca la fecha de inicio" name="<%=Constantes.PAR_FECHAINICIO %>" id="<%=Constantes.PAR_FECHAINICIO %>">
+			<input value="<%=curso.getFechaInicio()%>" type="text" required placeholder="Introduzca la fecha de inicio" name="<%=Constantes.PAR_FECHAINICIO %>" id="<%=Constantes.PAR_FECHAINICIO %>">
 		</div>
 		
 		<div>
 			<label for="<%=Constantes.PAR_FECHAFIN %>">Fecha fin:</label>
-			<input type="text" required placeholder="Introduzca la fecha de fin" name="<%=Constantes.PAR_FECHAFIN %>" id="<%=Constantes.PAR_FECHAFIN %>">
+			<input value="<%=curso.getFechaFin()%>" type="text" required placeholder="Introduzca la fecha de fin" name="<%=Constantes.PAR_FECHAFIN %>" id="<%=Constantes.PAR_FECHAFIN %>">
 		</div>
 		<input type="submit" value="Enviar">
 	</form>

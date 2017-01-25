@@ -1,5 +1,8 @@
 package com.ipartek.formacion.service;
 
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,17 +23,44 @@ public class CursoServiceImp implements CursoService {
 		init();
 	}
 
-	private void init(){
+	private void init() {
 		
 		Curso curso = new Curso();
+		try {
+			curso.setNombre("Programación");
+		} catch (CursoException e2) {
+			e2.getMessage();
+		}
+		try {
+			curso.setDuracion(510);
+		} catch (CursoException e1) {
+			e1.printStackTrace();
+		}
+		String date = "09/01/2017";
+		String pattern = "dd/MM/yyyy";
+		SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+		try {
+			curso.setFechaInicio(dateFormat.parse(date));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		String date2 = "30/05/2017";
+		SimpleDateFormat df = new SimpleDateFormat(pattern);
+		try {
+			curso.setFechaInicio(df.parse(date2));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		create(curso);		
 	}
 
 	@Override
 	public Curso create(Curso curso) {
 		
-		contador++;
 		curso.setCodigo(contador);
+		contador++;
+		
 		cursos.add(curso);
 
 		return curso;
