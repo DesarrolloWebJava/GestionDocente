@@ -36,7 +36,7 @@ public class AlumnoServiceImp implements AlumnoService {
 		init();
 	}
 
-	private void init() {
+	private final void init() {
 		Alumno alumno = new Alumno();
 		try {
 			alumno.setNombre("Sergio");

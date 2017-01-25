@@ -17,7 +17,7 @@ public class ProfesorServiceImp implements ProfesorService {
 		init();
 	}
 
-	private void init() {
+	private final void init() {
 		contador = 0;
 		Profesor profesor = new Profesor();
 		profesor.setEmail("uvillanueva@ipartek.com");

@@ -1,5 +1,8 @@
 package com.ipartek.formacion.dbms.pojo;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -92,7 +95,13 @@ public class Curso {
 	
 	@Override
 	public String toString() {
-		return this.getCodigo() + " " + this.getNombre() + " " + this.getDuracion()+ " " + this.getfInicio()+ " " + this.getfFin();
+		 return "\n"+" Códido :"+this.getCodigo() + "  Nombre Curso:" + this.getNombre() + "  Duración" + this.getDuracion()+ "  Fecha Inicio:" + formatearFecha(this.getfInicio())+ "  Ficha Fin:" + formatearFecha(this.getfFin())+"\n";
+	}
+	
+	public String formatearFecha (Date fecha) {
+		DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		String formatoString = formato.format(fecha);
+		return formatoString;
 	}
 
 }

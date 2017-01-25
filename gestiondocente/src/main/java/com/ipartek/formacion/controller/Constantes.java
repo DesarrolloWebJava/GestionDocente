@@ -1,7 +1,7 @@
 package com.ipartek.formacion.controller;
 
 public class Constantes {
-	private Constantes() {
+	public Constantes() {
 	}
 
 	public static final String ATT_LISTADO_PROFESORES = "listado-profesores";

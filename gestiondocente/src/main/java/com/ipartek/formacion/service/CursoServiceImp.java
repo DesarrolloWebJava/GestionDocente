@@ -22,7 +22,7 @@ public class CursoServiceImp implements CursoService {
 	}
 	
 	
-	private void init() {
+	private final void init() {
 		Curso curso = new Curso();
 		try {
 			curso.setNombre("Programación Web");
@@ -124,7 +124,8 @@ public class CursoServiceImp implements CursoService {
 
 	private int buscarCurso(int codigo) throws CursoServiceImpException {
 
-		int i = 0, posicion = -1;
+		int i = 0; 
+		int posicion = -1;
 		boolean encontrado = false;
 
 		while (encontrado == false && i < listaCurso.size()) {
