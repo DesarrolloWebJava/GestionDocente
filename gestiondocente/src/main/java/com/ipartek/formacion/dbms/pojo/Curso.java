@@ -3,10 +3,22 @@ package com.ipartek.formacion.dbms.pojo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.FormAction;
+
+import com.ipartek.formacion.service.exceptions.CursoServiceImpException;
+
+/**
+ * Clase Curso.
+ * En ella definimos los campos que formaran los objetos de la clase.
+ * @author Jon Ander Ochoa
+ *
+ */
 public class Curso implements Comparable<Curso>, Serializable {
 
+	//Serializable
 	private static final long serialVersionUID = 1L;
 	private int codigo;
 	private String nombre;
@@ -17,6 +29,10 @@ public class Curso implements Comparable<Curso>, Serializable {
 	private Profesor profesor;
 	public static final int CODIGO_NULO = -1;
 
+	/**
+	 * Constructor de la clase curso
+	 * Inicializa las variables
+	 */
 	public Curso() {
 		super();
 		this.codigo = CODIGO_NULO;
@@ -40,8 +56,14 @@ public class Curso implements Comparable<Curso>, Serializable {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombre(String nombre) throws CursoServiceImpException {
+		if(nombre.length() > 8){
+				this.nombre = nombre;
+		}else{
+			throw new CursoServiceImpException(
+					CursoServiceImpException.COD_NOMBRE_CURSO_CORTO, 
+					CursoServiceImpException.MSG_NOMBRE_CURSO_CORTO);
+		}
 	}
 
 	public int getDuracion() {
@@ -68,7 +90,7 @@ public class Curso implements Comparable<Curso>, Serializable {
 		this.fFin = fFin;
 	}
 
-	public List<Alumno> getAlumnos() {
+	/*public List<Alumno> getAlumnos() {
 		return alumnos;
 	}
 
@@ -82,7 +104,7 @@ public class Curso implements Comparable<Curso>, Serializable {
 
 	public void setProfesor(Profesor profesor) {
 		this.profesor = profesor;
-	}
+	}*/
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -99,15 +121,26 @@ public class Curso implements Comparable<Curso>, Serializable {
 		return iguales;
 	}
 
+	/**
+	 * Que los cursos se ordenen por orden alfabetico
+	 * Por que lo he decidido yo
+	 */
 	@Override
 	public int compareTo(Curso o) {
-		// TODO No entiendo el compareTo
-		return 0;
+		return this.nombre.compareToIgnoreCase(o.nombre);
 	}
 
 	@Override
 	public String toString() {
-		return "Curso [codigo=" + codigo + ", nombre=" + nombre + ", duracion=" + duracion + ", fInicio=" + fInicio
-				+ ", fFin=" + fFin + "]";
+		return "Curso [ codigo = " + codigo + ", nombre = " + nombre + ", duracion = " + duracion 
+				+ ", Fecha Inicio = " + formatoFecha(fInicio) + ", Fecha Fin = " + formatoFecha(fFin) + " ]";
+	}
+	
+	private String formatoFecha(Date fechaSinFormato){
+		String fecha ="";
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.setTime(fechaSinFormato);
+		fecha = gc.get(GregorianCalendar.DAY_OF_MONTH)+"/"+(gc.get(GregorianCalendar.MONTH)+1)+"/"+gc.get(GregorianCalendar.YEAR);
+		return fecha;
 	}
 }

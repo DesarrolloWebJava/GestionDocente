@@ -1,6 +1,6 @@
 package com.ipartek.formacion.dbms.pojo;
 
-public class Profesor extends Persona {
+public class Profesor extends Persona implements Comparable<Profesor> {
 	public static final int CODIGO_NULO = -1;
 	private int nSS;
 	private int codigo;
@@ -32,6 +32,11 @@ public class Profesor extends Persona {
 		return "Profesor [getnSS()=" + getnSS() + ", getCodigo()=" + getCodigo() + ", getEmail()=" + getEmail()
 				+ ", getDireccion()=" + getDireccion() + ", getDni()=" + getDni() + ", getNombre()=" + getNombre()
 				+ ", getApellidos()=" + getApellidos() + ", getfNacimiento()=" + getfNacimiento() + "]";
+	}
+
+	@Override
+	public int compareTo(Profesor o) {
+		return this.getApellidos().compareToIgnoreCase(o.getApellidos());
 	}
 
 	

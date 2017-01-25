@@ -38,7 +38,7 @@
 			GregorianCalendar gc = new GregorianCalendar();
 			gc.setTime(curso.getfInicio());
 			fechaIni = gc.get(GregorianCalendar.DAY_OF_MONTH)+"/"
-			+(GregorianCalendar.MONTH+1)+"/"+(GregorianCalendar.YEAR);
+			+gc.get(GregorianCalendar.MONTH+1)+"/"+gc.get(GregorianCalendar.YEAR);
 		%>
 			<label for="<%=Constantes.PAR_FINICIO %>">Fecha de inicio: </label>
 			<input type="text" placeholder="Introduzca la fecha de inicio del curso..." 
@@ -51,7 +51,7 @@
 			gc = new GregorianCalendar();
 			gc.setTime(curso.getfInicio());
 			fechaFin = gc.get(GregorianCalendar.DAY_OF_MONTH)+"/"
-			+(GregorianCalendar.MONTH+1)+"/"+(GregorianCalendar.YEAR);
+			+gc.get(GregorianCalendar.MONTH+1)+"/"+gc.get(GregorianCalendar.YEAR);
 		%>
 			<label for="<%=Constantes.PAR_FFIN %>">Fecha de finalizacion: </label>
 			<input type="text" placeholder="Introduzca la fecha de finalizacion del curso..." 

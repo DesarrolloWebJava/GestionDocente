@@ -163,7 +163,7 @@ public class ProfesorServlet extends HttpServlet {
 	@Override
 	public void destroy() {
 		//Se carga la instancia
-		pS = null;
+		this.pS = null;
 		super.destroy();
 	}
 

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.ipartek.formacion.dbms.pojo.Curso;
 import com.ipartek.formacion.service.CursoService;
 import com.ipartek.formacion.service.CursoServiceImp;
+import com.ipartek.formacion.service.Util;
+import com.ipartek.formacion.service.exceptions.CursoServiceImpException;
 
 /**
  * Servlet implementation class CursoServlet
@@ -54,10 +56,10 @@ public class CursoServlet extends HttpServlet {
 				codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
 				//Recogemos el curso que buscamos mediante el codigo y lo guardamos en la variable curso
 				Curso curso = cS.getById(codigo);
+				//Metemos el nuevo curso en la request
+				request.setAttribute(Constantes.ATT_CURSO, curso);
 				//Se redirige a la pagina cursos/curso.jsp
 				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_CURSO);
-				//Preparamos el redireccionamiento pasando el curso
-				request.setAttribute(Constantes.ATT_CURSO, curso);
 			}
 				break;
 			case Constantes.OP_DELETE:
@@ -92,7 +94,7 @@ public class CursoServlet extends HttpServlet {
 		//Fijamos la pagina de destino
 		rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_CURSOS);
 		//Añadimos la lista al request
-		request.setAttribute(Constantes.ATT_CURSO, cursos);
+		request.setAttribute(Constantes.ATT_LISTADO_CURSOS, cursos);
 	}
 	
 	/**
@@ -105,7 +107,7 @@ public class CursoServlet extends HttpServlet {
 		String mensaje = "";
 		int codigo = -1;
 		try{
-			//Convertimos el codigo a int, si lo han tocado se va al catch
+			//Recogemos el parametro codigo del request y lo cambiamos a Integer
 			codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
 			//Cargamos la variable con los paramentros
 			curso = recogerParametros(request);
@@ -140,6 +142,8 @@ public class CursoServlet extends HttpServlet {
 				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_CURSO);
 				//Guarda la excepcion como mensaje
 				mensaje = e.getMessage();
+				//Mensaje para el programador
+				System.out.println(mensaje);
 			}
 		}
 		//Prepara la redireccion. Envia el mensaje
@@ -153,18 +157,27 @@ public class CursoServlet extends HttpServlet {
     	Curso curso = new Curso();
 		try{
 			curso.setCodigo(Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO)));
-			curso.setNombre(request.getParameter(Constantes.PAR_NOMBRE));
+			try{
+				curso.setNombre(request.getParameter(Constantes.PAR_NOMBRE));
+			}catch(CursoServiceImpException e){
+				e.getMessage();
+			}
 			curso.setDuracion(Integer.parseInt(request.getParameter(Constantes.PAR_DURACION)));
 			String fechaIni = request.getParameter(Constantes.PAR_FINICIO);
 			String fechaFin = request.getParameter(Constantes.PAR_FFIN);
-			String pattern = "dd/MM/yyyy";
-			SimpleDateFormat fechaFormato = new SimpleDateFormat(pattern);
-			curso.setfInicio(fechaFormato.parse(fechaIni));
-			curso.setfFin(fechaFormato.parse(fechaFin));
+			if(fechaIni!=null && !"".equalsIgnoreCase(fechaIni)){
+				curso.setfInicio(Util.parseLatinDate(fechaIni));
+			}
+			if(fechaFin!=null && !"".equalsIgnoreCase(fechaFin)){
+				curso.setfFin(Util.parseLatinDate(fechaFin));
+			}
 			//TODO
 			//curso.setAlumnos(alumnos);
 			//curso.setProfesor(profesor);
+			//Controla todas las excepciones que se puedan crear al generar un curso
 		}catch(Exception e){
+			//Generamos una traza
+			e.printStackTrace();
 			throw new Exception("Los datos no son validos: "+e.getMessage());
 		}
 		return curso;
@@ -173,7 +186,7 @@ public class CursoServlet extends HttpServlet {
 	@Override
 	public void destroy() {
     	//Le damos valor a nulo
-		cS = null;
+		this.cS = null;
 		super.destroy();
 	}
 }

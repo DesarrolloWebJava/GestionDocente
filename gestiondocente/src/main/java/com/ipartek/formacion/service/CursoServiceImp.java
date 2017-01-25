@@ -8,15 +8,19 @@ import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.dbms.pojo.Curso;
 import com.ipartek.formacion.dbms.pojo.Profesor;
 import com.ipartek.formacion.service.exceptions.CursoServiceImpException;
-
+/**
+ * 
+ * @author Curso
+ *
+ */
 public class CursoServiceImp implements CursoService {
 
 	//Reservamos espacio para una lista de cursos
 	private List<Curso> cursos;
 	//Reservamos espacio para una lista de alumnos
-	private List<Alumno> alumnos;
+	//private List<Alumno> alumnos;
 	//Reservamos espacio para un objeto profesor
-	private Profesor profesor;
+	//private Profesor profesor;
 	//Inicializa el codigo del curso
 		private static int codigoCurso = 0;
 	
@@ -25,9 +29,9 @@ public class CursoServiceImp implements CursoService {
 		//Inicializamos la lista
 		cursos = new ArrayList<Curso>();
 		//Creamos una lista de alumnos
-		alumnos = new ArrayList<Alumno>();
+		//alumnos = new ArrayList<Alumno>();
 		//Creamos un nuevo profesor
-		profesor = new Profesor();
+		//profesor = new Profesor();
 		//Llamamos al metodo init()
 		init();
 	}
@@ -41,20 +45,21 @@ public class CursoServiceImp implements CursoService {
 		try{
 			nuevoCurso.setNombre("Programacion Java");
 			nuevoCurso.setDuracion(500);
-			String fechaIni = "09/01/2017";
-			String fechaFin = "09/06/2017";
+			String fechaIni = "10/01/2017";
+			String fechaFin = "10/06/2017";
 			String pattern = "dd/MM/yyyy";
 			SimpleDateFormat formatoFecha = new SimpleDateFormat(pattern);
 			nuevoCurso.setfInicio(formatoFecha.parse(fechaIni));
 			nuevoCurso.setfFin(formatoFecha.parse(fechaFin));
 			//Creo 2 alumnos
-			Alumno alumno = new Alumno();
-			Alumno alumno2 = new Alumno();
+			//Alumno alumno = new Alumno();
+			//Alumno alumno2 = new Alumno();
 			//Añado los alumnos a la lista
-			alumnos.add(alumno);
-			alumnos.add(alumno2);
+			//alumnos.add(alumno);
+			//alumnos.add(alumno2);
 			//Cargo la lista
-			nuevoCurso.setAlumnos(alumnos);
+			//nuevoCurso.setAlumnos(alumnos);
+			create(nuevoCurso);
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}

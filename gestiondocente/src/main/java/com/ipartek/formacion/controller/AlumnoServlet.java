@@ -187,7 +187,7 @@ public class AlumnoServlet extends HttpServlet {
 	//Solo para peticiones de formularios
 	@Override
 	public void destroy() {
-		aS = null;
+		this.aS = null;
 		super.destroy();
 	}
 }
