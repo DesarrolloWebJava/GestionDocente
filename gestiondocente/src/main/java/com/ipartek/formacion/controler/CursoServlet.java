@@ -192,4 +192,12 @@ public class CursoServlet extends HttpServlet {
 		return curso;
 	}
 
+
+
+	@Override
+	public void destroy() {
+		cS = null;
+		super.destroy();
+	}
+
 }
