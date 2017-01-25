@@ -1,0 +1,599 @@
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:26:	Each class should declare at least one constructor
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:30:	Avoid variables with short names like aS
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:30:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:30:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:32:	Avoid variables with short names like rd
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:32:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:32:	To avoid mistakes add a comment at the beginning of the rd field if you want a default access modifier
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:32:	Use explicit scoping instead of the default package private level
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:32:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:37:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:46:	Parameter 'req' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:46:	Parameter 'resp' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:46:	protectedMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:53:	Avoid variables with short names like op
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:53:	Found 'DD'-anomaly for variable 'op' (lines '53'-'59').
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:55:	Local variable 'operacion' could be declared final
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:72:	Found 'DD'-anomaly for variable 'codigo' (lines '72'-'74').
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:76:	Local variable 'alumno' could be declared final
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:88:	Found 'DD'-anomaly for variable 'codigo' (lines '88'-'90').
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:92:	Avoid unused local variables such as 'alumno'.
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:92:	Found 'DU'-anomaly for variable 'alumno' (lines '92'-'128').
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:92:	Local variable 'alumno' could be declared final
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:118:	Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:130:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:131:	Parameter 'req' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:134:	Local variable 'alumnos' could be declared final
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:144:	Parameter 'req' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:144:	Parameter 'resp' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:144:	protectedMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:147:	Found 'DD'-anomaly for variable 'alumno' (lines '147'-'155').
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:150:	Found 'DD'-anomaly for variable 'mensaje' (lines '150'-'163').
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:150:	Found 'DD'-anomaly for variable 'mensaje' (lines '150'-'169').
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:159:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:163:	Found 'DD'-anomaly for variable 'mensaje' (lines '163'-'179').
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:167:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:167:	System.out.println is used
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:169:	Found 'DD'-anomaly for variable 'mensaje' (lines '169'-'179').
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:174:	Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:179:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:188:	A method/constructor shouldnt explicitly throw java.lang.Exception
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:188:	Parameter 'req' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:190:	Local variable 'alumno' could be declared final
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:194:	Local variable 'codigo' could be declared final
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:206:	Local variable 'date' could be declared final
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:207:	Local variable 'pattern' could be declared final
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:208:	Local variable 'dateFormat' could be declared final
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:208:	When instantiating a SimpleDateFormat object, specify a Locale
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:217:	Local variable 'nHermanos' could be declared final
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:219:	Avoid using Literals in Conditional Statements
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:232:	A catch statement that catches an exception only to wrap it in a new instance of the same type of exception and throw it should be avoided
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:234:	New exception is thrown in catch block, original stack trace may be lost
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:236:	Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/main/java/com/ipartek/formacion/controller/AlumnoServet.java:238:	New exception is thrown in catch block, original stack trace may be lost
+src/main/java/com/ipartek/formacion/controller/Constantes.java:6:	Avoid unused imports such as 'java.util.Date'
+src/main/java/com/ipartek/formacion/controller/Constantes.java:7:	Avoid unused imports such as 'java.util.List'
+src/main/java/com/ipartek/formacion/controller/Constantes.java:9:	Avoid unused imports such as 'com.ipartek.formacion.dbms.pojo.Alumno'
+src/main/java/com/ipartek/formacion/controller/Constantes.java:10:	Avoid unused imports such as 'com.ipartek.formacion.dbms.pojo.Profesor'
+src/main/java/com/ipartek/formacion/controller/Constantes.java:16:	A class which only has private constructors should be final
+src/main/java/com/ipartek/formacion/controller/Constantes.java:18:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:21:	Avoid excessively long variable names like ATT_LISTADO_ALUMNOS
+src/main/java/com/ipartek/formacion/controller/Constantes.java:21:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:22:	Avoid excessively long variable names like ATT_LISTADO_PROFESORES
+src/main/java/com/ipartek/formacion/controller/Constantes.java:22:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:23:	Avoid excessively long variable names like ATT_LISTADO_CURSOS
+src/main/java/com/ipartek/formacion/controller/Constantes.java:23:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:24:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:25:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:26:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:29:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:30:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:31:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:34:	Avoid excessively long variable names like JSP_LISTADO_ALUMNO
+src/main/java/com/ipartek/formacion/controller/Constantes.java:34:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:35:	Avoid excessively long variable names like JSP_LISTADO_PROFESOR
+src/main/java/com/ipartek/formacion/controller/Constantes.java:35:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:36:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:39:	Avoid excessively long variable names like JSP_FORMULARIO_ALUMNO
+src/main/java/com/ipartek/formacion/controller/Constantes.java:39:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:40:	Avoid excessively long variable names like JSP_FORMULARIO_PROFESOR
+src/main/java/com/ipartek/formacion/controller/Constantes.java:40:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:41:	Avoid excessively long variable names like JSP_FORMULARIO_CURSO
+src/main/java/com/ipartek/formacion/controller/Constantes.java:41:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:46:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:50:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:51:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:52:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:53:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:55:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/controller/Constantes.java:56:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:57:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:58:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:59:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:60:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:61:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:62:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:63:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/controller/Constantes.java:64:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:65:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:66:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/controller/Constantes.java:67:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:68:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/controller/Constantes.java:69:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:70:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/Constantes.java:71:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:26:	Each class should declare at least one constructor
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:30:	Avoid variables with short names like cS
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:30:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:30:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:32:	Avoid variables with short names like rd
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:32:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:32:	To avoid mistakes add a comment at the beginning of the rd field if you want a default access modifier
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:32:	Use explicit scoping instead of the default package private level
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:32:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:38:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:47:	Parameter 'req' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:47:	Parameter 'resp' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:47:	protectedMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:50:	Avoid variables with short names like op
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:50:	Found 'DD'-anomaly for variable 'op' (lines '50'-'56').
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:52:	Local variable 'operacion' could be declared final
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:69:	Found 'DD'-anomaly for variable 'codigo' (lines '69'-'71').
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:73:	Local variable 'curso' could be declared final
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:85:	Found 'DD'-anomaly for variable 'codigo' (lines '85'-'87').
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:89:	Avoid unused local variables such as 'curso'.
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:89:	Found 'DU'-anomaly for variable 'curso' (lines '89'-'125').
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:89:	Local variable 'curso' could be declared final
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:115:	Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:127:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:128:	Parameter 'req' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:131:	Local variable 'cursos' could be declared final
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:141:	Parameter 'req' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:141:	Parameter 'resp' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:141:	protectedMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:144:	Found 'DD'-anomaly for variable 'curso' (lines '144'-'152').
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:147:	Found 'DD'-anomaly for variable 'mensaje' (lines '147'-'160').
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:147:	Found 'DD'-anomaly for variable 'mensaje' (lines '147'-'166').
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:156:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:160:	Found 'DD'-anomaly for variable 'mensaje' (lines '160'-'176').
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:164:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:164:	System.out.println is used
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:166:	Found 'DD'-anomaly for variable 'mensaje' (lines '166'-'176').
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:171:	Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:176:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:184:	A method/constructor shouldnt explicitly throw java.lang.Exception
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:184:	Parameter 'req' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:186:	Local variable 'curso' could be declared final
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:190:	Local variable 'codigo' could be declared final
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:192:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:194:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:196:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:200:	Local variable 'pattern' could be declared final
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:201:	Local variable 'dateFormat' could be declared final
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:201:	When instantiating a SimpleDateFormat object, specify a Locale
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:206:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:206:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:211:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:211:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:215:	A catch statement that catches an exception only to wrap it in a new instance of the same type of exception and throw it should be avoided
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:217:	New exception is thrown in catch block, original stack trace may be lost
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:217:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:219:	Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:221:	New exception is thrown in catch block, original stack trace may be lost
+src/main/java/com/ipartek/formacion/controller/CursoServlet.java:222:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:15:	Avoid unused imports such as 'com.ipartek.formacion.dbms.pojo.Alumno'
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:27:	Each class should declare at least one constructor
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:31:	Avoid variables with short names like pS
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:31:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:31:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:33:	Avoid variables with short names like rd
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:33:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:33:	To avoid mistakes add a comment at the beginning of the rd field if you want a default access modifier
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:33:	Use explicit scoping instead of the default package private level
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:33:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:38:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:47:	Parameter 'req' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:47:	Parameter 'resp' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:47:	protectedMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:50:	Avoid variables with short names like op
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:50:	Found 'DD'-anomaly for variable 'op' (lines '50'-'56').
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:52:	Local variable 'operacion' could be declared final
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:69:	Found 'DD'-anomaly for variable 'codigo' (lines '69'-'71').
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:73:	Local variable 'profesor' could be declared final
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:85:	Found 'DD'-anomaly for variable 'codigo' (lines '85'-'87').
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:89:	Avoid unused local variables such as 'profesor'.
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:89:	Found 'DU'-anomaly for variable 'profesor' (lines '89'-'123').
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:89:	Local variable 'profesor' could be declared final
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:115:	Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:125:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:126:	Parameter 'request' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:127:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:128:	Local variable 'profesores' could be declared final
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:138:	Parameter 'req' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:138:	Parameter 'resp' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:138:	protectedMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:141:	Found 'DD'-anomaly for variable 'profesor' (lines '141'-'149').
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:144:	Found 'DD'-anomaly for variable 'mensaje' (lines '144'-'159').
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:144:	Found 'DD'-anomaly for variable 'mensaje' (lines '144'-'165').
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:155:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:159:	Found 'DD'-anomaly for variable 'mensaje' (lines '159'-'175').
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:163:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:163:	System.out.println is used
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:165:	Found 'DD'-anomaly for variable 'mensaje' (lines '165'-'175').
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:170:	Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:175:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:184:	A method/constructor shouldnt explicitly throw java.lang.Exception
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:184:	Parameter 'req' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:186:	Local variable 'profesor' could be declared final
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:190:	Local variable 'codigo' could be declared final
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:202:	Local variable 'date' could be declared final
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:203:	Local variable 'pattern' could be declared final
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:204:	Local variable 'dateFormat' could be declared final
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:204:	When instantiating a SimpleDateFormat object, specify a Locale
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:214:	A catch statement that catches an exception only to wrap it in a new instance of the same type of exception and throw it should be avoided
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:216:	New exception is thrown in catch block, original stack trace may be lost
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:218:	Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/main/java/com/ipartek/formacion/controller/ProfesorServlet.java:220:	New exception is thrown in catch block, original stack trace may be lost
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:20:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:22:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:24:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:26:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:26:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:29:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:42:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:48:	Parameter 'codigo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:48:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:55:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:72:	Parameter 'activo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:72:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:78:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:84:	Parameter 'nHermanos' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:84:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:91:	Avoid variables with short names like o
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:91:	Parameter 'o' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:91:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:98:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:100:	Parameter 'obj' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:100:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:102:	Found 'DD'-anomaly for variable 'iguales' (lines '102'-'109').
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:107:	Potential violation of Law of Demeter (method chain calls)
+src/main/java/com/ipartek/formacion/dbms/pojo/Alumno.java:107:	These nested if statements could be combined
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:9:	Avoid unused imports such as 'java.util.regex.Matcher'
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:10:	Avoid unused imports such as 'java.util.regex.Pattern'
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:13:	Avoid unused imports such as 'com.ipartek.formacion.dbms.pojo.exceptions.PersonaException'
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:27:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:29:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:31:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:32:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:33:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:34:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:35:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:36:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:40:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:57:	Parameter 'codigo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:57:	Parameter 'duracion' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:57:	Parameter 'ffin' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:57:	Parameter 'finicio' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:57:	Parameter 'nombre' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:57:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:58:	Parameter 'alumnos' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:58:	Parameter 'profesor' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:84:	Parameter 'codigo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:103:	Parameter 'nombre' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:105:	Avoid using Literals in Conditional Statements
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:130:	Parameter 'duracion' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:157:	Parameter 'finicio' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:160:	Avoid unused local variables such as 'hoy'.
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:160:	Avoid variables with short names like gc
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:160:	Found 'DD'-anomaly for variable 'gc' (lines '160'-'163').
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:160:	Found 'DU'-anomaly for variable 'hoy' (lines '160'-'177').
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:160:	Local variable 'hoy' could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:160:	Use one line for each declaration, it enhances code readability.
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:165:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:193:	Parameter 'ffin' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:196:	Avoid unused local variables such as 'hoy'.
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:196:	Avoid variables with short names like gc
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:196:	Found 'DD'-anomaly for variable 'gc' (lines '196'-'199').
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:196:	Found 'DU'-anomaly for variable 'hoy' (lines '196'-'213').
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:196:	Local variable 'hoy' could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:196:	Use one line for each declaration, it enhances code readability.
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:201:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:228:	Parameter 'alumnos' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:246:	Parameter 'profesor' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:253:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:261:	Avoid variables with short names like o
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:261:	Parameter 'o' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:261:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:268:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:270:	Parameter 'obj' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:270:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:272:	Found 'DD'-anomaly for variable 'iguales' (lines '272'-'279').
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:277:	Potential violation of Law of Demeter (method chain calls)
+src/main/java/com/ipartek/formacion/dbms/pojo/Curso.java:277:	These nested if statements could be combined
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:4:	Avoid unused imports such as 'java.text.SimpleDateFormat'
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:11:	Avoid unused imports such as 'com.ipartek.formacion.controller.Constantes'
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:24:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:26:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:27:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:28:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:29:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:29:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:30:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:31:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:34:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:52:	Avoid unused constructor parameters such as 'direccion'.
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:52:	Avoid unused constructor parameters such as 'email'.
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:52:	Parameter 'direccion' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:52:	Parameter 'email' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:52:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:62:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:68:	Parameter 'email' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:68:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:74:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:80:	Parameter 'direccion' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:80:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:86:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:92:	Parameter 'codigo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:92:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:98:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:105:	Parameter 'dni' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:105:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:107:	Avoid using final local variables, turn them into fields
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:110:	Local variable 'pattern' could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:112:	Local variable 'matcher' could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:112:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:115:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:125:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:131:	Parameter 'nombre' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:131:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:134:	Avoid using Literals in Conditional Statements
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:144:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:150:	Parameter 'apellidos' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:150:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:156:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:162:	Parameter 'fNacimiento' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:162:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:164:	Avoid variables with short names like gc
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:164:	Local variable 'gc' could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:167:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:168:	Local variable 'anyo18ago' could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:168:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:171:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:173:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:175:	Potential violation of Law of Demeter (method chain calls)
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:175:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:186:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Persona.java:194:	Local variable 'fNacimiento' could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Profesor.java:14:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Profesor.java:16:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/dbms/pojo/Profesor.java:16:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Profesor.java:17:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Profesor.java:20:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Profesor.java:30:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Profesor.java:36:	Parameter 'nSS' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Profesor.java:36:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Profesor.java:42:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Profesor.java:48:	Parameter 'codigo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/Profesor.java:48:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/Profesor.java:55:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:4:	Comment is too large: Too many lines
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:18:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:19:	Avoid excessively long variable names like COD_DURACION_ERROR
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:19:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:20:	Avoid excessively long variable names like COD_FECHAINICIO_HOY_ERROR
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:20:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:21:	Avoid excessively long variable names like COD_FECHAFIN_HOY_ERROR
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:21:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:22:	Avoid excessively long variable names like COD_FECHAREGEX_ERROR
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:22:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:25:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:27:	Avoid excessively long variable names like MSG_DURACION_ERROR
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:27:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:29:	Avoid excessively long variable names like MSG_FECHAINICIO_HOY_ERROR
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:29:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:30:	Avoid excessively long variable names like MSG_FECHAFIN_HOY_ERROR
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:30:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:31:	Avoid excessively long variable names like MSG_FECHAREGEX_ERROR
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:31:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:35:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:35:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:37:	Avoid unused private fields such as 'mensaje'.
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:37:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:37:	Private field 'mensaje' could be made final; it is only initialized in the declaration or constructor.
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:37:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:40:	Parameter 'codigo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:40:	Parameter 'message' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:40:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:50:	Parameter 'message' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:50:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/CursoException.java:58:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:4:	Comment is too large: Too many lines
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:21:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:22:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:23:	Avoid excessively long variable names like COD_LONGITUD_ERROR
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:23:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:26:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:27:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:28:	Avoid excessively long variable names like MSG_LONGITUD_ERROR
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:28:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:32:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:32:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:34:	Avoid unused private fields such as 'mensaje'.
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:34:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:34:	Private field 'mensaje' could be made final; it is only initialized in the declaration or constructor.
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:34:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:38:	Parameter 'codigo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:38:	Parameter 'mensaje' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:38:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:48:	Parameter 'message' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:48:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/dbms/pojo/exceptions/PersonaException.java:56:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/AlumnoService.java:16:	Avoid modifiers which are implied by the context
+src/main/java/com/ipartek/formacion/service/AlumnoService.java:16:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/AlumnoService.java:17:	Avoid modifiers which are implied by the context
+src/main/java/com/ipartek/formacion/service/AlumnoService.java:17:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/AlumnoService.java:18:	Avoid modifiers which are implied by the context
+src/main/java/com/ipartek/formacion/service/AlumnoService.java:18:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/AlumnoService.java:19:	Avoid modifiers which are implied by the context
+src/main/java/com/ipartek/formacion/service/AlumnoService.java:19:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/AlumnoService.java:20:	Avoid modifiers which are implied by the context
+src/main/java/com/ipartek/formacion/service/AlumnoService.java:20:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:13:	Comment is too large: Too many lines
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:18:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:30:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:30:	Private field 'alumnos' could be made final; it is only initialized in the declaration or constructor.
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:30:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:33:	Avoid using redundant field initializer for 'i'
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:33:	Avoid variables with short names like i
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:33:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:37:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:43:	Overridable method 'create' called during object construction
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:58:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:61:	System.out.println is used
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:74:	Local variable 'date' could be declared final
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:76:	Local variable 'pattern' could be declared final
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:78:	Local variable 'dateFormat' could be declared final
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:78:	When instantiating a SimpleDateFormat object, specify a Locale
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:86:	System.out.println is used
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:88:	Avoid printStackTrace(); use a logger call instead.
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:92:	Avoid printStackTrace(); use a logger call instead.
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:93:	Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:95:	System.out.println is used
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:111:	Avoid printStackTrace(); use a logger call instead.
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:117:	Parameter 'alumno' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:117:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:130:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:136:	Parameter 'codigo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:136:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:138:	Found 'DD'-anomaly for variable 'alumno' (lines '138'-'147').
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:140:	Found 'DD'-anomaly for variable 'posicion' (lines '140'-'145').
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:147:	Found 'DD'-anomaly for variable 'alumno' (lines '147'-'155').
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:151:	System.out.println is used
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:162:	Parameter 'codigo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:162:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:164:	Found 'DD'-anomaly for variable 'posicion' (lines '164'-'169').
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:174:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:174:	System.out.println is used
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:179:	Parameter 'alumno' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:179:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:181:	Found 'DD'-anomaly for variable 'posicion' (lines '181'-'186').
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:191:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:191:	System.out.println is used
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:198:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:199:	Parameter 'codigo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:201:	Avoid variables with short names like i
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:201:	Found 'DD'-anomaly for variable 'posicion' (lines '201'-'214').
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:201:	Use one line for each declaration, it enhances code readability.
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:202:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:206:	Avoid unnecessary comparisons in boolean expressions
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:209:	Potential violation of Law of Demeter (method chain calls)
+src/main/java/com/ipartek/formacion/service/AlumnoServiceImp.java:214:	Found 'DD'-anomaly for variable 'posicion' (lines '214'-'214').
+src/main/java/com/ipartek/formacion/service/CursoService.java:18:	Avoid modifiers which are implied by the context
+src/main/java/com/ipartek/formacion/service/CursoService.java:18:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/CursoService.java:19:	Avoid modifiers which are implied by the context
+src/main/java/com/ipartek/formacion/service/CursoService.java:19:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/CursoService.java:20:	Avoid modifiers which are implied by the context
+src/main/java/com/ipartek/formacion/service/CursoService.java:20:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/CursoService.java:21:	Avoid modifiers which are implied by the context
+src/main/java/com/ipartek/formacion/service/CursoService.java:21:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/CursoService.java:22:	Avoid modifiers which are implied by the context
+src/main/java/com/ipartek/formacion/service/CursoService.java:22:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:4:	Avoid unused imports such as 'java.text.ParseException'
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:5:	Avoid unused imports such as 'java.text.SimpleDateFormat'
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:15:	Comment is too large: Too many lines
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:19:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:31:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:31:	Private field 'cursos' could be made final; it is only initialized in the declaration or constructor.
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:31:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:34:	Avoid using redundant field initializer for 'i'
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:34:	Avoid variables with short names like i
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:34:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:38:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:44:	Overridable method 'create' called during object construction
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:51:	Local variable 'curso' could be declared final
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:60:	Avoid variables with short names like gc
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:60:	Local variable 'gc' could be declared final
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:64:	System.out.println is used
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:70:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:73:	System.out.println is used
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:78:	Parameter 'curso' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:78:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:91:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:97:	Parameter 'codigo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:97:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:99:	Found 'DD'-anomaly for variable 'curso' (lines '99'-'108').
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:101:	Found 'DD'-anomaly for variable 'posicion' (lines '101'-'106').
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:108:	Found 'DD'-anomaly for variable 'curso' (lines '108'-'114').
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:112:	System.out.println is used
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:121:	Parameter 'codigo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:121:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:123:	Found 'DD'-anomaly for variable 'posicion' (lines '123'-'128').
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:133:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:133:	System.out.println is used
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:138:	Parameter 'curso' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:138:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:140:	Found 'DD'-anomaly for variable 'posicion' (lines '140'-'145').
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:150:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:150:	System.out.println is used
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:157:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:158:	Parameter 'codigo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:160:	Avoid variables with short names like i
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:160:	Found 'DD'-anomaly for variable 'posicion' (lines '160'-'173').
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:160:	Use one line for each declaration, it enhances code readability.
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:165:	Avoid unnecessary comparisons in boolean expressions
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:168:	Potential violation of Law of Demeter (method chain calls)
+src/main/java/com/ipartek/formacion/service/CursoServiceImp.java:173:	Found 'DD'-anomaly for variable 'posicion' (lines '173'-'173').
+src/main/java/com/ipartek/formacion/service/ProfesorService.java:17:	Avoid modifiers which are implied by the context
+src/main/java/com/ipartek/formacion/service/ProfesorService.java:17:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/ProfesorService.java:19:	Avoid modifiers which are implied by the context
+src/main/java/com/ipartek/formacion/service/ProfesorService.java:19:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/ProfesorService.java:21:	Avoid modifiers which are implied by the context
+src/main/java/com/ipartek/formacion/service/ProfesorService.java:21:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/ProfesorService.java:23:	Avoid modifiers which are implied by the context
+src/main/java/com/ipartek/formacion/service/ProfesorService.java:23:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/ProfesorService.java:25:	Avoid modifiers which are implied by the context
+src/main/java/com/ipartek/formacion/service/ProfesorService.java:25:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:8:	Avoid unused imports such as 'com.ipartek.formacion.dbms.pojo.Alumno'
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:10:	Avoid unused imports such as 'com.ipartek.formacion.service.exceptions.AlumnoServiceImpException'
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:12:	Comment is too large: Too many lines
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:17:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:29:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:29:	To avoid mistakes add a comment at the beginning of the profesores field if you want a default access modifier
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:29:	Use explicit scoping instead of the default package private level
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:29:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:31:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:34:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:40:	Overridable method 'create' called during object construction
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:45:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:65:	Parameter 'profesor' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:65:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:78:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:85:	Parameter 'codigo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:85:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:87:	Found 'DD'-anomaly for variable 'profesor' (lines '87'-'89').
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:96:	Parameter 'profesor' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:96:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:105:	Parameter 'codigo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/ProfesorServiceImp.java:105:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/Util.java:8:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/service/Util.java:11:	Avoid short class names like Util
+src/main/java/com/ipartek/formacion/service/Util.java:17:	Parameter 'dni' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/Util.java:17:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/exceptions/AlumnoServiceImpException.java:8:	Comment is too large: Line too long
+src/main/java/com/ipartek/formacion/service/exceptions/AlumnoServiceImpException.java:17:	Avoid excessively long variable names like COD_ALUMNO_NO_ENCONTRADO
+src/main/java/com/ipartek/formacion/service/exceptions/AlumnoServiceImpException.java:17:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/exceptions/AlumnoServiceImpException.java:19:	Avoid excessively long variable names like MSG_ALUMNO_NO_ENCONTRADO
+src/main/java/com/ipartek/formacion/service/exceptions/AlumnoServiceImpException.java:19:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/exceptions/AlumnoServiceImpException.java:23:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/service/exceptions/AlumnoServiceImpException.java:23:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/exceptions/AlumnoServiceImpException.java:25:	Avoid unused private fields such as 'mensaje'.
+src/main/java/com/ipartek/formacion/service/exceptions/AlumnoServiceImpException.java:25:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/service/exceptions/AlumnoServiceImpException.java:25:	Private field 'mensaje' could be made final; it is only initialized in the declaration or constructor.
+src/main/java/com/ipartek/formacion/service/exceptions/AlumnoServiceImpException.java:25:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/exceptions/AlumnoServiceImpException.java:28:	Parameter 'message' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/exceptions/AlumnoServiceImpException.java:28:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/exceptions/AlumnoServiceImpException.java:36:	Parameter 'codigo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/exceptions/AlumnoServiceImpException.java:36:	Parameter 'mensaje' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/exceptions/AlumnoServiceImpException.java:36:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/exceptions/AlumnoServiceImpException.java:46:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/exceptions/CursoServiceImpException.java:17:	Avoid excessively long variable names like COD_CURSO_NO_ENCONTRADO
+src/main/java/com/ipartek/formacion/service/exceptions/CursoServiceImpException.java:17:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/exceptions/CursoServiceImpException.java:19:	Avoid excessively long variable names like MSG_CURSO_NO_ENCONTRADO
+src/main/java/com/ipartek/formacion/service/exceptions/CursoServiceImpException.java:19:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/exceptions/CursoServiceImpException.java:23:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/service/exceptions/CursoServiceImpException.java:23:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/exceptions/CursoServiceImpException.java:25:	Avoid unused private fields such as 'mensaje'.
+src/main/java/com/ipartek/formacion/service/exceptions/CursoServiceImpException.java:25:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/com/ipartek/formacion/service/exceptions/CursoServiceImpException.java:25:	Private field 'mensaje' could be made final; it is only initialized in the declaration or constructor.
+src/main/java/com/ipartek/formacion/service/exceptions/CursoServiceImpException.java:25:	fieldCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/exceptions/CursoServiceImpException.java:28:	Parameter 'message' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/exceptions/CursoServiceImpException.java:28:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/exceptions/CursoServiceImpException.java:36:	Parameter 'codigo' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/exceptions/CursoServiceImpException.java:36:	Parameter 'mensaje' is not assigned and could be declared final
+src/main/java/com/ipartek/formacion/service/exceptions/CursoServiceImpException.java:36:	publicMethodCommentRequirement Required
+src/main/java/com/ipartek/formacion/service/exceptions/CursoServiceImpException.java:46:	publicMethodCommentRequirement Required
+src/test/java/com/ipartek/formacion/Main.java:3:	All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+src/test/java/com/ipartek/formacion/Main.java:3:	Avoid short class names like Main
+src/test/java/com/ipartek/formacion/Main.java:3:	headerCommentRequirement Required
+src/test/java/com/ipartek/formacion/Main.java:5:	Parameter 'args' is not assigned and could be declared final
+src/test/java/com/ipartek/formacion/Main.java:5:	publicMethodCommentRequirement Required

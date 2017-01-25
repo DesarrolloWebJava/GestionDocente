@@ -239,5 +239,13 @@ public class AlumnoServet extends HttpServlet {
 		/* Se devuelve el alumno creado.*/
 		return alumno;
 	}
-
+	
+	/* Metodo que se ejecuta al cerrar el Servlet. */
+	@Override
+	public void destroy() {
+		/* Se anula el servicio.*/
+		aS = null;
+		/* Se llama al destructor del padre.*/
+		super.destroy();
+	}
 }

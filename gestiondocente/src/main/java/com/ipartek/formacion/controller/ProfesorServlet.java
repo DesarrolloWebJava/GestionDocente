@@ -221,4 +221,13 @@ public class ProfesorServlet extends HttpServlet {
 		/* Se devuelve el alumno creado.*/
 		return profesor;		
 	}
+	
+	/* Metodo que se ejecuta al cerrar el Servlet. */
+	@Override
+	public void destroy() {
+		/* Se anula el servicio.*/
+		pS = null;
+		/* Se llama al destructor del padre.*/
+		super.destroy();
+	}
 }

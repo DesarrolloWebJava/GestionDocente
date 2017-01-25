@@ -86,7 +86,8 @@ public class Alumno extends Persona implements Comparable<Alumno>, Serializable 
 		this.nHermanos = nHermanos;
 	}
 
-	/* Metodo que es requerido en el ordenamiento de List o Array. */
+	/* Metodo que es requerido en el ordenamiento de List o Array. 
+	 * para la ordenación natural implementado por Comparable. */
 	@Override
 	public int compareTo(Alumno o) {
 		/* Devuelve la comparación entre el objeto pasado por parametro
