@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Alumno"%>
@@ -6,27 +7,31 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="../includes/header.jsp"/>
 <%
-	String titulo = "";
 	Alumno alumno = (Alumno)request.getAttribute(Constantes.ATT_ALUMNO);
 	if(alumno==null){//create
-		titulo = "Crear Alumno";
+		%>
+	<c:set var="titulo" value="Crear Alumno" scope="page" />
+		
+		<%
 		alumno = new Alumno();
 	}else{//update
-		titulo = "Actualizar Alumno";
-	
+		%>
+		<c:set var="titulo" value="some" scope="page" />
+		
+		<%
 	}
 %>
 <main>
-	<header><h2><%=titulo %></h2></header> 
+	<header><h2>${titulo}</h2></header> 
 	<form action="<%=Constantes.SERVLET_ALUMNO%>" method="post">
-		<input type="hidden" name="<%=Constantes.PAR_CODIGO %>" id="<%=Constantes.PAR_CODIGO %>" value="<%=alumno.getCodigo()%>">
+		<input type="hidden" name="<%=Constantes.PAR_CODIGO %>" id="<%=Constantes.PAR_CODIGO %>" value="${pageScope.alumno.codigo}">
 		<div>
 			<label for="<%=Constantes.PAR_NOMBRE%>">Nombre:</label>
-			<input value="<%=alumno.getNombre()%>" type="text" placeholder="Indroduzca el nombre.." name="<%=Constantes.PAR_NOMBRE %>" id="<%=Constantes.PAR_NOMBRE %>">
+			<input value="${pageScope.alumno.nombre}" type="text" placeholder="Indroduzca el nombre.." name="<%=Constantes.PAR_NOMBRE %>" id="<%=Constantes.PAR_NOMBRE %>">
 		</div>
 		<div>
 			<label for="<%=Constantes.PAR_APELLIDOS%>">Apellidos:</label>
-			<input value="<%=alumno.getApellidos()%>" type="text" placeholder="Introduzca el apellido.." name="<%=Constantes.PAR_APELLIDOS %>" id="<%=Constantes.PAR_APELLIDOS %>">
+			<input value="${pageScope.alumno.apellidos}" type="text" placeholder="Introduzca el apellido.." name="<%=Constantes.PAR_APELLIDOS %>" id="<%=Constantes.PAR_APELLIDOS %>">
 		</div>
 		<div>
 			<label for="<%=Constantes.PAR_DNI%>">DNI:</label>

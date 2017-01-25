@@ -53,7 +53,9 @@ public class AlumnoServlet extends HttpServlet {
 					rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 					break;
 				case Constantes.OP_READ:
+
 					cargarListaAlumnos(req);
+
 					break;
 				case Constantes.OP_UPDATE: {
 					int codigo = -1;
@@ -82,7 +84,7 @@ public class AlumnoServlet extends HttpServlet {
 			resp.sendRedirect(Constantes.JSP_HOME);
 			return;
 		}
-
+		System.out.println("Tamaño:" + ((List<Alumno>) req.getAttribute(Constantes.ATT_LISTADO_ALUMNOS)).size());
 		// hace la redirección
 		rd.forward(req, resp);
 
@@ -96,10 +98,12 @@ public class AlumnoServlet extends HttpServlet {
 		// limpia.
 		// obtenemos la lista de datos.
 		List<Alumno> alumnos = aS.getAll();
-		// fijamos la página de destino
-		rd = req.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
 		// añadimos el atributo a la request
 		req.setAttribute(Constantes.ATT_LISTADO_ALUMNOS, alumnos);
+
+		// fijamos la página de destino
+		rd = req.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
+
 	}
 
 	/*

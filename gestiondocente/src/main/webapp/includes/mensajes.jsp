@@ -6,7 +6,7 @@ if(request.getAttribute(Constantes.ATT_MENSAJE)!=null){
 	String mensaje = (String)request.getAttribute(Constantes.ATT_MENSAJE);
 %>
 <div>
-	<%=mensaje %>
+	${mensaje}
 </div>
 
 <%}%>
