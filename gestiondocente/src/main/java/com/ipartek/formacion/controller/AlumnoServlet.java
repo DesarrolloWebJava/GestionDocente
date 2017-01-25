@@ -48,10 +48,23 @@ public class AlumnoServlet extends HttpServlet {
 			case Constantes.OP_READ:
 				cargarListaAlumnos(request);
 				break;
-			case Constantes.OP_UPDATE:
-
+			case Constantes.OP_UPDATE:{
+				int codigo=-1;
+				codigo=Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+				Alumno alumno=aS.getById(codigo);
 				rd=request.getRequestDispatcher(Constantes.JSP_FORM_ALUMNO);
+				request.setAttribute(Constantes.ATT_ALUMNO, alumno);
+			}
 				break;
+			case Constantes.OP_DELETE:{
+				int codigo=-1;
+				codigo=Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+				aS.delete(codigo);
+				request.setAttribute(Constantes.ATT_MENSAJE, "El alumno ha sido borrado correctamente");
+				cargarListaAlumnos(request);
+				
+			}
+			break;
 				default:
 					cargarListaAlumnos(request);
 					break;
@@ -86,7 +99,9 @@ public class AlumnoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Alumno alumno=null;
 		String mensaje="";
+		int codigo=-1;
 		try{
+			codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
 		alumno=recogerParametros(req);
 		
 		if(alumno.getCodigo()>Alumno.CODIGO_NULO){
@@ -97,12 +112,23 @@ public class AlumnoServlet extends HttpServlet {
 			aS.create(alumno);
 			mensaje="El alumno ha sido creado correctamente";
 		}
-		
+		cargarListaAlumnos(req);
 		}catch(Exception e){
-			rd=req.getRequestDispatcher(Constantes.JSP_FORM_ALUMNO);
+			if(codigo==-1){
+				cargarListaAlumnos(req);
+				
+			}else{
+				alumno=aS.getById(codigo);
+				req.setAttribute(Constantes.ATT_ALUMNO, alumno);
+				rd=req.getRequestDispatcher(Constantes.JSP_FORM_ALUMNO);
+				
+			}
+
+			
 			mensaje=e.getMessage();
 		}
 		req.setAttribute("mensaje",mensaje);
+
 		rd.forward(req, resp);
 
 	}
@@ -120,16 +146,25 @@ public class AlumnoServlet extends HttpServlet {
 			alumno.setEmail(req.getParameter(Constantes.PAR_EMAIL));
 			if(!"".equalsIgnoreCase(req.getParameter(Constantes.PAR_NHERMANOS))){
 				alumno.setnHermanos(Integer.parseInt(req.getParameter(Constantes.PAR_NHERMANOS)));			
-			}		
-			alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));
+			}	
+			if ("1".equals(req.getParameter(Constantes.PAR_ACTIVO))){
+				alumno.setActivo(true);
+				
+			}
+			else
+				alumno.setActivo(false);
+			//alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO))); 
 			String date=req.getParameter(Constantes.PAR_FNACIMIENTO);
+			if(date!=null&&!"".equals(date))
+			{
 			String pattern = "dd/MM/yyyy";
 			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
 			alumno.setfNacimiento(dateFormat.parse(date));
+			}
 			
 		}catch(Exception e){
 			
-			throw new Exception("Se ha producido un error: "+ e.getMessage());
+			throw new Exception("Los datos no son válidos: "+ e.getMessage());
 		}
 
 		return alumno;

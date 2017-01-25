@@ -1,7 +1,6 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -46,10 +45,22 @@ public class ProfesorServlet extends HttpServlet {
 			case Constantes.OP_CREATE:
 				rd=request.getRequestDispatcher(Constantes.JSP_FORM_PROFESOR);
 				break;
-			case Constantes.OP_UPDATE:
-				
-				rd=request.getRequestDispatcher(Constantes.JSP_FORM_ALUMNO);
+			case Constantes.OP_UPDATE:{
+				int codigo=-1;
+				codigo=Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+				Profesor profesor=pS.getById(codigo);
+				request.setAttribute(Constantes.ATT_PROFESOR, profesor);		
+				rd=request.getRequestDispatcher(Constantes.JSP_FORM_PROFESOR);}
 				break;
+			case Constantes.OP_DELETE:{
+				int codigo=-1;
+				codigo=Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
+				pS.delete(codigo);
+				request.setAttribute(Constantes.ATT_MENSAJE, "El profesor ha sido borrado");
+				cargarListaProfesores(request);
+			}
+			break;
+
 				default:
 					cargarListaProfesores(request);
 					break;
@@ -80,7 +91,9 @@ public class ProfesorServlet extends HttpServlet {
 		
 		String mensaje="";
 		Profesor profesor=null;
+		int codigo=-1;
 		try{
+			codigo=Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
 			profesor=recogerParametros(request);
 			if(profesor.getCodigo()>Profesor.CODIGO_NULO){
 				pS.update(profesor);
@@ -93,10 +106,20 @@ public class ProfesorServlet extends HttpServlet {
 
 
 			}
-			
+			cargarListaProfesores(request);
 							
-		}catch(Exception e){
+		}catch(NumberFormatException e){
+
+		}
+		catch(Exception e){
+			if(codigo==-1){
+				rd=request.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
+			}
+			else{
+				profesor=pS.getById(codigo);
+				request.setAttribute(Constantes.ATT_PROFESOR, profesor);
 			rd=request.getRequestDispatcher(Constantes.JSP_FORM_PROFESOR);
+			}
 			mensaje=e.getMessage();
 		}
 
@@ -114,9 +137,10 @@ public class ProfesorServlet extends HttpServlet {
 			profesor.setApellidos(request.getParameter(Constantes.PAR_APELLIDOS));
 			profesor.setNombre(request.getParameter(Constantes.PAR_NOMBRE));
 			profesor.setEmail(request.getParameter(Constantes.PAR_EMAIL));
+					
 		}catch(Exception e)
 		{
-			throw new Exception("Se ha producido un error "+e.getMessage());
+			throw new Exception("Los datos no son válidos "+e.getMessage());
 		}
 		return profesor;
 	}
