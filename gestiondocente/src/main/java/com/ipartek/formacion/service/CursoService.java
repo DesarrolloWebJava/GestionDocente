@@ -11,6 +11,7 @@ import com.ipartek.formacion.dbms.pojo.Curso;
  *
  */
 public interface CursoService {
+	
 
 	public Curso create(Curso curso);
 

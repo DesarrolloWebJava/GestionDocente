@@ -16,7 +16,7 @@ import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 public class Curso implements Comparable<Curso>, Serializable{
 	
 	
-	private static final long serialVersionUID = -6698866485450376235L;
+	private static final long serialVersionUID = -6698866455450376235L;
 	private  int codigo;
 	public static final int CODIGO_NULO = -1;
 	private String nombre;
@@ -34,8 +34,8 @@ public class Curso implements Comparable<Curso>, Serializable{
 		this.duracion= 0;
 		this.fInicio =new Date();
 		this.fFin =new Date();
-		alumnos = new ArrayList<Alumno>();
-		profesor = new Profesor();
+		this.alumnos = new ArrayList<Alumno>();
+		this.profesor = new Profesor();
 		
 	}
 
@@ -149,6 +149,7 @@ public class Curso implements Comparable<Curso>, Serializable{
 	@Override
 	public int compareTo(Curso o) {
 		return this.getNombre().compareToIgnoreCase(o.getNombre());
+		//return this.nombre.compareToIgnoreCase(o.nombre);
 	}
 
 	/**

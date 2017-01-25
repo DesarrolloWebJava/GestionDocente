@@ -180,11 +180,11 @@ public class CursoServlet extends HttpServlet {
 			
 			
 			//alumno.setActivo(Boolean.parseBoolean( request.getParameter(Constantes.PAR_ACTIVO)));
-		}catch(Exception e){
-			
-			//throw new Exception(e.getMessage());
-			throw new Exception("los datos no son validos"+e.getMessage());
-		}
+			}catch(Exception e){
+				
+				//throw new Exception(e.getMessage());
+				throw new Exception("los datos no son validos"+e.getMessage());
+			}
 		
 		
 		//String nombre = request.getParameter("<%Constantes.PAR_NOMBRE%>");
