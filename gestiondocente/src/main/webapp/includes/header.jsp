@@ -1,8 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="com.ipartek.formacion.controler.Constantes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="com.ipartek.formacion.controler.i18nmesages" /> 
+
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="${language}">
 <head>
 <meta charset="UTF-8" >
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -22,6 +29,13 @@
 <div id="header">
 	<h1>Gestión Docente</h1>
 </div>
+	<nav class=" navbar-fixed-top" role="navigation" >
+		<ul class="nav navbar-nav">
+			<li><a href="<%=Constantes.SERVLET_IDIOMA %>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_CASTELLANO%>">Castellano</a></li>
+			<li><a href="<%=Constantes.SERVLET_IDIOMA %>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_EUSKERA%>">Euskera</a></li>
+			<li><a href="<%=Constantes.SERVLET_IDIOMA %>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_INGLES%>">Ingles</a></li>
+		</ul>
+	</nav>
 	<nav class="navbar navbar-default">
 		<ul class="nav navbar-nav">
 			<li>

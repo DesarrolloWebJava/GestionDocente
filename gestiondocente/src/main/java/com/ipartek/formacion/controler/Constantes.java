@@ -13,11 +13,15 @@ public final class Constantes {
 	public static final String ATT_ALUMNO = "alumno";
 	public static final String ATT_PROFESOR = "profesor";
 	public static final String ATT_CURSO = "curso";
+
 	public static final String ATT_LISTADO_CURSOS = "listadoCurso";
+	
+	public static final String SESSION_IDIOMA = "language";
 	
 	public static final String SERVLET_ALUMNO ="alumno.do";
 	public static final String SERVLET_PROFESOR ="profesor.do";
 	public static final String SERVLET_CURSO ="curso.do";
+	public static final String SERVLET_IDIOMA ="idioma.do";
 	
 	public static final String JSP_LISTADO_ALUMNOS="alumnos/listado.jsp";
 	public static final String JSP_CREAR_ALUMNOS="alumnos/alumno.jsp";
@@ -40,13 +44,16 @@ public final class Constantes {
 	public static final String PAR_NHERMANOS = "nHermanos";
 	public static final String PAR_ACTIVO = "activo";
 	public static final String PAR_NSS = "nSS";
+	public static final String PAR_IDIOMA = "idioma";
 	
 	//nombre paarmetros de la clase curso
 	public static final String PAR_DURACION = "duracion";
 	public static final String PAR_FINICIO = "fInicio";
 	public static final String PAR_FFIN = "fFin";
 	
-	
+	public static final int IDIOMA_EUSKERA =1;
+	public static final int IDIOMA_CASTELLANO = 2;
+	public static final int IDIOMA_INGLES = 3;
 
 	public static final int OP_CREATE =1;
 	public static final int OP_READ = 2;
