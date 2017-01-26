@@ -48,11 +48,24 @@ public class AlumnoServlet extends HttpServlet {
 				cargarListaAlumnos(req);
 				break;
 			case Constantes.OP_UPDATE:
-				//aS.getById(codigo)
+			{
+				int codigo = -1;
+				codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+				Alumno alumno = aS.getById(codigo);
 				//Se va redirigir a la pagina alumnos/alumno.jsp
 				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
-				//req.setAttribute(arg0, arg1);
-				
+				req.setAttribute(Constantes.ATT_ALUMNO, alumno);
+			}
+			break;
+			case Constantes.OP_DELETE:
+			{
+				int codigo=-1;
+				codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+				aS.delete(codigo);
+				req.setAttribute(Constantes.ATT_MENSAJE, "El alumno ha sido borrado correctamente");
+				cargarListaAlumnos(req);
+			}
+			break;
 			default:
 				cargarListaAlumnos(req);
 				break;
@@ -87,31 +100,42 @@ public class AlumnoServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Los formularios son post
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Alumno alumno = null;
-		String mensaje="";
-		
-		try{
-			alumno = recogerParametros(request);
-			
-			//Procesaremos UPDATE o INSERT
-			if (alumno.getCodigo()>Alumno.CODIGO_NULO){
-			aS.update(alumno);
-			mensaje="El alumno ha sido actualizado correctamente";
-			} else {//create
-			aS.create(alumno);
-			mensaje="El alumno ha sido creado correctamente";
+		String mensaje = "";
+		int codigo = -1;
+		try {
+
+			codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
+
+			alumno = recogerParametros(req);
+			alumno.setCodigo(codigo);
+			// procesaremos UPDATE or INSERT
+			if (alumno.getCodigo() > Alumno.CODIGO_NULO) {// update
+				aS.update(alumno);
+				mensaje = "El alumno ha sido actualizado correctamente";
+			} else {// create
+				aS.create(alumno);
+				mensaje = "El alumno ha sido creado correctamente";
 			}
-			cargarListaAlumnos(request);
-		} catch (Exception e){
-			
+			cargarListaAlumnos(req);
+		} catch (Exception e) {
 			// redirigir al formulario
-			rd=request.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
-			mensaje = e.getMessage();
+
+			if (codigo == -1) {
+				cargarListaAlumnos(req);
+				mensaje = "Se ha producido una operación inesperada contacte con el administrador del sistema.";
+			} else {
+				alumno = aS.getById(codigo);
+				req.setAttribute(Constantes.ATT_ALUMNO, alumno);
+				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
+
+				mensaje = e.getMessage();
+			}
+			System.out.println(e.getMessage());
 		}
-		request.setAttribute("mensaje", mensaje);
-		rd.forward(request,response);
+		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);
+		rd.forward(req, resp);
 	}
 
 	private Alumno recogerParametros(HttpServletRequest request) throws Exception {

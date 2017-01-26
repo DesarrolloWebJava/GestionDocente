@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Profesor"%>
 <%@page import="java.util.Map"%>
@@ -8,25 +9,20 @@
 
 
 <jsp:include page="../includes/header.jsp"/>
-
-	<main>
-	<%
-	
-	Map<Integer,Profesor> profesor = (Map<Integer, Profesor>)request.getAttribute(Constantes.ATT_LISTADO_PROFESORES);
-	%>
+<main>
 	<a href="<%=Constantes.SERVLET_PROFESOR %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_CREATE %>">Crear Profesor</a>
-	<ul>
+
 	<%
-	for(Map.Entry<Integer,Profesor> entry:profesor.entrySet()){
-		out.println("<li>clave="+entry.getKey()+",valor"+entry.getValue()+"</li>");
+		Map<Integer,Profesor> profesores = (Map<Integer,Profesor>) request.getAttribute(Constantes.ATT_LISTADO_PROFESORES);
+	
+	for(Map.Entry<Integer,Profesor> entry: profesores.entrySet()){
+		
+		String btn_update = "<a href='"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+entry.getValue().getCodigo()+"'>Editar</a>";
+		String btn_borrar = "<a href='"+Constantes.SERVLET_PROFESOR+"'>Borrar</a>";
+		out.write("<p>"+entry.getValue().toString()+btn_update+btn_borrar+"</p>");
 	}
-	
-	/*Esto es un scriplet*/
-	//Recogemos el atributo de la request
-	
 	%>
-	</ul>
-	</main>
+</main>
 	<%@include file="../includes/footer.html" %>
 
 </body>
