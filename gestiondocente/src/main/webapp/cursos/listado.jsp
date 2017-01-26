@@ -23,6 +23,8 @@
 	<br>
 	<br>
 	<div class="row">
+		<table class="table">
+		    <tbody>
 		<%	
 			for(Curso curso : cursos){
 				String dateInicio="";
@@ -33,15 +35,17 @@
 		    	gc = new GregorianCalendar();
 		    	gc.setTime(curso.getfFin());
 		    	dateFin = gc.get(GregorianCalendar.DAY_OF_MONTH)+"/"+(gc.get(GregorianCalendar.MONTH)+1)+"/"+gc.get(GregorianCalendar.YEAR);
-		    	
-		    	out.println("<p>"+curso.toString()+"  "+"Fecha Inicio:"+dateInicio+" "+"Fecha de Fin:"+dateFin
+		    %><tr>
+				<td>
+		    <% 	out.println("<p>"+curso.toString()+"  "+"Fecha Inicio:"+dateInicio+" "+"Fecha de Fin:"+dateFin
 				+"<a href='"+Constantes.SERVLET_CURSO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+curso.getCodigo()+"' class='btn btn-warning btn-xs' role='button' >UPDATE</a>"+
 				"<a href='"+Constantes.SERVLET_CURSO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+curso.getCodigo()+"' class='btn btn-danger btn-xs' role='button' >BORRAR</a>"+"</p>");	
 			}
 			%>
 			</a>
-		<% 
-		%>
+			</td></tr>
+			</tbody>
+		</table>
 	</div>
 </div>
 

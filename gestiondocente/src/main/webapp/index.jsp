@@ -2,10 +2,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<c:set var="language" value="${'es_ES'}" scope="page" />
-<fmt:setBundle basename="com.ipartek.formacion.controler.i18nmesages" /> 
+<c:set var="language" value="${'en_EN'}" scope="page" />
 <fmt:setLocale value="${language}" />
- 
+<fmt:setBundle basename="com.ipartek.formacion.controler.i18nmesages" /> 
+
 <jsp:include page="includes/header.jsp"/>
 
 <main>

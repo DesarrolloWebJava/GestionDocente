@@ -19,23 +19,28 @@
 		<br>
 		<br>
 		<a href="<%=Constantes.SERVLET_PROFESOR%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE %>" class="btn btn-primary btn-lg active " role="button"> Crear Profesor</a>
-		<ul>
-		<br>
-		<br>
-		<% 
-		for (Map.Entry<Integer, Profesor> entry : profesores.entrySet()) {
-			 int codigo = entry.getKey();
-			 Profesor profesor = entry.getValue();
-			// out.println("<li>" + entry.getKey() + "  email=" + profesor.getEmail() + "</li>");
-		    out.println("<li>"+ profesor.toString()+ " "
-		    	+"<a href='"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+profesor.getCodigo()+"' class='btn btn-warning btn-xs' role='button' >UPDATE</a>"
-		   		+"<a href='"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+profesor.getCodigo()+"' class='btn btn-danger btn-xs' role='button' >Borrar</a>"+"</li>");	
-		  //  out.write(entry.getValue().)
-		  
-		}
 		
-		%>
-		</ul>
+		<br>
+		<br>
+		<table class="table">
+		    <tbody>
+			<% 
+			for (Map.Entry<Integer, Profesor> entry : profesores.entrySet()) {
+				 int codigo = entry.getKey();
+				 Profesor profesor = entry.getValue();
+				// out.println("<li>" + entry.getKey() + "  email=" + profesor.getEmail() + "</li>");
+				 %>
+			 	<tr><td> 
+			 	<% 
+				out.println( profesor.toString()+ " "
+			    	+"<a href='"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+profesor.getCodigo()+"' class='btn btn-warning btn-xs' role='button' >UPDATE</a>"
+			   		+"<a href='"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+profesor.getCodigo()+"' class='btn btn-danger btn-xs' role='button' >Borrar</a>");	
+				 
+			  	
+				}%>
+			<tr><td>
+		 </tbody>
+		</table>	
 	</div>
 
 <%@ include file="../includes/footer.html" %>

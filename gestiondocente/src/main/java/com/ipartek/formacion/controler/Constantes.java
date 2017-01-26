@@ -47,7 +47,7 @@ public final class Constantes {
 	public static final String PAR_FFIN = "fFin";
 	
 	
-	
+
 	public static final int OP_CREATE =1;
 	public static final int OP_READ = 2;
 	public static final int OP_UPDATE = 3;
