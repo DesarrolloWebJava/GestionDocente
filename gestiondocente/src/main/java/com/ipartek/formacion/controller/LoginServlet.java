@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
   
 
 	/* Metodo a ejecutar al recibir una petición Get. */
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		/* Se iniciliza el Locale por defecto a español. (Internacionalización).*/
 		Locale locale = new Locale("es_ES");
 		/* Se declara la variable donde se recoge el lenguaje de la sesión.
@@ -43,10 +43,12 @@ public class LoginServlet extends HttpServlet {
 		/* Se declara la variable donde contener el recurso de propiedades 
 		 * que contiene la internacionalizacion */
 		ResourceBundle messages = null;
+		/* Se monta estructura para la captura de excepciones.*/
 		try{
 			// Se recoge el recurso de propiedades que contiene la internacionalizacion. 
 			messages = ResourceBundle.getBundle(
 					"com.ipartek.formacion.egunon.controller.i18nmessages", locale);
+		/* Se captura la excepción.*/	
 		}catch(Exception e){			
 		
 			
@@ -58,7 +60,7 @@ public class LoginServlet extends HttpServlet {
 		rd = req.getRequestDispatcher(Constantes.JSP_HOME);
 		/* Se redirecciona enviando por parametro los request y response 
 		 * recibidos por parametro.*/
-		rd.forward(req, res);
+		rd.forward(req, resp);
 	}	
 
 	/* Metodo a ejecutar al recibir una petición Post. */

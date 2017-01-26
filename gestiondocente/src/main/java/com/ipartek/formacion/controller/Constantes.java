@@ -12,11 +12,16 @@ import com.ipartek.formacion.dbms.pojo.Profesor;
 /**
  * @author Raúl de Roba 18/01/17
  * 
+ * Constantes para gestionar en los JSP.
+ * 
  */
 /* Si una clase tiene el constructor privado la clase será final.*/
 public final class  Constantes {
 	/* Constantes de página inicial.*/
 	public static final String JSP_HOME = "index.jsp";
+	
+	/* Constantes de variables de sesión.*/
+	public static final String SESION_IDIOMA = "language";
 	
 	/* Constantes de atributos de Servlets.*/
 	public static final String ATT_LISTADO_ALUMNOS = "listadoAlumnos";
@@ -24,12 +29,13 @@ public final class  Constantes {
 	public static final String ATT_LISTADO_CURSOS = "listadoCursos";
 	public static final String ATT_MENSAJES = "mensajes";
 	public static final String ATT_ALUMNOS = "alumno";
-	public static final String ATT_CURSOS = "curso";
+	public static final String ATT_CURSOS = "curso";	
 	
 	/* Constantes de redireccionamiento de Servlets.*/
 	public static final String SERVLET_ALUMNO = "alumno.do";
 	public static final String SERVLET_PROFESOR = "profesor.do";
 	public static final String SERVLET_CURSO = "curso.do";
+	public static final String SERVLET_IDIOMA = "idioma.do";	
 	
 	/* Constantes de listados de Servlets.*/
 	public static final String JSP_LISTADO_ALUMNO = "alumnos/listado.jsp";
@@ -39,12 +45,12 @@ public final class  Constantes {
 	/* Constantes de formularios de Servlets.*/
 	public static final String JSP_FORMULARIO_ALUMNO = "alumnos/alumno.jsp";
 	public static final String JSP_FORMULARIO_PROFESOR = "profesores/profesor.jsp";
-	public static final String JSP_FORMULARIO_CURSO = "cursos/curso.jsp";
-	
+	public static final String JSP_FORMULARIO_CURSO = "cursos/curso.jsp";	
 	
 	
 	/* Constantes para identificar los parametros de operaciones de Servlets.*/
 	public static final String PAR_OPERACION = "op";
+	public static final String PAR_IDIOMA = "idioma";
 	
 	/* Constantes para identificar el valor de los parametros de
 	 *  operaciones de Servlets.*/
@@ -52,6 +58,11 @@ public final class  Constantes {
 	public static final int OP_READ = 2;	
 	public static final int OP_UPDATE = 3;
 	public static final int OP_DELETE = 4;		
+	
+	/* Constantes para identificar los parametros de los atributos de los idiomas.*/
+	public static final int IDIOMA_EUSKERA = 1;
+	public static final int IDIOMA_CASTELLANO = 2;
+	public static final int IDIOMA_INGLES = 3;	
 	
 	/* Constantes para identificar los parametros de los atributos de la clase Persona.*/
 	public static final String PAR_CODIGO = "codigo";
@@ -70,6 +81,8 @@ public final class  Constantes {
 	public static final String PAR_DURACION = "duracion";	
 	public static final String PAR_FINICIO = "finicio";
 	public static final String PAR_FFIN = "ffin";
+	
+	/* */
 	
 	private Constantes(){
 		

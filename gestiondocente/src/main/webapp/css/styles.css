@@ -5,3 +5,15 @@ body{
 	background: url("../images/fondo.jpg");
 	font-size: 1.5em;
 }
+/* Titulo Principal.*/
+h1 {
+	/* Tamaño de fuente.*/
+    font-size: 2em;
+    /* Subrayado.*/
+    text-decoration: underline;
+}
+/* Titulo Secundario.*/
+h2 {
+    /* Subrayado.*/
+    text-decoration: underline;
+}
