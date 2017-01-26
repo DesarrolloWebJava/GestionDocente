@@ -17,7 +17,7 @@
 	<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE%>">Crear Alumno</a>
 
 	<c:forEach items="${requestScope.listadoAlumno}" var="aux">
-    	<div> ${aux.nombre} </div>
+    	<div> ${aux} </div>
 	</c:forEach>
 
 	</main>
