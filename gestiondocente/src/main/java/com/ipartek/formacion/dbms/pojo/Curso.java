@@ -3,11 +3,8 @@ package com.ipartek.formacion.dbms.pojo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
-
-import javax.swing.text.html.HTMLDocument.HTMLReader.FormAction;
-
+import com.ipartek.formacion.service.Util;
 import com.ipartek.formacion.service.exceptions.CursoServiceImpException;
 
 /**
@@ -133,14 +130,8 @@ public class Curso implements Comparable<Curso>, Serializable {
 	@Override
 	public String toString() {
 		return "Curso [ codigo = " + codigo + ", nombre = " + nombre + ", duracion = " + duracion 
-				+ ", Fecha Inicio = " + formatoFecha(fInicio) + ", Fecha Fin = " + formatoFecha(fFin) + " ]";
+				+ ", Fecha Inicio = " + Util.formatoFecha(fInicio) + ", Fecha Fin = " + Util.formatoFecha(fFin) + " ]";
 	}
 	
-	private String formatoFecha(Date fechaSinFormato){
-		String fecha ="";
-		GregorianCalendar gc = new GregorianCalendar();
-		gc.setTime(fechaSinFormato);
-		fecha = gc.get(GregorianCalendar.DAY_OF_MONTH)+"/"+(gc.get(GregorianCalendar.MONTH)+1)+"/"+gc.get(GregorianCalendar.YEAR);
-		return fecha;
-	}
+	
 }

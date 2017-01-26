@@ -9,18 +9,22 @@ public class Constantes {
 	private Constantes() {
 	}
 	//Asi en lugar de poner las cadenas, que podemos equivocarnos, llamamos a la constante
-	public static final String ATT_LISTADO_PROFESORES = "listado-profesores";
-	public static final String ATT_LISTADO_ALUMNOS = "listado-alumnos";
-	public static final String ATT_LISTADO_CURSOS = "listado-cursos";
+	public static final String ATT_LISTADO_PROFESORES = "listadoProfesores";
+	public static final String ATT_LISTADO_ALUMNOS = "listadoAlumnos";
+	public static final String ATT_LISTADO_CURSOS = "listadoCursos";
 	public static final String ATT_MENSAJE = "mensaje";
 	public static final String ATT_ALUMNO = "alumno";
 	public static final String ATT_PROFESOR = "profesor";
 	public static final String ATT_CURSO = "curso";
 	
+	//Variables de sesion
+	public static final String SESSION_IDIOMA = "language";
+	
 	//llamadas de los servlets
 	public static final String SERVLET_ALUMNO = "alumno.do";
 	public static final String SERVLET_PROFESOR = "profesor.do";
 	public static final String SERVLET_CURSO = "curso.do";
+	public static final String SERVLET_IDIOMA = "idioma.do";
 	
 	//JSP
 	public static final String JSP_LISTADO_ALUMNOS = "alumnos/listado.jsp";
@@ -51,6 +55,8 @@ public class Constantes {
 	public static final String PAR_DURACION = "duracion";
 	public static final String PAR_FINICIO = "fInicio";
 	public static final String PAR_FFIN = "fFin";
+	//Parametros de idioma
+	public static final String PAR_IDIOMA = "idioma";
 
 	
 	//Constantes de operaciones de CRUD
@@ -59,5 +65,8 @@ public class Constantes {
 	public static final int OP_UPDATE = 3;
 	public static final int OP_DELETE = 4;
 	
-	
+	//Idiomas
+	public static final int IDIOMA_EUSKERA = 1;
+	public static final int IDIOMA_CASTELLANO = 2;
+	public static final int IDIOMA_INGLES = 3;
 }

@@ -18,10 +18,10 @@
 		<!-- El items es la lista. 
 		alumno es cada elemento de la lista
 		El foreach recorre cada elemento de la lista -->
-		<c:forEach var="alumno" items="${listado-alumnos}">
+		<c:forEach var="alumno" items="${listadoAlumnos}">
 			<!-- Con esto saco el nombre del alumno. Hace un getter -->
 			<div>
-				${alumno.nombre} ${alumno.apellido} <a href="#">Editar</a><a href="#">Borrar</a>
+				${alumno.nombre} ${alumno.apellidos} <a href="">Editar</a><a href="">Borrar</a>
 			</div>
 		</c:forEach>
 		
