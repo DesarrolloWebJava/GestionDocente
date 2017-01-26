@@ -83,5 +83,4 @@ public class Alumno extends Persona implements Comparable<Alumno>, Serializable 
 		}
 		return iguales;
 	}
-
 }

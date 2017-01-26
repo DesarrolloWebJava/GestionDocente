@@ -25,7 +25,7 @@ import com.ipartek.formacion.service.exceptions.AlumnoServiceImpException;
  * @author va00
  *
  */
-public class AlumnoServiceImp implements AlumnoService{
+public class AlumnoServiceImp implements AlumnoService {
 
 	private List<Alumno> alumnos;
 	private static int i = 0;
