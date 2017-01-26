@@ -6,6 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="../includes/header.jsp" />
+<c:set var="listado" value="<%=Constantes.ATT_LISTADO_ALUMNOS %>"/>
 	<main>
 	<%
 	/*Esto es un scriplet */
@@ -15,8 +16,8 @@
 	%>
 	<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE%>">Crear Alumno</a>
 
-	<c:forEach items="${listadoAlumno}" var="alumno">
-    	<div> ${alumno.nombre} </div>
+	<c:forEach items="${requestScope.listadoAlumno}" var="aux">
+    	<div> ${aux.nombre} </div>
 	</c:forEach>
 
 	</main>

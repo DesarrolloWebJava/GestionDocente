@@ -16,7 +16,7 @@
 		alumno = new Alumno();
 	}else{//update
 		%>
-		<c:set var="titulo" value="some" scope="page" />
+		<c:set var="titulo" value="Actualizar Alumno" scope="page" />
 		
 		<%
 	}

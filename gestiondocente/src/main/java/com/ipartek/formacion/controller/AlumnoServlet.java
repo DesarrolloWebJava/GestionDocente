@@ -84,7 +84,7 @@ public class AlumnoServlet extends HttpServlet {
 			resp.sendRedirect(Constantes.JSP_HOME);
 			return;
 		}
-		System.out.println("Tamaño:" + ((List<Alumno>) req.getAttribute(Constantes.ATT_LISTADO_ALUMNOS)).size());
+
 		// hace la redirección
 		rd.forward(req, resp);
 
