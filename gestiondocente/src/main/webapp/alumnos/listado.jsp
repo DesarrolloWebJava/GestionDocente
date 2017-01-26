@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="com.ipartek.formacion.controler.Constantes"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Alumno"%>
 <%@page import="java.util.List"%>
@@ -12,7 +13,8 @@
 				/*esto es un criplet*/
 				//recogemos el atributo de la request y lo gardamos en un objeto lista
 				//hay q hacer un casting de request y decirle q es tipo list
-				List<Alumno> alumnos =(List<Alumno>) request.getAttribute(Constantes.ATT_LISTADO_ALUMNOS); 
+				//variable de la pagina alumnos
+				//List<Alumno> alumnos =(List<Alumno>) request.getAttribute(Constantes.ATT_LISTADO_ALUMNOS); 
 				//sacar la lista por pantalla	
 			%>
 		<br>
@@ -21,14 +23,22 @@
 		<br>
 		<br>
 		<div class="row">
+		
+	<c:forEach items="${listadoAlumno}" var="alumno">
+    	<div> ${alumno.nombre} </div>
+	</c:forEach>
+	
 			<% 
+			/*
 				for(Alumno alumno : alumnos){
 					String btn_delete ="";
 					out.println("<p>"+alumno.toString()+"  "
 					+"<a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+alumno.getCodigo()+"' class='btn btn-warning btn-xs' role='button' >UPDATE</a>"+
 					"<a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+alumno.getCodigo()+"' class='btn btn-danger btn-xs' role='button' >Borrar</a>"+"</p>");	
 				}
-				%>
+			*/
+			%>
+		
 				</a>
 			<% 
 			%>
