@@ -9,39 +9,28 @@
 
 	<div class="container">
 		<h1>Página Listado Alumnos</h1>
-			<%
-				/*esto es un criplet*/
-				//recogemos el atributo de la request y lo gardamos en un objeto lista
-				//hay q hacer un casting de request y decirle q es tipo list
-				//variable de la pagina alumnos
-				//List<Alumno> alumnos =(List<Alumno>) request.getAttribute(Constantes.ATT_LISTADO_ALUMNOS); 
-				//sacar la lista por pantalla	
-			%>
+
 		<br>
 		<br>
 		<a href="<%=Constantes.SERVLET_ALUMNO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE %>" class="btn btn-primary btn-lg active" role="button"> Crear Alumno </a>
 		<br>
 		<br>
 		<div class="row">
-		
-	<c:forEach items="${listadoAlumno}" var="alumno">
-    	<div> ${alumno.nombre} </div>
-	</c:forEach>
-	
-			<% 
-			/*
-				for(Alumno alumno : alumnos){
-					String btn_delete ="";
-					out.println("<p>"+alumno.toString()+"  "
-					+"<a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+alumno.getCodigo()+"' class='btn btn-warning btn-xs' role='button' >UPDATE</a>"+
-					"<a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+alumno.getCodigo()+"' class='btn btn-danger btn-xs' role='button' >Borrar</a>"+"</p>");	
-				}
-			*/
-			%>
-		
-				</a>
-			<% 
-			%>
+	    	<table class="table">
+		    	<tbody>
+		    	<c:forEach items="${listadoAlumno}" var="alumno">
+			    	  <tr>
+						<td>${alumno.nombre}</td>
+						<td>${alumno.apellidos}</td>
+						<td>${alumno.dni}<td>
+						<td>
+							<a href="${Constantes.SERVLET_ALUMNO}?op=<c:out value="${1}"/>&codigo=<c:out value="${alumno.codigo}" />" class='btn btn-warning btn-xs' role='button' >UPDATE</a>
+							<a href="${Constantes.SERVLET_ALUMNO}?op=<c:out value="${4}"/>&codigo=<c:out value="${alumno.codigo}" />" class='btn btn-danger btn-xs' role='button' >BORRAR</a>
+						</td> 
+					 </tr>
+				</c:forEach>
+				</tbody>
+			</table>
 		</div>
 	</div>
 
