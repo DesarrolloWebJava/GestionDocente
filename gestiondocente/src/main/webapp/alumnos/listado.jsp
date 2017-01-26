@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@page import="java.util.List"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Alumno"%>
@@ -20,6 +21,14 @@
 		out.println(alumno.toString()+" <a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+alumno.getCodigo()+"'>Editar</a>" +btn_delete);
 	}
 	 %>
+	 
+	 
+	<h1> MISMO MENÚ con JSTL</h1>
+	 <a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE%>">Crear Alumno</a>
+
+	<c:forEach items="${listadoAlumnos}" var="alumno">
+    	<div> ${alumno.nombre} </div>
+	</c:forEach>
 	</main>
 <%@ include file="../includes/footer.html" %>
 </body>
