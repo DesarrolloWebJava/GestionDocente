@@ -1,0 +1,7 @@
+@CHARSET "ISO-8859-1";
+/* Cuerpo de la página.*/
+body{
+	/* Imagen de fondo.*/
+	background: url("../images/fondo.jpg");
+	font-size: 1.5em;
+}

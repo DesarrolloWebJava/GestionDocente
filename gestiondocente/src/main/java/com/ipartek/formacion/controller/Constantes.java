@@ -19,9 +19,9 @@ public final class  Constantes {
 	public static final String JSP_HOME = "index.jsp";
 	
 	/* Constantes de atributos de Servlets.*/
-	public static final String ATT_LISTADO_ALUMNOS = "listado-alumnos";
-	public static final String ATT_LISTADO_PROFESORES = "listado-profesores";
-	public static final String ATT_LISTADO_CURSOS = "listado-cursos";
+	public static final String ATT_LISTADO_ALUMNOS = "listadoAlumnos";
+	public static final String ATT_LISTADO_PROFESORES = "listadoProfesores";
+	public static final String ATT_LISTADO_CURSOS = "listadoCursos";
 	public static final String ATT_MENSAJES = "mensajes";
 	public static final String ATT_ALUMNOS = "alumno";
 	public static final String ATT_CURSOS = "curso";
