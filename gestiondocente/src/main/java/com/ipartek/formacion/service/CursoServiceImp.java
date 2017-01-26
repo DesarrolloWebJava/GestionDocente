@@ -2,17 +2,18 @@ package com.ipartek.formacion.service;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.dbms.pojo.Curso;
+import com.ipartek.formacion.dbms.pojo.CursoDuracionComparator;
 import com.ipartek.formacion.dbms.pojo.exceptions.CursoException;
-import com.ipartek.formacion.service.exceptions.AlumnoServiceImpException;
+
 
 /**
  * <div>
  * <p>
- * Esta clase se va encargar de gestionar las operaciones de CRUD del Curso
+ * Esta clase se va encargar de gestionar las operaciones de CRUD del Curso.
  * </p>
  * <ul>
  * <li>C: Create</li>
@@ -22,7 +23,7 @@ import com.ipartek.formacion.service.exceptions.AlumnoServiceImpException;
  * </ul>
  * </div>
  * 
- * @author Sergio aparicio
+ * @author Sergio aparicio.
  *
  */
 public class CursoServiceImp implements CursoService {
@@ -100,6 +101,8 @@ private void init() {
 		   e.printStackTrace();
 	   }
 
+  Collections.sort(cursos, new CursoDuracionComparator());
+  Collections.reverse(cursos);
   
 }// fin del init
 

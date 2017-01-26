@@ -1,6 +1,12 @@
 package com.ipartek.formacion.dbms.pojo;
 
-public class Profesor extends Persona {
+import java.io.Serializable;
+
+public class Profesor extends Persona implements Comparable<Profesor>, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -986241053422788368L;
 	public static final int CODIGO_NULO = -1;
 	private int nSS;
 	private int codigo;
@@ -29,6 +35,12 @@ public class Profesor extends Persona {
 	@Override
 	public String toString() {
 		return this.getCodigo() + " " + this.getApellidos() + ", " + this.getNombre() + " " + this.getDni()+ " " + this.getEmail();
+	}
+
+	@Override
+	public int compareTo(Profesor o) {
+		
+		return this.getApellidos().compareTo(o.getApellidos());
 	}
 
 }

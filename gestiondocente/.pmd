@@ -295,7 +295,7 @@
         </rule>
         <rule>
             <name>CollapsibleIfStatements</name>
-            <ruleset>Basic</ruleset>
+            <ruleset>Basic Velocity</ruleset>
         </rule>
         <rule>
             <name>ClassCastExceptionWithToArray</name>
@@ -643,7 +643,7 @@
         </rule>
         <rule>
             <name>AssignmentInOperand</name>
-            <ruleset>Controversial</ruleset>
+            <ruleset>Basic Ecmascript</ruleset>
         </rule>
         <rule>
             <name>AtLeastOneConstructor</name>
@@ -735,11 +735,11 @@
         </rule>
         <rule>
             <name>AvoidDeeplyNestedIfStmts</name>
-            <ruleset>Design</ruleset>
+            <ruleset>Basic Velocity</ruleset>
         </rule>
         <rule>
             <name>AvoidReassigningParameters</name>
-            <ruleset>Design</ruleset>
+            <ruleset>Basic Velocity</ruleset>
         </rule>
         <rule>
             <name>SwitchDensity</name>
@@ -999,19 +999,19 @@
         </rule>
         <rule>
             <name>VariableNamingConventions</name>
-            <ruleset>Style</ruleset>
+            <ruleset>Naming</ruleset>
         </rule>
         <rule>
             <name>MethodNamingConventions</name>
-            <ruleset>Style</ruleset>
+            <ruleset>Naming</ruleset>
         </rule>
         <rule>
             <name>ClassNamingConventions</name>
-            <ruleset>Style</ruleset>
+            <ruleset>Naming</ruleset>
         </rule>
         <rule>
             <name>MethodWithSameNameAsEnclosingClass</name>
-            <ruleset>Style</ruleset>
+            <ruleset>Naming</ruleset>
         </rule>
         <rule>
             <name>AvoidLogicInTrigger</name>
@@ -1047,7 +1047,7 @@
         </rule>
         <rule>
             <name>EmptyIfStmt</name>
-            <ruleset>Empty Code</ruleset>
+            <ruleset>Basic Velocity</ruleset>
         </rule>
         <rule>
             <name>EmptyWhileStmt</name>
@@ -1171,7 +1171,7 @@
         </rule>
         <rule>
             <name>UnnecessaryParentheses</name>
-            <ruleset>Unnecessary</ruleset>
+            <ruleset>Controversial</ruleset>
         </rule>
         <rule>
             <name>UnnecessaryBlock</name>
@@ -1323,39 +1323,39 @@
         </rule>
         <rule>
             <name>AvoidDeeplyNestedIfStmts</name>
-            <ruleset>Complexity</ruleset>
+            <ruleset>Basic Velocity</ruleset>
         </rule>
         <rule>
             <name>ExcessiveParameterList</name>
-            <ruleset>Complexity</ruleset>
+            <ruleset>Code Size</ruleset>
         </rule>
         <rule>
             <name>ExcessiveClassLength</name>
-            <ruleset>Complexity</ruleset>
+            <ruleset>Code Size</ruleset>
         </rule>
         <rule>
             <name>NcssMethodCount</name>
-            <ruleset>Complexity</ruleset>
+            <ruleset>Code Size</ruleset>
         </rule>
         <rule>
             <name>NcssTypeCount</name>
-            <ruleset>Complexity</ruleset>
+            <ruleset>Code Size</ruleset>
         </rule>
         <rule>
             <name>NcssConstructorCount</name>
-            <ruleset>Complexity</ruleset>
+            <ruleset>Code Size</ruleset>
         </rule>
         <rule>
             <name>StdCyclomaticComplexity</name>
-            <ruleset>Complexity</ruleset>
+            <ruleset>Code Size</ruleset>
         </rule>
         <rule>
             <name>TooManyFields</name>
-            <ruleset>Complexity</ruleset>
+            <ruleset>Code Size</ruleset>
         </rule>
         <rule>
             <name>ExcessivePublicCount</name>
-            <ruleset>Complexity</ruleset>
+            <ruleset>Code Size</ruleset>
         </rule>
         <rule>
             <name>MistypedCDATASection</name>

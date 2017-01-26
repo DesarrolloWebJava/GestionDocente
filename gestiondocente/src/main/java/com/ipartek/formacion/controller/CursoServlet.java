@@ -1,7 +1,6 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -13,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.dbms.pojo.Curso;
-import com.ipartek.formacion.dbms.pojo.exceptions.CursoException;
 import com.ipartek.formacion.service.CursoService;
 import com.ipartek.formacion.service.CursoServiceImp;
+import com.ipartek.formacion.service.Util;
 
 /**
  * Servlet implementation class CursoServlet
@@ -143,8 +142,7 @@ public class CursoServlet extends HttpServlet {
 	private Curso recogerParametros(HttpServletRequest req) throws Exception {
 		
 		Curso curso = new Curso();
-		Date fecha;
-		SimpleDateFormat dfmt = new SimpleDateFormat(Constantes.FECHA_PATRON);
+		
 		
 		try {
 			curso.setCodigo(Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO)));
@@ -152,15 +150,19 @@ public class CursoServlet extends HttpServlet {
 			curso.setDuracion(Integer.parseInt(req.getParameter(Constantes.PAR_DURACION)));
 			String fInicio = req.getParameter(Constantes.PAR_FECHA_INI);
 			String fFin    = req.getParameter(Constantes.PAR_FECHA_FIN);
+			curso.setfInicio(Util.parseLatinDate(fInicio));
+			curso.setfFin(Util.parseLatinDate(fFin));
+			/*
 			fecha = dfmt.parse(fInicio);
 			curso.setfInicio(fecha);
 			fecha = dfmt.parse(fFin);
 			curso.setfFin(fecha);
+			*/
 		
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			throw new Exception("Los datos no son validos ->" + e.getMessage());
+			throw new Exception("Los datos no son validos -> " + e.getMessage());
 		}
 		
 		return curso;
@@ -170,13 +172,13 @@ public class CursoServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		// Nuestro codigo de la muerte
-		cS = new CursoServiceImp();
+		this.cS = new CursoServiceImp();
 		super.init();
 	}
 
 	@Override
 	public void destroy() {
-		cS=null;
+		this.cS=null;
 		super.destroy();
 	}
 	

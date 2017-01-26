@@ -3,6 +3,7 @@ package com.ipartek.formacion.dbms.pojo;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,10 @@ import static com.ipartek.formacion.dbms.pojo.exceptions.CursoException.*;
 
 public class Curso implements Comparable<Curso>, Serializable{
 
+/**
+	 * 
+	 */
+private static final long serialVersionUID = 1L;
 public static final int CODIGO_NULO = -1;
 public static final int NUM_MIN_CARACTERES = 8;
 public static final String PATRON_FECHA="dd/MM/yyyy";
@@ -30,8 +35,8 @@ public Curso() {
 	this.duracion=0;
 	this.fInicio = new Date();
 	this.fFin  = new Date();
-	this.alumnos = null;
-	this.profesor = null;
+	this.alumnos = new ArrayList<Alumno>();
+	this.profesor = new Profesor();
 }
 
 public int getCodigo() {
@@ -128,13 +133,15 @@ public String toString() {
 
 @Override
 public int compareTo(Curso o) {
-	return this.codigo - o.getCodigo();
+	//return this.codigo - o.getCodigo();
+	return this.nombre.compareToIgnoreCase(o.getNombre());
+	// return  o.getCodigo() - this.codigo; DE MAYOR A MENOR
 }
 
 @Override
 public boolean equals(Object obj) {
 boolean resultado = false;
-if (obj != null)
+if (obj != null && obj instanceof  Curso)
 {
 	if (this == obj)
 		resultado = true;

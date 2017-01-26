@@ -7,8 +7,8 @@
   <name>GestionDocente</name>
   <description>Este proyecto pretende gestionar las altas bajas y modificaciones de alumnos, profesores y cursos.</description>
   <properties>
-		<encoding>UTF-8</encoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jstl.version>1.2</jstl.version>
   </properties>
   <dependencies>
           <!-- Servlet -->
@@ -24,6 +24,13 @@
             <version>2.1</version>
             <scope>provided</scope>
         </dependency>
+        <!-- JSTL Java -->
+		  <dependency>
+    		<groupId>javax.servlet</groupId>
+    		<artifactId>jstl</artifactId>
+    		<!-- Cambia el valor de la version ${jstl.version} por el valor definido en la seccion properties -->
+    		<version>${jstl.version}</version> 
+		  </dependency>
  </dependencies>
 <build>
 	<plugins>

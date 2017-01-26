@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Curso"%>
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
@@ -6,17 +7,20 @@
 <jsp:include page="../includes/header.jsp"/>
 <%
  String titulo="";
+String titulo_boton;
 String  fechaInicio="";
 String  fechaFin="";
  Curso curso = (Curso)request.getAttribute(Constantes.ATT_CURSO);
  if (curso == null)
  {
 	 titulo = "Crear Curso";
+	 titulo_boton="Crear Curso";
 	 curso = new Curso();
  }
  else
  {
 	 titulo = "Actualizar Curso";
+	 titulo_boton="Actualizar Curso";
 	 
  }
  
@@ -48,7 +52,7 @@ String  fechaFin="";
       <input type="number" placeholder="Introduzca aqui la duracion en horas.." id="<%=Constantes.PAR_DURACION %>" name="<%=Constantes.PAR_DURACION%>" value="<%=curso.getDuracion()%>">
     </div>
 
-    <input type="submit" value="Enviar"/>
+    <input type="submit" value="<%=titulo_boton%>"/>
 	</form>
 </main>
 <%@ include file="../includes/footer.html" %>
