@@ -1,4 +1,5 @@
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="com.ipartek.formacion.service.ProfesorServiceImp"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Profesor"%>
 <%@page import="com.ipartek.formacion.service.ProfesorService"%>

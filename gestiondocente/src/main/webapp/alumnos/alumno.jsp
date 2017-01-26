@@ -1,4 +1,5 @@
 <%@page import="java.util.GregorianCalendar"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="com.ipartek.formacion.dbms.pojo.Alumno"%>
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -33,7 +34,7 @@
 					placeholder="Introduzca el nombre.." 
 					name="<%=Constantes.PAR_NOMBRE %>" 
 					id="<%=Constantes.PAR_NOMBRE %>" 
-					value="<%=alumno.getNombre() %>" 
+					value="${alumno.apellidos}%>" 
 			/>
 		</div>
 		<div>

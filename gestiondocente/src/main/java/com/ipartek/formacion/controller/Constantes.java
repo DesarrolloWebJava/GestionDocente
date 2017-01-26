@@ -10,11 +10,13 @@ public class Constantes {
 	public static final String ATT_PROFESOR = "profesor";
 	public static final String ATT_ALUMNO = "alumno";
 	public static final String ATT_CURSO  = "curso";
+	//public static final String ATT_IDIOMA  = "idioma";
 	
 	//SERVLETS
 	public static final String SERVLET_PROFESOR = "profesor.do";
 	public static final String SERVLET_ALUMNO = "alumno.do";
 	public static final String SERVLET_CURSO = "curso.do";
+	public static final String SERVLET_IDIOMA = "idioma.do";
 
 	//JSP_LISTADOS	
 	public static final String JSP_LISTADO_PROFESORES="profesores/listado.jsp";
@@ -30,17 +32,23 @@ public class Constantes {
 	public static final String JSP_HOME = "index.jsp";
 	public static final String ATT_MENSAJE = "mensaje";
 	public static final String ATT_LISTADO_PROFESORES = "listado-profesores";
-	public static final String ATT_LISTADO_ALUMNOS = "listado-alumnos";
+	public static final String ATT_LISTADO_ALUMNOS = "listadoAlumnos";
 	public static final String ATT_LISTADO_CURSOS =  "listado-cursos";
 	
 
-	//OPERACIONES DEL SERVLET
+	//OPERACIONES DE SERVLETS CON CRUD
 	public static final String PAR_OPERACION = "op";
 	
 	public static final int OP_CREATE = 1;
 	public static final int OP_READ = 2;
 	public static final int OP_UPDATE = 3;
 	public static final int OP_DELETE = 4;
+	
+	//PARÁMETROS DEL SERVLET IDIOMA
+	public static final int IDIOMA_CASTELLANO = 1;
+	public static final int IDIOMA_EUSKERA = 2;
+	public static final int IDIOMA_INGLES = 3;
+	public static final String SESSION_IDIOMA = "language";
 
 	//PARÁMETROS:
 	
@@ -75,5 +83,7 @@ public class Constantes {
 //	public static final String PAR_ALUMNOS_CURSO;
 //	public static final String PAR_PROFESOR_CURSO;
 	
-
+	//DE LA CLASE IDIOMA
+	public static final String PAR_IDIOMA = "idioma";
+	
 }
