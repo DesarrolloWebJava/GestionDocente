@@ -13,8 +13,8 @@
 				alumnos.sort(null);*/
 			%>
 			<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_CREATE %>">Crear Alumno</a>
-			<c:forEach items="${listadoAlumnos}" var="alumno">
-				<div> ${alumno}</div>
+			<c:forEach items="${requestScope.listadoAlumnos}" var="alumno">
+				<div><li>${alumno}</li></div>
 			</c:forEach>
 			<ul>
 			

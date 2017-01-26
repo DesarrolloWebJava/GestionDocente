@@ -4,13 +4,13 @@ public final class Constantes {
 	private Constantes(){
 		
 	}
-	public static final String ATT_LISTADO_PROFESORES="listadoProfesores";
+	public static final String ATT_LISTADO_PROFESORES="listado-profesores";
 	public static final String ATT_LISTADO_ALUMNOS="listadoAlumnos";
 	public static final String ATT_LISTADO_CURSOS="listadoCursos";
 	public static final String ATT_MENSAJE = "mensaje";
 	public static final String ATT_ALUMNO = "alumno";
 	public static final String ATT_PROFESOR = "profesor";
-	public static final String ATT_CURSO = "profesor";
+	public static final String ATT_CURSO = "curso";
 	
 	public static final String SERVLET_ALUMNO = "alumno.do";
 	public static final String SERVLET_PROFESOR = "profesor.do";

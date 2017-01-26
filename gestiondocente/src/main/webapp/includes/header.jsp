@@ -7,6 +7,8 @@
  	<head>
  		<meta charset="UTF-8">
  		<title>Gestor Dorcente </title>
+ 		<link href="<c:url value="/css/styles.css" />" type="text/css" rel="stylesheet" /> 
+ 		 	
  	</head>
 	<body>
 		<header>

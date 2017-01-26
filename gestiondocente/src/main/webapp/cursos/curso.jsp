@@ -7,7 +7,7 @@
 	<%
  String titulo = "";	
  Curso curso = (Curso)request.getAttribute(Constantes.ATT_CURSO);
- 
+
  if(curso == null){
 	 titulo = "Crear Curso";
 	 curso= new Curso();
