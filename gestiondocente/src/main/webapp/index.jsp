@@ -8,7 +8,7 @@
  <jsp:include page="includes/header.jsp"/>
 <main>
 	
-	<fmt:message key="index.mensaje"/> <fmt:message key="index.nombreApp"/>
+	<fmt:message key="index.mensaje"/> 
 </main>
 <%@ include file="includes/footer.html" %>
 </body>
