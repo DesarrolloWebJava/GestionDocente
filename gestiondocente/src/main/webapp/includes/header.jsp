@@ -16,20 +16,15 @@
  	</head>
 	<body>
 		<header>
-			<h1>Gestión Docente</h1>
-			<hr><!--RORRAR-->
-			<nav>
-				<ul>
-					<li><a href="<%=Constantes.SERVLET_ALUMNO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ%>">G. Alumnos</a></li>
-					<li><a href="<%=Constantes.SERVLET_PROFESOR%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ%>">G. Profesores</a></li>
-					<li><a href="<%=Constantes.SERVLET_CURSO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ%>">G. Curso</a></li>
-				</ul>
-			</nav>
+			<h1><fmt:message key="heard.title" /></h1>
+			<!--  
 			<div class=""></div>
 				<a href="<%=Constantes.SERVLET_IDIOMA%>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_ES%>">Catellano</a>
 				<a href="<%=Constantes.SERVLET_IDIOMA%>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_EU%>">Euskera</a>
 				<a href="<%=Constantes.SERVLET_IDIOMA%>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_EN%>">Ingles</a>
 			</div>
-			<jsp:include page="mensajes.jsp"/>
-		</header>
-		<hr><!--RORRAR-->
+			-->
+		
+			 </header>
+			 <jsp:include page="mensajes.jsp"/>
+			

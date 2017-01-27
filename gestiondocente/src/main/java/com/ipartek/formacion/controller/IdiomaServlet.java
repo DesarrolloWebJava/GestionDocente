@@ -31,7 +31,7 @@ public class IdiomaServlet extends HttpServlet {
 					session.setAttribute(Constantes.SESSION_IDIOMA, "es_ES");
 					break;
 				case Constantes.IDIOMA_EU:
-					session.setAttribute(Constantes.SESSION_IDIOMA, "eu_ES");
+					session.setAttribute(Constantes.SESSION_IDIOMA, "eu_EU");
 					break;
 				case Constantes.IDIOMA_EN:
 					session.setAttribute(Constantes.SESSION_IDIOMA, "en_EN");
