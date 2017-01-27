@@ -43,10 +43,10 @@ public class ServletFilter implements Filter {
 		if (request instanceof HttpServletRequest) {
 			HttpSession session = ((HttpServletRequest) request).getSession(false);
 
-			String url = ((HttpServletRequest) request).getServletPath() + "/";
+			String url = ((HttpServletRequest) request).getServletPath();
 			System.out.println("-" + url);
 			if (session == null || session.getAttribute(Constantes.SESSION_IDIOMA) == null) {
-
+				System.out.println("----" + url);
 				if (checkWebPages(url)) {
 
 					chain.doFilter(request, response);
@@ -60,8 +60,11 @@ public class ServletFilter implements Filter {
 
 				// si la session no existe vamos a comprobar si quieres ir a
 				// login.do
+			} else {
+				System.out.println(session.getAttribute(Constantes.SESSION_IDIOMA));
+				chain.doFilter(request, response);
 			}
-			System.out.println("--" + url);
+
 		} else {
 			chain.doFilter(request, response);
 			return;
