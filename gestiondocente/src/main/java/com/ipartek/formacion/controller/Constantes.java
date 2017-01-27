@@ -11,6 +11,7 @@ public class Constantes {
 	public static final String ATT_LISTADO_PROFESORES = "listadoProfesores";
 	// nombres de parametros de la clase Curso
 	public static final String ATT_LISTADO_CURSOS = "listadoCursos";
+
 	
 	// VARIABLES DE SESION
 	public static final String SESSION_IDIOMA = "language";
@@ -36,6 +37,7 @@ public class Constantes {
 	public static final String SERVLET_CURSO = "curso.do";
 	
 	public static final String SERVLET_IDIOMA = "idioma.do";
+	public static final String SERVLET_LOGIN = "login.do";
 	
 	
 	
@@ -71,7 +73,8 @@ public class Constantes {
 	public static final String PAR_FECHA_INICIO = "fInicio";
 	public static final String PAR_FECHA_FIN = "fFin";
 	public static final String PAR_IDIOMA = "idioma";
-	
+	public static final String PAR_USUARIO = "user";
+	public static final String PAR_PASSWORD	= "password";
 	
 	
 	public static final int OP_CREATE = 1;

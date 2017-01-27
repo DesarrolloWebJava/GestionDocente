@@ -2,7 +2,6 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>gestiondocente</display-name>
   <welcome-file-list>
-    <welcome-file>login.do</welcome-file>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
@@ -55,4 +54,26 @@
     <servlet-name>IdiomaServlet</servlet-name>
     <url-pattern>/idioma.do</url-pattern>
   </servlet-mapping>
-</web-app>
+  <filter>
+    <display-name>CharterFilter</display-name>
+    <filter-name>CharterFilter</filter-name>
+    <filter-class>com.ipartek.formacion.controller.filters.CharterFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharterFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <display-name>ServletFilters</display-name>
+    <filter-name>ServletFilters</filter-name>
+    <filter-class>com.ipartek.formacion.controller.filters.ServletFilters</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ServletFilters</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  <error-page>
+  	<error-code>404</error-code>
+ 	<location>/error.jsp</location>
+  </error-page>	
+ </web-app>
