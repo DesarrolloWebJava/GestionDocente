@@ -4,6 +4,9 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <c:set var="language" value="${not empty sessionScope.language ? sessionScope.language : 'es_ES'}" scope="page" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="com.ipartek.formacion.controller.i18nmessages"/>
 <jsp:include page="../includes/header.jsp" />
 
 		<main>
@@ -14,6 +17,7 @@
 				alumnos.sort(null);*/
 				
 			%>
+			<c:import url="/includes/mensajes.jsp"/>
 			<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_CREATE %>">Crear Alumno</a>
 			<ul>
 			<c:forEach items="${requestScope.listadoAlumnos}" var="alumno">

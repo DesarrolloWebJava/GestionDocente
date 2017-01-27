@@ -56,3 +56,62 @@ main a:HOVER {
 	color: red;
 	border-color: red;
 }
+
+.mensaje{
+	font-size : 150%;
+	background-color:#ffdd97;
+	border-color: #ffb900;
+	color: #ff8040;
+	width: auto;
+	border-style: solid;
+	text-align: center;
+}
+.formularioLogin{
+	border-color: #71b8ff;
+	border-style: solid;
+	width: 30%;
+	margin: 0 auto;
+	text-align: center;
+	 background-color: #71b8ff;
+	color: #f1f1f1;
+
+}
+ .formulario{
+    padding: 12px 20px;
+    box-sizing: border-box;
+ 	width: 100%;
+ 	background-color: #f1f1f1;
+ 	display: block;
+ }
+ .formulario [type=text], [type=password], [type=submit]{
+    padding: 12px 20px;
+ 	width: 80%;
+ 	border-radius: 4px;
+ 	border: none;
+ 	
+ }
+ .formulario [type=submit]{
+	background-color: #71b8ff;
+	color: #f1f1f1;
+}
+
+.formulario label {
+	background-color: #71b8ff;
+	color: #f1f1f1;
+	 padding: 10px 15px;
+ 	border: none;
+ 	display: block;
+ 	float:left;
+ 	margin:  0 0 0 6%;
+ 	width: 15%;
+ 	
+}
+.formulario select {
+	
+	 padding: 12px 20px;
+ 	border: none;
+ 	display: block;
+ 	width: 67%;
+}
+ 	
+ 	

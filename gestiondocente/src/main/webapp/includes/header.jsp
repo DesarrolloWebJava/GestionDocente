@@ -11,7 +11,8 @@
  	<head>
  		<meta charset="UTF-8">
  		<title>Gestor Dorcente </title>
- 		<link href='<c:url value="/css/styles.css" />' type="text/css" rel="stylesheet" /> 
+ 		<link href='<c:url value="/css/styles.css" />' type="text/css" rel="stylesheet" />
+ 		
  		<script src='<c:url value="/js/codigo.js" />' ></script>		
  	</head>
 	<body>
@@ -28,5 +29,5 @@
 			
 			 </header>
 			 
-			 <jsp:include page="mensajes.jsp"/>
+			 
 			

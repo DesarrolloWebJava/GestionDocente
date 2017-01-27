@@ -5,12 +5,11 @@
 
 <%
 	if (request.getAttribute(Constantes.ATT_MENSAJE)!=null){
-	String mensaje = (String)request.getAttribute(Constantes.ATT_MENSAJE);
+		String mensaje = (String)request.getAttribute(Constantes.ATT_MENSAJE);
 %>
-<div>
-	<%= mensaje %>
+<div class="mensaje">
+		<%= mensaje %>
 </div>
-
 <%
 	}
 %>
