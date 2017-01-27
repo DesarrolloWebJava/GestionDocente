@@ -49,11 +49,69 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	/**
+	 * vamos a crear una sesion de login: con usuario "admin"
+	 * y password "pass"
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		//recogemos los parametros
+		String username= request.getParameter(Constantes.PAR_USUARIO);
+		String password = request.getParameter(Constantes.PAR_PASSWORD);
+		
+		final String user = "admin";
+		final String pass = "pass";
+		
+		if(user.equals(username) && pass.equals(password)){
+			//true --> fuerzas sesion nueva
+			//false --> recoges una existente, si no hay devuelve nulo
+			//sin parametros-->Si no existe te crea una nueva.
+			//crearemos la sesion, yo quiero forzas una nueva
+			
+			HttpSession session =request.getSession(true);
+			
+			session.setMaxInactiveInterval(60*15);
+			//cargaremos variable idioma
+			String lang = request.getParameter(Constantes.PAR_IDIOMA);
+			
+			int idioma= Integer.parseInt(lang);
+		
+			String locale ="";
+			switch (idioma){
+				case Constantes.IDIOMA_CASTELLANO:
+					locale= "es_ES";
+					break;
+				case Constantes.IDIOMA_EUSKERA:
+					locale= "eu_ES";
+					break;
+				case Constantes.IDIOMA_INGLES:
+					locale= "en_EN";
+					break;
+				default:
+					locale= "es_ES";
+					
+			}
+			
+			session.setAttribute(Constantes.SESSION_IDIOMA, locale);
+			session.setAttribute(Constantes.ATT_SESISON, session);
+			session.setAttribute("usuario", username);
+			//request.setAttribute(Constantes.ATT_ALUMNO, alumno);
+			//Redireccionaremos a una pagina determinada
+			rd = request.getRequestDispatcher(Constantes.JSP_HOME);
+			//hace la redireccion
+			 
+		}else{
+			//nombre y/o password incorrectos
+			//redirecionar a login.jsp
+			String mensaje = "Usuario y/o Password incorrectos";
+			request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
+			rd = request.getRequestDispatcher(Constantes.JSP_HOME);
+		}
+		
+		rd.forward(request,response);
 	}
 
 	@Override

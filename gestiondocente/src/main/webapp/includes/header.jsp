@@ -26,16 +26,11 @@
 <body>
 
 <header>
+
 <div id="header">
 	<h1>Gestión Docente</h1>
 </div>
-	<nav class=" navbar-fixed-top" role="navigation" >
-		<ul class="nav navbar-nav">
-			<li><a href="<%=Constantes.SERVLET_IDIOMA %>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_CASTELLANO%>">Castellano</a></li>
-			<li><a href="<%=Constantes.SERVLET_IDIOMA %>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_EUSKERA%>">Euskera</a></li>
-			<li><a href="<%=Constantes.SERVLET_IDIOMA %>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_INGLES%>">Ingles</a></li>
-		</ul>
-	</nav>
+<c:if test="${not empty usuario}">	
 	<nav class="navbar navbar-default">
 		<ul class="nav navbar-nav">
 			<li>
@@ -51,5 +46,6 @@
 	</nav>
 	
 	<jsp:include page="mensajes.jsp"/>
-	
+</c:if>	
+
 </header>
