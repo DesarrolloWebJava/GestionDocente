@@ -17,6 +17,7 @@ public class Constantes {
 	public static final String ATT_PROFESOR = "profesor";
 	public static final String ATT_CURSO = "curso";
 	
+	
 	//Variables de sesion
 	public static final String SESSION_IDIOMA = "language";
 	
@@ -25,6 +26,7 @@ public class Constantes {
 	public static final String SERVLET_PROFESOR = "profesor.do";
 	public static final String SERVLET_CURSO = "curso.do";
 	public static final String SERVLET_IDIOMA = "idioma.do";
+	public static final String SERVLET_LOGIN = "login.do";
 	
 	//JSP
 	public static final String JSP_LISTADO_ALUMNOS = "alumnos/listado.jsp";
@@ -57,6 +59,9 @@ public class Constantes {
 	public static final String PAR_FFIN = "fFin";
 	//Parametros de idioma
 	public static final String PAR_IDIOMA = "idioma";
+	//Parametro de login
+	public static final String PAR_USUARIO = "user";
+	public static final String PAR_PASSWORD = "password";
 
 	
 	//Constantes de operaciones de CRUD
