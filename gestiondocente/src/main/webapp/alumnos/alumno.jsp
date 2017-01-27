@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Alumno"%>
@@ -25,25 +26,25 @@
 
 		<form action="<%=Constantes.SERVLET_ALUMNO%>" method="post">
 			<div>
-				<input type="hidden" name ="<%=Constantes.PAR_CODIGO%>" id="<%=Constantes.PAR_CODIGO%>" value="<%=alumno.getCodigo()%>">
+				<input type="hidden" name ="<%=Constantes.PAR_CODIGO%>" id="<%=Constantes.PAR_CODIGO%>" value="${alumno.codigo}">
 				<label for ="<%=Constantes.PAR_NOMBRE%>">Nombre:</label>
-				<input value ="<%=alumno.getNombre()%> "type="text" placeholder = "Introduzca el nombre ..." name ="<%=Constantes.PAR_NOMBRE%>" id="<%=Constantes.PAR_NOMBRE%>">
+				<input value ="${alumno.nombre}" type="text" placeholder = "Introduzca el nombre ..." name ="<%=Constantes.PAR_NOMBRE%>" id="<%=Constantes.PAR_NOMBRE%>">
 			</div>
 			<div>
 				<label for ="<%=Constantes.PAR_APELLIDOS%>">Apellidos:</label>
-				<input value ="<%=alumno.getApellidos()%>" type ="text" placeholder = "Introduzca los apellidos ..." name = "<%=Constantes.PAR_APELLIDOS%>" id ="<%=Constantes.PAR_APELLIDOS%>">
+				<input value ="${alumno.apellidos}" type ="text" placeholder = "Introduzca los apellidos ..." name = "<%=Constantes.PAR_APELLIDOS%>" id ="<%=Constantes.PAR_APELLIDOS%>">
 			</div>
 			<div>
 				<label for ="<%=Constantes.PAR_DNI%>">DNI:</label>
-				<input value ="<%=alumno.getDni()%>" type ="text" placeholder = "Introduzca el DNI ..." name = "<%=Constantes.PAR_DNI%>" id ="<%=Constantes.PAR_DNI%>">
+				<input value ="${alumno.dni}" type ="text" placeholder = "Introduzca el DNI ..." name = "<%=Constantes.PAR_DNI%>" id ="<%=Constantes.PAR_DNI%>">
 			</div>
 			<div>
 				<label for ="<%=Constantes.PAR_EMAIL%>">Email:</label>
-				<input value ="<%=alumno.getEmail()%>" type ="email" placeholder = "Introduzac el E-mail ..." name = "<%=Constantes.PAR_EMAIL%>" id ="<%=Constantes.PAR_EMAIL%>">
+				<input value ="${alumno.email}" type ="email" placeholder = "Introduzac el E-mail ..." name = "<%=Constantes.PAR_EMAIL%>" id ="<%=Constantes.PAR_EMAIL%>">
 			</div>
 			<div>
 				<label for ="<%=Constantes.PAR_DIRECCION%>">Direccion:</label>
-				<input value ="<%=alumno.getDireccion()%>"type ="text" placeholder = "Introduzac la direccion ..." name = "<%=Constantes.PAR_DIRECCION%>" id ="<%=Constantes.PAR_DIRECCION%>">
+				<input value ="${alumno.direccion}"type ="text" placeholder = "Introduzac la direccion ..." name = "<%=Constantes.PAR_DIRECCION%>" id ="<%=Constantes.PAR_DIRECCION%>">
 			</div>
 			<div>
 				<%
@@ -57,7 +58,7 @@
 			</div>
 			<div>
 				<label for ="<%=Constantes.PAR_NHERMANOS%>">Numero Hermanos:</label>
-				<input value ="<%=alumno.getnHermanos()%>" type ="text" placeholder = "Introduzca el numero de hermanos ..." name = "<%=Constantes.PAR_NHERMANOS%>" id ="<%=Constantes.PAR_NHERMANOS%>">
+				<input value ="${alumno.nHermanos}%>" type ="text" placeholder = "Introduzca el numero de hermanos ..." name = "<%=Constantes.PAR_NHERMANOS%>" id ="<%=Constantes.PAR_NHERMANOS%>">
 			</div>
 			<div>
 				<label for ="<%=Constantes.PAR_ACTIVO%>">Activo:</label>

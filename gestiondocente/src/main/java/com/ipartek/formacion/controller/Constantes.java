@@ -6,17 +6,22 @@ public class Constantes {
 
 	}
 
-	public static final String ATT_LISTADO_PROFESORES = "listado-profesores";
-	public static final String ATT_LISTADO_ALUMNOS = "listado-alumnos";
-	public static final String ATT_LISTADO_CURSOS = "listado-cursos";
+	public static final String ATT_LISTADO_PROFESORES = "listadoProfesores";
+	public static final String ATT_LISTADO_ALUMNOS = "listadoAlumnos";
+	public static final String ATT_LISTADO_CURSOS = "listadoCursos";
 	public static final String ATT_MENSAJE = "mensaje";
 	public static final String ATT_ALUMNO = "alumno";
 	public static final String ATT_PROFESOR = "profesor";
 	public static final String ATT_CURSO = "curso";
+	public static final String ATT_IDIOMA = "idioma";
+
+	public static final String SESSION_IDIOMA = "language";
 
 	public static final String SERVLET_ALUMNO = "alumno.do";
 	public static final String SERVLET_PROFESOR = "profesor.do";
 	public static final String SERVLET_CURSO = "curso.do";
+	public static final String SERVLET_LOGIN = "login.do";
+	public static final String SERVLET_IDIOMA = "idioma.do";
 
 	public static final String JSP_LISTADO_ALUMNOS = "alumnos/listado.jsp";
 	public static final String JSP_FORMULARIO_ALUMNOS = "alumnos/alumno.jsp";
@@ -40,10 +45,17 @@ public class Constantes {
 	public static final String PAR_DURACION = "duracion";
 	public static final String PAR_FINICIO = "finicio";
 	public static final String PAR_FFINAL = "ffinal";
+	public static final String PAR_IDIOMA = "idioma";
+	public static final String PAR_USUARIO = "user";
+	public static final String PAR_PASSWORD = "password";
 
 	public static final int OP_CREATE = 1;
 	public static final int OP_READ = 2;
 	public static final int OP_UPDATE = 3;
 	public static final int OP_DELETE = 4;
+
+	public static final int IDIOMA_EUSKERA = 1;
+	public static final int IDIOMA_CASTELLANO = 2;
+	public static final int IDIOMA_INGLES = 3;
 
 }
