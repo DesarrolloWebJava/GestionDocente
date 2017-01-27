@@ -2,6 +2,7 @@ package com.ipartek.formacion.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,6 +16,7 @@ import com.ipartek.formacion.dbms.pojo.Curso;
 import com.ipartek.formacion.dbms.pojo.CursoFechaInicioComparator;
 import com.ipartek.formacion.service.CursoService;
 import com.ipartek.formacion.service.CursoServiceImp;
+import com.ipartek.formacion.service.Util;
 
 /**
  * Servlet implementation class CursoServlet
@@ -23,8 +25,6 @@ public class CursoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CursoService cS;
 	private RequestDispatcher rd;
-	private String pattern = "dd/MM/yyyy";
-	private SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
 
 
 	@Override
@@ -83,8 +83,10 @@ public class CursoServlet extends HttpServlet {
 	private void cargarListadoCursos(HttpServletRequest request) {
 		List<Curso> cursos=null;
 		cursos=cS.getAll();
-		//cursos.sort(null);//utiliza compareTo
+		//cursos.sort(null);//utiliza compareTo d la clse Curso
 		cursos.sort(new CursoFechaInicioComparator());
+		//ó Collections.sort(cursos,new CursoFechaInicioComparator())
+		Collections.reverse(cursos);
 		request.setAttribute(Constantes.ATT_LISTADO_CURSOS,cursos);
 		rd=request.getRequestDispatcher(Constantes.JSP_LISTADO_CURSOS);
 		
@@ -140,18 +142,19 @@ public class CursoServlet extends HttpServlet {
 			curso.setCodigo(Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO)));
 			curso.setNombre(request.getParameter(Constantes.PAR_NOMBRE));
 			curso.setDuracion(Integer.parseInt(request.getParameter(Constantes.PAR_DURACION)));
-			String date=request.getParameter(Constantes.PAR_FINICIO);
 			
+			String date=request.getParameter(Constantes.PAR_FINICIO);		
 			if(date!=null&&!"".equals(date)){
-				curso.setfInicio(dateFormat.parse(date));
+				curso.setfInicio(Util.parseLatinDate(date));
 			}
 			date=request.getParameter(Constantes.PAR_FFIN);
 			if(date!=null&&!"".equals(date)){
-				curso.setfFin(dateFormat.parse(date));
+				curso.setfFin(Util.parseLatinDate(date));
 			}
 					
 		}catch(Exception e){
-			throw new Exception("Los datos no son válidos: "+e.getMessage());
+			e.printStackTrace();//para el desarrollador
+			throw new Exception("Los datos no son válidos: "+e.getMessage());//para el usuario
 		}
 		return curso;
 	}

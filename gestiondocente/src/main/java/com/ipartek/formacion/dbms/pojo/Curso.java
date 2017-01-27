@@ -1,13 +1,15 @@
 package com.ipartek.formacion.dbms.pojo;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Curso implements Comparable<Curso>{
+public class Curso implements Comparable<Curso>,Serializable{
 private int codigo;
 private String nombre;
 private int duracion;
@@ -26,8 +28,8 @@ public Curso() {
 	this.duracion=0;
 	this.fInicio=new Date();
 	this.fFin=new Date();
-	this.alumnos=null;
-	this.profesores=null;
+	this.alumnos=new ArrayList<Alumno>();
+	this.profesores=new HashMap<Integer,Profesor>();
 }
 
 public int getCodigo() {

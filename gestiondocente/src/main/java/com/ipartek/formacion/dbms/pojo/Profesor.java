@@ -1,11 +1,26 @@
 package com.ipartek.formacion.dbms.pojo;
 
-public class Profesor extends Persona {
+import java.io.Serializable;
+
+public class Profesor extends Persona implements Serializable {
+	@Override
+	public boolean equals(Object obj) {
+		boolean iguales=false;
+		if(obj instanceof Profesor ){
+			Profesor profesor=(Profesor) obj;
+			if(this.codigo==profesor.getCodigo()){
+				iguales=true;
+			}
+		}
+		return iguales;
+	}
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		return this.getCodigo()+" "+this.getApellidos()+" "+this.getNombre()+" "+this.getEmail();
 	}
+
 
 	public static final int CODIGO_NULO = -1;
 	private int nSS;

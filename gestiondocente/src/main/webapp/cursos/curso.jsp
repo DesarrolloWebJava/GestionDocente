@@ -22,7 +22,7 @@ else
 <input type="hidden" name="<%=Constantes.PAR_CODIGO %>" id="<%=Constantes.PAR_CODIGO %>" value="<%=curso.getCodigo() %>" />
 <div>
 <label for=<%=Constantes.PAR_NOMBRE %>>Nombre:</label>
-<input type="text" name="<%=Constantes.PAR_NOMBRE %>" id="<%=Constantes.PAR_NOMBRE %>" value="<%=curso.getNombre() %>"/>
+<input type="text" name="<%=Constantes.PAR_NOMBRE %>" id="<%=Constantes.PAR_NOMBRE %>" value="<%=curso.getNombre() %>" placeholder="Introduce el nombre..."/>
 </div>
 <div>
 <label for="<%=Constantes.PAR_DURACION %>">Duración:</label>

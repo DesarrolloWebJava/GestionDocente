@@ -14,7 +14,7 @@ Map<Integer,Profesor> profesores=(Map<Integer,Profesor>)request.getAttribute(Con
 for(Map.Entry<Integer,Profesor> entrada:profesores.entrySet()){
 	String btn_update="<a href='"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+entrada.getValue().getCodigo()+"'>Editar </>";
 	String btn_delete="<a href='"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+entrada.getValue().getCodigo()+"'>Eliminar</a>";
-	out.println("<li>"+entrada.getValue().toString()+" "+btn_update+" "+btn_delete+"</li>");
+	out.println("<li>"+entrada.getValue().toString()+" "+btn_update+" "+btn_delete+"</li>"); 
 
 }
 %>
