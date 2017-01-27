@@ -65,12 +65,26 @@
     <url-pattern>/idioma.do</url-pattern>
   </servlet-mapping>
   <filter>
-    <display-name>CharterFilter</display-name>
-    <filter-name>CharterFilter</filter-name>
-    <filter-class>filtrer.CharterFilter</filter-class>
+    <display-name>ServletFilter</display-name>
+    <filter-name>ServletFilter</filter-name>
+    <filter-class>com.ipartek.formacion.controller.filters.ServletFilter</filter-class>
   </filter>
   <filter-mapping>
-    <filter-name>CharterFilter</filter-name>
+    <filter-name>ServletFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  <filter>
+    <display-name>CharterFiler</display-name>
+    <filter-name>CharterFiler</filter-name>
+    <filter-class>com.ipartek.formacion.controller.filters.CharterFiler</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharterFiler</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <!-- Direccionamiento de errores. -->
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/error.jsp</location>
+  </error-page>
 </web-app>

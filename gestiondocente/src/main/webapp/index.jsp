@@ -13,7 +13,7 @@
      en caso de no existir se asigna castellano(es_ES). -->
 <c:set var="language" 
        value="${not empty sessionScope.language ? sessionScope.language : 'es_ES'}" 
-       scope="session" />    
+       scope="page" />    
 <!-- Se indica el formateo del fichero de propiedades al lenguaje de la página,
      es decir se le indica de que fichero ha de recogerlo.-->
 <fmt:setLocale value="${language}" />
