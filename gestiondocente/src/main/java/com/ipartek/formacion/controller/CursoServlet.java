@@ -134,9 +134,11 @@ public class CursoServlet extends HttpServlet {
 			String dateFin=request.getParameter(Constantes.PAR_FFIN);
 			String pattern = "dd/MM/yyyy";
 			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+			//el profe ha echo un paso intermedio mirar y en util.java para el formato
 			curso.setfInicio(dateFormat.parse(dateIni));
 			curso.setfFin(dateFormat.parse(dateFin));	
 		}catch(Exception e){
+			e.printStackTrace();
 			throw new Exception("Los datos introducidos no son validos"+e.getMessage());
 		}
 		
@@ -145,7 +147,7 @@ public class CursoServlet extends HttpServlet {
 
 	public void destroy() {
 		//cuando se destruye el servlet
-		cS=null;
+		this.cS=null;
 		super.destroy();
 	}
 

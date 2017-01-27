@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Alumno"%>
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
@@ -24,10 +25,10 @@
 <header><h2><%=titulo %></h2></header>
 
 	<form action="<%=Constantes.SERVLET_ALUMNO%>" method="post">
-		<input type="hidden" name="<%=Constantes.PAR_CODIGO %>"  id="<%=Constantes.PAR_CODIGO %>" value="<%=alumno.getCodigo()%>">
+		<input type="hidden" name="<%=Constantes.PAR_CODIGO %>"  id="<%=Constantes.PAR_CODIGO %>" value="${alumno.codigo}">
 		<div>
 			<label for="<%=Constantes.PAR_NOMBRE%>">Nombre:</label>
-			<input value="<%=alumno.getNombre()%>" type="text" placeholder="Introduzca el nombre" name="<%=Constantes.PAR_NOMBRE %>"  id="<%=Constantes.PAR_NOMBRE %>" >
+			<input value="${alumno.nombre}" type="text" placeholder="Introduzca el nombre" name="<%=Constantes.PAR_NOMBRE %>"  id="<%=Constantes.PAR_NOMBRE %>" >
 		</div>
 		<div>
 			<label for="<%=Constantes.PAR_APELLIDOS%>">Apellidos:</label>

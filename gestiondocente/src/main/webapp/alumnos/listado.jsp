@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@page import="java.util.List"%>
 <%@page import="com.ipartek.formacion.dbms.pojo.Alumno"%>
@@ -9,20 +10,27 @@
 	/*Esto es un scriplet */
 	
 	//recogemos el atributo de la request
-	List<Alumno> alumnos = (List<Alumno>)request.getAttribute(Constantes.ATT_LISTADO_ALUMNOS);
+	//List<Alumno> alumnos = (List<Alumno>)request.getAttribute(Constantes.ATT_LISTADO_ALUMNOS);
 	//crud
 	%>
 	<a href="<%=Constantes.SERVLET_ALUMNO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE %>">Crear Alumnos </a>
-	<% 
+
+	<c:forEach var="alumno" items="${listadoAlumnos}">
+		<div>
+		${alumno.nombre} 
+		</div>
+	</c:forEach>
 	
-	for(Alumno alumno: alumnos){
+	<% 
+	//
+	//for(Alumno alumno: alumnos){
 		//para el borrado
-		String btn_delete="<a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+
-		Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+alumno.getCodigo()+"'>Borrar</a>";
+	//	String btn_delete="<a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+
+	//	Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+alumno.getCodigo()+"'>Borrar</a>";
 		//redireccion para la update
-		out.println("<p>"+alumno.toString()+"</p>"+"<a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+
-		Constantes.PAR_CODIGO+"="+alumno.getCodigo()+"'>Editar</a>"+btn_delete);
-	}
+	//	out.println("<p>"+alumno.toString()+"</p>"+"<a href='"+Constantes.SERVLET_ALUMNO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+
+	//	Constantes.PAR_CODIGO+"="+alumno.getCodigo()+"'>Editar</a>"+btn_delete);
+	//}
 	%>
 	</main>
 <%@ include file="../includes/footer.html" %>

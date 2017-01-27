@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import com.ipartek.formacion.dbms.pojo.exceptions.CursoException;
+
 public class Curso implements Comparable<Curso>, Serializable{
 
 	private static final long serialVersionUID = -6698866485450376235L;
@@ -26,7 +28,7 @@ public class Curso implements Comparable<Curso>, Serializable{
 		this.fInicio=new Date();
 		this.fFin=new Date();
 		this.alumnos=new ArrayList<Alumno>();
-		this.profesor=null;
+		this.profesor=new Profesor();
 		
 		
 	}
@@ -82,8 +84,12 @@ public class Curso implements Comparable<Curso>, Serializable{
 
 	/**
 	 * @param nombre the nombre to set
+	 * @throws CursoException 
 	 */
-	public void setNombre(String nombre) {
+	public void setNombre(String nombre) throws CursoException {
+		if(nombre.length() < 8){
+			throw new CursoException(CursoException.COD_NOMBRE_ERROR,CursoException.MSG_NOMBRE_ERROR);
+		}
 		this.nombre = nombre;
 	}
 
@@ -96,8 +102,12 @@ public class Curso implements Comparable<Curso>, Serializable{
 
 	/**
 	 * @param duracion the duracion to set
+	 * @throws CursoException 
 	 */
-	public void setDuracion(int duracion) {
+	public void setDuracion(int duracion) throws CursoException {
+	//	if(this.getDuracion()<0){
+	//		throw new CursoException(CursoException.COD_DURACION_ERROR,CursoException.MSG_DURACION_ERROR);
+	//	}
 		this.duracion = duracion;
 	}
 
@@ -124,8 +134,13 @@ public class Curso implements Comparable<Curso>, Serializable{
 
 	/**
 	 * @param fFin the fFin to set
+	 * @throws CursoException 
 	 */
-	public void setfFin(Date fFin) {
+	public void setfFin(Date fFin) throws CursoException {
+
+	//	if(this.getfFin().after(new Date())){
+	//		throw new CursoException(CursoException.COD_FFIN_ERROR,CursoException.MSG_FFIN_ERROR);
+	//    }
 		this.fFin = fFin;
 	}
 
@@ -149,7 +164,8 @@ public class Curso implements Comparable<Curso>, Serializable{
 
 	@Override
 	public int compareTo(Curso o) {
-		return this.getNombre().compareToIgnoreCase(o.getNombre());
+	//	return this.getNombre().compareToIgnoreCase(o.getNombre());
+		return this.nombre.compareToIgnoreCase(o.nombre);
 	}
 	
 	public boolean equals(Object obj){

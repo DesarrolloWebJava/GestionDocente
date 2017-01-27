@@ -3,6 +3,7 @@ package com.ipartek.formacion.service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -37,7 +38,7 @@ public class CursoServiceImp implements CursoService {
 	private void init() {
 		Curso curso= new Curso();
 		try{
-			curso.setNombre("Java");
+			curso.setNombre("Curso de Java");
 			curso.setDuracion(500);
 			String dateIni="23/01/2017";
 			String dateFin="23/05/2017";
@@ -53,7 +54,7 @@ public class CursoServiceImp implements CursoService {
 		}
 		curso=new Curso();
 		try{
-			curso.setNombre("HTML5");
+			curso.setNombre("Curso de HTML5");
 			curso.setDuracion(50);
 			String dateIni="25/02/2017";
 			String dateFin="01/03/2017";
@@ -67,6 +68,7 @@ public class CursoServiceImp implements CursoService {
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}
+		Collections.sort(cursos);
 	}
 
 	@Override
