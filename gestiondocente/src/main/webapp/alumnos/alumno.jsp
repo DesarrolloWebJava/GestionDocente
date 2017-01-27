@@ -17,7 +17,7 @@
  }
  %>   
 <jsp:include page="../includes/header.jsp" />
-<jsp:include page="../includes/navBar.jsp" />
+
 	<main>
 		<header><h2><%=titulo%></h2></header>
 		<form action="<%=Constantes.SERVLET_ALUMNO%>" method="post"> 

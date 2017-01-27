@@ -3,11 +3,19 @@
 body {
   
 }
+header a{
+	text-decoration: none;
+}
+nav {
+	
+}
+
 nav ul{
 	list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
+    background-color:#77f9ec;
 	
 }
 nav li{
@@ -24,7 +32,8 @@ nav li a{
 }
 
 nav a:HOVER {
-	color: red;
+	color: #00ffff;
+	background-color:#000080;
 }
 
 main ul {
