@@ -105,13 +105,13 @@
 		<nav>
 			<!-- Enlace a la gestión de Idioma para la traducción al Castellano -->	
 			<a href="<%=Constantes.SERVLET_IDIOMA%>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_CASTELLANO%>">
-   					Castellano</a> 
+   					<fmt:message key="idioma.castellano"/></a> 
 			<!-- Enlace a la gestión de Idioma para la traducción al Euskera -->
 			<a href="<%=Constantes.SERVLET_IDIOMA%>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_EUSKERA%>">
-			    Euskera</a> 
+			    <fmt:message key="idioma.euskera"/></a> 
 			<!-- Enlace a la gestión de Idioma para la traducción al Ingles -->
 			<a href="<%=Constantes.SERVLET_IDIOMA%>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_INGLES%>">
-			    Ingles</a> 
+			    <fmt:message key="idioma.ingles"/></a> 
 			</a>				
 		</nav>				
 		<!-- Include de mensanjes.	

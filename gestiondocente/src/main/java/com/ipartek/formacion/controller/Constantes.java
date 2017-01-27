@@ -30,12 +30,16 @@ public final class  Constantes {
 	public static final String ATT_MENSAJES = "mensajes";
 	public static final String ATT_ALUMNOS = "alumno";
 	public static final String ATT_CURSOS = "curso";	
+	public static final String ATT_IDIOMA = "idioma";
+	public static final String ATT_USUARIO = "usuario";
+	public static final String ATT_PASSWORD = "password";
 	
 	/* Constantes de redireccionamiento de Servlets.*/
 	public static final String SERVLET_ALUMNO = "alumno.do";
 	public static final String SERVLET_PROFESOR = "profesor.do";
 	public static final String SERVLET_CURSO = "curso.do";
-	public static final String SERVLET_IDIOMA = "idioma.do";	
+	public static final String SERVLET_IDIOMA = "idioma.do";
+	public static final String SERVLET_LOGIN = "login.do";	
 	
 	/* Constantes de listados de Servlets.*/
 	public static final String JSP_LISTADO_ALUMNO = "alumnos/listado.jsp";
@@ -51,6 +55,9 @@ public final class  Constantes {
 	/* Constantes para identificar los parametros de operaciones de Servlets.*/
 	public static final String PAR_OPERACION = "op";
 	public static final String PAR_IDIOMA = "idioma";
+	/* Constantes para identificar los parametros de ogins.*/
+	public static final String PAR_USUARIO = "usuario";
+	public static final String PAR_PASSWORD = "password";
 	
 	/* Constantes para identificar el valor de los parametros de
 	 *  operaciones de Servlets.*/
