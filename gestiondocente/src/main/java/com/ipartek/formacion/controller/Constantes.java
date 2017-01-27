@@ -10,14 +10,14 @@ public class Constantes {
 	public static final String ATT_PROFESOR = "profesor";
 	public static final String ATT_ALUMNO = "alumno";
 	public static final String ATT_CURSO  = "curso";
-	//public static final String ATT_IDIOMA  = "idioma";
 	
 	//SERVLETS
 	public static final String SERVLET_PROFESOR = "profesor.do";
 	public static final String SERVLET_ALUMNO = "alumno.do";
 	public static final String SERVLET_CURSO = "curso.do";
 	public static final String SERVLET_IDIOMA = "idioma.do";
-
+	public static final String SERVLET_LOGIN = "login.do";
+	
 	//JSP_LISTADOS	
 	public static final String JSP_LISTADO_PROFESORES="profesores/listado.jsp";
 	public static final String JSP_LISTADO_ALUMNOS = "alumnos/listado.jsp";
@@ -31,10 +31,11 @@ public class Constantes {
 	//VARIOS
 	public static final String JSP_HOME = "index.jsp";
 	public static final String ATT_MENSAJE = "mensaje";
-	public static final String ATT_LISTADO_PROFESORES = "listado-profesores";
+	public static final String ATT_LISTADO_PROFESORES = "listadoProfesores";
 	public static final String ATT_LISTADO_ALUMNOS = "listadoAlumnos";
-	public static final String ATT_LISTADO_CURSOS =  "listado-cursos";
-	
+	public static final String ATT_LISTADO_CURSOS =  "listadoCursos";
+	public static final String ATT_IDIOMA =  "idioma";
+
 
 	//OPERACIONES DE SERVLETS CON CRUD
 	public static final String PAR_OPERACION = "op";
@@ -86,4 +87,8 @@ public class Constantes {
 	//DE LA CLASE IDIOMA
 	public static final String PAR_IDIOMA = "idioma";
 	
+	
+	//DE LA CLASE LOGIN
+	public static final String PAR_USUARIO =  "user";
+	public static final String PAR_PASSWORD =  "password";
 }
