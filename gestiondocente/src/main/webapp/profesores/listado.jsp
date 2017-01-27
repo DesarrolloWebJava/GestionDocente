@@ -7,12 +7,13 @@
     pageEncoding="UTF-8"%>
 	<jsp:include page="../includes/header.jsp" />
 		<main>
-			<ul>
+			
 			<%
 			/* esto es un scriplet */
 				Map<Integer, Profesor> profesor = (HashMap<Integer, Profesor>)request.getAttribute(Constantes.ATT_LISTADO_PROFESORES);
 			%>
 			<a href="<%=Constantes.SERVLET_PROFESOR %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_CREATE %>">Crear profesor</a>
+			<ul>
 			<%
 				for (Map.Entry<Integer, Profesor> entry : profesor.entrySet()) {
 					String btn_delete="<a href='"+Constantes.SERVLET_PROFESOR+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+ entry.getValue().getCodigo() + "'> Borrar </a>";

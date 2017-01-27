@@ -1,1 +1,49 @@
 @CHARSET "UTF-8";
+
+body {
+  
+}
+nav ul{
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+	
+}
+nav li{
+	display: inline;
+	float: left;
+}
+
+nav li a{
+	text-decoration: none;
+	background-color:#77f9ec;
+	padding: 10px 10px;
+    text-align: center;
+    display: inline-block; 
+}
+
+nav a:HOVER {
+	color: red;
+}
+
+main ul {
+	list-style: none;
+}
+
+main a{
+	text-decoration: none;
+	background-color:#77f9ec;
+	padding: 10px 10px;
+    text-align: center;
+    display: inline-block;
+    border-style: solid;
+    border-width: medium;
+    border-color: #0080c0;
+    border-radius: 15px;
+}
+
+main a:HOVER {
+	color: red;
+	border-color: red;
+}

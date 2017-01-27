@@ -1,6 +1,10 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private RequestDispatcher rd;   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -24,8 +28,24 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		Locale locale = new Locale("es_ES");
+		String language = (String) request.getSession(true).getAttribute("language");
+		// getSession() si no se pone nada o se pone true sino existe la sesion me la crea
+		// con false me devuelve la existente
+		if ( language != null ){
+			locale = new Locale(language);
+		}
+		ResourceBundle messages = null;
+		
+		try{
+			messages = ResourceBundle.getBundle("com.ipartek.formacion.controller.i18nmessages",locale);
+		}catch (Exception e){
+			System.out.println(e.getMessage());
+		}
+		rd=request.getRequestDispatcher(Constantes.JSP_HOME);
+		rd.forward(request, response);
+		
 	}
 
 	/**
