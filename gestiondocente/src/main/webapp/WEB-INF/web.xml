@@ -2,7 +2,6 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>gestiondocente</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
@@ -26,7 +25,7 @@
     <url-pattern>/profesor.do</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description>Servelet para gestionar los cursos</description>
+    <description></description>
     <display-name>CursoServlet</display-name>
     <servlet-name>CursoServlet</servlet-name>
     <servlet-class>com.ipartek.formacion.controller.CursoServlet</servlet-class>
@@ -34,16 +33,6 @@
   <servlet-mapping>
     <servlet-name>CursoServlet</servlet-name>
     <url-pattern>/curso.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>IdiomaServlet</display-name>
-    <servlet-name>IdiomaServlet</servlet-name>
-    <servlet-class>com.ipartek.formacion.controller.IdiomaServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>IdiomaServlet</servlet-name>
-    <url-pattern>/idioma.do</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -55,4 +44,32 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/login.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>IdiomaServlet</display-name>
+    <servlet-name>IdiomaServlet</servlet-name>
+    <servlet-class>com.ipartek.formacion.controller.IdiomaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IdiomaServlet</servlet-name>
+    <url-pattern>/idioma.do</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <display-name>CharterFilter</display-name>
+    <filter-name>CharterFilter</filter-name>
+    <filter-class>com.ipartek.formacion.controller.filters.CharterFiler</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharterFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <display-name>ServletFilter</display-name>
+    <filter-name>ServletFilter</filter-name>
+    <filter-class>com.ipartek.formacion.controller.filters.ServletFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ServletFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
 </web-app>
