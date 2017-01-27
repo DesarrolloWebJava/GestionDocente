@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.ipartek.formacion.dbms.pojo.exceptions.CursoException;
 
-public class Curso {
+public class Curso implements Comparable<Curso> {
 	
 	public static final int CODIGO_NULO = -1;	
 	private int codigo;
@@ -82,6 +82,11 @@ public class Curso {
 	public String toString() {
 		return "Codigo: " + codigo + ", Nombre: " + nombre + ", Duracion: " + duracion + ", Fecha de inicio: "
 				+ fechaInicio + ", Fecha de fin: " + fechaFin;
+	}
+
+	@Override
+	public int compareTo(Curso o) {
+		return this.nombre.compareToIgnoreCase(o.nombre);
 	}
 
 
