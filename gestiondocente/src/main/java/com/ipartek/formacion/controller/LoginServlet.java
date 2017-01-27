@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class LoginServlet
@@ -57,7 +58,62 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+      
+	   String username = request.getParameter(Constantes.PAR_USUARIO);
+       String password = request.getParameter(Constantes.PAR_PASSWORD);
+       
+       final String user = "admin";
+       final String pass = "pass";
+       
+       if (user.equals(username) && pass.equals(password))
+       {
+    	   // crearemos la sesion 
+    	   
+    	   // true --> fuerzas a crear una sesion nueva
+    	   // false --> recoges una existente si existe,si no hay devuelve null
+    	   // sin parametros -> Si no hay te crea una nueva
+    	   HttpSession session = request.getSession(true);
+    	   
+    	   // fijamos la duracion de inactividad, entendiendo actividad como peticiones al servidor get-post
+    	   session.setMaxInactiveInterval(60 * 15);
+    	   
+    	   // cargaremos la variable de idioma
+    	   String lang = request.getParameter(Constantes.PAR_IDIOMA);
+    	   int idioma = Integer.parseInt(lang);
+    	   String locale="";
+    	   
+    	   switch(idioma){
+    	   	case Constantes.IDIOMA_CASTELLANO:
+    	   		locale = "es_ES";
+    	   		break;
+    	   	case Constantes.IDIOMA_EUSKERA:
+    	   		locale = "eu_ES";
+    	   		break;
+    	   	case Constantes.IDIOMA_INGLES:
+    	   		locale = "en_EN";
+    	   		break;
+    	   	default:
+    	   		locale = "es_ES";
+    	   		break;
+    	   }// fin del switch 
+    	   
+    	   session.setAttribute(Constantes.SESSION_IDIOMA, locale);
+    	   
+    	   // redireccionaremos a una pagina estandar
+    	   rd = request.getRequestDispatcher(Constantes.JSP_HOME);
+    	   
+       }
+       else{
+    	   // mensaje de error
+    	   String mensaje="Usuario y/o password incorrecto";
+    	   // le redireccionaremos a una pagina index.jsp
+    	   request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
+    	   rd = request.getRequestDispatcher(Constantes.JSP_HOME);
+    	   
+       }
+       
+       rd.forward(request, response);
+       
 	}
 
 }
