@@ -45,7 +45,6 @@ public class AlumnoServiceImp implements AlumnoService {
 
 			create(alumno);
 		} catch (PersonaException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 
@@ -65,7 +64,6 @@ public class AlumnoServiceImp implements AlumnoService {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
 			System.out.println("Error no controlado" + e.getMessage());
@@ -78,7 +76,6 @@ public class AlumnoServiceImp implements AlumnoService {
 			alumno.setDni("16071559x");
 			create(alumno);
 		} catch (PersonaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

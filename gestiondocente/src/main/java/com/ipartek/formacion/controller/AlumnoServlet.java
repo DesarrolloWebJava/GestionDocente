@@ -104,7 +104,7 @@ public class AlumnoServlet extends HttpServlet {
 		
 		//4* Hace la redirección
 		rd.forward(req, resp);
-		//Nosotros vamos a usar el RequestDispatcher porque nos permite añadirle aributos.
+		//Nosotros vamos a usar el RequestDispatcher porque nos permite añadirle atributos.
 	}
 	
 	//Abro el siguiente javadoc automáticamente.

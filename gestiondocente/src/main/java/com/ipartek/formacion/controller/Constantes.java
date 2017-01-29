@@ -1,9 +1,7 @@
 package com.ipartek.formacion.controller;
 
 public class Constantes {
-
-	private Constantes(){
-		//con esto nadie me puede instanciar un objeto llamado constantes
+	private Constantes() {
 	}
 
 	//POJOS
@@ -21,7 +19,7 @@ public class Constantes {
 	//JSP_LISTADOS	
 	public static final String JSP_LISTADO_PROFESORES="profesores/listado.jsp";
 	public static final String JSP_LISTADO_ALUMNOS = "alumnos/listado.jsp";
-	public static final String JSP_LISTADO_CURSO   = "curso/listado.jsp";
+	public static final String JSP_LISTADO_CURSOS   = "curso/listado.jsp";
 
 	//JSP_FORMS
 	public static final String JSP_FORMULARIO_PROFESOR = "profesores/profesor.jsp";

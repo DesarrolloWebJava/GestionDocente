@@ -34,7 +34,7 @@
 					placeholder="Introduzca el nombre.." 
 					name="<%=Constantes.PAR_NOMBRE %>" 
 					id="<%=Constantes.PAR_NOMBRE %>" 
-					value="${alumno.apellidos}%>" 
+					value="${alumno.apellidos}" 
 			/>
 		</div>
 		<div>
@@ -54,12 +54,13 @@
 			<input type="text" placeholder="Introduzca su direccion.." name="<%=Constantes.PAR_DIRECCION %>" id="<%=Constantes.PAR_DIRECCION %>" value="<%=alumno.getDireccion()%>" />
 		</div>
 		<div>
+		
 		<%
 		String date = "";
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTime(alumno.getfNacimiento());
 		date =	gc.get(GregorianCalendar.DAY_OF_MONTH)
-				+"/"+gc.get(GregorianCalendar.MONTH)
+				+"/"+(gc.get(GregorianCalendar.MONTH)+1)
 				+"/"+gc.get(GregorianCalendar.YEAR);
 		%>
 		</div>

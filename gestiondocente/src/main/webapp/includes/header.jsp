@@ -11,7 +11,7 @@
 <fmt:setBundle basename="com.ipartek.formacion.controller.i18nmessages" />
 
 <!DOCTYPE html>
-<html lang="${language}>
+<html lang="${language}">
 <head>
 <meta charset="ISO-8859-1">
 <title>Gestor Docente - Página de inicio</title>
