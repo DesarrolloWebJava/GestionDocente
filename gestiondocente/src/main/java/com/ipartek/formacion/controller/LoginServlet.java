@@ -11,18 +11,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
+import com.ipartek.formacion.dbms.pojo.Persona;
+import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
+
 /**
  * Servlet implementation class LoginServlet
  */
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private RequestDispatcher rd;
+	private static final Logger LOG=Logger.getLogger("LoginServlet");
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Locale locale=new Locale("es_ES");
+/*		Locale locale=new Locale("es_ES");
 		String language=(String)request.getSession(true).getAttribute("language");
 		if(language!=null){
 			locale=new Locale(language);
@@ -34,10 +40,19 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		rd=request.getRequestDispatcher(Constantes.JSP_HOME);
-		rd.forward(request, response);
+		rd.forward(request, response);*/
+		cerrarSession(request);
+		response.sendRedirect(Constantes.JSP_HOME);
+		return;
 
 	}
-
+	private void cerrarSession(HttpServletRequest request)
+	{
+		HttpSession session=request.getSession(false);
+		if(session!=null){
+			session.invalidate();
+		}
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -69,6 +84,14 @@ public class LoginServlet extends HttpServlet {
 					locale="es_ES";
 					break;
 			
+			}
+			Persona p=new Persona();
+			try {
+				p.setNombre(username);
+				p.setApellidos("Anonimo");
+				session.setAttribute(Constantes.SESSION_PERSONA, p);
+			} catch (PersonaException e) {
+				LOG.error(e.getMessage());
 			}
 			session.setAttribute(Constantes.SESSION_IDIOMA, locale);
 			//le redireccionaremos a una pág

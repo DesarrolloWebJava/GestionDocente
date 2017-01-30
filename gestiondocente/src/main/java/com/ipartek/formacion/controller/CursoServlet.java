@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Curso;
 import com.ipartek.formacion.dbms.pojo.CursoFechaInicioComparator;
 import com.ipartek.formacion.service.CursoService;
@@ -25,6 +27,7 @@ public class CursoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CursoService cS;
 	private RequestDispatcher rd;
+	private static final Logger LOG=Logger.getLogger(CursoServlet.class);
 
 
 	@Override
@@ -114,9 +117,11 @@ public class CursoServlet extends HttpServlet {
 		}catch(NumberFormatException e){
 			rd=request.getRequestDispatcher(Constantes.JSP_HOME);
 			mensaje="Error: operación inesperada";
+			LOG.error(e.getMessage());
 			
 		}
 		catch (Exception e){
+		
 			mensaje="Error: "+e.getMessage();
 			if(codigo>Curso.CODIGO_NULO){
 				curso=cS.getById(codigo);

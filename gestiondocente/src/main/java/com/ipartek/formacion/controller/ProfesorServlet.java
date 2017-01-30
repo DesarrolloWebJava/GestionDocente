@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Profesor;
 import com.ipartek.formacion.service.ProfesorService;
 import com.ipartek.formacion.service.ProfesorServiceImp;
@@ -20,6 +22,7 @@ public class ProfesorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProfesorService pS;
 	private RequestDispatcher rd;
+	private static final Logger LOG=Logger.getLogger("ProfesorServlet");
 	
 	
 	@Override

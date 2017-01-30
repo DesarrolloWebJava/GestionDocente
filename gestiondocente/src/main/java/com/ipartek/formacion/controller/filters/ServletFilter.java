@@ -36,7 +36,7 @@ public class ServletFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		//existe la session
+
 		if(request instanceof HttpServletRequest){
 			HttpSession session=((HttpServletRequest)request).getSession(false);
 			String url=((HttpServletRequest)request).getServletPath();

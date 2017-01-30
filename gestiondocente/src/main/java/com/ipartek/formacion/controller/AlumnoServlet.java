@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.service.AlumnoService;
 import com.ipartek.formacion.service.AlumnoServiceImp;
@@ -22,6 +24,7 @@ public class AlumnoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AlumnoService aS;
 	private RequestDispatcher rd;
+	private static final Logger LOG=Logger.getLogger(AlumnoServlet.class);
 	
 	@Override
 	public void init() throws ServletException {
