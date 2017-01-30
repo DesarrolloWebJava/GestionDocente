@@ -1,6 +1,7 @@
 package com.ipartek.formacion.controller.filters;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -31,6 +32,7 @@ public class ServletFilter implements Filter {
 	 */
 	public void destroy() {
 		// TODO Auto-generated method stub
+		InputStream is = this.getClass().getClassLoader().getResourceAsStream("config.txt");
 	}
 
 	/**
@@ -44,37 +46,28 @@ public class ServletFilter implements Filter {
 			HttpSession session = ((HttpServletRequest) request).getSession(false);
 
 			String url = ((HttpServletRequest) request).getServletPath();
-			System.out.println("-" + url);
-			if (session == null || session.getAttribute(Constantes.SESSION_IDIOMA) == null) {
-				System.out.println("----" + url);
-				if (checkWebPages(url)) {
 
-					chain.doFilter(request, response);
-					return;
-				} else {
-
-					HttpServletResponse resp = (HttpServletResponse) response;
-					resp.sendRedirect(Constantes.JSP_HOME);
-					return;
-				}
-
-				// si la session no existe vamos a comprobar si quieres ir a
-				// login.do
-			} else {
-				System.out.println(session.getAttribute(Constantes.SESSION_IDIOMA));
+			// a ---> puedes seguir cuando haya sesion(sesion!=null y que exista
+			// el parametro idioma) o cuando vayas a login
+			// b ---> te mando a index.jsp
+			if ((session != null && session.getAttribute(Constantes.SESSION_IDIOMA) != null) || checkWebPages(url)) {
 				chain.doFilter(request, response);
-			}
+			} else {
 
+				HttpServletResponse resp = (HttpServletResponse) response;
+				resp.sendRedirect(Constantes.JSP_HOME);
+				return;
+			}
 		} else {
 			chain.doFilter(request, response);
-			return;
+
 		}
 
 	}
 
 	private boolean checkWebPages(final String path) {
 		boolean exito = false;
-		System.out.println(path + "-" + "/" + Constantes.SERVLET_LOGIN);
+
 		if (path.equalsIgnoreCase("/" + Constantes.SERVLET_LOGIN)) {
 			exito = true;
 
