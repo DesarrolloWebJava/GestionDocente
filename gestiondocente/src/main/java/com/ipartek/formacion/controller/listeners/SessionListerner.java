@@ -66,6 +66,8 @@ public class SessionListerner implements HttpSessionListener, HttpSessionAttribu
 	/**
      * @see HttpSessionAttributeListener#attributeAdded(HttpSessionBindingEvent)
      */
+    
+    
     public void attributeAdded(HttpSessionBindingEvent se)  { 
     	HttpSession session = se.getSession();
     	List<Persona> personas = null;
