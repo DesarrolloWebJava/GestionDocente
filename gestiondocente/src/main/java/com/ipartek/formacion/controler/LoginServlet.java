@@ -36,18 +36,30 @@ public class LoginServlet extends HttpServlet {
 		//Cargar resourceBundle o properties dependiente del idioma
 		try{
 		// Debemos indicara el package donde se encuentra y el nombre del /properties sin la extension del locale 
-			messages = ResourceBundle.getBundle("com.ipartek.formacion.egunon.i18nmesages", locale );
+			messages = ResourceBundle.getBundle("com.ipartek.formacion.contoler.i18nmesages", locale );
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 			
 		}
-		
+		//cerrarSession(request);
+	/*	response.sendRedirect(Constantes.JSP_HOME);
+		return;*/
 		rd = request.getRequestDispatcher(Constantes.JSP_HOME);
 		//hace la redireccion
 		rd.forward(request,response); 
 		
 	}
 
+	/*private void cerrarSession(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
+		rd = request.getRequestDispatcher(Constantes.JSP_HOME);
+		rd.forward(request, response);
+		
+	}
+*/
 	/**
 	 * vamos a crear una sesion de login: con usuario "admin"
 	 * y password "pass"
