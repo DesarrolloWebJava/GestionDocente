@@ -15,6 +15,7 @@ public class Constantes {
 	
 	// VARIABLES DE SESION
 	public static final String SESSION_IDIOMA = "language";
+	public static final String SESSION_PERSONA = "persona";
 	
 	
 	

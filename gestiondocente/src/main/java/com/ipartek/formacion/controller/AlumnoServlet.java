@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.service.AlumnoService;
 import com.ipartek.formacion.service.AlumnoServiceImp;
@@ -19,6 +21,8 @@ import com.ipartek.formacion.service.AlumnoServiceImp;
  */
 public class AlumnoServlet extends HttpServlet {
 
+	private static final Logger log = Logger.getLogger(AlumnoServlet.class);
+	
 	private static final long serialVersionUID = 1L;
     private AlumnoService aS;
     private RequestDispatcher rd;
@@ -75,6 +79,7 @@ public class AlumnoServlet extends HttpServlet {
 			}
 			
 		} catch (Exception e){
+			log.error(e.getMessage() + "Valor del codigo del Alumno" + request.getParameter());
 			resp.sendRedirect(Constantes.JSP_HOME);
 			return;
 			//cargarListaAlumnos(request);
