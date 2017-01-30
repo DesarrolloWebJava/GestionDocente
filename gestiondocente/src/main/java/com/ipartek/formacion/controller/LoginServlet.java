@@ -106,7 +106,7 @@ public class LoginServlet extends HttpServlet {
 				LOG.error(e.getMessage());
 			}
 			session.setAttribute(Constantes.SESSION_IDIOMA, locale);
-			rd =  request.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
+			rd =  request.getRequestDispatcher(Constantes.JSP_HOME);
 		}else{
 			String mensaje = "Usuario y/o contraseña incorrecta";
 			request.setAttribute(Constantes.ATT_MENSAJE, mensaje);

@@ -7,6 +7,7 @@
     <c:set var="language" value="${not empty sessionScope.language ? sessionScope.language : 'es_ES'}" scope="page" />
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="com.ipartek.formacion.controller.i18nmessages"/>
+
 <jsp:include page="../includes/header.jsp" />
 
 		<main>

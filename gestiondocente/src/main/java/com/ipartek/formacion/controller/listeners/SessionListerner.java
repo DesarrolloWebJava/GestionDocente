@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSessionListener;
 
 import org.apache.log4j.Logger;
 
-import com.ipartek.formacion.controller.AlumnoServlet;
+
 import com.ipartek.formacion.controller.Constantes;
 import com.ipartek.formacion.dbms.pojo.Persona;
 
@@ -76,7 +76,7 @@ public class SessionListerner implements HttpSessionListener, HttpSessionAttribu
     		personas = new ArrayList<Persona>();
     	}
     	if (session.getAttribute(Constantes.SESSION_PERSONA) != null){
-    		LOG.trace("Usuaripo registrado");
+    		LOG.trace("Usuario registrado");
     		Persona p = (Persona) session.getAttribute(Constantes.SESSION_PERSONA);
     		personas.add(p);
     		ctx.setAttribute("listaUsuarios", personas);
