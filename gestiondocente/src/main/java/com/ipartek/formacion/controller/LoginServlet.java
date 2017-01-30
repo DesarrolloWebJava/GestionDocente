@@ -37,20 +37,32 @@ public class LoginServlet extends HttpServlet {
 		//me la crea, si se le pasa false obtiene la ya existente
 		
 		
-		String languaje = (String)request.getSession().getAttribute("languaje");
-		if(languaje !=null){
-			locale = new Locale(languaje);
-		}
-		ResourceBundle messages = null;
-		try{
-			messages = ResourceBundle.getBundle("com.ipartek.formacion.egunon.controller.i18messages", locale);
+		//String languaje = (String)request.getSession().getAttribute("languaje");
+		//if(languaje !=null){
+			//locale = new Locale(languaje);
+		//}
+		//ResourceBundle messages = null;
+		//try{
+			//messages = ResourceBundle.getBundle("com.ipartek.formacion.egunon.controller.i18messages", locale);
 			
-		}catch(Exception e){
-			System.out.println(e.getMessage());
+		//}catch(Exception e){
+			//System.out.println(e.getMessage());
 			
+		//}
+		//rd = request.getRequestDispatcher(Constantes.JSP_HOME);
+		//rd.forward(request, response);
+		
+		cerrarSession(request);
+		response.sendRedirect(Constantes.JSP_HOME);
+		return;
+	}
+	
+	private void cerrarSession(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if(session!=null){
+			session.invalidate();
 		}
-		rd = request.getRequestDispatcher(Constantes.JSP_HOME);
-		rd.forward(request, response);
+		
 	}
 
 	/**
