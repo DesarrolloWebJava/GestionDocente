@@ -1,7 +1,5 @@
 package com.ipartek.formacion.controller.listeners;
 
-import java.util.Properties;
-
 import javax.servlet.ServletContextAttributeEvent;
 import javax.servlet.ServletContextAttributeListener;
 import javax.servlet.ServletContextEvent;
@@ -62,7 +60,7 @@ public class InitListener implements ServletContextListener, ServletContextAttri
 	}
 
 	private void loadLog4j(ServletContextEvent arg0) {
-		Properties props = new Properties();
+		// Properties props = new Properties();
 		try {
 			// props.load(this.getClass().getClassLoader().getResource());
 			PropertyConfigurator.configure(this.getClass().getClassLoader().getResource(NFICHERO));
