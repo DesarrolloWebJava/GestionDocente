@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.service.AlumnoService;
 import com.ipartek.formacion.service.AlumnoServiceImp;
@@ -18,6 +20,7 @@ import com.ipartek.formacion.service.AlumnoServiceImp;
  * Servlet implementation class AlumnoServlet
  */
 public class AlumnoServlet extends HttpServlet {
+	private static final Logger LOG = Logger.getLogger(AlumnoServlet.class);
 	private static final long serialVersionUID = 1L;
     private AlumnoService aS;  
     private RequestDispatcher rd;
@@ -76,6 +79,7 @@ public class AlumnoServlet extends HttpServlet {
 					break;
 			}
 		} catch(Exception e){
+			LOG.error(e.getMessage()+"valor del codigo del Alumno" + req.getParameter(Constantes.PAR_CODIGO));
 			//cargarListaAlumnos(req);
 			resp.sendRedirect(Constantes.JSP_HOME);
 			return;
@@ -110,11 +114,13 @@ public class AlumnoServlet extends HttpServlet {
 		} catch (Exception e){
 			if (codigo == -1){
 				cargarListaAlumnos(req);
+				LOG.error(e.getMessage()+"valor del codigo del Alumno" + req.getParameter(Constantes.PAR_CODIGO));
 				mensaje="Se ha producido un error inesperado";
 			}else{
 				alumno = aS.getById(codigo);
 				req.setAttribute(Constantes.ATT_ALUMNO, alumno);
 				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNOS);
+				LOG.error(e.getMessage()+"valor del codigo del Alumno" + req.getParameter(Constantes.PAR_CODIGO));
 				mensaje= e.getMessage();
 			}
 			//System.out.println(e.getMessage());
@@ -151,6 +157,7 @@ public class AlumnoServlet extends HttpServlet {
 			alumno.setfNacimiento(dateFormat.parse(date));
 			
 		} catch(Exception e){
+			LOG.error(e.getMessage()+"valor del codigo del Alumno" + req.getParameter(Constantes.PAR_CODIGO));
 			throw new Exception("Los datos son incorrectos: " + e.getMessage());
 			
 		}

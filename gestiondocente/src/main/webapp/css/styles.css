@@ -7,7 +7,7 @@ header a{
 	text-decoration: none;
 }
 nav {
-	display: block;
+	
 }
 
 nav ul{
@@ -16,16 +16,18 @@ nav ul{
     padding: 0;
     overflow: hidden;
     background-color:#77f9ec;
-    display: block;
+    display:list-item;
+    position: relative;
 	
 }
 nav li{
-	display: inline;
-	float: left;
-	display: block;
+	
 }
 
 nav li a{
+	display: inline;
+	float: left;
+	position: relative;
 	text-decoration: none;
 	background-color:#77f9ec;
 	padding: 10px 10px;

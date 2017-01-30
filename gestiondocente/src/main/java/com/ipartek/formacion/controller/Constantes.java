@@ -13,6 +13,7 @@ public final class Constantes {
 	public static final String ATT_CURSO = "curso";
 	
 	public static final String SESSION_IDIOMA= "language";
+	public static final String SESSION_PERSONA= "persona";
 	
 	public static final String SERVLET_ALUMNO = "alumno.do";
 	public static final String SERVLET_PROFESOR = "profesor.do";
