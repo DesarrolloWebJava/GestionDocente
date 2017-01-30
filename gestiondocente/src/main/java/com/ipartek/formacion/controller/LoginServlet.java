@@ -1,8 +1,6 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,25 +30,33 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Locale locale = new Locale("es_ES");
-		// si al recoger la sesion se le pasa true o nada , automaticamente si
-		// no existe la sesion , crea na nueva sesion.
-		// SI se le pasa false obtien ya la existente
-		String language = (String) request.getSession().getAttribute("language");
+		/*
+		 * Locale locale = new Locale("es_ES"); // si al recoger la sesion se le
+		 * pasa true o nada , automaticamente si // no existe la sesion , crea
+		 * na nueva sesion. // SI se le pasa false obtien ya la existente String
+		 * language = (String) request.getSession().getAttribute("language");
+		 * 
+		 * if (language != null) {
+		 * 
+		 * locale = new Locale(language); }
+		 * 
+		 * ResourceBundle messages = null; try { messages =
+		 * ResourceBundle.getBundle(
+		 * "com.ipartek.formacion.controller.i18nmessages", locale); } catch
+		 * (Exception e) { System.out.println(e.getMessage()); } rd =
+		 * request.getRequestDispatcher(Constantes.JSP_HOME);
+		 * rd.forward(request, response);
+		 */
+		cerrarSession(request);
+		response.sendRedirect(Constantes.JSP_HOME);
+		return;
+	}
 
-		if (language != null) {
-
-			locale = new Locale(language);
+	private void cerrarSession(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
 		}
-
-		ResourceBundle messages = null;
-		try {
-			messages = ResourceBundle.getBundle("com.ipartek.formacion.controller.i18nmessages", locale);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		rd = request.getRequestDispatcher(Constantes.JSP_HOME);
-		rd.forward(request, response);
 
 	}
 

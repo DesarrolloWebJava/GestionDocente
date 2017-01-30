@@ -24,6 +24,13 @@
 			<li><a href="<%=Constantes.SERVLET_CURSO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ%>">G. Cursos</a></li>
 		</ul>
 	</nav>
-
+	<%
+	
+	if(session != null && !session.isNew() && session.getAttribute(Constantes.SESSION_IDIOMA) != null){
+	%>
+	<a href ="<%=Constantes.SERVLET_LOGIN%>">Cerrar Sesión</a>
+	<%
+	}	
+	%>
 	<jsp:include page = "mensajes.jsp"/>
 </header>

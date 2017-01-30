@@ -30,7 +30,7 @@ public class ServletFilter implements Filter {
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
+		// InputStream is = this.getClass().getClassLoader().getres
 	}
 
 	/**
@@ -42,22 +42,33 @@ public class ServletFilter implements Filter {
 		// Si existe sesion
 		if (request instanceof HttpServletRequest) {
 			HttpSession session = ((HttpServletRequest) request).getSession(false);
-			String url = ((HttpServletRequest) request).getServletPath() + "/";
 
-			if ((session != null && session.getAttribute(Constantes.SESSION_IDIOMA) != null) || checkWebPages(url)) {
+			String url = ((HttpServletRequest) request).getServletPath();
+			if (session == null || session.getAttribute(Constantes.SESSION_IDIOMA) == null) {
 
-				chain.doFilter(request, response);
+				if (checkWebPages(url)) {
 
+					chain.doFilter(request, response);
+					return;
+				} else {
+
+					HttpServletResponse resp = (HttpServletResponse) response;
+					resp.sendRedirect(Constantes.JSP_HOME);
+					return;
+				}
+
+				// si la session no existe vamos a comprobar si quieres ir a
+				// login.do
 			} else {
-				HttpServletResponse resp = (HttpServletResponse) response;
-				resp.sendRedirect(Constantes.JSP_HOME);
+				chain.doFilter(request, response);
 				return;
 			}
 
 		} else {
 			chain.doFilter(request, response);
-
+			return;
 		}
+
 		// si la sesion no existe vamos a comprobar si quieres ir a login
 
 		// pass the request along the filter chain
