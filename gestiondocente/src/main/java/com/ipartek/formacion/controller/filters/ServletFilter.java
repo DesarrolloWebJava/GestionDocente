@@ -1,6 +1,8 @@
 package com.ipartek.formacion.controller.filters;
 
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -30,6 +32,7 @@ public class ServletFilter implements Filter {
 	 */
 	public void destroy() {
 		// TODO Auto-generated method stub
+		InputStream is = this.getClass().getClassLoader().getResourceAsStream("config.txt");
 	}
 
 	/**

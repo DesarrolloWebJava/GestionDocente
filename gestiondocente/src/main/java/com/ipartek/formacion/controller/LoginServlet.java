@@ -22,11 +22,11 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Locale por defecto Español
-		Locale locale = new Locale("es_ES");
+		//Locale locale = new Locale("es_ES");
 		//Si al recoger la session se le pasa true o nada si no existe la session 
 		//me la crea
 		//obtener lenguaje de la session del usuario
-		String language = (String) request.getSession(true).getAttribute("language");
+		/*String language = (String) request.getSession(true).getAttribute("language");
 
 		if ( language != null ){
 		locale = new Locale(language);
@@ -39,7 +39,10 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		rd = request.getRequestDispatcher(Constantes.JSP_HOME);
-		rd.forward(request, response);
+		rd.forward(request, response);*/
+		cerrarSession(request);
+		response.sendRedirect(Constantes.JSP_HOME);
+		return;
 	}
 
 	/**
@@ -89,6 +92,13 @@ public class LoginServlet extends HttpServlet {
 			rd = request.getRequestDispatcher(Constantes.JSP_HOME);	
 		}
 		rd.forward(request, response);
+	}
+	
+	private void cerrarSession(HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		if(session!=null){
+			session.invalidate();
+		}
 	}
 
 }
