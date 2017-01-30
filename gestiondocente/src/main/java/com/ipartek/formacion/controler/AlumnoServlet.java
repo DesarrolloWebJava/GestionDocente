@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
+import com.ipartek.formacion.controler.listeners.InitListener;
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.AlumnoService;
@@ -20,6 +23,9 @@ import com.ipartek.formacion.service.AlumnoServiceImp;
  * Servlet implementation class AlumnoServlet
  */
 public class AlumnoServlet extends HttpServlet {
+	/*esto siempre en clases menos en los pojos ni excepciones*/
+	
+	private static final Logger log = Logger.getLogger(AlumnoServlet.class);
 	private static final long serialVersionUID = 1L;
     private AlumnoService aS;
     private RequestDispatcher rd;
@@ -141,6 +147,8 @@ public class AlumnoServlet extends HttpServlet {
 			if ( codigo == -1){
 				rd = request.getRequestDispatcher(Constantes.JSP_CREAR_ALUMNOS);
 				
+				//para sacar el error en mi log
+				log.error(e.getMessage()+ "valor de la variable Codigo:"+request.getParameter(Constantes.PAR_CODIGO));
 				mensaje= "Se ha producido una operación inesperada";
 			}else{
 				//validamos datos
