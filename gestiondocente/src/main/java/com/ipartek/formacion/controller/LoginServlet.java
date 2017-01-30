@@ -28,24 +28,33 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Locale locale = new Locale("es_ES");
-		//Si al recoger la session se le pasa true o nada, si no existe la session, me la crea
-		//si se le pasa false, obtiene la ya existente.
-		String language = (String)request.getSession(true).getAttribute("language");
+//		Locale locale = new Locale("es_ES");
+//		//Si al recoger la session se le pasa true o nada, si no existe la session, me la crea
+//		//si se le pasa false, obtiene la ya existente.
+//		String language = (String)request.getSession(true).getAttribute("language");
+//		
+//		if(language!=null){
+//			locale = new Locale(language);
+//		}
+//		ResourceBundle messages=null;
+//		try{
+//			messages = ResourceBundle.getBundle("com.ipartek.formacion.controller.i18nmessages", locale );
+//		}catch (Exception e){
+//			System.out.println(e.getMessage());			
+//		}
+//		rd=request.getRequestDispatcher(Constantes.JSP_HOME);
+//		rd.forward(request, response);
+		cerrarSession(request);
+		response.sendRedirect(Constantes.JSP_HOME);
+		return;
+	}
+	
+	private void cerrarSession(HttpServletRequest request){
+		HttpSession session = request.getSession(false);
 		
-		if(language!=null){
-			locale = new Locale(language);
+		if (session!=null){
+			session.invalidate();
 		}
-		ResourceBundle messages=null;
-		try{
-			messages = ResourceBundle.getBundle("com.ipartek.formacion.controller.i18nmessages", locale );
-		}catch (Exception e){
-			System.out.println(e.getMessage());			
-		}
-		rd=request.getRequestDispatcher(Constantes.JSP_HOME);
-		rd.forward(request, response);
-		
-		
 	}
 
 	/**
