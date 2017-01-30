@@ -27,6 +27,16 @@
 	<a href="<%=Constantes.SERVLET_IDIOMA%>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_CASTELLANO%>">Castellano</a>
 	<a href="<%=Constantes.SERVLET_IDIOMA%>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_EUSKERA%>">Euskera</a>
 	<a href="<%=Constantes.SERVLET_IDIOMA%>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_INGLES%>">Ingles</a>
+ <% 
+	
+	 if(session!=null
+	 	&&!session.isNew()
+	 	&&session.getAttribute(Constantes.SESSION_IDIOMA)!=null){
+	 %>
+	 <a href="<%=Constantes.SERVLET_LOGIN%>">Cerrar Sesión</a>
+	 <%
+	 }
+	 %>
 	<jsp:include page="mensajes.jsp"/>
 </header>
 
