@@ -30,5 +30,15 @@
 	<a href="<%=Constantes.SERVLET_IDIOMA %>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_CASTELLANO%>">Castellano</a>
 	<a href="<%=Constantes.SERVLET_IDIOMA %>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_EUSKERA%>">Euskera</a>
 	<a href="<%=Constantes.SERVLET_IDIOMA %>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_INGLES%>">Ingles</a>
+	
+	<!-- Boton CERRAR SESION if(si la sesion existe) -->
+	<% 
+	if(session != null && !session.isNew() && session.getAttribute(Constantes.SESSION_IDIOMA)!=null){
+	%>
+	<a href="<%=Constantes.SERVLET_LOGIN%>">Cerrar sesion</a>
+	<%
+	}
+	%>
+	
 	<jsp:include page="mensajes.jsp"/>
 </header>

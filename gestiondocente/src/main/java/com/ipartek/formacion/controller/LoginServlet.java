@@ -46,10 +46,29 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		rd = request.getRequestDispatcher(Constantes.JSP_HOME);
-		rd.forward(request, response);
+		rd.forward(request, response);	
+		
+		//---------------  Cerrar sesion -------------------
+		
+		cerrarSession(request);
+		response.sendRedirect(Constantes.JSP_HOME);
+		return;
 		
 		}
 
+	//--------------- METODO Cerrar sesion -------------------
+	
+	private void cerrarSession(HttpServletRequest request){
+		
+		HttpSession session = request.getSession(false);
+		if(session != null){
+			session.invalidate();
+		}
+		
+	}
+	
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
