@@ -15,6 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionContext;
 
+import org.apache.log4j.Logger;
+
+import com.ipartek.formacion.dbms.pojo.Persona;
+import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
+
 
 /**
  * @author Raúl de Roba 26/01/17 
@@ -26,7 +31,10 @@ public class LoginServlet extends HttpServlet {
 	/* Constante de serialición. */
 	private static final long serialVersionUID = 1L;
 	/* Se declara una RequestDispatcher para redireccionar una url indicada. */
-	RequestDispatcher rd;       
+	RequestDispatcher rd; 
+	
+	/* Se recoge la instacia del log pasando como parametro la clase actual.*/
+	private static final Logger LOG = Logger.getLogger(LoginServlet.class);	
   
 
 	/* Metodo a ejecutar al recibir una petición Get. */
@@ -124,12 +132,29 @@ public class LoginServlet extends HttpServlet {
 					/* Se asigna el locale de castellano.*/
 					locale = "es_ES";
 			}
+			/* Se declara la persona para guardar los datos de usuario.*/
+			Persona persona = new Persona();
+			/* Se crea una estructura que capturara los errores en la captura del alumno.*/
+			try {
+				/* Se asigna el nombre de usuario recogido del request.	*/
+				persona.setNombre(usuario);
+				/* se asigna la persona a la sesion.*/
+				session.setAttribute(Constantes.SESION_PERSONA, persona);
+			} catch (PersonaException e) {
+				/* Se lanza la traza del error. */
+				LOG.error(e.getMessage());		
+			}
 			/* Se asigna el locale a la sesion.*/
 			session.setAttribute(Constantes.SESION_IDIOMA,locale);
 			/* Se redirecciona a la página principal.*/
 			rd = req.getRequestDispatcher(Constantes.JSP_HOME);
 		}else {
-			// TODO
+			/* Se guarda el mensaje de error.*/
+			String mensaje ="Usuario y/o contraseña incorrecto";
+			/* Se manda el mensaje de error al request. */
+			req.setAttribute(Constantes.ATT_MENSAJES, mensaje);
+			/* Se redirecciona a la página principal.*/
+			rd = req.getRequestDispatcher(Constantes.JSP_HOME);
 		}
 		/* Se redirecciona a la Url indicada.*/
 		rd.forward(req, res);	

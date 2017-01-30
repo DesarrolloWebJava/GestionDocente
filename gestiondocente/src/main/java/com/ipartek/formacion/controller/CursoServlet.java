@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 
 import com.ipartek.formacion.dbms.pojo.Curso;
 import com.ipartek.formacion.dbms.pojo.exceptions.CursoException;
@@ -30,6 +31,9 @@ public class CursoServlet extends HttpServlet {
 	private CursoService cS;
 	/* Se declara una RequestDispatcher para redireccionar una url indicada. */
 	RequestDispatcher rd;
+	
+	/* Se recoge la instacia del log pasando como parametro la clase actual.*/
+	private static final Logger LOG = Logger.getLogger(CursoServlet.class);	
        
        
 	 @Override
@@ -113,6 +117,8 @@ public class CursoServlet extends HttpServlet {
 			}
 		/* Se captura la excepción.*/	
 		}catch (Exception e){
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 			/* En caso que la operacion recibida no sea entero,
 			 * se llama al manda a la página inicial. */
 			resp.sendRedirect(Constantes.JSP_HOME);			
@@ -168,6 +174,8 @@ public class CursoServlet extends HttpServlet {
 		cargarListaCursos(req);
 		/* Se captura la excepción.*/	
 		} catch (Exception e) {
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 			/* Se asigna la url del formulario 'curso.jsp' 
 			 * para redireccionar tras el error.*/
 			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_CURSO);
@@ -212,10 +220,14 @@ public class CursoServlet extends HttpServlet {
 			
 		/* Se captura la excepción de tipo Curso.*/	
 		}catch (CursoException e){
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 			/* Se trasfiere la excepcion a la clase padre.*/
 			throw new CursoException(e.getMessage());
 		/* Se captura la excepción.*/	
 		}catch (Exception e){
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 			/* Se trasfiere la excepcion a la clase padre.*/
 			throw new Exception("Los datos del curso contienen un error: "+
 			                                                              e.getMessage());		

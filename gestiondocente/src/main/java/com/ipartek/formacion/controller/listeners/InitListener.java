@@ -79,7 +79,9 @@ public class InitListener
 		
 		/* Se crea una estructura que capturara los errores.*/
 		try {
-			/* Se carga el fichero de propiedades con la clase.*/
+			/* Se carga el fichero de propiedades con la clase.
+			 * ClassLoader es la carpeta raiz (SCR).
+			 * GetResource recoger el recurso de la carpeta recursos.*/
 			PropertyConfigurator.configure(this.getClass().getClassLoader().getResource(NFICHERO));
 			/* Se graba el mensaje de éxito.*/
 			LOG.trace("LOG cargado");

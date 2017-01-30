@@ -22,6 +22,7 @@ public final class  Constantes {
 	
 	/* Constantes de variables de sesión.*/
 	public static final String SESION_IDIOMA = "language";
+	public static final String SESION_PERSONA= "persona";
 	
 	/* Constantes de atributos de Servlets.*/
 	public static final String ATT_LISTADO_ALUMNOS = "listadoAlumnos";

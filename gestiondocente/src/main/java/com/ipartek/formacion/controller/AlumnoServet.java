@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
+import com.ipartek.formacion.controller.listeners.InitListener;
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.AlumnoService;
@@ -30,6 +33,9 @@ public class AlumnoServet extends HttpServlet {
 	private AlumnoService aS;
 	/* Se declara una RequestDispatcher para redireccionar una url indicada. */
 	RequestDispatcher rd;
+	
+	/* Se recoge la instacia del log pasando como parametro la clase actual.*/
+	private static final Logger LOG = Logger.getLogger(AlumnoServet.class);	
        
     @Override
     /* Metodo que que se ejecuta crear la pagina.
@@ -118,7 +124,9 @@ public class AlumnoServet extends HttpServlet {
 		}catch (Exception e){
 			/* En caso que la operacion recibida no sea entero,
 			 * se llama al manda a la página inicial. */
-			resp.sendRedirect(Constantes.JSP_HOME);			
+			resp.sendRedirect(Constantes.JSP_HOME);	
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());
 		}
 		
 		
@@ -176,6 +184,8 @@ public class AlumnoServet extends HttpServlet {
 			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 			/* Se asigna el atributo del error del mensaje para pasarlo al request.*/
 			mensaje = e.getMessage();
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 		}
 		req.setAttribute(Constantes.ATT_MENSAJES,mensaje);
 		/* Se redirije a la url que se haya indicado.*/
@@ -229,10 +239,14 @@ public class AlumnoServet extends HttpServlet {
 			
 		/* Se captura la excepción de tipo persona.*/	
 		}catch (PersonaException e){
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 			/* Se trasfiere la excepcion a la clase padre.*/
 			throw new PersonaException(e.getMessage());
 		/* Se captura la excepción.*/	
 		}catch (Exception e){
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 			/* Se trasfiere la excepcion a la clase padre.*/
 			throw new Exception("Los datos del alumno contienen un error: "+e.getMessage());		
 		}

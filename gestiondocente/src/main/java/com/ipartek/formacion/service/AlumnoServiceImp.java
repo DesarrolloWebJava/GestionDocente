@@ -6,6 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import com.ipartek.formacion.controller.ProfesorServlet;
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.exceptions.AlumnoServiceImpException;
@@ -31,6 +34,9 @@ public final class AlumnoServiceImp implements AlumnoService{
 	/* Se declara la variable estatica autoincremental 
 	 * para asignar los codigos de Alumnos. */
 	private static int i = 0;
+	
+	/* Se recoge la instacia del log pasando como parametro la clase actual.*/
+	private static final Logger LOG = Logger.getLogger(AlumnoServiceImp.class);	
 	
 	
 	/* Constructor sin parametros.*/
@@ -82,9 +88,11 @@ public final class AlumnoServiceImp implements AlumnoService{
 		} catch (PersonaException e) {
 		/*//TODO Se captura las excepciones de tipo 'ParseException'.*/	
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 		} catch (Exception e) {
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 		}
 
 		/* Se vuelve a instgaciar el alumno.
@@ -99,8 +107,8 @@ public final class AlumnoServiceImp implements AlumnoService{
 			/* Se llama al metodo que crea el alumno.*/	
 			create(alumno);
 		} catch (PersonaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 		}
 
 	}
@@ -139,6 +147,8 @@ public final class AlumnoServiceImp implements AlumnoService{
 			alumno = alumnos.get(posicion);
 		/* Se captura las excepciones de tipo 'AlumnoServiceImpException'.*/		
 		} catch (AlumnoServiceImpException e) {
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 			/* Se instancia el alumno para inicianizarlo.
 			 * Al instaciarlo asignamos un codigo nulo en el alumno,de manera
 			 * que al devolverlo se gestionará como un alumno nuevo.*/
@@ -160,6 +170,8 @@ public final class AlumnoServiceImp implements AlumnoService{
 			/* Se borra el alumno situado en la posición obtenida.*/
 			alumnos.remove(posicion);
 		} catch (AlumnoServiceImpException e) {
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 		}
 	}
 	
@@ -175,6 +187,8 @@ public final class AlumnoServiceImp implements AlumnoService{
 			/* Se actuliza el alumno situado en la posición obtenida.*/
 			alumnos.set(posicion, alumno);
 		} catch (AlumnoServiceImpException e) {
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 		}
 		/* Se devuelve el alumno actualizado.*/
 		return alumno;

@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.dbms.pojo.Profesor;
 import com.ipartek.formacion.service.exceptions.AlumnoServiceImpException;
@@ -29,6 +31,9 @@ public class ProfesorServiceImp implements ProfesorService {
 	Map<Integer, Profesor> profesores;
 	/* Se declara la variable para asignar los codigos de Alumnos. */
 	private static int contador;
+	
+	/* Se recoge la instacia del log pasando como parametro la clase actual.*/
+	private static final Logger LOG = Logger.getLogger(ProfesorServiceImp.class);	
 
 	/* Constructor sin parametros.*/
 	public ProfesorServiceImp() {

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.dbms.pojo.Profesor;
 import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
@@ -31,6 +33,9 @@ public class ProfesorServlet extends HttpServlet {
 	private ProfesorService pS;
 	/* Se declara una RequestDispatcher para redireccionar una url indicada. */
 	RequestDispatcher rd;
+	
+	/* Se recoge la instacia del log pasando como parametro la clase actual.*/
+	private static final Logger LOG = Logger.getLogger(ProfesorServlet.class);	
        
 	@Override
     /* Metodo que que se ejecuta crear la pagina.
@@ -113,6 +118,8 @@ public class ProfesorServlet extends HttpServlet {
 			}
 		/* Se captura la excepción.*/	
 		}catch (Exception e){
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 			/* En caso que la operacion recibida no sea entero,
 			 * se llama al manda a la página inicial. */
 			resp.sendRedirect(Constantes.JSP_HOME);			
@@ -167,6 +174,8 @@ public class ProfesorServlet extends HttpServlet {
 		cargaListaProfesores(req);
 		/* Se captura la excepción.*/	
 		} catch (Exception e) {
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 			/* Se asigna la url del formulario 'profesor.jsp' 
 			 * para redireccionar tras el error.*/
 			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
@@ -211,10 +220,14 @@ public class ProfesorServlet extends HttpServlet {
 			
 		/* Se captura la excepción de tipo persona.*/	
 		}catch (PersonaException e){
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 			/* Se trasfiere la excepcion a la clase padre.*/
 			throw new PersonaException(e.getMessage());
 		/* Se captura la excepción.*/	
 		}catch (Exception e){
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 			/* Se trasfiere la excepcion a la clase padre.*/
 			throw new Exception("Los datos del profesor contienen un error: "+e.getMessage());		
 		}

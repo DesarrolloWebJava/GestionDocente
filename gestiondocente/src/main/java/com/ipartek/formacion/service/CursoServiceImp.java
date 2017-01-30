@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Curso;
 import com.ipartek.formacion.dbms.pojo.exceptions.CursoException;
 import com.ipartek.formacion.service.exceptions.CursoServiceImpException;
@@ -32,6 +34,9 @@ public class CursoServiceImp implements CursoService{
 	/* Se declara la variable estatica autoincremental 
 	 * para asignar los codigos de curso. */
 	private static int i = 0;
+	
+	/* Se recoge la instacia del log pasando como parametro la clase actual.*/
+	private static final Logger LOG = Logger.getLogger(CursoServiceImp.class);	
 	
 	
 	/* Constructor sin parametros.*/
@@ -70,6 +75,8 @@ public class CursoServiceImp implements CursoService{
 			create(curso);
 		/* Se captura la posible excepción en la asignación de los atributos del curso. */
 		} catch (CursoException e) {
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 		}
 	}
 
@@ -108,6 +115,8 @@ public class CursoServiceImp implements CursoService{
 			curso = cursos.get(posicion);
 		/* Se captura las excepciones de tipo 'CursoServiceImpException'.*/		
 		} catch (CursoServiceImpException e) {
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 			/* Se instancia el curso para inicianizarlo.*/
 			curso = new Curso();
 		}
@@ -127,6 +136,8 @@ public class CursoServiceImp implements CursoService{
 			/* Se borra el curso situado en la posición obtenida.*/
 			cursos.remove(posicion);
 		} catch (CursoServiceImpException e) {
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 		}
 	}
 	
@@ -142,6 +153,8 @@ public class CursoServiceImp implements CursoService{
 			/* Se actuliza el curso situado en la posición obtenida.*/
 			cursos.set(posicion, curso);
 		} catch (CursoServiceImpException e) {
+			/* Se lanza la traza del error. */
+			LOG.error(e.getMessage());		
 		}
 		/* Se devuelve el curso actualizado.*/
 		return curso;

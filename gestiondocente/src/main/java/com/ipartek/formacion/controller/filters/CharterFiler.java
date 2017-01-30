@@ -9,6 +9,10 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import org.apache.log4j.Logger;
+
+import com.ipartek.formacion.controller.CursoServlet;
+
 /**
 * @author Raúl de Roba 27/01/17 
 *
@@ -16,6 +20,9 @@ import javax.servlet.ServletResponse;
 * 
 */
 public class CharterFiler implements Filter {
+	
+	/* Se recoge la instacia del log pasando como parametro la clase actual.*/
+	private static final Logger LOG = Logger.getLogger(CharterFiler.class);	
 
     /**
      * Default constructor. 

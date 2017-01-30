@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
+import com.ipartek.formacion.controller.filters.ServletFilter;
 import com.ipartek.formacion.service.AlumnoService;
 
 
@@ -25,6 +28,9 @@ public class IdiomaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	/* Se declara una RequestDispatcher para redireccionar una url indicada. */
 	RequestDispatcher rd;
+	
+	/* Se recoge la instacia del log pasando como parametro la clase actual.*/
+	private static final Logger LOG = Logger.getLogger(IdiomaServlet.class);	
 	
 	
 	/* Metodo a ejecutar al recibir una petición Get. */

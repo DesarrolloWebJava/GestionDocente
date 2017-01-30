@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.controller.Constantes;
 
 /**
@@ -23,6 +25,9 @@ import com.ipartek.formacion.controller.Constantes;
 */
 public class ServletFilter implements Filter {
 
+	/* Se recoge la instacia del log pasando como parametro la clase actual.*/
+	private static final Logger LOG = Logger.getLogger(ServletFilter.class);	
+	
     /**
      * Default constructor. 
      */
