@@ -19,11 +19,13 @@ public class InitListener implements ServletContextAttributeListener, ServletCon
 	
 	private static final  String nFichero = "log4j.properties"; 
 	private static final Logger log = Logger.getLogger(InitListener.class);
-    /**
+  
+	
+	/**
      * Default constructor. 
      */
     public InitListener() {
-        // TODO Auto-generated constructor stub
+        
     }
 
 	/**
@@ -70,7 +72,7 @@ public class InitListener implements ServletContextAttributeListener, ServletCon
     }
 
     private void loadLog4j(ServletContextEvent sce) {
-		Properties props = new Properties();
+    	Properties props = new Properties();
 		try {
 			// props.load(this.getClass().getClassLoader().getResource());
 			PropertyConfigurator.configure(this.getClass().getClassLoader().getResource(nFichero));

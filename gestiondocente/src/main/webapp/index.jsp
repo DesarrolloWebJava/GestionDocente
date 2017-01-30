@@ -47,8 +47,7 @@
 </div>
 </main>
 <br>
-<br>
-<br>
+
 <%@ include file="includes/footer.html" %>
 </body>
 </html>
