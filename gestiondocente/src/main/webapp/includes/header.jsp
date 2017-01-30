@@ -112,7 +112,22 @@
 			<!-- Enlace a la gestión de Idioma para la traducción al Ingles -->
 			<a href="<%=Constantes.SERVLET_IDIOMA%>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_INGLES%>">
 			    <fmt:message key="idioma.ingles"/></a> 
-			</a>				
+			<!--  Se comprueba si exite la sesión de cara a mostrar el botoón o no. -->
+			<%				
+			    /* Por defecto las JSP tienen envebida la session por lo tanto se puede utilizar.
+			       omprobamos si tenemos una sesión creada.
+			       Con isNew comprobamos si la sessión ha sido creada en la página actual. */
+				if(session != null && 
+				   !session.isNew() && 
+				   session.getAttribute(Constantes.SESION_IDIOMA) != null){
+			%>
+				<!-- Enlace al cierre de sesion. -->
+				<a href="<%=Constantes.SERVLET_LOGIN%>">
+				                              <fmt:message key="index.cerrarSesion"/></a>
+			<%
+				}
+			%>			    
+						
 		</nav>				
 		<!-- Include de mensanjes.	
 		  Se llama al include dimanico 

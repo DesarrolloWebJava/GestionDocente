@@ -32,39 +32,48 @@ public class LoginServlet extends HttpServlet {
 	/* Metodo a ejecutar al recibir una petición Get. */
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 			                                       throws ServletException, IOException {
+        /* Se anulan el código del locale por que se va a gestionar directamente en el JSP.*/
 		/* Se iniciliza el Locale por defecto a español. (Internacionalización).*/
-		Locale locale = new Locale("es_ES");
-		/* Se declara la variable donde se recoge el lenguaje de la sesión.
-		 * Al recoger una sesión,si por parametro recibe falso devuelve nulo,
-		 * por lo que pasamos true para crearla. */
-		String language = (String) req.getSession(true).getAttribute("languaje");
-		/* Se comrpueba si la sesión poseía lenguaje.*/
-		if (language!=null){
-			/* Se instancia el locale con el lenguaje de sesión.*/
-			locale = new Locale(language);			
-		}
+//		Locale locale = new Locale("es_ES");
+//		/* Se declara la variable donde se recoge el lenguaje de la sesión.
+//		 * Al recoger una sesión,si por parametro recibe falso devuelve nulo,
+//		 * por lo que pasamos true para crearla. */
+//		String language = (String) req.getSession(true).getAttribute("languaje");
+//		/* Se comrpueba si la sesión poseía lenguaje.*/
+//		if (language!=null){
+//			/* Se instancia el locale con el lenguaje de sesión.*/
+//			locale = new Locale(language);			
+//		}
+//		
+//		/* Se declara la variable donde contener el recurso de propiedades 
+//		 * que contiene la internacionalizacion */
+//		ResourceBundle messages = null;
+//		/* Se monta estructura para la captura de excepciones.*/
+//		try{
+//			// Se recoge el recurso de propiedades que contiene la internacionalizacion. 
+//			messages = ResourceBundle.getBundle(
+//					"com.ipartek.formacion.egunon.controller.i18nmessages", locale);
+//		/* Se captura la excepción.*/	
+//		}catch(Exception e){			
+//		
+//			
+//		}
+//		/* Sobre el RequestDispatcher se indica una url pra redireccionar 
+//		 * a la página principal.
+//		 * No es una redireccion limpia,con lo que envia parametros.
+//		 * En este caso request y response.*/
+//		rd = req.getRequestDispatcher(Constantes.JSP_HOME);
+//		/* Se redirecciona enviando por parametro los request y response 
+//		 * recibidos por parametro.*/
+//		rd.forward(req, resp);
 		
-		/* Se declara la variable donde contener el recurso de propiedades 
-		 * que contiene la internacionalizacion */
-		ResourceBundle messages = null;
-		/* Se monta estructura para la captura de excepciones.*/
-		try{
-			// Se recoge el recurso de propiedades que contiene la internacionalizacion. 
-			messages = ResourceBundle.getBundle(
-					"com.ipartek.formacion.egunon.controller.i18nmessages", locale);
-		/* Se captura la excepción.*/	
-		}catch(Exception e){			
-		
-			
-		}
-		/* Sobre el RequestDispatcher se indica una url pra redireccionar 
-		 * a la página principal.
-		 * No es una redireccion limpia,con lo que envia parametros.
-		 * En este caso request y response.*/
-		rd = req.getRequestDispatcher(Constantes.JSP_HOME);
-		/* Se redirecciona enviando por parametro los request y response 
-		 * recibidos por parametro.*/
-		rd.forward(req, resp);
+		/* Se llama al metodo que que cierrar la sesión,ya que si accedemos al login a
+           traves de doGet,será a través de un botoón que vamos a codificar para cerrar.*/
+		cerrarSesion(req);
+		/* Se hace un rediredireccionamiento hacía la página principal.*/
+		resp.sendRedirect(Constantes.JSP_HOME);
+		/* Se hace un return por si se ha quedado algo en memroia.*/
+		return;
 	}	
 
 	/* Metodo a ejecutar al recibir una petición Post. */
@@ -126,7 +135,16 @@ public class LoginServlet extends HttpServlet {
 		rd.forward(req, res);	
 	}
 	
-	
+	/* Metodo que cierra la sesión.*/
+	private void cerrarSesion(HttpServletRequest req){
+		/* Se declara y recoge la sesión.*/
+		HttpSession session = req.getSession(false);
+		/* Se comrpueba si hemos recogido una sesión.*/
+		if (session!=null){
+			/* Se cierra la sesión.*/
+			session.invalidate();
+		}
+	}
 
 }
 
