@@ -8,6 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.service.AlumnoService;
 import com.ipartek.formacion.service.AlumnoServiceImp;
@@ -16,6 +19,7 @@ import com.ipartek.formacion.service.AlumnoServiceImp;
  * Servlet implementation class AlumnoServlet
  */
 public class AlumnoServlet extends HttpServlet {
+	private static final Logger LOG = Logger.getLogger(AlumnoServlet.class);
 	private static final long serialVersionUID = 1L;
 	private AlumnoService aS;
 	//
@@ -91,6 +95,8 @@ public class AlumnoServlet extends HttpServlet {
 				break;
 			}
 		}catch(Exception e){
+			//cargarListaAlumnos(request)
+			LOG.error(e.getMessage()+ "Valor del codigo de alumno: "+ request.getParameter(Constantes.PAR_CODIGO));
 			//En caso de excepcion prepara la redireccion a index.jsp
 			response.sendRedirect(Constantes.JSP_HOME);
 			return;
@@ -131,7 +137,7 @@ public class AlumnoServlet extends HttpServlet {
 			}
 			cargarListaAlumnos(request);
 		}catch (NumberFormatException e){
-			//Si el parse tiene un problema se ejecuta este catch
+			LOG.error(e.getMessage()+" Valor de la variable: "+request.getParameter(Constantes.PAR_CODIGO));
 		} catch (Exception e) {
 			//Si el codigo es diferente de -1...
 			mensaje = "Se ha producido un error inesperado. \nContacte con el administrador";

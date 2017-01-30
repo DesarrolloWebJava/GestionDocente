@@ -78,7 +78,13 @@
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
   <error-page>
-  	<error-code>404</error-code>
-  	<location>/error.html</location>
+    <error-code>404</error-code>
+    <location>/error.html</location>
   </error-page>
+  <listener>
+    <listener-class>com.ipartek.formacion.controller.listeners.InitListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>com.ipartek.formacion.controller.listeners.SessionListener</listener-class>
+  </listener>
 </web-app>

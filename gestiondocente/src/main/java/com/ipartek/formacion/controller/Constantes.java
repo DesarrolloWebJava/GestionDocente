@@ -12,6 +12,7 @@ public class Constantes {
 	public static final String ATT_LISTADO_PROFESORES = "listadoProfesores";
 	public static final String ATT_LISTADO_ALUMNOS = "listadoAlumnos";
 	public static final String ATT_LISTADO_CURSOS = "listadoCursos";
+	public static final String ATT_LISTADO_USUARIOS = "listadoUsuarios";
 	public static final String ATT_MENSAJE = "mensaje";
 	public static final String ATT_ALUMNO = "alumno";
 	public static final String ATT_PROFESOR = "profesor";
@@ -20,6 +21,7 @@ public class Constantes {
 	
 	//Variables de sesion
 	public static final String SESSION_IDIOMA = "language";
+	public static final String SESSION_PERSONA = "persona";
 	
 	//llamadas de los servlets
 	public static final String SERVLET_ALUMNO = "alumno.do";

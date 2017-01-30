@@ -11,10 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
+import com.ipartek.formacion.dbms.pojo.Persona;
+import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
+
 /**
  * Servlet implementation class LoginServlet
  */
 public class LoginServlet extends HttpServlet {
+	private static final Logger LOG = Logger.getLogger(LoginServlet.class);
 	private static final long serialVersionUID = 1L;
     private RequestDispatcher rd;
     /**
@@ -29,25 +35,42 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		
 		//Nuevo objeto Locale
-		Locale locale = new Locale("es_ES");
-		//Obtenemos el atributo lenguaje de la sesion
-		//Si al recoger la sesion se le pasa true o nada, si no existe la sesion me la crea
-		//Si es false obtiene la ya existente y si no hay casca
-		String language = (String)request.getSession(true).getAttribute("language");
-		if(language != null){
-			locale = new Locale(language);
+//		Locale locale = new Locale("es_ES");
+//		//Obtenemos el atributo lenguaje de la sesion
+//		//Si al recoger la sesion se le pasa true o nada, si no existe la sesion me la crea
+//		//Si es false obtiene la ya existente y si no hay casca
+//		String language = (String)request.getSession(true).getAttribute("language");
+//		if(language != null){
+//			locale = new Locale(language);
+//		}
+//		ResourceBundle messages = null;
+//		try{
+//			//Cargamos los datos
+//			messages = ResourceBundle.getBundle("com.ipartek.formacion.controller.i18nmesages", locale );
+//		}catch(Exception e){
+//			System.out.println(e.getMessage());
+//		}
+//		rd = request.getRequestDispatcher(Constantes.JSP_HOME);
+//		rd.forward(request, response);
+		//Llamamos al metodo cerrar sesion
+		cerrarSesion(request);
+		//Lo manda a la home una vez cerrada la sesion
+		response.sendRedirect(Constantes.JSP_HOME);
+		//Se pone para que no se quede colgado el sendRedirect()
+		return;
+	}
+	
+	/**
+	 * Cierra la sesion
+	 * @param request Recibe una request
+	 */
+	private void cerrarSesion(HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		if(session!=null){
+			session.invalidate();
 		}
-		ResourceBundle messages = null;
-		try{
-			//Cargamos los datos
-			messages = ResourceBundle.getBundle("com.ipartek.formacion.controller.i18nmesages", locale );
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-		}
-		rd = request.getRequestDispatcher(Constantes.JSP_HOME);
-		rd.forward(request, response);
-		
 	}
 
 	/**
@@ -75,6 +98,7 @@ public class LoginServlet extends HttpServlet {
 			int idioma = Integer.parseInt(lang);
 			//El locale es es_ES etc..
 			String locale = "";
+			
 			switch(idioma){
 			case Constantes.IDIOMA_CASTELLANO:
 				locale = "es_ES";
@@ -89,6 +113,18 @@ public class LoginServlet extends HttpServlet {
 					locale = "es_ES";
 					break;
 			}
+			//Creamos una persona para cargar los datos
+			Persona p = new Persona();
+			try{
+				//Cargamos el nombre y apellido (de momento mal)
+				p.setNombre(username);
+				p.setApellidos("Anonimo");
+				//Guardamos la variable en una variable de sesion
+				session.setAttribute(Constantes.SESSION_PERSONA, p);
+			}catch(PersonaException e){
+				LOG.error(e.getMessage());
+			}
+			
 			//Guardamos la variable en una variable de sesion
 			session.setAttribute(Constantes.SESSION_IDIOMA, locale);
 			//Redireccionaremos a una pagina

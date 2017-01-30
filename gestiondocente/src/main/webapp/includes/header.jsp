@@ -27,8 +27,23 @@
 				<li><a href="<%=Constantes.SERVLET_CURSO %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_READ %>">G. Cursos</a></li>
 			</ul>
 		</nav>
+		<!-- 
 		<a href="<%=Constantes.SERVLET_IDIOMA %>?<%=Constantes.PAR_IDIOMA %>=<%=Constantes.IDIOMA_CASTELLANO %>">Castellano</a> 
 		<a href="<%=Constantes.SERVLET_IDIOMA %>?<%=Constantes.PAR_IDIOMA %>=<%=Constantes.IDIOMA_EUSKERA %>">Euskera</a> 
 		<a href="<%=Constantes.SERVLET_IDIOMA %>?<%=Constantes.PAR_IDIOMA %>=<%=Constantes.IDIOMA_INGLES %>">Ingles</a> 
+		-->
+		<%
+		//RECOGEMOS LA SESION
+		//3 condiciones:
+		//Que la sesion es distinto de nulo
+		//Si la sesion no se acaba de instanciar (en este archivo: header.jsp)
+		//Si la constante sesion idioma no es nula
+		if(session!=null&&!session.isNew()&&session.getAttribute(Constantes.SESSION_IDIOMA)!= null){
+		%>
+		<!-- Al pulsar el enlace se enlaza al doGet() del LoginServlet -->
+		<a href="<%=Constantes.SERVLET_LOGIN %>">Cerrar Sesión </a>
+		<%
+		}
+		%>
 		<jsp:include page="mensajes.jsp"></jsp:include>
 	</header>
