@@ -46,6 +46,15 @@
                  <showDeprecation>true</showDeprecation>
              </configuration>
          </plugin>
+         <plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-war-plugin</artifactId>
+		        <version>2.3</version>
+		        <configuration>
+		          <warName>gestiondocente</warName>
+		        </configuration>
+      		</plugin>
 	</plugins>
+	<finalName>${project.artifactId}-${project.version}</finalName>
 </build>
 </project>

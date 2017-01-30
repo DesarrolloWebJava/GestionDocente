@@ -1,8 +1,6 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,24 +20,50 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Locale locale = new Locale("es_ES");
-		// si al recoger la session se le pasa true o nada si no existe la
-		// session me la crea
-		// si se le pasa false obtiene la ya existente
-		String language = (String) request.getSession(true).getAttribute("language");
-		if (language != null) {
-			locale = new Locale(language);
+
+		// Locale locale = new Locale("es_ES");
+		// // si al recoger la session se le pasa true o nada si no existe la
+		// // session me la crea
+		// // si se le pasa false obtiene la ya existente
+		// String language = (String)
+		// request.getSession(true).getAttribute("language");
+		// if (language != null) {
+		// locale = new Locale(language);
+		// }
+		// ResourceBundle messages = null;
+		// try {
+		// messages =
+		// ResourceBundle.getBundle("com.ipartek.formacion.controller.i18nmesages",
+		// locale);
+		// } catch (Exception e) {
+		// System.out.println(e.getMessage());
+		// }
+		// rd = request.getRequestDispatcher(Constantes.JSP_HOME);
+		// rd.forward(request, response);
+		cerrarSession(request);
+		response.sendRedirect(Constantes.JSP_HOME);
+		return;
+	}
+
+	private void cerrarSession(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
 		}
-		ResourceBundle messages = null;
-		try {
-			messages = ResourceBundle.getBundle("com.ipartek.formacion.controller.i18nmesages", locale);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		rd = request.getRequestDispatcher(Constantes.JSP_HOME);
-		rd.forward(request, response);
 	}
 
 	/**
