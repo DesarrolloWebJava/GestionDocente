@@ -30,28 +30,40 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 Locale locale = new Locale("es_ES");	
-	 // Si al recoger la session se le pasa true o nada si no existe la sesion la crea
-	 // si se le pasa false obtiene la ya existente
-	 String language = (String) request.getSession(true).getAttribute("language");
-	 
-	 if (language != null){
-		 locale = new Locale(language);
-	 }
-	 
-	 ResourceBundle message = null;
-	 
-	 try {
-		ResourceBundle messages = ResourceBundle.getBundle("com.ipartek.formacion.controller.i18nmessages", locale);
-	} catch (Exception e) {
-		e.printStackTrace();
-		System.out.print(e.getMessage());
+	
+		//	Locale locale = new Locale("es_ES");	
+		//	 // Si al recoger la session se le pasa true o nada si no existe la sesion la crea
+		//	 // si se le pasa false obtiene la ya existente
+		//	 String language = (String) request.getSession(true).getAttribute("language");
+		//	 
+		//	 if (language != null){
+		//		 locale = new Locale(language);
+		//	 }
+		//	 
+		//	 ResourceBundle message = null;
+		//	 
+		//	 try {
+		//		ResourceBundle messages = ResourceBundle.getBundle("com.ipartek.formacion.controller.i18nmessages", locale);
+		//	} catch (Exception e) {
+		//		e.printStackTrace();
+		//		System.out.print(e.getMessage());
+		//	}
+		//	
+		//		 
+		//	 rd = request.getRequestDispatcher(Constantes.JSP_HOME);
+		//	 rd.forward(request, response);
+		
+		cerrarSesion(request);
+		response.sendRedirect(Constantes.JSP_HOME);
+		return;
+		
 	}
 	
-		 
-	 rd = request.getRequestDispatcher(Constantes.JSP_HOME);
-	 rd.forward(request, response);
-		
+	private void cerrarSesion(HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		if (session!=null){
+			session.invalidate();
+		}
 	}
 
 	/**
@@ -115,5 +127,7 @@ public class LoginServlet extends HttpServlet {
        rd.forward(request, response);
        
 	}
+	
+
 
 }

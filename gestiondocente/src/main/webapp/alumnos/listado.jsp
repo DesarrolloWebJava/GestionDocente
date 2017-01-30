@@ -29,9 +29,9 @@
 
 
 	 <c:forEach  var="alumno" items="${requestScope.listadoAlumnos}">
-	 <!-- ${alumno.nombre} ${alumno.apellidos} <a href="">Editar</a> <a href='"+ Constantes.SERVLET_ALUMNO + "?" + Constantes.PAR_OPERACION +"="+ Constantes.OP_DELETE +"&" + Constantes.PAR_CODIGO+"="+ alumno.codigo+"'>Borrar</a><br> -->
-	 ${alumno.nombre} ${alumno.apellidos} <a href="">Editar</a> <a href="">Borrar</a><br> 
-	
+	 <!-- ${alumno.nombre} ${alumno.apellidos} <a href="">Editar</a> <a href='"+ Constantes.SERVLET_ALUMNO + "?" + Constantes.PAR_OPERACION +"="+ Constantes.OP_DELETE +"&" + Constantes.PAR_CODIGO+"="+ alumno.codigo+"'>Borrar</a><br> 
+	 ${alumno.nombre} ${alumno.apellidos} <a href="">Editar</a> <a href="">Borrar</a><br> -->
+	<p>${alumno}<a href="<%=Constantes.SERVLET_ALUMNO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_UPDATE%>&<%=Constantes.PAR_CODIGO%>=${alumno.codigo}">Editar</a> <a href="">Borrar</a>
 	</c:forEach>
 	
 	
