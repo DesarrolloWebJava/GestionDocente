@@ -1,0 +1,10 @@
+@CHARSET "ISO-8859-1";
+
+
+.myproperties { line-height: 10px; }
+
+#footer {
+	bottom: 0;
+    height: 70px;
+    position: fixed;
+}

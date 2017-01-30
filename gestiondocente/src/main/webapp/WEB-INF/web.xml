@@ -76,4 +76,7 @@
     <servlet-name>CursoServlet</servlet-name>
     <url-pattern>/curso.do</url-pattern>
   </servlet-mapping>
+  <listener>
+    <listener-class>com.ipartek.formacion.controller.listeners.InitListener</listener-class>
+  </listener>
 </web-app>

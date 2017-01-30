@@ -43,6 +43,17 @@ RUTAS RELATIVAS EN JAVA ¡# NO #! FUNCIONAN -->
 	<a href="<%=Constantes.SERVLET_IDIOMA%>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_CASTELLANO%>">Castellano</a>
 	<a href="<%=Constantes.SERVLET_IDIOMA%>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_EUSKERA%>">Euskera</a>
 	<a href="<%=Constantes.SERVLET_IDIOMA%>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_INGLES%>">Inglés</a>
+	<!-- Solo mostramos el siguiente botón si la sesión existe: -->
+	<!-- Cómo se recoge la sesión en la vista:  los jsp son servlets e incluyen los args: sessio, request, response-->
+	
+	<%
+	if(	session != null && 
+		!session.isNew() && 
+		session.getAttribute(Constantes.SESSION_IDIOMA) != null)
+	  {%>
+		<a href="<%=Constantes.SERVLET_LOGIN%>">Cerrar Sesión</a>
+	<%}%>
+	
 	<jsp:include page="mensajes.jsp"/>
 </header>
 </body>

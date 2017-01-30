@@ -31,36 +31,43 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		
+	/*
 		//Este servlet cuando se activa lee el atributo language de la sesion y 
 		//aplica un resourceBundle sobre su url
-		
-		
 		//creamos la variable locale
 		Locale locale = new Locale("es_ES");
-		
 		// (Contra lo normal, que es coger paras) Coge el Atributo language y lo guarda.
 		String language = (String) request.getSession(true).getAttribute("language");
-		
 		// si tiene valor, lo guarda como locale
 		if (language != null) {
 			locale = new Locale(language);
 		}
-		
 		//se cra un ResourceBundle:  each ResourceBundle is a 
 		//set of related subclasses that share the same base name.
 		ResourceBundle messages = null;
-		
 		//se le asignan los i18 al rb
 		try {
 			messages = ResourceBundle.getBundle("com.ipartek.formacion.controller.i18nmessages", locale);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
 		//redirigimos a home
 		rd = request.getRequestDispatcher(Constantes.JSP_HOME);
 		rd.forward(request, response);
+	*/
+	/*OTRS MANERA DE DOGET*/
+		cerrarSession(request);
+		response.sendRedirect(Constantes.JSP_HOME);
+		return;
+			
+	}
+
+
+	private void cerrarSession(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if(session != null){
+			session.invalidate();
+		}
 	}
 
 
