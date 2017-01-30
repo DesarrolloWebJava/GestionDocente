@@ -7,7 +7,7 @@ header a{
 	text-decoration: none;
 }
 nav {
-	
+	display: block;
 }
 
 nav ul{
@@ -16,11 +16,13 @@ nav ul{
     padding: 0;
     overflow: hidden;
     background-color:#77f9ec;
+    display: block;
 	
 }
 nav li{
 	display: inline;
 	float: left;
+	display: block;
 }
 
 nav li a{
@@ -113,5 +115,12 @@ main a:HOVER {
  	display: block;
  	width: 67%;
 }
- 	
+
+.cerrarSesion{
+	background-color: #71b8ff;
+	color: #f1f1f1;
+ 	float:right;
+ 	position: relative;
+ 	display: inline-block;
+}
  	

@@ -1,6 +1,7 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -29,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		/*
 		Locale locale = new Locale("es_ES");
 		String language = (String) request.getSession(true).getAttribute("language");
 		// getSession() si no se pone nada o se pone true sino existe la sesion me la crea
@@ -46,9 +47,21 @@ public class LoginServlet extends HttpServlet {
 		}
 		rd=request.getRequestDispatcher(Constantes.JSP_HOME);
 		rd.forward(request, response);
+		*/
+		cerrarSession(request);
+		response.sendRedirect(Constantes.JSP_HOME);
+		return;
 		
 	}
-
+	private void cerrarSession(HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		if (session != null){
+				session.invalidate();
+		}
+		
+		
+	}
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
