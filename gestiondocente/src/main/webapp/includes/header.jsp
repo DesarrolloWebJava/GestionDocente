@@ -31,6 +31,7 @@
 	<h1>Gestión Docente</h1>
 </div>
 <c:if test="${not empty usuario}">	
+	
 	<nav class="navbar navbar-default">
 		<ul class="nav navbar-nav">
 			<li>
@@ -41,6 +42,9 @@
 			</li>
 			<li>
 				<a href="<%=Constantes.SERVLET_CURSO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ %>" class="btn btn-info">Listado de Cursos</a>
+			</li>
+			<li>
+			 <a href="<%=Constantes.SERVLET_LOGIN%>" class="btn btn-warning btn-sm">Cerrar Sesión</a>
 			</li>
 		</ul>
 	</nav>

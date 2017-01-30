@@ -41,25 +41,27 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 			
 		}
+		
+		cerrarSession(request);
+		response.sendRedirect(Constantes.JSP_HOME);
+		return;
 		//cerrarSession(request);
 	/*	response.sendRedirect(Constantes.JSP_HOME);
 		return;*/
-		rd = request.getRequestDispatcher(Constantes.JSP_HOME);
+		//rd = request.getRequestDispatcher(Constantes.JSP_HOME);
 		//hace la redireccion
-		rd.forward(request,response); 
+		//rd.forward(request,response); 
 		
 	}
 
-	/*private void cerrarSession(HttpServletRequest request) {
+	private void cerrarSession(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		if (session != null) {
 			session.invalidate();
 		}
-		rd = request.getRequestDispatcher(Constantes.JSP_HOME);
-		rd.forward(request, response);
 		
 	}
-*/
+	
 	/**
 	 * vamos a crear una sesion de login: con usuario "admin"
 	 * y password "pass"
