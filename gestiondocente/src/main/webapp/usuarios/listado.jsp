@@ -11,7 +11,7 @@
 	List<Persona>personas = (List<Persona>)request.getAttribute(Constantes.ATT_LISTADO_USUARIOS);
 	for(Persona persona: personas){
 	%>
-	<%=persona.getNombre() %>
+	<%=persona.getNombre() %> <a href="<%=Constantes.SERVLET_ADMIN%>?sessionid=<%=persona.getSessionId()%>">Expulsar</a>
 	<!-- Plus: añada boton de  kick (expulsar) a un usuario conectado-->
 	
 <% }	%>

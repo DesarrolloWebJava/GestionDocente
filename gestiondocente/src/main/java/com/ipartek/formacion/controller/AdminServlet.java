@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
+import com.ipartek.formacion.controller.listeners.SessionListener;
 import com.ipartek.formacion.dbms.pojo.Persona;
 
 /**
@@ -29,20 +30,30 @@ public class AdminServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		try {
-			HttpSession session = request.getSession(false);
-			ServletContext ctx = session.getServletContext();
-			List<Persona> personas = (List<Persona>) ctx.getAttribute(Constantes.CTX_LISTADO_USUARIOS);
-			request.setAttribute(Constantes.ATT_LISTADO_USUARIOS, personas);
-			rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_USARIOS);
-			rd.forward(request, response);
-		} catch (NullPointerException e) {
-			LOG.equals(e.getMessage());
-			request.setAttribute(Constantes.ATT_MENSAJE, "No se puede acceder a la información en este momento");
-			rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_USARIOS);
-			rd.forward(request, response);
-
+		String sessionid = request.getParameter("sessionid");
+		if (sessionid == null) {// se procesa visualizar todos los ususarios
+								// concetados
+			try {
+				HttpSession session = request.getSession(false);
+				ServletContext ctx = session.getServletContext();
+				List<Persona> personas = (List<Persona>) ctx.getAttribute(Constantes.CTX_LISTADO_USUARIOS);
+				request.setAttribute(Constantes.ATT_LISTADO_USUARIOS, personas);
+				rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_USARIOS);
+			} catch (NullPointerException e) {
+				LOG.error(e.getMessage());
+				request.setAttribute(Constantes.ATT_MENSAJE, "No se puede acceder a la información en este momento");
+				rd = request.getRequestDispatcher(Constantes.JSP_HOME);
+			}
+		} else {// se procesa expulsar a un usuario
+			try {
+				HttpSession session = SessionListener.getHttpSession(sessionid);
+				session.invalidate();
+				rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
+			} catch (NullPointerException e) {
+				LOG.error(e.getMessage());
+			}
 		}
+		rd.forward(request, response);
 	}
 
 	/**

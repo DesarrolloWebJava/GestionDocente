@@ -74,8 +74,11 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
 			LOG.trace(persona.getNombre());
 			personas = (List<Persona>) ctx.getAttribute(Constantes.CTX_LISTADO_USUARIOS);
 			personas.remove(persona);
-			ctx.setAttribute("listadoUsuarios", personas);
+			ctx.setAttribute(Constantes.CTX_LISTADO_USUARIOS, personas);
 		}
+		String sessionId = arg0.getSession().getId();
+		map.remove(sessionId);
+		LOG.trace(sessionId + " Eliminada");
 	}
 
 	/**
