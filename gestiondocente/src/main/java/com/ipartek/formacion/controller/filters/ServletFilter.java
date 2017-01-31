@@ -46,7 +46,7 @@ public class ServletFilter implements Filter {
 			//caso a puedes seguir (cuando haya sesion o exista el parametro idioma
 			//caso b te mando a index.jsp
 
-			if (session != null && session.getAttribute(Constantes.SESSION_IDIOMA) == null || checkWebPages(url)) {
+			if (session != null && session.getAttribute(Constantes.SESSION_IDIOMA) != null || checkWebPages(url)) {
 
 				chain.doFilter(request, response);
 				return;

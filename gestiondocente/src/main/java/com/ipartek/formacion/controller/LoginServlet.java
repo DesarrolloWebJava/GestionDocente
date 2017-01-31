@@ -11,10 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
+import com.ipartek.formacion.dbms.pojo.Persona;
+import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
+
 /**
  * Servlet implementation class LoginServlet
  */
 public class LoginServlet extends HttpServlet {
+	private static final Logger LOG = Logger.getLogger(LoginServlet.class);
 	private static final long serialVersionUID = 1L;
     private RequestDispatcher rd;   
     /**
@@ -64,13 +70,14 @@ public class LoginServlet extends HttpServlet {
 
 		String username=request.getParameter(Constantes.PAR_USUARIO);
 		String password=request.getParameter(Constantes.PAR_PASSWORD);
-		System.out.println(username);
-		System.out.println(password);
+		
 		
 		final String user = "admin";
 		final String pass = "pass";
+		final String user2 = "admin2";
+		final String pass2="pass2";
 		
-		if(user.equals(username)&&pass.equals(password)){
+		if((user.equals(username)&&pass.equals(password))||(user2.equals(username)&&pass2.equals(password))){
 			//Crearemos la session
 			HttpSession session = request.getSession(true);
 			//true =session nueva
@@ -97,7 +104,16 @@ public class LoginServlet extends HttpServlet {
 					locale = "es_ES";
 					break;
 			}
+			Persona p = new Persona();
+			try {
+				p.setNombre(username);
+				p.setApellidos("anónimo");
+				session.setAttribute(Constantes.SESSION_PERSONA, p);
+			} catch (PersonaException e) {
+				LOG.error(e.getMessage());
+			}
 			session.setAttribute(Constantes.SESSION_IDIOMA, locale);
+			
 			//Redireccionaremos a una página
 			rd = request.getRequestDispatcher(Constantes.JSP_HOME);
 			
@@ -105,9 +121,9 @@ public class LoginServlet extends HttpServlet {
 		else{
 			//Mensaje de error
 			String mensaje = "Usuario y/o contraseña incorrectos.";
-			request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
-			//Redireccionaremos a index.jsp		
 			rd = request.getRequestDispatcher(Constantes.JSP_HOME);
+			request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
+			
 		}
 		rd.forward(request, response);
 	}

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.service.AlumnoService;
 import com.ipartek.formacion.service.AlumnoServiceImp;
@@ -18,6 +20,7 @@ import com.ipartek.formacion.service.AlumnoServiceImp;
  * Servlet implementation class AlumnoServlet
  */
 public class AlumnoServlet extends HttpServlet {
+	private static final Logger LOG = Logger.getLogger(AlumnoServlet.class);
 	private static final long serialVersionUID = 1L;
 	private AlumnoService aS;
 	private RequestDispatcher rd;
@@ -78,7 +81,8 @@ public class AlumnoServlet extends HttpServlet {
 
 		} catch (Exception e) {
 			// cargarListaAlumnos(req);
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
+			LOG.error(e.getMessage());
 			resp.sendRedirect(Constantes.JSP_HOME);
 			return;
 		}
@@ -92,6 +96,7 @@ public class AlumnoServlet extends HttpServlet {
 	 * @param req
 	 */
 	private void cargarListaAlumnos(HttpServletRequest req) {
+		LOG.trace(" ");
 		// resp.sendRedirect("alumnos/listado.jsp"); --> hace una redireccion
 		// limpia.
 		// obtenemos la lista de datos.
