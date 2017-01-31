@@ -86,7 +86,7 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
     	if(personas == null){
     		personas = new ArrayList<Persona>();
     	}
-    	if(session.getAttribute(Constantes.SESSION_PERSONA)!=null){
+    	if(session.getAttribute(Constantes.SESSION_PERSONA)!=null && arg0.getName().equals(Constantes.SESSION_PERSONA)){
     		LOG.trace("usuario registrado");
     		Persona p = (Persona)session.getAttribute(Constantes.SESSION_PERSONA);
     		personas.add(p);

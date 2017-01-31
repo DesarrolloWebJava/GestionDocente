@@ -12,6 +12,8 @@ public class Constantes {
 	public static final String ATT_ALUMNO = "alumno";
 	public static final String ATT_PROFESOR = "profesor";
 	public static final String ATT_CURSO = "curso";
+	
+	public static final String CTX_LISTADO_USUARIOS = "listadoUsuarios";
 		
 	public static final String SESSION_IDIOMA = "language";
 	public static final String SESSION_PERSONA = "persona";
