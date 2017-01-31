@@ -9,9 +9,9 @@ import java.util.regex.Pattern;
 import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.Util;
 
-public class Persona   {
+public class Persona  implements Serializable {
 	
-	
+	private static final long serialVersionUID = 1444L;
 
 	protected int codigo;
 	private String dni;
@@ -20,7 +20,7 @@ public class Persona   {
 	private Date fNacimiento;
 	private String email;
 	private String direccion;
-
+	private String session_id;
 	public Persona() {
 		super();
 		this.email = "";
@@ -29,6 +29,15 @@ public class Persona   {
 		this.nombre="";
 		this.dni="";
 		this.fNacimiento = new Date();
+		this.session_id= "" ;
+	}
+
+	public String getSession_id() {
+		return session_id;
+	}
+
+	public void setSession_id(String session_id) {
+		this.session_id = session_id;
 	}
 
 	public Persona(String email, String direccion) {

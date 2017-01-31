@@ -35,12 +35,14 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
     	LOG.trace("Control de session");
     }
 
-	/**
+	/**guardo las sesiones
      * @see HttpSessionListener#sessionCreated(HttpSessionEvent)
      */
     public void sessionCreated(HttpSessionEvent se)  { 
          //al crear una sesion incremetaremos la variable
     	totalActiveSession++;
+    	
+    	//String id = 
     	
     }
 
@@ -68,7 +70,7 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
     	if(null != session.getAttribute(Constantes.SESSION_PERSONA)){
     		Persona p = (Persona) session.getAttribute(Constantes.SESSION_PERSONA);
     		LOG.trace(p.getNombre());
-    		personas = (List<Persona>)ctx.getAttribute("listdoUsuario");
+    		personas = (List<Persona>)ctx.getAttribute("listadoUsuario");
     		personas.remove(p);
     		//hay q grabar la lista actualizada
     		ctx.setAttribute("listadoUsuario", personas);
@@ -85,6 +87,7 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
     }
 
 	/**
+	 * 
      * @see HttpSessionAttributeListener#attributeAdded(HttpSessionBindingEvent)
      */
     public void attributeAdded(HttpSessionBindingEvent se)  { 
@@ -95,7 +98,7 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
     	//cargamos el contexto de la aplicacion
     	ServletContext ctx =session.getServletContext();
     	//TODO carga la lista del personas del contexto de la app
-    	personas= (List<Persona>)ctx.getAttribute("listdoUsuario");
+    	personas= (List<Persona>)ctx.getAttribute("listadoUsuario");
     	//comprobar que el atributo no sea nulo
     	if(personas == null){
     		//creamos el objeto
@@ -103,7 +106,7 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
     		//AlumnosServiceImp
     		personas = new ArrayList<Persona>();
     	}
-    	if(session.getAttribute(Constantes.SESSION_PERSONA) != null){
+    	if(session.getAttribute(Constantes.SESSION_PERSONA) != null && se.getName().equals(Constantes.SESSION_PERSONA)){
     		LOG.trace("usuario registrado");
     		Persona p = (Persona) session.getAttribute(Constantes.SESSION_PERSONA);
     		personas.add(p);

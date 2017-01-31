@@ -9,19 +9,17 @@
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="com.ipartek.formacion.controler.i18nmesages" /> 
 <jsp:include page="includes/header.jsp"/>
- 
+ ${sessionScope.usuario}
 <main>
 <div class="container">
-<c:if test="${not empty sessionScope.usuario}">
-
-
+	<c:if test="${not empty sessionScope.usuario}">
+		<div class="wrapper">
+			<h1><fmt:message key="index.mensaje" /></h1>
+			<h2><fmt:message key="index.nombreApp" /></h2>
+		</div>
+	</c:if>
 	
-		<h1><fmt:message key="index.mensaje" /></h1>
 
-		<h2><fmt:message key="index.nombreApp" /></h2>
-</c:if>
-
-<c:if test="${empty sessionScope.usuario}">
 		<div class="wrapper">
 		    <form class="form-signin" action="<%=Constantes.SERVLET_LOGIN%>" method="post">    
 		      	<h2 class="form-signin-heading">Login</h2>
@@ -42,10 +40,10 @@
 		      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
 		    </form>
 	  </div>
-</c:if>
+	
 </div>
 </main>
-<br>
+
 
 <%@ include file="includes/footer.html" %>
 </body>

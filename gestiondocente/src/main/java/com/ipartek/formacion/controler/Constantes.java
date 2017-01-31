@@ -18,6 +18,7 @@ public final class Constantes {
 	
 	public static final String ATT_SESISON = "session";
 	
+	public static final String CTX_LISTADO_USUARIOS = "listadoUsuario";
 	
 	public static final String SESSION_IDIOMA = "language";
 	public static final String SESSION_PERSONA = "persona";
