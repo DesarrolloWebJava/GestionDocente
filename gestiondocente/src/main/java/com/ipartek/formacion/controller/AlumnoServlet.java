@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.service.AlumnoService;
 import com.ipartek.formacion.service.AlumnoServiceImp;
@@ -18,6 +20,8 @@ import com.ipartek.formacion.service.AlumnoServiceImp;
  * Servlet implementation class AlumnoServlet
  */
 public class AlumnoServlet extends HttpServlet {
+	private static final Logger LOG = Logger.getLogger(AlumnoServlet.class);
+
 	private static final long serialVersionUID = 1L;
 	private AlumnoService aS;
 	private RequestDispatcher rd;
@@ -80,7 +84,8 @@ public class AlumnoServlet extends HttpServlet {
 
 		} catch (Exception e) {
 			// cargarListaAlumnos(req);
-			System.out.println(e.getMessage());
+			// System.out.println(e.getMessage());
+			LOG.error(e.getMessage());
 			resp.sendRedirect(Constantes.JSP_HOME);
 			return;
 		}
@@ -94,6 +99,7 @@ public class AlumnoServlet extends HttpServlet {
 	 * @param req
 	 */
 	private void cargarListaAlumnos(HttpServletRequest req) {
+		LOG.trace("");
 		// resp.sendRedirect("alumnos/listado.jsp"); --> hace una redireccion
 		// limpia.
 		// obtenemos la lista de datos.
@@ -117,6 +123,7 @@ public class AlumnoServlet extends HttpServlet {
 		Alumno alumno = null;
 		String mensaje = "";
 		int codigo = -1;
+
 		try {
 
 			codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
@@ -133,6 +140,7 @@ public class AlumnoServlet extends HttpServlet {
 			}
 			cargarListaAlumnos(req);
 		} catch (NumberFormatException e) {
+			LOG.error(e.getMessage() + " Valor del codigo del alumno:" + req.getParameter(Constantes.PAR_CODIGO));
 			mensaje = "Se ha producido una operación inesperada contacte con el administrador del sistema.";
 			rd = req.getRequestDispatcher(Constantes.JSP_HOME);
 		} catch (Exception e) {
