@@ -1,9 +1,10 @@
 package com.ipartek.formacion.controller.listeners;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionActivationListener;
@@ -29,6 +30,7 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
 	private static final Logger log = Logger.getLogger(SessionListener.class);
 	// contador
 	private static int totalActiveSession = 0;
+	private static Map<String, HttpSession> map = new HashMap<String, HttpSession>();
 	
     /**
      * Default constructor. 
@@ -40,14 +42,20 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
 	/**
      * @see HttpSessionListener#sessionCreated(HttpSessionEvent)
      */
-    public void sessionCreated(HttpSessionEvent se)  { 
+    public void sessionCreated(HttpSessionEvent arg0)  { 
         
     	// cuando cree una session, incremento 1 a session
+    	totalActiveSession ++;	
     	
-    	totalActiveSession ++;
+    	String id = arg0.getSession().getId();
+    	log.debug("session created : " + id);
+    	// STORE THE SESSOIN FOR EXAMPLE IN DATABASE
+    	map.put(id, arg0.getSession());
     	
-    	
-    	
+    }
+    
+    public static HttpSession getHttpSession(String sessionID) {
+    	 		return map.get(sessionID);
     }
 
 	/**
@@ -60,10 +68,28 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
 	/**
      * @see HttpSessionListener#sessionDestroyed(HttpSessionEvent)
      */
-    public void sessionDestroyed(HttpSessionEvent se)  { 
-    	
+    public void sessionDestroyed(HttpSessionEvent arg0)  { 
     	// cuando elimino una session, decremento 1 a session
     	totalActiveSession --;
+    	
+    	
+    	// acceder a la lista de personas
+    	List<Persona> personas = null;
+    	// acceder a la session
+    	HttpSession session = arg0.getSession();
+    	// acceder al servlet ctx
+    	ServletContext ctx = session.getServletContext();
+    	
+    	
+    	if(null != session.getAttribute(Constantes.SESSION_PERSONA)){
+    		Persona persona = (Persona) session.getAttribute(Constantes.SESSION_PERSONA);
+    		log.trace(persona.getNombre());
+    		// acceder a la lista
+    		personas = (List<Persona>) ctx.getAttribute(Constantes.CTX_LISTADO_USUARIOS); //que hacer con esa lista? Quitar el obj persona
+    		personas.remove(persona);
+    		// Guardar en la lista Actualizada
+    		ctx.setAttribute(Constantes.CTX_LISTADO_USUARIOS, personas);
+    	}
     }
 
 	/**
@@ -76,28 +102,26 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
 	/**
      * @see HttpSessionAttributeListener#attributeAdded(HttpSessionBindingEvent)
      */
-    public void attributeAdded(HttpSessionBindingEvent arg0)  { 
+    public void attributeAdded(HttpSessionBindingEvent arg0)  { // no es una request. es especial
+    	
       
     	HttpSession session = arg0.getSession();
     	List<Persona> personas = null;
-    	ServletContext ctx = session.getServletContext();
+    	ServletContext ctx = session.getServletContext(); // esta parte es NUEVA
     	// TODO cargar la lista de personas del contexto de la aplicacion
-    	personas = (List<Persona>) ctx.getAttribute("listadoUsuarios");
+    	personas = (List<Persona>) ctx.getAttribute(Constantes.CTX_LISTADO_USUARIOS);
     	// este evento se me ejecuta cada vez que se le añade un atributo.
     	if (personas == null) {
     		personas = new ArrayList<Persona>();
     	}
-    	// como se comprueva? 
-    	if ( session.getAttribute(Constantes.SESSION_PERSONA)!= null){
+    	// como se comprueba? 
+    	if ( session.getAttribute(Constantes.SESSION_PERSONA)!= null && arg0.getName().equals(Constantes.SESSION_PERSONA)){
     		log.error("usuario registrado");
     		Persona p = (Persona) session.getAttribute(Constantes.SESSION_PERSONA);
     		personas.add(p);
     		// como guardo datos en el ctx??
-    		ctx.setAttribute("listadoUsuarios", personas);
-    	}
-    	
-    	
-    	
+    		ctx.setAttribute(Constantes.CTX_LISTADO_USUARIOS, personas); // esta parte es NUEVA
+    	}	
     }
 
 	/**
@@ -127,12 +151,9 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
     public void valueUnbound(HttpSessionBindingEvent event)  { 
          // TODO Auto-generated method stub
     }
-	
-	
-    
-    
+  
 	public static int getTotalActiveSession() {
 		return totalActiveSession;
 	}
-    
+    	
 }

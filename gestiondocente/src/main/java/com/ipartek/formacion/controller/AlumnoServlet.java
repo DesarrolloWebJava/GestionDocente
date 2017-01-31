@@ -79,7 +79,7 @@ public class AlumnoServlet extends HttpServlet {
 			}
 			
 		} catch (Exception e){
-			log.error(e.getMessage() + "Valor del codigo del Alumno" + request.getParameter());
+			log.error(e.getMessage());
 			resp.sendRedirect(Constantes.JSP_HOME);
 			return;
 			//cargarListaAlumnos(request);

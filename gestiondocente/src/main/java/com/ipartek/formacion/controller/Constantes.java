@@ -11,14 +11,6 @@ public class Constantes {
 	public static final String ATT_LISTADO_PROFESORES = "listadoProfesores";
 	// nombres de parametros de la clase Curso
 	public static final String ATT_LISTADO_CURSOS = "listadoCursos";
-
-	
-	// VARIABLES DE SESION
-	public static final String SESSION_IDIOMA = "language";
-	public static final String SESSION_PERSONA = "persona";
-	
-	
-	
 	public static final String ATT_MENSAJE = "mensaje";
 	// nombres de parametros de la clase Alumno
 	public static final String ATT_ALUMNO = "alumno";
@@ -27,6 +19,20 @@ public class Constantes {
 	// nombres de parametros de la clase Curso
 	public static final String ATT_CURSO = "curso";
 	
+	public static final String ATT_LISTADO_USUARIOS = "listadoUsuarios";
+
+
+	
+	// VARIABLES DE SESION
+	public static final String SESSION_IDIOMA = "language";
+	public static final String SESSION_PERSONA = "persona";
+	
+	
+	//VARIABLES DE CONTEXTO
+	public static final String CTX_LISTADO_USUARIOS ="listadoUsuarios";
+	
+	
+
 	
 	
 	
@@ -40,6 +46,9 @@ public class Constantes {
 	public static final String SERVLET_IDIOMA = "idioma.do";
 	public static final String SERVLET_LOGIN = "login.do";
 	
+	public static final String SERVLET_ADMIN = "admin.do";
+	
+	
 	
 	
 	public static final String JSP_HOME = "index.jsp";
@@ -52,6 +61,9 @@ public class Constantes {
 	// nombres de parametros de la clase Curso
 	public static final String JSP_LISTADO_CURSOS ="cursos/listado.jsp";
 	public static final String JSP_FORMULARIO_CURSO = "cursos/curso.jsp";
+	
+	public static final String JSP_LISTADO_USUARIOS = "usuarios/listado.jsp";
+	
 	
 	
 	
