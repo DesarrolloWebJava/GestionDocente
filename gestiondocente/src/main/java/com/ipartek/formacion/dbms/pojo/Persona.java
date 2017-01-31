@@ -1,5 +1,6 @@
 package com.ipartek.formacion.dbms.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
@@ -9,7 +10,7 @@ import com.ipartek.formacion.controller.Constantes;
 import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.Util;
 
-public class Persona {
+public class Persona implements Serializable{
 
 	protected int codigo;
 	private String dni;
@@ -18,6 +19,8 @@ public class Persona {
 	private Date fNacimiento;
 	private String email;
 	private String direccion;
+	
+	private String sessionId;
 
 	
 	public Persona() {
@@ -115,6 +118,14 @@ public class Persona {
 		}
 
 		this.fNacimiento = fNacimiento;
+	}
+
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 
 }

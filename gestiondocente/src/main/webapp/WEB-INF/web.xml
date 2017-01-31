@@ -54,6 +54,16 @@
     <servlet-name>IdiomaServlet</servlet-name>
     <url-pattern>/idioma.do</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>UsuarioConectadoServlet</display-name>
+    <servlet-name>UsuarioConectadoServlet</servlet-name>
+    <servlet-class>com.ipartek.formacion.controller.UsuarioConectadoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UsuarioConectadoServlet</servlet-name>
+    <url-pattern>/UsuarioConectado.do</url-pattern>
+  </servlet-mapping>
   <filter>
     <display-name>CharterFilter</display-name>
     <filter-name>CharterFilter</filter-name>
@@ -78,5 +88,8 @@
   </error-page>
   <listener>
     <listener-class>com.ipartek.formacion.controller.listeners.InitListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>com.ipartek.formacion.controller.listeners.SessionListener</listener-class>
   </listener>
 </web-app>

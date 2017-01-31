@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.AlumnoService;
@@ -23,12 +25,15 @@ import com.ipartek.formacion.service.AlumnoServiceImp;
 public class AlumnoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	private static final Logger LOG = Logger.getLogger(AlumnoServlet.class);
+	
 	private AlumnoService aS;
 	private RequestDispatcher rd;
        
 	@Override
 	public void init() throws ServletException {
 		aS = new AlumnoServiceImp();
+		
 		super.init();
 	}
 
@@ -81,6 +86,7 @@ public class AlumnoServlet extends HttpServlet {
 			
 			//cargarListaAlumnos(req);
 			// Forma 1 -> Redireccion Limpia.
+			LOG.error(e.getMessage());
 			resp.sendRedirect(Constantes.JSP_HOME);
 			return;
 		}
@@ -130,11 +136,12 @@ public class AlumnoServlet extends HttpServlet {
 		catch (NumberFormatException e)
 		{
 			mensaje = "Se ha producido un error inesperado, contacte con el administrador";
+			LOG.error(e.getMessage() + " Valor de la Variable: " + req.getParameter(Constantes.PAR_CODIGO) );
 			rd = req.getRequestDispatcher(Constantes.JSP_HOME);
 		}
 		catch (Exception e) {
 		   // redirigir al formulario 	
-			
+			LOG.error(e.getMessage());
 			if (codigo == -1){
 			 // rd = req.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
 			 // req.setAttribute(Constantes.ATT_LISTADO_ALUMNO, alumno);
@@ -187,7 +194,9 @@ public class AlumnoServlet extends HttpServlet {
 		}
 		catch (Exception e){
 			e.printStackTrace();
-			throw new Exception("Los datos No son validos " + e.getMessage() );
+		    LOG.error(e.getMessage());
+			throw new Exception("Los datos No son validos " + e.getMessage());
+		//	LOG.error(e.getMessage(), new Exception("Los datos No son validos " + e.getMessage()));
 			
 		}
 		

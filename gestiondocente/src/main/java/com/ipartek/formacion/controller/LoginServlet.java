@@ -12,11 +12,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
+import com.ipartek.formacion.dbms.pojo.Persona;
+import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
+
 /**
  * Servlet implementation class LoginServlet
  */
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private static final Logger LOG = Logger.getLogger(LoginServlet.class);
 	private RequestDispatcher rd;
 
 	/**
@@ -110,6 +117,17 @@ public class LoginServlet extends HttpServlet {
     	   }// fin del switch 
     	   
     	   session.setAttribute(Constantes.SESSION_IDIOMA, locale);
+    	  
+    	   Persona persona = new Persona();
+    	   try {
+			persona.setNombre(username);
+			persona.setApellidos("Anonimo");
+			persona.setSessionId(session.getId());
+			session.setAttribute(Constantes.SESSION_PERSONA, persona);
+		   } catch (PersonaException e) {
+			LOG.error(e.getMessage());
+	       }//fin del catch
+    	   
     	   
     	   // redireccionaremos a una pagina estandar
     	   rd = request.getRequestDispatcher(Constantes.JSP_HOME);

@@ -3,12 +3,14 @@ package com.ipartek.formacion.controller.listeners;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.ServletContextAttributeEvent;
 import javax.servlet.ServletContextAttributeListener;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -24,6 +26,7 @@ public class InitListener implements ServletContextListener, ServletContextAttri
 	
 	private static final String NFICHERO = "log4j.properties";
 	private static final Logger LOG = Logger.getLogger(InitListener.class);
+	
 	
     /**
      * Default constructor. 
@@ -80,6 +83,7 @@ public class InitListener implements ServletContextListener, ServletContextAttri
 	/**
      * @see ServletContextListener#contextInitialized(ServletContextEvent)
      */
+  
   
 	
 }

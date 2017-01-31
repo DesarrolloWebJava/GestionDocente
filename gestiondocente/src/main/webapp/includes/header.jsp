@@ -32,7 +32,8 @@
 	<%
 		 if (session != null && !session.isNew() && session.getAttribute(Constantes.SESSION_IDIOMA)!= null){
 	 %>
-	<a href="<%=Constantes.SERVLET_LOGIN%>">Cerrar Sesion</a>
+	<a href="<%=Constantes.SERVLET_LOGIN%>">Cerrar Sesion</a> 
+	<a href="<%=Constantes.SERVLET_USUARIOS%>">Ver Usuarios Conectados</a>
 	<%  
 		 }
 	%>
