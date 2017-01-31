@@ -1,4 +1,4 @@
-package com.ipartek.formacion.controller.listeners;
+package com.ipartek.formacion.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,10 +9,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
-import com.ipartek.formacion.controller.Constantes;
 import com.ipartek.formacion.dbms.pojo.Persona;
 
 /**
@@ -30,7 +30,8 @@ public class AdminServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			ServletContext ctx = request.getSession(false).getServletContext();
+			HttpSession session = request.getSession(false);
+			ServletContext ctx = session.getServletContext();
 			List<Persona> personas = (List<Persona>) ctx.getAttribute(Constantes.CTX_LISTADO_USUARIOS);
 			request.setAttribute(Constantes.ATT_LISTADO_USUARIOS, personas);
 			rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_USARIOS);

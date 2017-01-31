@@ -86,7 +86,7 @@
     <description></description>
     <display-name>AdminServlet</display-name>
     <servlet-name>AdminServlet</servlet-name>
-    <servlet-class>com.ipartek.formacion.controller.listeners.AdminServlet</servlet-class>
+    <servlet-class>com.ipartek.formacion.controller.AdminServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AdminServlet</servlet-name>

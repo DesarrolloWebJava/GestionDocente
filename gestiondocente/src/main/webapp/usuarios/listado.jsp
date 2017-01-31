@@ -8,7 +8,7 @@
 	<header><h2>Usuarios conectados</h2></header>
 	<!-- Recorrer la lista de personas(usuarios conectados) -->
 	<%
-	List<Persona>personas = (List<Persona>)request.getAttribute(Constantes.CTX_LISTADO_USUARIOS);
+	List<Persona>personas = (List<Persona>)request.getAttribute(Constantes.ATT_LISTADO_USUARIOS);
 	for(Persona persona: personas){
 	%>
 	<%=persona.getNombre() %>
