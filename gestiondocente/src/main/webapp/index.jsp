@@ -8,21 +8,20 @@
 <c:set var="language" value="${not empty sessionScope.language ? sessionScope.language : 'es_ES'}" scope="page" />
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="com.ipartek.formacion.controler.i18nmesages" /> 
-
 <jsp:include page="includes/header.jsp"/>
  
 <main>
 <div class="container">
-<c:if test="${not empty usuario}">
+<c:if test="${not empty sessionScope.usuario}">
 
 
 	
 		<h1><fmt:message key="index.mensaje" /></h1>
-		<br>
+
 		<h2><fmt:message key="index.nombreApp" /></h2>
 </c:if>
 
-<c:if test="${empty usuario}">
+<c:if test="${empty sessionScope.usuario}">
 		<div class="wrapper">
 		    <form class="form-signin" action="<%=Constantes.SERVLET_LOGIN%>" method="post">    
 		      	<h2 class="form-signin-heading">Login</h2>
@@ -43,7 +42,7 @@
 		      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
 		    </form>
 	  </div>
-</c:if>	
+</c:if>
 </div>
 </main>
 <br>

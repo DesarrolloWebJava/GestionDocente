@@ -108,6 +108,8 @@ public class AlumnoServlet extends HttpServlet {
 	 */
 
 	private void cargarListaAlumnos(HttpServletRequest request) {
+		
+		log.trace("");
 		//obtenemos la lista de alumnos
 		List<Alumno> alumnos = aS.getAll();
 		//(Redireccion limpia)response.sendRedirect("alumnos/listado.jsp");-->hace una direccion limpia
@@ -127,6 +129,7 @@ public class AlumnoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Alumno alumno = null;
 		String mensaje="";
+	
 		int  codigo = -1;
 		try {
 			

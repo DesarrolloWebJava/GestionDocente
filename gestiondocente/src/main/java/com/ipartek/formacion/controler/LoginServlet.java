@@ -1,56 +1,127 @@
 package com.ipartek.formacion.controler;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
+import com.ipartek.formacion.controler.listeners.SessionListener;
+import com.ipartek.formacion.dbms.pojo.Persona;
+import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
+
 /**
  * Servlet implementation class LoginServlet
  */
 public class LoginServlet extends HttpServlet {
+	//primero es el LOG
+	private static final Logger LOG = Logger.getLogger(LoginServlet.class);
 	private static final long serialVersionUID = 1L;
 	private RequestDispatcher rd;
   
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * 
+	 * recogemspo contxto de la aplicacion
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//Locale por defecto Español
-		Locale locale = new Locale("es_ES");
+		//Locale locale = new Locale("es_ES");
 		//si al recoger la sesion se la pasa true o nada , si no existe la sesion me la crea
 		// si le paso false obtiene la ya existente
-		String lenguaje = (String)request.getSession(true).getAttribute("lenguaje");
-		if (lenguaje != null ){
-			locale = new Locale(lenguaje);
-		}
-		ResourceBundle messages = null;
+	//	String lenguaje = (String)request.getSession(true).getAttribute("lenguaje");
+		//if (lenguaje != null ){
+		//	locale = new Locale(lenguaje);
+		//}
+		//ResourceBundle messages = null;
 		//Cargar resourceBundle o properties dependiente del idioma
-		try{
-		// Debemos indicara el package donde se encuentra y el nombre del /properties sin la extension del locale 
-			messages = ResourceBundle.getBundle("com.ipartek.formacion.contoler.i18nmesages", locale );
-		}catch(Exception e){
-			System.out.println(e.getMessage());
+		//try{
+		//// Debemos indicara el package donde se encuentra y el nombre del /properties sin la extension del locale 
+		//	messages = ResourceBundle.getBundle("com.ipartek.formacion.contoler.i18nmesages", locale );
+		//}catch(Exception e){
+		//	System.out.println(e.getMessage());
 			
-		}
+		//}
+		//RECOGEMOS PARAMETRO OP
+		String operacion = request.getParameter(Constantes.PAR_OPERACION);
+		int op=-1;
+		op = Integer.parseInt(operacion);
+		LOG.trace(op+" "+Constantes.OP_LISTAR_USUARIOS_SESION);
+		switch (op){
+			case Constantes.OP_LISTAR_USUARIOS_SESION:
+				LOG.trace("Estoy OP_LISTAR_USUARIOS_SESION");
+				List<Persona> personas =null;
+				//1-recoger el contexto de la app
+				HttpSession session =request.getSession();
+		    	ServletContext ctx =session.getServletContext();
+				//2-caragrame la lista de usuarios conectados
+		    
+		    		Persona p = (Persona) session.getAttribute(Constantes.SESSION_PERSONA);
+		    		LOG.trace("Estoy en recoger usuario");
+		    		personas = (List<Persona>)ctx.getAttribute(Constantes.ATT_LISTADO_USUARIOS);
+		    		//hay q grabar la lista actualizada
+		    		//ctx.setAttribute("listadoUsuario", personas);
+		    		//3-pasarsela a la request
+		    		session.setAttribute(Constantes.ATT_LISTADO_USUARIOS, personas);
+		    		//4-hacer la redireccion
+		    		rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_USUARIOS);
+		    		
+		    	break;
+			case Constantes.OP_CERRAR_SESION:
+				LOG.trace("Estoy cerrar session");
+				cerrarSession(request);
+				response.sendRedirect(Constantes.JSP_HOME);
+				return;	
+			default:
+			}
+
+		rd.forward(request,response);	
+	
 		
-		cerrarSession(request);
-		response.sendRedirect(Constantes.JSP_HOME);
-		return;
-		//cerrarSession(request);
-	/*	response.sendRedirect(Constantes.JSP_HOME);
-		return;*/
-		//rd = request.getRequestDispatcher(Constantes.JSP_HOME);
-		//hace la redireccion
-		//rd.forward(request,response); 
+	
+	
+		
+		
+		
+		//List<Persona> personas =null;
+		//1-recoger el contexto de la app
+		//HttpSession session =request.getSession();
+    	//ServletContext ctx =session.getServletContext();
+		//2-caragrame la lista de usuarios conectados
+    	//if(null != session.getAttribute(Constantes.SESSION_PERSONA)){
+    	//	Persona p = (Persona) session.getAttribute(Constantes.SESSION_PERSONA);
+    	//	LOG.trace("Estoy en recoger usuario");
+    	//	personas = (List<Persona>)ctx.getAttribute(Constantes.ATT_LISTADO_USUARIOS);
+    		//hay q grabar la lista actualizada
+    		//ctx.setAttribute("listadoUsuario", personas);
+    		//3-pasarsela a la request
+    		//session.setAttribute(Constantes.ATT_LISTADO_USUARIOS, personas);
+    		//4-hacer la redireccion
+    		//rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_USUARIOS);
+    		//rd.forward(request,response);
+    	//}
+    	//else{
+    	////	response.sendRedirect(Constantes.JSP_HOME);
+    	//	return;
+    		
+    	//}
+    	//rd.forward(request,response);
+		
+    	//cerrarSession(request);
+		//response.sendRedirect(Constantes.JSP_HOME);
+		//return;
+
 		
 	}
 
@@ -108,6 +179,18 @@ public class LoginServlet extends HttpServlet {
 					locale= "es_ES";
 					
 			}
+			/*tengo q instanciar el objeto persona para no perder el data nombre en la app*/
+			Persona p = new Persona();
+			try{
+				p.setNombre(username);
+				p.setApellidos("Anonimo");
+				session.setAttribute(Constantes.SESSION_PERSONA, p);
+				
+			}catch (PersonaException e){
+				LOG.error(e.getMessage());
+			}
+			
+		
 			
 			session.setAttribute(Constantes.SESSION_IDIOMA, locale);
 			session.setAttribute(Constantes.ATT_SESISON, session);
