@@ -12,13 +12,14 @@ Página Listado Alumnos
 List<Alumno> alumnos=(List<Alumno>)request.getAttribute(Constantes.ATT_LISTADO_ALUMNOS);
 %> --%>
 <a href="<%=Constantes.SERVLET_ALUMNO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_CREATE%>">Crear Alumno</a>
-<c:forEach var="alumno" items="${listadoAlumnos}">
-<div>
-
-${alumno} <a href="">Editar</a><a href="">Eliminar</a>
-</div>
-</c:forEach>
-
+<c:if test="not empty ${listadoAlumnos} ">
+	<c:forEach var="alumno" items="${listadoAlumnos}">
+	<div>
+	
+	${alumno} <a href="">Editar</a><a href="">Eliminar</a>
+	</div>
+	</c:forEach>
+</c:if>
 
 <!--<ul>  -->
 <%-- <%

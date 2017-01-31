@@ -49,7 +49,7 @@ public class UsuarioServlet extends HttpServlet {
 			try{
 				HttpSession session=SessionListener.getHttpSession(sessionid);
 				session.invalidate();
-				rd=request.getRequestDispatcher(Constantes.JSP_LISTADO_USUARIOS);
+				rd=request.getRequestDispatcher(Constantes.JSP_HOME);
 			}
 			catch(NullPointerException e){
 				LOG.error(e.getMessage());
