@@ -18,10 +18,15 @@ public class Constantes {
 	public static final String SERVLET_CURSO = "curso.do";
 	public static final String SERVLET_IDIOMA = "idioma.do";
 	public static final String SERVLET_LOGIN = "login.do";
+	public static final String SERVLET_USUARIOS_CONECTADOS = "usuario.do";
+	
 
 	public static final String JSP_LISTADO_ALUMNOS = "alumnos/listado.jsp";
 	public static final String JSP_LISTADO_PROFESORES = "profesores/listado.jsp";
 	public static final String JSP_LISTADO_CURSOS = "cursos/listado.jsp";
+	public static final String JSP_LISTADO_USUARIO_CONECTADOS = "usuarios/listado.jsp";
+	
+	
 	public static final String JSP_HOME = "index.jsp";
 	public static final String JSP_FORMULARIO_ALUMNO = "alumnos/alumno.jsp";
 	public static final String JSP_FORMULARIO_PROFESOR = "profesores/profesor.jsp";
@@ -55,7 +60,11 @@ public class Constantes {
 	public static final int IDIOMA_CASTELLANO = 2;
 	public static final int IDIOMA_INGLES = 3;
 	public static final String SESSION_IDIOMA = "language";
+	public static final String SESION_PERSONA = "persona";
 	public static final String PAR_USUARIO = "user";
 	public static final String PAR_PASSWORD = "password";
+	
+	
+
 
 }

@@ -9,10 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
+import com.ipartek.formacion.controller.listeners.SessionListener;
+import com.ipartek.formacion.dbms.pojo.Persona;
+import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
+
 /**
  * Servlet implementation class LoginServlet
  */
 public class LoginServlet extends HttpServlet {
+	private static final Logger LOG=Logger.getLogger(LoginServlet.class);
 	private static final long serialVersionUID = 1L;
 	private RequestDispatcher rd;
 
@@ -103,6 +110,14 @@ public class LoginServlet extends HttpServlet {
 				default:
 					locale = "es_ES";
 					break;
+			}
+			Persona per = new Persona ();
+			try {
+				per.setNombre(username);
+				per.setApellidos("anónimo");
+				session.setAttribute(Constantes.SESION_PERSONA, per);
+			} catch (PersonaException e) {
+				LOG.error(e.getMessage());
 			}
 			session.setAttribute(Constantes.SESSION_IDIOMA, locale);
 			// le redireccionaremos a una página
