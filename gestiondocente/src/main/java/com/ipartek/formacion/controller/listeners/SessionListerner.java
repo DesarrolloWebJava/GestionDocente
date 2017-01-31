@@ -1,7 +1,9 @@
 package com.ipartek.formacion.controller.listeners;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -28,6 +30,9 @@ public class SessionListerner implements HttpSessionListener, HttpSessionAttribu
 
 	private static final Logger LOG = Logger.getLogger(SessionListerner.class);
 	private static int totalActiveSession = 0;
+	private static Map<String, HttpSession> map = new HashMap<String, HttpSession>();
+		
+	
 /**
      * Default constructor. 
      */
@@ -40,6 +45,9 @@ public class SessionListerner implements HttpSessionListener, HttpSessionAttribu
      */
     public void sessionCreated(HttpSessionEvent se)  { 
          totalActiveSession++;
+         String id = se.getSession().getId();
+         LOG.debug("session created : " + id);
+         map.put(id, se.getSession());
     }
 
 	/**
@@ -65,6 +73,9 @@ public class SessionListerner implements HttpSessionListener, HttpSessionAttribu
     		personas.remove(persona);
     		ctx.setAttribute(Constantes.CTX_LISTADO_USUARIOS, personas);
     	}
+    	String sessionId = se.getSession().getId();
+    	map.remove(sessionId);
+    	LOG.trace(sessionId + "eliminado"); 
     	
     }
 
@@ -88,7 +99,7 @@ public class SessionListerner implements HttpSessionListener, HttpSessionAttribu
     	if (personas == null){
     		personas = new ArrayList<Persona>();
     	}
-    	if (session.getAttribute(Constantes.SESSION_PERSONA) != null){
+    	if (session.getAttribute(Constantes.SESSION_PERSONA) != null && se.getName().equals(Constantes.SESSION_PERSONA)){
     		LOG.trace("Usuario registrado");
     		Persona p = (Persona) session.getAttribute(Constantes.SESSION_PERSONA);
     		personas.add(p);
@@ -126,6 +137,10 @@ public class SessionListerner implements HttpSessionListener, HttpSessionAttribu
     }
     public static int getTotalActiveSession() {
 		return totalActiveSession;
+	}
+
+	public static HttpSession getHttpSession(String sessionId) {
+		return map.get(sessionId);
 	}
 	
 }

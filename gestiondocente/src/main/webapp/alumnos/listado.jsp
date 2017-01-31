@@ -23,7 +23,13 @@
 			<ul>
 			<c:forEach items="${requestScope.listadoAlumnos}" var="alumno">
 			
-				<div><li>${alumno}</li></div>
+				<div>
+					<li>
+						${alumno}
+						<a href='<%=Constantes.SERVLET_ALUMNO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_UPDATE%>&<%=Constantes.PAR_CODIGO%>=${alumno.codigo}'> Editar </a>
+						<a href='<%=Constantes.SERVLET_ALUMNO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_DELETE%>&<%=Constantes.PAR_CODIGO%>=${alumno.codigo}'> Borrar </a>
+					</li>
+				</div>
 			</c:forEach>
 			
 			

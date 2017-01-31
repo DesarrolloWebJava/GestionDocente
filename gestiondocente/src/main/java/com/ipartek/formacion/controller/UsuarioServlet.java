@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
+import com.ipartek.formacion.controller.listeners.SessionListerner;
 import com.ipartek.formacion.dbms.pojo.Persona;
-import com.ipartek.formacion.service.AlumnoService;
 
 /**
  * Servlet implementation class UsuarioServlet
@@ -22,24 +22,40 @@ import com.ipartek.formacion.service.AlumnoService;
 public class UsuarioServlet extends HttpServlet {
 	private static final Logger LOG = Logger.getLogger(UsuarioServlet.class);
 	private static final long serialVersionUID = 1L;
-	private AlumnoService uS;  
     private RequestDispatcher rd;
        
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String sessionId = request.getParameter("sessionid");
+		if(sessionId == null){
+			cargarListaUsuarios(request);	
+		} else {
+			try{
+				HttpSession session = SessionListerner.getHttpSession(sessionId);
+				session.invalidate();
+				cargarListaUsuarios(request);	
+				LOG.trace(Constantes.JSP_LISTADO_USUARIOS);
+			}catch(Exception e){
+				LOG.error(e.getMessage());
+			}
+		}
+		rd.forward(request, response);
+	}
+
+	private void cargarListaUsuarios(HttpServletRequest request) {
 		try{
 			cargarListadoUsuarios(request);
 		}catch(Exception e){
-			LOG.error(e.getMessage());
-			response.sendRedirect(Constantes.JSP_HOME);
-			return;
-		}	
-		rd.forward(request, response);
+			LOG.equals(e.getMessage());
+			 request.setAttribute(Constantes.ATT_MENSAJE, "No se puede acceder a la información en este momento");
+			 rd = request.getRequestDispatcher(Constantes.JSP_HOME);
+			 
+		}
 	}
 
 	private void cargarListadoUsuarios(HttpServletRequest request) {
 		
-			List<Persona> usuarios = null;
+				List<Persona> usuarios = null;
 			
 				HttpSession session = request.getSession();
 				ServletContext ctx = session.getServletContext();

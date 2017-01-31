@@ -12,6 +12,8 @@ import com.ipartek.formacion.service.Util;
 public class Persona implements Serializable{
 
 	
+	
+
 	/**
 	 * 
 	 */
@@ -30,6 +32,7 @@ public class Persona implements Serializable{
 	private Date fNacimiento;
 	private String email;
 	private String direccion;
+	private String id;
 
 	public Persona() {
 		super();
@@ -39,11 +42,7 @@ public class Persona implements Serializable{
 		this.email = "";
 		this.direccion = "";
 		this.fNacimiento = new Date();
-		
-		
-		
-		
-		
+		this.id = "";
 	}
 
 	public Persona(String email, String direccion) {
@@ -113,6 +112,8 @@ public class Persona implements Serializable{
 		return fNacimiento;
 	}
 
+	
+	
 	public void setfNacimiento(Date fNacimiento) throws PersonaException {
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTime(new Date());
@@ -124,6 +125,13 @@ public class Persona implements Serializable{
 		}
 
 		this.fNacimiento = fNacimiento;
+	}
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 }

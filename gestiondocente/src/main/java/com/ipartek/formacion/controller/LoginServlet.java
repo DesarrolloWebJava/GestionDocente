@@ -104,6 +104,7 @@ public class LoginServlet extends HttpServlet {
 			try {
 				p.setNombre(username);
 				p.setApellidos("anonimo");
+				p.setId(session.getId());
 				session.setAttribute(Constantes.SESSION_PERSONA, p);
 			} catch (PersonaException e) {
 				LOG.error(e.getMessage());

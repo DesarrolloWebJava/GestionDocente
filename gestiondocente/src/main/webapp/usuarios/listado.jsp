@@ -22,7 +22,7 @@
 			<ul>
 			<c:forEach items="${requestScope.listadoUsuarios}" var="persona">
 			
-				<div><li>${persona.nombre}</li></div>
+				<div><li>${persona.nombre} <a href="<%=Constantes.SERVLET_USUARIO %>?sessionid=${persona.id}" >Expulsar</a> </li></div>
 			</c:forEach>
 			</ul>
 			
