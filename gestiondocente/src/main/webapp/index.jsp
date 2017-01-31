@@ -17,7 +17,7 @@
 			<h1><fmt:message key="index.mensaje" /></h1>
 			<h2><fmt:message key="index.nombreApp" /></h2>
 		</div>
-	</c:if>
+	</c:if>	
 	
 
 		<div class="wrapper">
@@ -40,7 +40,7 @@
 		      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
 		    </form>
 	  </div>
-	
+
 </div>
 </main>
 

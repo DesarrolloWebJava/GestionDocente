@@ -28,7 +28,6 @@ public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private RequestDispatcher rd;
   
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 * 
@@ -57,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 		String operacion = request.getParameter(Constantes.PAR_OPERACION);
 		int op=-1;
 		op = Integer.parseInt(operacion);
-		LOG.trace(op+" "+Constantes.OP_LISTAR_USUARIOS_SESION);
+		LOG.trace(op);
 		switch (op){
 			case Constantes.OP_LISTAR_USUARIOS_SESION:
 				LOG.trace("Estoy OP_LISTAR_USUARIOS_SESION");
@@ -67,15 +66,15 @@ public class LoginServlet extends HttpServlet {
 		    	ServletContext ctx =session.getServletContext();
 				//2-caragrame la lista de usuarios conectados
 		    
-	    		Persona p = (Persona) session.getAttribute(Constantes.SESSION_PERSONA);
-	    		LOG.trace("Estoy en recoger usuario");
-	    		personas = (List<Persona>)ctx.getAttribute(Constantes.ATT_LISTADO_USUARIOS);
-	    		//hay q grabar la lista actualizada
-	    		//ctx.setAttribute("listadoUsuario", personas);
-	    		//3-pasarsela a la request
-	    		session.setAttribute(Constantes.ATT_LISTADO_USUARIOS, personas);
-	    		//4-hacer la redireccion
-	    		rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_USUARIOS);
+		    		Persona p = (Persona) session.getAttribute(Constantes.SESSION_PERSONA);
+		    		LOG.trace("Estoy en recoger usuario");
+		    		personas = (List<Persona>)ctx.getAttribute(Constantes.ATT_LISTADO_USUARIOS);
+		    		//hay q grabar la lista actualizada
+		    		//ctx.setAttribute("listadoUsuario", personas);
+		    		//3-pasarsela a la request
+		    		session.setAttribute(Constantes.ATT_LISTADO_USUARIOS, personas);
+		    		//4-hacer la redireccion
+		    		rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_USUARIOS);
 		    		
 		    	break;
 			case Constantes.OP_CERRAR_SESION:
