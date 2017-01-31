@@ -1,7 +1,9 @@
 package com.ipartek.formacion.controller.listeners;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -26,6 +28,7 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
 
 	private static final Logger LOG = Logger.getLogger(SessionListener.class);
 	private static int totalActiveSessions = 0;
+	private static Map<String, HttpSession> map = new HashMap<String, HttpSession>();
 
 	/**
 	 * Default constructor.
@@ -40,6 +43,14 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
 	 */
 	public void sessionCreated(HttpSessionEvent arg0) {
 		totalActiveSessions++;
+		String id = arg0.getSession().getId();
+		LOG.debug("session created : " + id);
+		// STORE THE SESSOIN FOR EXAMPLE IN DATABASE
+		map.put(id, arg0.getSession());
+	}
+
+	public static HttpSession getHttpSession(String sessionID) {
+		return map.get(sessionID);
 	}
 
 	/**
@@ -54,6 +65,17 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
 	 */
 	public void sessionDestroyed(HttpSessionEvent arg0) {
 		totalActiveSessions--;
+		List<Persona> personas = null;
+		HttpSession session = arg0.getSession();
+		ServletContext ctx = session.getServletContext();
+
+		if (null != session.getAttribute(Constantes.SESSION_PERSONA)) {
+			Persona persona = (Persona) session.getAttribute(Constantes.SESSION_PERSONA);
+			LOG.trace(persona.getNombre());
+			personas = (List<Persona>) ctx.getAttribute(Constantes.CTX_LISTADO_USUARIOS);
+			personas.remove(persona);
+			ctx.setAttribute("listadoUsuarios", personas);
+		}
 	}
 
 	/**
@@ -71,15 +93,16 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
 		List<Persona> personas = null;
 		ServletContext ctx = session.getServletContext();
 		// cargar la lista de personas del contexto de la aplicacion
-		personas = (List<Persona>) ctx.getAttribute("listadoUsuarios");
+		personas = (List<Persona>) ctx.getAttribute(Constantes.CTX_LISTADO_USUARIOS);
 		if (personas == null) {
 			personas = new ArrayList<Persona>();
 		}
-		if (session.getAttribute(Constantes.SESSION_PERSONA) != null) {
+		if (session.getAttribute(Constantes.SESSION_PERSONA) != null
+				&& arg0.getName().equals(Constantes.SESSION_PERSONA)) {
 			LOG.trace("usuario registrado");
 			Persona p = (Persona) session.getAttribute(Constantes.SESSION_PERSONA);
 			personas.add(p);
-			ctx.setAttribute("listadoUsuarios", personas);
+			ctx.setAttribute(Constantes.CTX_LISTADO_USUARIOS, personas);
 
 		}
 	}

@@ -11,6 +11,9 @@ public class Constantes {
 	public static final String ATT_PROFESOR = "profesor";
 	public static final String ATT_CURSO = "curso";
 	public static final String ATT_LISTADO_CURSOS = "listadoCurso";
+	public static final String ATT_LISTADO_USUARIOS = "listadoUsuarios";
+
+	public static final String CTX_LISTADO_USUARIOS = "listadoUsuarios";
 
 	public static final String SESSION_IDIOMA = "language";
 	public static final String SESSION_PERSONA = "persona";
@@ -20,6 +23,7 @@ public class Constantes {
 	public static final String SERVLET_CURSO = "curso.do";
 	public static final String SERVLET_IDIOMA = "idioma.do";
 	public static final String SERVLET_LOGIN = "login.do";
+	public static final String SERVLET_ADMIN = "admin.do";
 
 	public static final String JSP_LISTADO_ALUMNOS = "alumnos/listado.jsp";
 	public static final String JSP_LISTADO_PROFESORES = "profesores/listado.jsp";
@@ -28,6 +32,7 @@ public class Constantes {
 	public static final String JSP_FORMULARIO_PROFESOR = "profesores/profesor.jsp";
 	public static final String JSP_LISTADO_CURSOS = "cursos/listado.jsp";
 	public static final String JSP_FORMULARIO_CURSO = "cursos/curso.jsp";
+	public static final String JSP_LISTADO_USARIOS = "usuarios/listado.jsp";
 
 	public static final String PAR_OPERACION = "op";
 	public static final String PAR_CODIGO = "codigo";

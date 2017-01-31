@@ -22,8 +22,7 @@
 			<li><a href="<%=Constantes.SERVLET_ALUMNO%>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_READ%>">G. Alumnos</a></li>
 			<li><a href="<%=Constantes.SERVLET_PROFESOR%>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_READ%>">G. Profesores</a></li>
 			<li><a href=<%=Constantes.SERVLET_CURSO%>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_READ%>">G. Cursos</a></li> 
-		</ul>
-	</nav>
+
 	<!-- 
 	<a href="<%=Constantes.SERVLET_IDIOMA%>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_CASTELLANO%>">Castellano</a>
 	<a href="<%=Constantes.SERVLET_IDIOMA%>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_EUSKERA%>">Euskera</a>
@@ -35,10 +34,13 @@
 	 	&&!session.isNew()
 	 	&&session.getAttribute(Constantes.SESSION_IDIOMA)!=null){
 	 %>
-	 <a href="<%=Constantes.SERVLET_LOGIN%>">Cerrar Sesión</a>
+		 <li><a href="<%=Constantes.SERVLET_ADMIN%>">Ver Usuarios conectados</a></li>
+		 <li><a href="<%=Constantes.SERVLET_LOGIN%>">Cerrar Sesión</a></li>
 	 <%
 	 }
 	 %>
+	 	</ul>
+	</nav>
 	<jsp:include page="mensajes.jsp"/>
 </header>
 
