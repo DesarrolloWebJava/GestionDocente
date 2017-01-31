@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.AlumnoService;
@@ -19,6 +21,7 @@ import com.ipartek.formacion.service.AlumnoServiceImp;
  * Servlet implementation class AlumnoServlet
  */
 public class AlumnoServlet extends HttpServlet {
+	private static final Logger LOG = Logger.getLogger(AlumnoServlet.class);
 	private static final long serialVersionUID = 1L;
 
 	private AlumnoService as;
@@ -128,7 +131,9 @@ public class AlumnoServlet extends HttpServlet {
 				mensaje = e.getMessage();
 			}
 			System.out.println(mensaje);
+			LOG.error(e.getMessage() + " valor del codigo del alumno " + alumno.getCodigo());
 		}
+
 		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);
 		rd.forward(req, resp);
 	}
@@ -163,6 +168,7 @@ public class AlumnoServlet extends HttpServlet {
 			}
 
 		} catch (Exception e) {
+			LOG.error(e.getMessage());
 			e.printStackTrace();
 			throw new PersonaException("Los datos son incorrectos " + e.getMessage());
 		}

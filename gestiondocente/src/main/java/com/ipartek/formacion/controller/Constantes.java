@@ -9,19 +9,24 @@ public class Constantes {
 	public static final String ATT_LISTADO_PROFESORES = "listadoProfesores";
 	public static final String ATT_LISTADO_ALUMNOS = "listadoAlumnos";
 	public static final String ATT_LISTADO_CURSOS = "listadoCursos";
+	public static final String ATT_LISTADO_USUARIOS = "listadoUsuarios";
 	public static final String ATT_MENSAJE = "mensaje";
 	public static final String ATT_ALUMNO = "alumno";
 	public static final String ATT_PROFESOR = "profesor";
 	public static final String ATT_CURSO = "curso";
 	public static final String ATT_IDIOMA = "idioma";
 
+	public static final String CTX_LISTADO_USUARIOS = "listadoUsuarios";
+
 	public static final String SESSION_IDIOMA = "language";
+	public static final String SESSION_PERSONA = "persona";
 
 	public static final String SERVLET_ALUMNO = "alumno.do";
 	public static final String SERVLET_PROFESOR = "profesor.do";
 	public static final String SERVLET_CURSO = "curso.do";
 	public static final String SERVLET_LOGIN = "login.do";
 	public static final String SERVLET_IDIOMA = "idioma.do";
+	public static final String SERVLET_USUARIOS_ACTIVOS = "usuariosActivos.do";
 
 	public static final String JSP_LISTADO_ALUMNOS = "alumnos/listado.jsp";
 	public static final String JSP_FORMULARIO_ALUMNOS = "alumnos/alumno.jsp";
@@ -29,6 +34,7 @@ public class Constantes {
 	public static final String JSP_FORMULARIO_PROFESORES = "profesores/profesor.jsp";
 	public static final String JSP_LISTADO_CURSOS = "cursos/listado.jsp";
 	public static final String JSP_FORMULARIO_CURSOS = "cursos/curso.jsp";
+	public static final String JSP_LISTADO_USUARIOS = "usuarios/listado.jsp";
 	public static final String JSP_HOME = "index.jsp";
 
 	public static final String PAR_OPERACION = "op";

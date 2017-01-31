@@ -80,4 +80,17 @@
   <listener>
     <listener-class>com.ipartek.formacion.controller.listeners.InitListener</listener-class>
   </listener>
+  <listener>
+    <listener-class>com.ipartek.formacion.controller.listeners.SessionListener</listener-class>
+  </listener>
+  <servlet>
+    <description></description>
+    <display-name>UsuariosActivosServlet</display-name>
+    <servlet-name>UsuariosActivosServlet</servlet-name>
+    <servlet-class>com.ipartek.formacion.controller.UsuariosActivosServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UsuariosActivosServlet</servlet-name>
+    <url-pattern>/usuariosActivos.do</url-pattern>
+  </servlet-mapping>
 </web-app>
