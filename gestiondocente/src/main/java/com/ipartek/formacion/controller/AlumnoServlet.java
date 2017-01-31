@@ -1,6 +1,7 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
+import org.apache.log4j.Logger;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -24,7 +25,7 @@ public class AlumnoServlet extends HttpServlet {
 	 * @see javax.servlet.GenericServlet#destroy()
 	 */
 
-
+	private static final Logger LOG = Logger.getLogger(AlumnoServlet.class);
 	private static final long serialVersionUID = 1L;
 	private AlumnoService aS;
 	private RequestDispatcher rd;
@@ -89,6 +90,8 @@ public class AlumnoServlet extends HttpServlet {
 			}		
 		}catch(Exception e){
 			//cargarListaAlumnos(req);
+			// System.out.println(e.getMessage());
+					LOG.error(e.getMessage());
 			resp.sendRedirect(Constantes.JSP_HOME);
 			return;
 		}	
@@ -97,6 +100,7 @@ public class AlumnoServlet extends HttpServlet {
 	}
 
 	private void cargarListaAlumnos(HttpServletRequest req) {
+		LOG.trace("");
 		// resp.sendRedirect("alumnos/listado.jsp"); --> hace una redireccion
 		// limpia.
 		// obtenemos la lista de datos.
@@ -137,6 +141,9 @@ public class AlumnoServlet extends HttpServlet {
 			}
 			cargarListaAlumnos(req);
 		}catch(NumberFormatException e){
+			LOG.error(e.getMessage() + " Valor del codigo del alumno:" + req.getParameter(Constantes.PAR_CODIGO));
+  			mensaje = "Se ha producido una operación inesperada contacte con el administrador del sistema.";
+  			rd = req.getRequestDispatcher(Constantes.JSP_HOME);
 		} catch (Exception e) {
 			//redirigir al formulario
 			if(codigo==-1){

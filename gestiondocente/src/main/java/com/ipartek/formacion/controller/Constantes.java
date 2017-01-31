@@ -7,23 +7,28 @@ public class Constantes {
 	public static final String ATT_LISTADO_PROFESORES="listadoProfesores";
 	public static final String ATT_LISTADO_ALUMNOS="listadoAlumnos";
 	public static final String ATT_LISTADO_CURSOS="listadoCursos";
+	public static final String ATT_LISTADO_USUARIOS="listadoUsuarios";
 	public static final String ATT_MENSAJE="mensaje";
 	public static final String ATT_ALUMNO="alumno";
 	public static final String ATT_PROFESOR="profesor";
 	public static final String ATT_CURSO="curso";
-	
+	//contexto
+	public static final String CTX_LISTADO_USUARIOS="listadoUsuarios";
 	//variable de sesion
 	public static final String SESSION_IDIOMA="language";
+	public static final String SESSION_PERSONA = "persona";
 	//servlet
 	public static final String SERVLET_ALUMNO="alumno.do";
 	public static final String SERVLET_PROFESOR="profesor.do";
 	public static final String SERVLET_CURSO="curso.do";
 	public static final String SERVLET_IDIOMA="idioma.do";
 	public static final String SERVLET_LOGIN="login.do";
+	public static final String SERVLET_USUARIO="usuario.do";
 	//listado
 	public static final String JSP_LISTADO_ALUMNOS="alumnos/listado.jsp";
 	public static final String JSP_LISTADO_PROFESORES="profesores/listado.jsp";
 	public static final String JSP_LISTADO_CURSO="cursos/listado.jsp";
+	public static final String JSP_LISTADO_USUARIOS="usuarios/listado.jsp";
 	//home
 	public static final String JSP_HOME="index.jsp"; 
 	//formularios

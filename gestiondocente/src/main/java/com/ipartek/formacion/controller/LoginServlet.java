@@ -10,11 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import org.apache.log4j.Logger;
+import com.ipartek.formacion.dbms.pojo.Persona;
+import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 /**
  * Servlet implementation class LoginServlet
  */
 public class LoginServlet extends HttpServlet {
+	private static final Logger LOG = Logger.getLogger(LoginServlet.class);
 	private static final long serialVersionUID = 1L;
     private RequestDispatcher rd;   
 
@@ -23,22 +26,32 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		Locale locale=new Locale("es_ES");
-		//si al recoger la sesion se le pasa true o nada si no existe la sesion me la crea
-		//si se le pasa false obtiene la ya existente
-		String language=(String)request.getSession(true).getAttribute("language");
-		if(language !=null){
-			locale=new Locale(language);
+	/////////////////////cargar un fichero de porperties
+	//	Locale locale=new Locale("es_ES");
+	//	//si al recoger la sesion se le pasa true o nada si no existe la sesion me la crea
+	//	//si se le pasa false obtiene la ya existente
+	//	String language=(String)request.getSession(true).getAttribute("language");
+	//	if(language !=null){
+	//		locale=new Locale(language);
+	//	}
+	//	ResourceBundle messages=null;
+	//		try{
+	//		   messages = ResourceBundle.getBundle("com.ipartek.formacion.controller.i18nmesages", locale );
+	//		}catch(Exception e){
+	//			System.out.println(e.getMessage());
+	//		}		
+	//	rd=request.getRequestDispatcher(Constantes.JSP_HOME);
+	//	rd.forward(request, response);
+    /////////////////////////////////////////////////////////////////////////////////
+		cerrarSession(request);
+		response.sendRedirect(Constantes.JSP_HOME);
+		return;
+	}
+	private void cerrarSession(HttpServletRequest request){
+		HttpSession session=request.getSession(false);
+		if (session!=null){
+			session.invalidate();
 		}
-		ResourceBundle messages=null;
-			try{
-			   messages = ResourceBundle.getBundle("com.ipartek.formacion.controller.i18nmesages", locale );
-			}catch(Exception e){
-				System.out.println(e.getMessage());
-			}		
-		rd=request.getRequestDispatcher(Constantes.JSP_HOME);
-		rd.forward(request, response);
 	}
 
 	/**
@@ -49,9 +62,12 @@ public class LoginServlet extends HttpServlet {
 		String password=request.getParameter(Constantes.PAR_PASSWORD);
 		final String user="admin";
 		final String pass="admin";
+		final String user2="nora";
+		final String pass2="nora";
+		
 		//poner primero pass porque password puede ser nulo
 		//cuando algo puede ser nulo se pone lo que no puede ser nulo nunca primero
-		if(user.equals(username) && pass.equals(password)){
+		if((user.equals(username) && pass.equals(password))||(user2.equals(username) && pass2.equals(password))){
 			//crear la sesion
 			//true---> fuerzas que te cree una sesion nueva
 			//false--> recoges una existente, si no hay devuelve nulo
@@ -80,6 +96,17 @@ public class LoginServlet extends HttpServlet {
 						locale="es_ES";
 						break;
 			}
+			Persona p = new Persona();
+			try {
+			 		p.setNombre(username);
+					p.setApellidos("Anonimo");
+					p.setSessionId(session.getId());
+			 		session.setAttribute(Constantes.SESSION_PERSONA, p);
+				} catch (PersonaException e) {
+					LOG.error(e.getMessage());
+		
+	     		}
+			 
 			session.setAttribute(Constantes.SESSION_IDIOMA, locale);
 			//redireccion a una pagina
 			rd=request.getRequestDispatcher(Constantes.JSP_HOME);
