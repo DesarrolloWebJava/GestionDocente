@@ -52,8 +52,20 @@ public class SessionListerner implements HttpSessionListener, HttpSessionAttribu
 	/**
      * @see HttpSessionListener#sessionDestroyed(HttpSessionEvent)
      */
-    public void sessionDestroyed(HttpSessionEvent se)  { 
-         totalActiveSession--;
+    public void sessionDestroyed(HttpSessionEvent se)  {
+    	totalActiveSession--;
+    	List<Persona> personas = null;
+    	HttpSession session = se.getSession();
+    	ServletContext ctx = session.getServletContext();
+    	
+    	if(null!=session.getAttribute(Constantes.SESSION_PERSONA)){
+    		Persona persona =(Persona) session.getAttribute(Constantes.SESSION_PERSONA);
+    		LOG.trace(persona.getNombre());
+    		personas = (List<Persona>)ctx.getAttribute(Constantes.CTX_LISTADO_USUARIOS);
+    		personas.remove(persona);
+    		ctx.setAttribute(Constantes.CTX_LISTADO_USUARIOS, personas);
+    	}
+    	
     }
 
 	/**
@@ -72,7 +84,7 @@ public class SessionListerner implements HttpSessionListener, HttpSessionAttribu
     	List<Persona> personas = null;
     	ServletContext ctx = session.getServletContext();
     	// TODO cargar lista de personas del contexto de la aplicacion 
-    	personas = (List<Persona>) ctx.getAttribute("listaUsuarios");
+    	personas = (List<Persona>) ctx.getAttribute(Constantes.CTX_LISTADO_USUARIOS);
     	if (personas == null){
     		personas = new ArrayList<Persona>();
     	}
@@ -80,7 +92,7 @@ public class SessionListerner implements HttpSessionListener, HttpSessionAttribu
     		LOG.trace("Usuario registrado");
     		Persona p = (Persona) session.getAttribute(Constantes.SESSION_PERSONA);
     		personas.add(p);
-    		ctx.setAttribute("listaUsuarios", personas);
+    		ctx.setAttribute(Constantes.CTX_LISTADO_USUARIOS, personas);
     	}
     }
     	

@@ -24,7 +24,11 @@
 					 
 					<li><div class="cerrarSesion"><a href="<c:url value='login.do' />" />Cerrar Sesión</a> </div></li>
 					<li><div class="cerrarSesion userLogin">Usuario: <%=p.getNombre() %> <%=p.getApellidos() %></div></li> 
+				<% String admin = "admin";
+				if(admin.equals(p.getNombre())){ %>
+					<li><div class="cerrarSesion"><a href="<c:url value='usuario.do' />" />Lista Usuarios</a> </div></li>
 				<%
+					}
 				}
 					
 					//session.getAttribute(name)/lo primero para sacar el usuario en la barra de navegacion

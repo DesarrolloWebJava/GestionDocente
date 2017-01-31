@@ -36,6 +36,7 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		/*
 		Locale locale = new Locale("es_ES");
 		String language = (String) request.getSession(true).getAttribute("language");
@@ -76,8 +77,10 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter(Constantes.PAR_PASSWORD);
 		final String user = "admin";
 		final String passwd = "admin";
+		final String user2 = "pepe";
+		final String passwd2 = "pepe";
 		
-		if(user.equals(username) && passwd.equals(password)){
+		if((user.equals(username) && passwd.equals(password))||(user2.equals(username) && passwd2.equals(password))){
 			HttpSession session = request.getSession(true);
 			session.setMaxInactiveInterval(60*15);
 			
