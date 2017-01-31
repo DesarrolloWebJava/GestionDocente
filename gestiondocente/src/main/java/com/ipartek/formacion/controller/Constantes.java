@@ -18,6 +18,8 @@ public class Constantes {
 	public static final String ATT_PROFESOR = "profesor";
 	public static final String ATT_CURSO = "curso";
 	
+	//Constante de contexto
+	public static final String CTX_LISTADO_USUARIOS = "listadoUsuarios";
 	
 	//Variables de sesion
 	public static final String SESSION_IDIOMA = "language";
@@ -29,16 +31,17 @@ public class Constantes {
 	public static final String SERVLET_CURSO = "curso.do";
 	public static final String SERVLET_IDIOMA = "idioma.do";
 	public static final String SERVLET_LOGIN = "login.do";
+	public static final String SERVLET_USUARIO = "usuarios.do";
 	
 	//JSP
 	public static final String JSP_LISTADO_ALUMNOS = "alumnos/listado.jsp";
 	public static final String JSP_LISTADO_PROFESORES = "profesores/listado.jsp";
 	public static final String JSP_LISTADO_CURSOS = "cursos/listado.jsp";
+	public static final String JSP_LISTADO_USUARIOS = "usuarios/listado.jsp";
 	public static final String JSP_HOME = "index.jsp";
 	public static final String JSP_FORMULARIO_ALUMNO = "alumnos/alumno.jsp";
 	public static final String JSP_FORMULARIO_PROFESOR = "profesores/profesor.jsp";
 	public static final String JSP_FORMULARIO_CURSO ="cursos/curso.jsp";
-	
 	
 	//Parametros (como se van a pasar los datos al JSP)
 	public static final String PAR_OPERACION = "op";
@@ -64,6 +67,7 @@ public class Constantes {
 	//Parametro de login
 	public static final String PAR_USUARIO = "user";
 	public static final String PAR_PASSWORD = "password";
+	public static final String PAR_SESSION_ID = "sessionID";
 
 	
 	//Constantes de operaciones de CRUD

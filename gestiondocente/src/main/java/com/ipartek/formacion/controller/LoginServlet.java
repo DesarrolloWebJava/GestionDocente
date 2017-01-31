@@ -35,7 +35,6 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		
 		//Nuevo objeto Locale
 //		Locale locale = new Locale("es_ES");
 //		//Obtenemos el atributo lenguaje de la sesion
@@ -119,6 +118,8 @@ public class LoginServlet extends HttpServlet {
 				//Cargamos el nombre y apellido (de momento mal)
 				p.setNombre(username);
 				p.setApellidos("Anonimo");
+				//Guardamos la id de sesion en la persona	
+				p.setSessionID(session.getId());
 				//Guardamos la variable en una variable de sesion
 				session.setAttribute(Constantes.SESSION_PERSONA, p);
 			}catch(PersonaException e){

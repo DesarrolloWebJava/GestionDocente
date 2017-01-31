@@ -17,6 +17,9 @@ public class Persona {
 	private Date fNacimiento;
 	private String email;
 	private String direccion;
+	private String sessionID;
+
+	
 
 	public Persona() {
 		super();
@@ -27,8 +30,17 @@ public class Persona {
 		this.email = "";
 		this.fNacimiento = new Date();
 		this.dni = "";
+		this.sessionID = "";
 	}
 
+	public String getSessionID() {
+		return sessionID;
+	}
+
+	public void setSessionID(String sessionID) {
+		this.sessionID = sessionID;
+	}
+	
 	public Persona(String email, String direccion) {
 		super();
 		this.email = email;
@@ -109,4 +121,5 @@ public class Persona {
 		this.fNacimiento = fNacimiento;
 	}
 
+	
 }

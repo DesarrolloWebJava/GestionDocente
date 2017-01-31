@@ -1,7 +1,10 @@
 package com.ipartek.formacion.controller.listeners;
 
+import java.io.LineNumberInputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -26,7 +29,9 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
 	private static final Logger LOG = Logger.getLogger(SessionListener.class);
 	//Variable contador inicializaza en 0 para contar el numero de sesiones
 	private static int totalActiveSessions = 0;
-
+	//Creamos un Map para guardar los sessiones
+	public static Map<String, HttpSession> map = new HashMap<String, HttpSession>();
+	
 	/**
      * Default constructor. 
      */
@@ -35,13 +40,27 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
     }
 
 	/**
+	 * Cuando se crea una nueva sesion
      * @see HttpSessionListener#sessionCreated(HttpSessionEvent)
      */
     public void sessionCreated(HttpSessionEvent se)  { 
          // Al crear una session que se incremente la variable contador totalActiveSessions
     	totalActiveSessions++;
+    	//Guardamos en el string la id
+    	String id = se.getSession().getId();
+    	LOG.debug("Session created: "+ id);
+    	//Cargamos sesion en el map con el ID y la sesion
+    	map.put(id, se.getSession());
     }
 
+    /**
+     * Me devuelve la sesion dandome la sesionId
+     * @param sessionID Le damos una id de sesion
+     * @return Nos devuelve la sesion que coincide con la key id sesion
+     */
+    public static HttpSession getHttpSession(String sessionID){
+    	return map.get(sessionID);
+    }
 	/**
      * @see HttpSessionBindingListener#valueBound(HttpSessionBindingEvent)
      */
@@ -50,11 +69,33 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
     }
 
 	/**
+	 * Si la sesion se destruye CON EXITO, se ejecuta este codigo
      * @see HttpSessionListener#sessionDestroyed(HttpSessionEvent)
      */
     public void sessionDestroyed(HttpSessionEvent se)  { 
     	// Al destruiruna session que se decremente la variable contador totalActiveSessions
     	totalActiveSessions--;
+    	//Creamos una lista de profesores vacia
+    	List<Persona> personas = null;
+    	//Recogemos la sesion
+    	HttpSession session = se.getSession();
+    	//Accedemos al contexto de la sesion
+    	ServletContext ctx = session.getServletContext();
+    	//Si no existe el atributo persona...
+    	if(null != session.getAttribute(Constantes.SESSION_PERSONA)){
+    		//Recogemos los atributos de la persona 
+    		Persona persona = (Persona) session.getAttribute(Constantes.SESSION_PERSONA);
+    		LOG.trace(persona.getNombre());
+    		//recogemos la lista del contexto
+    		personas = (List<Persona>)ctx.getAttribute(Constantes.ATT_LISTADO_USUARIOS);
+    		//le quitamos la persona a la lista
+    		personas.remove(persona);
+    		//Actualizamos la lista de usuarios(sesiones) en el contexto
+    		ctx.setAttribute(Constantes.ATT_LISTADO_USUARIOS, personas);
+    	}
+    	String sessionId = se.getSession().getId();
+    	map.remove(sessionId);
+    	LOG.trace(sessionId + "Eliminada");
     }
 
 	/**
@@ -65,6 +106,7 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
     }
 
 	/**
+	 * Cuando se añaden atributos a la sesion
      * @see HttpSessionAttributeListener#attributeAdded(HttpSessionBindingEvent)
      */
     public void attributeAdded(HttpSessionBindingEvent se)  { 
@@ -80,12 +122,14 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
     	if(personas == null){
     		personas = new ArrayList<Persona>();
     	}
-    	if(session.getAttribute(Constantes.SESSION_PERSONA)!= null){
+    	//el atributo de la sesion es diferente de nula Y el nombre de la session del atributo es igual que el de la constante...
+    	if(session.getAttribute(Constantes.SESSION_PERSONA)!= null && se.getName().equals(Constantes.SESSION_PERSONA)){
     		LOG.trace("Usuario registrado");
     		//Obtenemos el atributo de la persona y lo guardamos en p
     		Persona p = (Persona)session.getAttribute(Constantes.SESSION_PERSONA);
     		//Añadimos la persona a la lista
     		personas.add(p);
+    		//Añadimos la lista como atributos a el contexto de la app
     		ctx.setAttribute(Constantes.ATT_LISTADO_USUARIOS, personas);
     	}
     }

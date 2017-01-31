@@ -42,6 +42,8 @@
 		%>
 		<!-- Al pulsar el enlace se enlaza al doGet() del LoginServlet -->
 		<a href="<%=Constantes.SERVLET_LOGIN %>">Cerrar Sesión </a>
+		<!-- Al pulsar en el enlace nos manda a el servlet del listado de usuarios conectados -->
+		<a href="<%=Constantes.SERVLET_USUARIO %>">Usuarios Conectados</a>
 		<%
 		}
 		%>
