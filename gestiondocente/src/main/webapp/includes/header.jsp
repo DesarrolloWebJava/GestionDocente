@@ -25,6 +25,7 @@
 			<li><a href="<%=Constantes.SERVLET_ALUMNO%>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_READ%>">G. Alumnos</a></li>
 			<li><a href="<%=Constantes.SERVLET_PROFESOR%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ%>">G. Profesores</a></li>
 			<li><a href="<%=Constantes.SERVLET_CURSO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ%>">G. Cursos</a></li> 
+			<li><a href="<%=Constantes.SERVLET_USUARIO%>">Usuarios Conectados</a></li>
 		</ul>
 	</nav>
 	<!--  
@@ -34,8 +35,9 @@
 	-->
 	<%
 	
-		if(session!=null&&session.isNew()&&session.getAttribute(Constantes.SESSION_IDIOMA)!=null){
+		if(session!=null&& !session.isNew()&&session.getAttribute(Constantes.SESSION_IDIOMA)!=null){
 	%>
+	<a href="<%=Constantes.SERVLET_ADMIN%>">Ver Usuario</a>
 	<a href="<%=Constantes.SERVLET_LOGIN%>">Cerrar Session</a>
 	<%
 		}

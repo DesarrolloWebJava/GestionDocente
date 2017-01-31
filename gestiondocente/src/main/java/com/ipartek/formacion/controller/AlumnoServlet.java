@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.service.AlumnoService;
 import com.ipartek.formacion.service.AlumnoServiceImp;
@@ -18,6 +20,7 @@ import com.ipartek.formacion.service.AlumnoServiceImp;
  * Servlet implementation class AlumnoServlet
  */
 public class AlumnoServlet extends HttpServlet {
+	private static final Logger LOG = Logger.getLogger(AlumnoServlet.class);
 	private static final long serialVersionUID = 1L;
 	private AlumnoService aS;
 	private RequestDispatcher rd;
@@ -77,8 +80,9 @@ public class AlumnoServlet extends HttpServlet {
 
 		} catch (Exception e) {
 			// cargarListaAlumnos(req);
-			System.out.println(e.getMessage());
-			resp.sendRedirect(Constantes.JSP_HOME);
+			/*System.out.println(e.getMessage());*/
+			LOG.error(e.getMessage()+" Valor del codigo del alumno: "+req.getParameter(Constantes.PAR_CODIGO));
+			resp.sendRedirect(Constantes.JSP_HOME);			
 			return;
 		}
 
@@ -112,6 +116,7 @@ public class AlumnoServlet extends HttpServlet {
 		Alumno alumno = null;
 		String mensaje = "";
 		int codigo = -1;
+		LOG.trace("");
 		try {
 			codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
 			
@@ -166,6 +171,7 @@ public class AlumnoServlet extends HttpServlet {
 			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
 			alumno.setfNacimiento(dateFormat.parse(date));
 		} catch (Exception e) {
+			LOG.error(e.getMessage());
 			throw new Exception("Los datos no son validos: " + e.getMessage());
 		}
 		return alumno;
