@@ -68,6 +68,7 @@ public class InitListener implements ServletContextListener, ServletContextAttri
 		Properties props = new Properties();
 		try {
 			//props.load(new FileInputStream("classpath" + nFichero));
+			//la sg linea no genera un input stream sino llamadas por http, o algo así, por lo que es la manera apropiada para una web app.
 			PropertyConfigurator.configure(this.getClass().getClassLoader().getResourceAsStream(nFichero));
 			LOG.trace("LOG cargado");
 		} catch (Exception e) {

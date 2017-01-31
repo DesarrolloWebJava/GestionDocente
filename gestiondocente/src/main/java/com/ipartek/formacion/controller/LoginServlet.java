@@ -1,8 +1,6 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,18 +8,26 @@ import javax.servlet.http.HttpServletResponse;
 
 
 //Nuestros importes:
-import java.io.IOException;
-import java.util.Locale;
-import java.util.ResourceBundle;
+
+//import java.io.IOException;
+//import java.util.Locale;
+//import java.util.ResourceBundle;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.Logger;
+
+//import com.ipartek.formacion.controller.listeners.SessionListener;
+import com.ipartek.formacion.dbms.pojo.Persona;
+import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 
 /**
  * Servlet implementation class LoginServlet
  */
 public class LoginServlet extends HttpServlet {
+	
+	private static final Logger LOG = Logger.getLogger(LoginServlet.class);
 	private static final long serialVersionUID = 1L;
-	//Usamos Request Dipatcher
 	private RequestDispatcher rd;
 	
 	
@@ -31,37 +37,11 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-	/*
-		//Este servlet cuando se activa lee el atributo language de la sesion y 
-		//aplica un resourceBundle sobre su url
-		//creamos la variable locale
-		Locale locale = new Locale("es_ES");
-		// (Contra lo normal, que es coger paras) Coge el Atributo language y lo guarda.
-		String language = (String) request.getSession(true).getAttribute("language");
-		// si tiene valor, lo guarda como locale
-		if (language != null) {
-			locale = new Locale(language);
-		}
-		//se cra un ResourceBundle:  each ResourceBundle is a 
-		//set of related subclasses that share the same base name.
-		ResourceBundle messages = null;
-		//se le asignan los i18 al rb
-		try {
-			messages = ResourceBundle.getBundle("com.ipartek.formacion.controller.i18nmessages", locale);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		//redirigimos a home
-		rd = request.getRequestDispatcher(Constantes.JSP_HOME);
-		rd.forward(request, response);
-	*/
-	/*OTRS MANERA DE DOGET*/
+
 		cerrarSession(request);
 		response.sendRedirect(Constantes.JSP_HOME);
 		return;
-			
 	}
-
 
 	private void cerrarSession(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
@@ -117,6 +97,15 @@ public class LoginServlet extends HttpServlet {
 					locale = "es_ES";
 					break;
 			}
+			Persona p = new Persona();
+			try {
+				p.setNombre(username);
+				p.setApellidos("Anónimo");
+				p.setSessionId(session.getId());
+				session.setAttribute(Constantes.SESSION_PERSONA, p);
+			} catch (PersonaException e){
+				LOG.error(e.getMessage());
+			}
 			session.setAttribute(Constantes.SESSION_IDIOMA, locale);
 		//redirige a home con sesion
 			rd = request.getRequestDispatcher(Constantes.JSP_HOME);
@@ -133,4 +122,29 @@ public class LoginServlet extends HttpServlet {
 		rd.forward(request, response);
 	}
 
+/*Versión doGet original:
+		//Este servlet cuando se activa lee el atributo language de la sesion y 
+		//aplica un resourceBundle sobre su url
+		//creamos la variable locale
+		Locale locale = new Locale("es_ES");
+		// (Contra lo normal, que es coger paras) Coge el Atributo language y lo guarda.
+		String language = (String) request.getSession(true).getAttribute("language");
+		// si tiene valor, lo guarda como locale
+		if (language != null) {
+			locale = new Locale(language);
+		}
+		//se cra un ResourceBundle:  each ResourceBundle is a 
+		//set of related subclasses that share the same base name.
+		ResourceBundle messages = null;
+		//se le asignan los i18 al rb
+		try {
+			messages = ResourceBundle.getBundle("com.ipartek.formacion.controller.i18nmessages", locale);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		//redirigimos a home
+		rd = request.getRequestDispatcher(Constantes.JSP_HOME);
+		rd.forward(request, response);
+*/
+	
 }

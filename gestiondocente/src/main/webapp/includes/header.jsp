@@ -51,7 +51,10 @@ RUTAS RELATIVAS EN JAVA ¡# NO #! FUNCIONAN -->
 		!session.isNew() && 
 		session.getAttribute(Constantes.SESSION_IDIOMA) != null)
 	  {%>
-		<a href="<%=Constantes.SERVLET_LOGIN%>">Cerrar Sesión</a>
+	  <ul>
+		<li><a href="<%=Constantes.SERVLET_LOGIN%>">Cerrar Sesión</a></li>
+		<li><a href="<%=Constantes.SERVLET_USUARIO%>">Ver usuarios conectados</a></li>
+	  </ul>
 	<%}%>
 	
 	<jsp:include page="mensajes.jsp"/>

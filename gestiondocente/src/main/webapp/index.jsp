@@ -33,7 +33,6 @@
 	<input type="submit" value="<fmt:message key="index.login.enviar"/> "/>
 	</form>
 	
-	
 <!--solo puede haber un main;  marca que no es un contenido estático -->
 <!-- Bienvenidos a Gestión Alumnos -->
 </main>

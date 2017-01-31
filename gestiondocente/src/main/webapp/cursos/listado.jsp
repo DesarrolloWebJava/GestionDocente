@@ -11,7 +11,7 @@
 <div class="container">
 	<h1>Página Listado Cursos</h1>
 	<%
-		List<Curso> cursos =(List<Curso>) request.getAttribute(Constantes.ATT_CURSO); 	
+		List<Curso> cursos =(List<Curso>) request.getAttribute(Constantes.ATT_LISTADO_CURSOS); 	
 		//cursos.sort(null);
 		//mas generico el¡s el objeto collecentions, es lo mismo q lo de arriba
 		//Collection.sort(cursos);
@@ -24,25 +24,8 @@
 	<br>
 	<br>
 	<div>
-		<%	
-			for(Curso curso : cursos){
-				String dateInicio="";
-		    	GregorianCalendar gc = new GregorianCalendar();
-		    	gc.setTime(curso.getFinicio());
-		    	dateInicio = gc.get(GregorianCalendar.DAY_OF_MONTH)+"/"+(gc.get(GregorianCalendar.MONTH)+1)+"/"+gc.get(GregorianCalendar.YEAR);
-		    	String dateFin="";
-		    	gc = new GregorianCalendar();
-		    	gc.setTime(curso.getFFinal());
-		    	dateFin = gc.get(GregorianCalendar.DAY_OF_MONTH)+"/"+(gc.get(GregorianCalendar.MONTH)+1)+"/"+gc.get(GregorianCalendar.YEAR);
-		    	
-		    	out.println("<p>"+curso.toString()+"  "+"Fecha Inicio:"+dateInicio+" "+"Fecha de Fin:"+dateFin
-				+"<a href='"+Constantes.SERVLET_CURSO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+"="+curso.getCodigo()+"' class='' role='button' >Editar</a>"+
-				"<a href='"+Constantes.SERVLET_CURSO+"?"+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="+curso.getCodigo()+"' class='' role='button' >Borrado</a>"+"</p>");	
-			}
-			%>
-			</a>
-		<% 
-		%>
+
+		
 	</div>
 </div>
 

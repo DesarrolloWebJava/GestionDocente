@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.dbms.pojo.exceptions.PersonaException;
 import com.ipartek.formacion.service.AlumnoService;
@@ -20,6 +22,13 @@ import com.ipartek.formacion.service.AlumnoServiceImp;
  * Servlet implementation class AlumnoServlet
  */
 public class AlumnoServlet extends HttpServlet {
+	
+	//en cada clase excepto los pojos y en las excepciones, tiene que haber 
+	//lineas para los logs:
+	private static final Logger LOG = Logger.getLogger(AlumnoServlet.class);
+	//y SIEMPRE que hay un try/catch: hay log
+	
+	
 	private static final long serialVersionUID = 1L;
 	private AlumnoService aS;
 	private RequestDispatcher rd;
@@ -92,6 +101,7 @@ public class AlumnoServlet extends HttpServlet {
 					break;
 			}
 		} catch (Exception e) {
+			
 			//el cargarListaAlumnos se puede ejecutae en 3 casos:
 			//pero aquí solo en dos, porque eln el cacth mandamos a jasp_home
 			//- default
@@ -159,7 +169,9 @@ public class AlumnoServlet extends HttpServlet {
 			}
 			cargarListaAlumnos(req);
 		} catch (NumberFormatException e) {
-			
+			LOG.error(e.getMessage() + " Valor del código: " + req.getParameter(Constantes.PAR_CODIGO));
+			mensaje="Se ha producido un error inesperado.";
+			rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO); //alumno.jsp
 		} catch (Exception e) {
 			if (codigo == -1) {
 				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO); //alumno.jsp

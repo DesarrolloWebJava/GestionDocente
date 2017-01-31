@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.dbms.pojo.Curso;
 import com.ipartek.formacion.service.CursoService;
 import com.ipartek.formacion.service.CursoServiceImp;
@@ -41,7 +40,8 @@ public class CursoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		int operacion = -1;
-		String mensaje = "";
+		
+		
 		try {
 			operacion = recogerOperacion(request);
 			switch (operacion) {
