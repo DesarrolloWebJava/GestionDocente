@@ -1,7 +1,9 @@
 package com.ipartek.formacion.controller.listeners;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -24,6 +26,7 @@ import com.ipartek.formacion.dbms.pojo.Persona;
 public class SessionListener implements HttpSessionListener, HttpSessionAttributeListener, HttpSessionActivationListener, HttpSessionBindingListener {
 	private static final Logger LOG=Logger.getLogger(SessionListener.class);
 	private static int totalActiveSessions=0;
+	private static Map<String,HttpSession> sesiones=new HashMap<String,HttpSession>();
 
     /**
      * Default constructor. 
@@ -42,6 +45,10 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
      */
     public void sessionCreated(HttpSessionEvent se)  { 
          totalActiveSessions++;
+         sesiones.put(se.getSession().getId(), se.getSession());
+    }
+    public static HttpSession getHttpSession(String id){
+    	return sesiones.get(id);
     }
 
 	/**
@@ -56,7 +63,21 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
      */
     public void sessionDestroyed(HttpSessionEvent se)  { 
          totalActiveSessions--;
-    }
+         List<Persona> personas=null;
+         HttpSession session=se.getSession();
+         ServletContext ctx=session.getServletContext();
+         
+         if(null!=session.getAttribute(Constantes.SESSION_PERSONA)){
+        	 Persona persona=(Persona)session.getAttribute(Constantes.SESSION_PERSONA);//recojo la posicion de memoria del objeto persona
+        	 LOG.trace(persona.getNombre());
+        	 personas=(List<Persona>)ctx.getAttribute(Constantes.CTX_LISTADO_USUARIOS);
+        	 personas.remove(persona);//elimino la referencia en esa posición de memoria
+        	 ctx.setAttribute(Constantes.CTX_LISTADO_USUARIOS, personas);
+         }
+         sesiones.remove(se.getSession().getId());
+         LOG.trace(se.getSession().getId()+" eliminada");
+        	 
+         }
 
 	/**
      * @see HttpSessionActivationListener#sessionDidActivate(HttpSessionEvent)
@@ -71,18 +92,24 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
     public void attributeAdded(HttpSessionBindingEvent se)  { 
          HttpSession session=se.getSession();
          List<Persona> personas=null;
+
          ServletContext ctx=session.getServletContext();
          
-         personas=(List<Persona>)ctx.getAttribute("listadoUsuario");
+         personas=(List<Persona>)ctx.getAttribute(Constantes.CTX_LISTADO_USUARIOS);
+
          if(personas==null){
         	 personas=new ArrayList<Persona>();
+
+
          }
          
-         if(session.getAttribute(Constantes.SESSION_PERSONA)!=null){
-        	 LOG.trace("usuario registrado");
+         if(session.getAttribute(Constantes.SESSION_PERSONA)!=null
+        		 && se.getName().equals(Constantes.SESSION_PERSONA)){
+        	 
+        	 LOG.trace("Evento añadir atributo persona a sesión");
         	 Persona p=(Persona)session.getAttribute(Constantes.SESSION_PERSONA);
         	 personas.add(p);
-        	 ctx.setAttribute("listadoUsuarios", personas);
+        	 ctx.setAttribute(Constantes.CTX_LISTADO_USUARIOS, personas);
          }
     }
 

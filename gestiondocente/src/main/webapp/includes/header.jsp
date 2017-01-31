@@ -18,9 +18,11 @@
 </head>
 <body>
 <header>
+
 <h1>Gestor Docente</h1>
 <nav>
 <ul>
+
 <li><a href="<%= Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ %>" >G. Alumnos</a></li>
 <li><a href="<%= Constantes.SERVLET_PROFESOR%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ %>" >G. Profesores</a></li>
 <li><a href="<%=Constantes.SERVLET_CURSO %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_READ %>">G. Cursos</a></li>
@@ -33,7 +35,11 @@
 if(session!=null&&!session.isNew()&&session.getAttribute(Constantes.SESSION_IDIOMA)!=null){
 
 %>
-<a href="<%=Constantes.SERVLET_LOGIN %>">Cerrar Sesión </a>
+<ul>
+<li><a href="<%=Constantes.SERVLET_USUARIO %>">Ver lista de Usuarios</a></li>
+<li><a href="<%=Constantes.SERVLET_LOGIN %>">Cerrar Sesión </a></li>
+</ul>
+
 <%
 }
 %>

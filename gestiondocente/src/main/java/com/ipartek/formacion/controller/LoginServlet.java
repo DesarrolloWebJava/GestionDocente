@@ -61,8 +61,10 @@ public class LoginServlet extends HttpServlet {
 		String password=request.getParameter(Constantes.PAR_PASSWORD);
 		final String user="admin";
 		final String pass="pass";
+		final String user2="admin2";
+		
 		String mensaje="";
-		if(user.equals(username)&&pass.equals(password)){
+		if((user.equals(username)||user2.equals(username))&&pass.equals(password)){
 			//crearemos la session
 			HttpSession session=request.getSession(true);
 			session.setMaxInactiveInterval(60*15);
@@ -89,6 +91,7 @@ public class LoginServlet extends HttpServlet {
 			try {
 				p.setNombre(username);
 				p.setApellidos("Anonimo");
+				p.setSessionId(session.getId());
 				session.setAttribute(Constantes.SESSION_PERSONA, p);
 			} catch (PersonaException e) {
 				LOG.error(e.getMessage());
