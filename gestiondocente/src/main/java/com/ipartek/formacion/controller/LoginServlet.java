@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -70,6 +71,23 @@ public class LoginServlet extends HttpServlet {
 			session.setMaxInactiveInterval(60*15);
 			//cargaremos la variable de idioma
 			String lang = request.getParameter(Constantes.PAR_IDIOMA);
+			String rememberme = request.getParameter("recuerdame");// se pone el name del input
+			Cookie c_username = new Cookie(Constantes.COOKIE_USERNAME,username);
+			Cookie c_password = new Cookie(Constantes.COOKIE_PASSWORD,pass);
+			Cookie c_language = new Cookie(Constantes.COOKIE_LANGUAGE,lang);
+			if(rememberme!=null){//el check esta marcado
+				c_username.setMaxAge(60*60*24);
+				c_password.setMaxAge(60*60*24);
+				c_language.setMaxAge(60*60*24);
+			}else{//el check NO esta marcado
+				c_username.setMaxAge(0);
+				c_password.setMaxAge(0);
+				c_language.setMaxAge(0);
+			}
+			response.addCookie(c_username);
+			response.addCookie(c_password);
+			response.addCookie(c_language);
+			
 			int idioma = Integer.parseInt(lang);
 			String locale = "";
 			switch (idioma) {
