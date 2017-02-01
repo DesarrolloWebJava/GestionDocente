@@ -3,7 +3,16 @@
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<c:set var="language" value="${not empty sessionScope.language ? sessionScope.language : 'es_ES'}" scope="page" />
+
+ <c:choose>
+    <c:when test="${not empty cookie.cidioma">
+		<c:set var="language" value="${cookie.cidioma.value}" scope="page"/>
+    </c:when>    
+    <c:otherwise>
+		<c:set var="language" value="${not empty sessionScope.language ? sessionScope.language : 'es_ES'}" scope="page" />
+    </c:otherwise>
+</c:choose>
+ 
  <fmt:setLocale value="${language}" />
  <fmt:setBundle basename="com.ipartek.formacion.controller.i18nmesages" />     
 <!DOCTYPE html>

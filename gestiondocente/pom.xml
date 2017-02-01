@@ -38,6 +38,13 @@
     		<artifactId>log4j</artifactId>
     		<version>${log4j.version}</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jboss.as.plugins/jboss-as-maven-plugin -->
+		<dependency>
+		    <groupId>org.jboss.as.plugins</groupId>
+		    <artifactId>jboss-as-maven-plugin</artifactId>
+		    <version>7.1.1.Final</version>
+		</dependency>
+		
  </dependencies>
 <build>
 	<plugins>
