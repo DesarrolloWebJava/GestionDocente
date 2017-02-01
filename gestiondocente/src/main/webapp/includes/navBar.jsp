@@ -5,7 +5,9 @@
 <%@page import="com.ipartek.formacion.controller.Constantes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <c:set var="language" value="${not empty sessionScope.language ? sessionScope.language : 'es_ES'}" scope="page" />
+   	    <c:set var="idioma" value="${not empty  cookie.language ?  cookie.language.value : 'es_ES'}"  />
+    <c:set var="language" value="${not empty sessionScope.language ? sessionScope.language : idioma }" scope="page" />
+
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="com.ipartek.formacion.controller.i18nmessages"/>
 

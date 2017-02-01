@@ -11,14 +11,8 @@
 <jsp:include page="../includes/header.jsp" />
 
 <main>
-		<%
-		List<Persona> usuarios = (List<Persona>)request.getAttribute(Constantes.ATT_LISTADO_USUARIOS);
-				for(Persona usuario: usuarios){
-					
-			%>
-			<p><%=usuario.getNombre() %> <%=usuario.getCodigo() %></p>
-		<%}%>
-			<h2>Lista 2</h2>
+		
+			<h2>Lista de Usuarios</h2>
 			<ul>
 			<c:forEach items="${requestScope.listadoUsuarios}" var="persona">
 			
