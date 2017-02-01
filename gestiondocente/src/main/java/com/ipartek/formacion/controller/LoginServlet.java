@@ -2,6 +2,7 @@ package com.ipartek.formacion.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -81,6 +82,32 @@ public class LoginServlet extends HttpServlet {
 			// cargaremos la variable de idioma
 			String lang = request.getParameter(Constantes.PAR_IDIOMA);
 		//y le pasa un objeto locale a la session
+			//COMO PARÁMETRO PONEMOS EL NAME DE UN INPUT
+			String rememberme = request.getParameter("remember");
+			
+			////////COOKIES////////////////////////
+			////////1////////////////////////
+			Cookie cookuser = new Cookie("username", username);
+			////////2////////////////////////
+			Cookie cookpass = new Cookie("password", password);	
+			////////3////////////////////////
+			Cookie cookidio = new Cookie("language", lang);
+			//La cookie se crea en todo caso, y se crea un archivo físico 
+			//en el ordenador del cliente
+			if (rememberme != null) {//el check está marcado
+				cookuser.setMaxAge(60*60*24);
+				cookpass.setMaxAge(60*60*24);
+				cookidio.setMaxAge(60*60*24);
+			} else {//el check no está marcado
+				cookuser.setMaxAge(0);
+				cookpass.setMaxAge(0);
+				cookidio.setMaxAge(0);
+			}
+			
+			response.addCookie(cookuser);
+			response.addCookie(cookpass);
+			response.addCookie(cookidio);
+			
 			int idioma = Integer.parseInt(lang);
 			String locale = "";
 			switch (idioma) {

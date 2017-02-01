@@ -27,7 +27,7 @@ public class Constantes {
 	public static final String SERVLET_CURSO = "curso.do";
 	public static final String SERVLET_IDIOMA = "idioma.do";
 	public static final String SERVLET_LOGIN = "login.do";
-	public static final String SERVLET_USUARIO = "admin.do";
+	public static final String SERVLET_ADMIN = "admin.do";
 	
 	//SESIONES
 	public static final String SESSION_IDIOMA = "language";

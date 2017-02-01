@@ -53,7 +53,7 @@ RUTAS RELATIVAS EN JAVA ¡# NO #! FUNCIONAN -->
 	  {%>
 	  <ul>
 		<li><a href="<%=Constantes.SERVLET_LOGIN%>">Cerrar Sesión</a></li>
-		<li><a href="<%=Constantes.SERVLET_USUARIO%>">Ver usuarios conectados</a></li>
+		<li><a href="<%=Constantes.SERVLET_ADMIN%>">Ver usuarios conectados</a></li>
 	  </ul>
 	<%}%>
 	

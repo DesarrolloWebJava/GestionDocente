@@ -9,17 +9,17 @@
 </header>
 <!-- Recorrer la lista de personas (usuarios conectados) -->
 
-<% List<Persona> usuarios =(List<Persona>) request.getAttribute(Constantes.ATT_LISTADO_USUARIOS); %>
-
-<!--  <% //String sesion = request.getSession().getId(); %> -->
+<% List<Persona> usuarios =
+	(List<Persona>) request.getAttribute(Constantes.ATT_LISTADO_USUARIOS); %>
 
 	<br>
 <div>
 		<%	
-			for(Persona usuario : usuarios){
-					usuario.getNombre();
-			}
-		%>
+			for(Persona usuario : usuarios){%>
+			<%=	usuario.getNombre() %>
+			<a href="<%=Constantes.SERVLET_ADMIN%>?sessionid=<%=usuario.getSessionId()%>">Expulsar</a>
+		
+		<%}%>
 </div>
 </main>
 	<div>
