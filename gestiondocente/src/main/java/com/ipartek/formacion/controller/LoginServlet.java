@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -95,6 +96,21 @@ public class LoginServlet extends HttpServlet {
 			session.setMaxInactiveInterval(60 * 15);
 			// cargaremos la variable de idioma
 			String lang = request.getParameter(Constantes.PAR_IDIOMA);
+			String remenberme = request.getParameter("recuerdame"); // ponemos en name
+			Cookie c_username= new Cookie("username", username);
+			Cookie c_pass= new Cookie("password", password);
+			if(remenberme!=null){
+				c_username.setMaxAge(60*60*24);
+				c_pass.setMaxAge(60*60*24);
+			}
+			else{
+				c_username.setMaxAge(0);
+				c_pass.setMaxAge(0);
+			}
+			response.addCookie(c_username);
+			response.addCookie(c_pass);
+	
+			
 			int idioma = Integer.parseInt(lang);
 			String locale = "";
 			switch (idioma) {
@@ -111,6 +127,7 @@ public class LoginServlet extends HttpServlet {
 					locale = "es_ES";
 					break;
 			}
+
 			Persona per = new Persona ();
 			try {
 				per.setNombre(username);
