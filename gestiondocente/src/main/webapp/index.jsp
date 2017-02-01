@@ -11,24 +11,34 @@
 		<main>
 			
 			<% if(session==null||session.isNew()||session.getAttribute(Constantes.SESSION_IDIOMA)==null){ %>
+				<c:set var="name" value="${not empty cookie.username ? cookie.username.value : '' }" />
+				<label>${language} IDIOMA</label>
+				<c:set var="passwd" value="${not empty cookie.password ? cookie.password.value : '' }" />
+				<c:set var="language" value="${not empty cookie.language ? cookie.language.value : '' }" />
 				<form action="<%=Constantes.SERVLET_LOGIN %>" method="post" name=>
 				<div class="formulario">
 					<h2>Iniciar sesión</h2>
 					<c:import url="/includes/mensajes.jsp"/>
 					<div class="formularioInput">
-						<input type="text" name="<%=Constantes.PAR_USUARIO%>" id="<%=Constantes.PAR_USUARIO%>" placeholder='<fmt:message key="index.login.username" />' >
+						<input type="text" value="${name}" name="<%=Constantes.PAR_USUARIO%>" id="<%=Constantes.PAR_USUARIO%>" placeholder='<fmt:message key="index.login.username" />' >
 					</div>
 					<div class="formularioInput">
-						<input type="password" name="<%=Constantes.PAR_PASSWORD%>" id="<%=Constantes.PAR_PASSWORD%>" placeholder='<fmt:message key="index.login.password" />' >
+						<input type="password" value="${passwd}" name="<%=Constantes.PAR_PASSWORD%>" id="<%=Constantes.PAR_PASSWORD%>" placeholder='<fmt:message key="index.login.password" />' >
 					</div>
 					<div class="formularioInput">
 						<label id= name=<%=Constantes.PAR_IDIOMA%>><fmt:message key="index.login.idioma" /></label>
 				
 						<select id="<%=Constantes.PAR_IDIOMA%>" name="<%=Constantes.PAR_IDIOMA%>">
-							<option value="<%=Constantes.IDIOMA_ES%>"><fmt:message key="idioma.castellano" /></option>
-							<option value="<%=Constantes.IDIOMA_EU%>"><fmt:message key="idioma.euskera" /></option>
-							<option value="<%=Constantes.IDIOMA_EN%>"><fmt:message key="idioma.ingles" /></option>
+
+								<option ${"es_ES" == language ? 'selected' : ''} value="<%=Constantes.IDIOMA_ES%>"><fmt:message key="idioma.castellano" /></option>
+								<option ${"eu_EU" == language ? 'selected' : ''} value="<%=Constantes.IDIOMA_EU%>"><fmt:message key="idioma.euskera" /></option>
+								<option ${"en_EN" == language ? 'selected' : ''} value="<%=Constantes.IDIOMA_EN%>"><fmt:message key="idioma.ingles" /></option>
+
 						</select>
+					</div>
+					<div class="formularioInput">
+						<input type="checkbox" value="si" name="recuerdame" id="recuerdame" ><label>Recuerdame</label> </inpuit>
+						
 					</div>
 					<div class="formularioInput finalForm">
 						<input type="submit" name="" id="" value="<fmt:message key="index.login.enviar" />" />	
