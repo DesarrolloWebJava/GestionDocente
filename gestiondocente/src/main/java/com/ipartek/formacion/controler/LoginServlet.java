@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -141,7 +142,7 @@ public class LoginServlet extends HttpServlet {
 	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		int bandera=0;
 		//recogemos los parametros
 		String username= request.getParameter(Constantes.PAR_USUARIO);
 		String password = request.getParameter(Constantes.PAR_PASSWORD);
@@ -154,15 +155,35 @@ public class LoginServlet extends HttpServlet {
 			//false --> recoges una existente, si no hay devuelve nulo
 			//sin parametros-->Si no existe te crea una nueva.
 			//crearemos la sesion, yo quiero forzas una nueva
-			
+			LOG.trace("Estoy LOGIN");
 			HttpSession session =request.getSession(true);
 			
 			session.setMaxInactiveInterval(60*15);
 			//cargaremos variable idioma
 			String lang = request.getParameter(Constantes.PAR_IDIOMA);
-			
 			int idioma= Integer.parseInt(lang);
-		
+			//recogemos el name del imput recuerdame
+			String remenberme =request.getParameter("recuerdame");
+			//creamos la cookie, hay una clase que es Cookie
+			Cookie c_username = new Cookie("username",username);
+			Cookie c_password = new Cookie("password",password);
+			
+			Cookie c_idioma = new Cookie("lang",lang);
+			if(remenberme != null){
+				c_username.setMaxAge(60*60*24);
+				c_password.setMaxAge(60*60*24);
+			}else{
+				c_username.setMaxAge(0);
+				c_password.setMaxAge(0);
+			}
+			response.addCookie(c_username);
+			response.addCookie(c_password);
+			response.addCookie(c_idioma);
+			
+			
+			
+			
+			
 			String locale ="";
 			switch (idioma){
 				case Constantes.IDIOMA_CASTELLANO:
@@ -178,6 +199,7 @@ public class LoginServlet extends HttpServlet {
 					locale= "es_ES";
 					
 			}
+			bandera=1;
 			/*tengo q instanciar el objeto persona para no perder el data nombre en la app*/
 			Persona p = new Persona();
 			try{
@@ -190,7 +212,7 @@ public class LoginServlet extends HttpServlet {
 			}
 			
 		
-			
+			session.setAttribute("bandera", bandera);
 			session.setAttribute(Constantes.SESSION_IDIOMA, locale);
 			session.setAttribute(Constantes.ATT_SESISON, session);
 			session.setAttribute("usuario", username);
@@ -202,6 +224,7 @@ public class LoginServlet extends HttpServlet {
 		}else{
 			//nombre y/o password incorrectos
 			//redirecionar a login.jsp
+			bandera=0;
 			String mensaje = "Usuario y/o Password incorrectos";
 			request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
 			rd = request.getRequestDispatcher(Constantes.JSP_HOME);
