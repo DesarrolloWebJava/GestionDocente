@@ -11,6 +11,12 @@ import com.ipartek.formacion.service.Util;
 
 public class Persona implements Serializable{
 
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected int codigo;
 	private String dni;
 	private String nombre;
@@ -18,6 +24,7 @@ public class Persona implements Serializable{
 	private Date fNacimiento;
 	private String email;
 	private String direccion;
+	private String sessionId;
 
 	public Persona() {
 		super();
@@ -26,10 +33,19 @@ public class Persona implements Serializable{
 		this.nombre = "";
 		this.apellidos = "";
 		this.dni = "";
+		this.sessionId = "";
 		this.fNacimiento = new Date();
 		
 	}
 
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
+	}
+	
 	public String getEmail() {
 		return email;
 	}

@@ -53,23 +53,31 @@ public class AdminServlet extends HttpServlet {
     	rd.forward(request, response);*/
 
     	
-    	 try {
- 			ServletContext ctx = request.getSession(false).getServletContext();
-			List<Persona> personas = (List<Persona>) ctx.getAttribute(Constantes.CTX_LISTADO_USUARIOS);
- 			request.setAttribute(Constantes.ATT_LISTADO_USUARIOS, personas);
- 			rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_USUARIOS);
- 			rd.forward(request, response);
- 		} catch (NullPointerException e) {
- 			log.equals(e.getMessage());
- 			request.setAttribute(Constantes.ATT_MENSAJE, "No se puede acceder a la información en este momento");
- 			rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_USUARIOS);
- 			rd.forward(request, response);
- 
- 		}
-    	
-    	
-    	
-	}
+				String sessionid = request.getParameter("sessionid");
+				if (sessionid == null) {// se procesa visualizar todos los ususarios
+		 								// concetados
+		 			try {
+		 				HttpSession session = request.getSession(false);
+		 				ServletContext ctx = session.getServletContext();
+		 				List<Persona> personas = (List<Persona>)ctx.getAttribute(Constantes.CTX_LISTADO_USUARIOS);
+		 				request.setAttribute(Constantes.ATT_LISTADO_USUARIOS, personas);
+		 				rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_USUARIOS);
+		 			} catch (NullPointerException e) {
+		 				log.error(e.getMessage());
+		 				request.setAttribute(Constantes.ATT_MENSAJE, "No se puede acceder a la información en este momento");
+		 				rd = request.getRequestDispatcher(Constantes.JSP_HOME);
+		 			}
+		 		} else {// se procesa expulsar a un usuario
+		 			try {
+		 				HttpSession session = SessionListener.getHttpSession(sessionid);
+		 				session.invalidate();
+		 				rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
+		 			} catch (NullPointerException e) {
+		 				log.error(e.getMessage());
+		 			}
+		  		}
+		 		rd.forward(request, response);
+		  }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

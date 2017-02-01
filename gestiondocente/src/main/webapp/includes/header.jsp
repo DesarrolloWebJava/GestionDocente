@@ -13,7 +13,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Gestior Docente - Pagina de Inicio</title>
-	<link href="<c:url value="../css/styles.css" />" type="text/css" rel="stylesheet" /> <!-- Para untroducir la ruta -->
+	<link href="<c:url value="/css/styles.css" />" type="text/css" rel="stylesheet" /> <!-- Para untroducir la ruta -->
 	<script src="<c:url value="/js/codigo.js" />"></script>
 </head>
 <body>
@@ -24,13 +24,13 @@
 			<li><a href="<%=Constantes.SERVLET_ALUMNO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ%>">G. Alumnos</a></li>
 			<li><a href="<%=Constantes.SERVLET_PROFESOR%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ%>">G. Profesores</a></li>
 			<li><a href="<%=Constantes.SERVLET_CURSO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ%>">G. Cursos</a></li>
-		</ul>
+		
 	</nav>
-	<!-- Enlaces a los idiomas. y PONER LAS URL-->
+	<!-- Enlaces a los idiomas. y PONER LAS URL
 	<a href="<%=Constantes.SERVLET_IDIOMA %>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_CASTELLANO%>">Castellano</a>
 	<a href="<%=Constantes.SERVLET_IDIOMA %>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_EUSKERA%>">Euskera</a>
 	<a href="<%=Constantes.SERVLET_IDIOMA %>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_INGLES%>">Ingles</a>
-	
+	-->
 	<!-- Boton CERRAR SESION if(si la sesion existe) -->
 	<% 
 	if(session != null && !session.isNew() && session.getAttribute(Constantes.SESSION_IDIOMA)!=null){
@@ -40,6 +40,7 @@
 	<%
 	}
 	%>
-	
+		</ul>
+	</nav>
 	<jsp:include page="mensajes.jsp"/>
 </header>

@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -85,6 +86,7 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter(Constantes.PAR_USUARIO);
 		String password = request.getParameter(Constantes.PAR_PASSWORD);
 		
+		
 		final String user = "admin";
 		final String pass = "pass";
 		
@@ -103,6 +105,45 @@ public class LoginServlet extends HttpServlet {
 			//fijamos la variable de idioma. recogemos la constante de idiomas.
 			String lang = request.getParameter(Constantes.PAR_IDIOMA);
 			// la guardamos en una variable de session
+			
+			
+			// -------------------- COOKIE ---------------------------
+			
+			String remenberme = request.getParameter("recuerdame"); // recoge el name del input del index.jsp
+			
+			// USERNAME
+			
+				//Como crear una cookie??
+			Cookie c_username = new Cookie("cusername", username);
+			if(remenberme != null) { // el check esta marcado (!=)
+				c_username.setMaxAge(60*60*24); // un dia
+			}else{ // el check no esta marcado (!=)
+				c_username.setMaxAge(0);
+			}
+			response.addCookie(c_username);
+			
+			
+			// PASSWORD
+			Cookie c_password = new Cookie("cpassword", password);
+			if(remenberme != null) { // el check esta marcado (!=)
+				c_password.setMaxAge(60*60*24);
+			}else{ // el check no esta marcado (!=)
+				c_password.setMaxAge(0);
+			}
+			response.addCookie(c_password);
+			
+			
+			// IDIOMA
+			Cookie c_idioma = new Cookie("idioma", lang);
+			if(remenberme != null) { // el check esta marcado (!=)
+				c_idioma.setMaxAge(60*60*24);
+			}else{ // el check no esta marcado (!=)
+				c_idioma.setMaxAge(0);
+			}
+			response.addCookie(c_idioma);
+			
+			
+			
 			int idioma = Integer.parseInt(lang);
 			String locale= "";
 			
@@ -125,6 +166,7 @@ public class LoginServlet extends HttpServlet {
 			try {
 				p.setNombre(username);
 				p.setApellidos("Anonimo");
+				p.setSessionId(session.getId());
 				session.setAttribute(Constantes.SESSION_PERSONA, p); // si no quiero guardar
 			} catch (PersonaException e) {
 				log.error(e.getMessage());	

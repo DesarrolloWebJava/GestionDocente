@@ -12,10 +12,10 @@
 	for(Persona persona: personas){
 	%>
 	
-	<%=persona.getNombre() %>
+	<%=persona.getNombre() %> <a href="<%=Constantes.SERVLET_ADMIN%>?sessionid=<%=persona.getSessionId()%>">Expulsar</a>
 	
 	<%} %>
-	<!--  Plus: imple -->
+	<!-- Plus: añada boton de  kick (expulsar) a un usuario conectado  -->
 </main>
 
 </html>

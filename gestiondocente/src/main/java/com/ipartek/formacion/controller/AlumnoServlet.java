@@ -90,14 +90,16 @@ public class AlumnoServlet extends HttpServlet {
 	}
 
 	private void cargarListaAlumnos(HttpServletRequest request) {
+		
+		log.trace("");
 		//resp.sendRedirect("alumnos/listado.jsp"); //limpia
 		// obtenemos la lista de datos.
 		List<Alumno> alumnos = aS.getAll();
 		// fijamos la página destino.
-		rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
-		// añadimos el atributo a la request.
 		request.setAttribute(Constantes.ATT_LISTADO_ALUMNOS, alumnos);
 		// hace la redirección.
+		rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
+		// añadimos el atributo a la request.
 	}
 	
 	/**
@@ -107,9 +109,10 @@ public class AlumnoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Alumno alumno = null;
 		String mensaje = "";
-		
+		int codigo = -1;
 		
 		try {
+				codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
 				alumno = recogerParametros(req);
 				// procesamos UPDATE or INSERT
 				if(alumno.getCodigo() > Alumno.CODIGO_NULO){ //UPDATE
@@ -122,24 +125,30 @@ public class AlumnoServlet extends HttpServlet {
 				}
 			cargarListaAlumnos(req);
 		} catch (NumberFormatException e){
-			resp.sendRedirect(Constantes.JSP_HOME);
-			return;		
+			log.error(e.getMessage() + " Valor del codigo del alumno:" + req.getParameter(Constantes.PAR_CODIGO));
+			mensaje = "Se ha producido una operación inesperada contacte con el administrador del sistema.";
+  			rd = req.getRequestDispatcher(Constantes.JSP_HOME);	
 		} catch (Exception e){
-			rd = req.getRequestDispatcher(Constantes.JSP_LISTADO_ALUMNOS);
-			mensaje = "Se ha producido un error inesperado.";
-			
-			//req.setAttribute("mensaje", mensaje);
-		}
-		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);
-		rd.forward(req, resp);
-	}
+			if (codigo == -1) {// CREATE
+ 				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
+ 
+ 			} else {// UPDATE
+ 				alumno = aS.getById(codigo);
+ 				req.setAttribute(Constantes.ATT_ALUMNO, alumno);
+ 				rd = req.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
+ 			}
+ 			mensaje = e.getMessage();
+ 			System.out.println(mensaje);
+ 		}
+ 		req.setAttribute(Constantes.ATT_MENSAJE, mensaje);
+ 		rd.forward(req, resp);
+ 	}
 	
 	private Alumno recogerParametros(HttpServletRequest req) throws Exception { //este throws se lo lanzamos del catch de la excepcion
 		Alumno alumno = new Alumno();
 		
 		try {
-			int codigo = Integer.parseInt(req.getParameter(Constantes.PAR_CODIGO));
-			alumno.setCodigo(codigo);
+			
 			alumno.setNombre(req.getParameter(Constantes.PAR_NOMBRE));
 			alumno.setApellidos(req.getParameter(Constantes.PAR_APELLIDOS));
 			alumno.setDireccion(req.getParameter(Constantes.PAR_DIRECCION));
@@ -153,7 +162,12 @@ public class AlumnoServlet extends HttpServlet {
 			}
 			//alumno.setnHermanos(Integer.parseInt(nHermanos));
 			
-			alumno.setActivo(Boolean.parseBoolean(req.getParameter(Constantes.PAR_ACTIVO)));
+			if ("1".equals(req.getParameter(Constantes.PAR_ACTIVO))) {
+ 				alumno.setActivo(true);
+ 			} else {
+ 				alumno.setActivo(false);
+ 			}
+			
 			String date = req.getParameter(Constantes.PAR_FNACIMIENTO);
 			String pattern = "dd/MM/yyyy";
 			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
