@@ -67,7 +67,10 @@ public class Constantes {
 	//Parametro de login
 	public static final String PAR_USUARIO = "user";
 	public static final String PAR_PASSWORD = "password";
+	
 	public static final String PAR_SESSION_ID = "sessionID";
+	//Parametros de cookies
+	public static final String PAR_RECUERDAME = "recuerdame";
 
 	
 	//Constantes de operaciones de CRUD

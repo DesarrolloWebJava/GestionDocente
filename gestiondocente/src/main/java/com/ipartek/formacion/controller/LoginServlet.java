@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -112,6 +113,33 @@ public class LoginServlet extends HttpServlet {
 					locale = "es_ES";
 					break;
 			}
+			//Recogemos la variable de recuerdame (el name del input)
+			String rememberme = request.getParameter(Constantes.PAR_RECUERDAME);
+			//Creamos la cookie(clave, valor)
+			Cookie c_username = new Cookie("username", username);
+			Cookie c_passname = new Cookie("passname", password);
+			Cookie c_language = new Cookie("leng", locale);
+			Cookie c_lang = new Cookie("lang", lang);
+			//Si el check esta marcado...
+			if(rememberme!=null){
+				//tiempo de expiracion (60seg * 60 min * 24h = 1 dia)
+				c_username.setMaxAge(60*60*24);
+				c_passname.setMaxAge(60*60*24);
+				c_language.setMaxAge(60*60*24);
+				c_lang.setMaxAge(60*60*24);
+			}else{ //El check no esta marcado...
+				//tiempo de expiracion 0 seg.
+				c_username.setMaxAge(0);
+				c_passname.setMaxAge(0);
+				c_language.setMaxAge(0);
+				c_lang.setMaxAge(0);
+			}
+			//Le manda una cookie en la respuesta
+			response.addCookie(c_username);
+			response.addCookie(c_passname);
+			response.addCookie(c_language);
+			response.addCookie(c_lang);
+			
 			//Creamos una persona para cargar los datos
 			Persona p = new Persona();
 			try{

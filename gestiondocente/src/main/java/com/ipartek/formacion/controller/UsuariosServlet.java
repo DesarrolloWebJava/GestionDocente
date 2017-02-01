@@ -35,8 +35,8 @@ public class UsuariosServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String sessionid = request.getParameter("sesionid");
-		if(sessionid == null){ //Se procesa visualizar todos los usuarios conectados
+		String sessionID = request.getParameter(Constantes.PAR_SESSION_ID);
+		if(sessionID == null){ //Se procesa visualizar todos los usuarios conectados
 			try{
 				//Recogemos la sesion en la variable session
 				HttpSession session = request.getSession(false);
@@ -56,7 +56,7 @@ public class UsuariosServlet extends HttpServlet {
 		}else{ //Se procesa expulsar a un usuario
 			try{
 				//
-				HttpSession session = SessionListener.getHttpSession(sessionid);
+				HttpSession session = SessionListener.getHttpSession(sessionID);
 				//Echa de la sesion
 				session.invalidate();
 				rd = request.getRequestDispatcher(Constantes.JSP_HOME);
