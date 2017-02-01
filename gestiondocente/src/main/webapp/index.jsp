@@ -13,6 +13,7 @@
 
 	<c:set var="name" value="${not empty cookie.username ? cookie.username.value : ''}" />
 	<c:set var="password" value="${not empty cookie.password ? cookie.password.value : ''}" />
+	<c:set var="idioma" value="${not empty cookie.idioma ? cookie.idioma.value : ''}" />
 	
 	
 	<form action="<%=Constantes.SERVLET_LOGIN%>" method="post">
@@ -20,9 +21,9 @@
 		<input value= "${password}" name="<%=Constantes.PAR_PASSWORD %>" type="password" placeholder="<fmt:message key="index.login.password"/> "/>
 		<label for="<%=Constantes.PAR_IDIOMA%>"><fmt:message key="index.login.idioma"/></label>
 		<select id="<%=Constantes.PAR_IDIOMA %>" name="<%=Constantes.PAR_IDIOMA%>">
-			<option value="<%=Constantes.IDIOMA_CASTELLANO%>"><fmt:message key="idioma.castellano"/></option>
-			<option value="<%=Constantes.IDIOMA_EUSKERA%>"><fmt:message key="idioma.euskera"/></option>
-			<option value="<%=Constantes.IDIOMA_INGLES%>"><fmt:message key="idioma.ingles"/></option>
+			<option ${2==idioma ?'selected' : ''} value="<%=Constantes.IDIOMA_CASTELLANO%>"><fmt:message key="idioma.castellano"/></option>
+			<option ${1==idioma ?'selected' : ''}  value="<%=Constantes.IDIOMA_EUSKERA%>"><fmt:message key="idioma.euskera"/></option>
+			<option ${3==idioma ?'selected' : ''}  value="<%=Constantes.IDIOMA_INGLES%>"><fmt:message key="idioma.ingles"/></option>
 		</select>
 			<input type="checkbox" name= "recuerdame" id="recuerdame"> <label for ="recuerdame">Recuerdame</label>
 		<input type="submit" value="<fmt:message key="index.login.enviar"/>"/>

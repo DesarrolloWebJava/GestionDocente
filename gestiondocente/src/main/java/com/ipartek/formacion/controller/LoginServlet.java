@@ -99,16 +99,20 @@ public class LoginServlet extends HttpServlet {
 			String remenberme = request.getParameter("recuerdame"); // ponemos en name
 			Cookie c_username= new Cookie("username", username);
 			Cookie c_pass= new Cookie("password", password);
+			Cookie c_idioma= new Cookie("idioma", lang);
 			if(remenberme!=null){
 				c_username.setMaxAge(60*60*24);
 				c_pass.setMaxAge(60*60*24);
+				c_idioma.setMaxAge(60*60*24);
 			}
 			else{
 				c_username.setMaxAge(0);
 				c_pass.setMaxAge(0);
+				c_idioma.setMaxAge(0);
 			}
 			response.addCookie(c_username);
 			response.addCookie(c_pass);
+			response.addCookie(c_idioma);
 	
 			
 			int idioma = Integer.parseInt(lang);
