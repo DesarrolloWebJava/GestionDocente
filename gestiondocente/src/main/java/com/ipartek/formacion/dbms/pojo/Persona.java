@@ -29,6 +29,7 @@ public class Persona {
 	private Date fNacimiento;
 	private String email;
 	private String direccion;
+	private String sesionId;
 
 	/* Constructor sin parametro de la clase 'Pesona'.*/
 	public Persona() {
@@ -150,6 +151,18 @@ public class Persona {
 	public void setApellidos(String apellidos) {
 		/* Se asigna el atributo 'apellido'. */
 		this.apellidos = apellidos;
+	}
+	
+	/* Getter del atributo 'sesionId'.*/
+	public String getsesionId() {
+		/* Se devuelve el atributo 'sesionId'. */
+		return sesionId;
+	}
+
+	/* Setter del atributo 'sesionId'. */
+	public void setSesionId(String sesionId) {
+		/* Se asigna el atributo 'apellido'. */
+		this.sesionId = sesionId;
 	}
 
 	/* Getter del atributo fecha de nacimiento. */

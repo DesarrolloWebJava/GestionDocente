@@ -112,6 +112,7 @@
 			<!-- Enlace a la gestión de Idioma para la traducción al Ingles -->
 			<a href="<%=Constantes.SERVLET_IDIOMA%>?<%=Constantes.PAR_IDIOMA%>=<%=Constantes.IDIOMA_INGLES%>">
 			    <fmt:message key="idioma.ingles"/></a> 
+			
 			<!--  Se comprueba si exite la sesión de cara a mostrar el botoón o no. -->
 			<%				
 			    /* Por defecto las JSP tienen envebida la session por lo tanto se puede utilizar.
@@ -124,6 +125,9 @@
 				<!-- Enlace al cierre de sesion. -->
 				<a href="<%=Constantes.SERVLET_LOGIN%>">
 				                              <fmt:message key="index.cerrarSesion"/></a>
+				<!-- Enlace a la gestión de usuarios registrados. -->
+				<a href="<%=Constantes.SERVLET_USUARIO%>?<%=Constantes.PAR_OPERACION%>=<%=Constantes.OP_READ%>">
+							           <fmt:message key="index.usuariosRegistrados"/></a>     				                              
 			<%
 				}
 			%>			    

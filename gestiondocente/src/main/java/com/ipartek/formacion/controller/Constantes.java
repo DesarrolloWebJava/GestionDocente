@@ -24,9 +24,10 @@ public final class  Constantes {
 	public static final String SESION_IDIOMA = "language";
 	public static final String SESION_PERSONA= "persona";
 	
-	/* Constantes de atributos de Servlets.*/
+	/* Constantes de atributos de REQUEST.*/
 	public static final String ATT_LISTADO_ALUMNOS = "listadoAlumnos";
 	public static final String ATT_LISTADO_PROFESORES = "listadoProfesores";
+	public static final String ATT_LISTADO_USUARIOS = "listadoUsuarios";
 	public static final String ATT_LISTADO_CURSOS = "listadoCursos";
 	public static final String ATT_MENSAJES = "mensajes";
 	public static final String ATT_ALUMNOS = "alumno";
@@ -34,10 +35,13 @@ public final class  Constantes {
 	public static final String ATT_IDIOMA = "idioma";
 	public static final String ATT_USUARIO = "usuario";
 	public static final String ATT_PASSWORD = "password";
+	public static final String ATT_MENSAJE = "mensaje";
 	
+	public static final String CTX_LISTADO_USUARIOS ="listadoAlumnos";
 	/* Constantes de redireccionamiento de Servlets.*/
 	public static final String SERVLET_ALUMNO = "alumno.do";
 	public static final String SERVLET_PROFESOR = "profesor.do";
+	public static final String SERVLET_USUARIO = "usuario.do";
 	public static final String SERVLET_CURSO = "curso.do";
 	public static final String SERVLET_IDIOMA = "idioma.do";
 	public static final String SERVLET_LOGIN = "login.do";	
@@ -45,7 +49,9 @@ public final class  Constantes {
 	/* Constantes de listados de Servlets.*/
 	public static final String JSP_LISTADO_ALUMNO = "alumnos/listado.jsp";
 	public static final String JSP_LISTADO_PROFESOR = "profesores/listado.jsp";	
-	public static final String JSP_LISTADO_CURSO = "cursos/listado.jsp";	
+	public static final String JSP_LISTADO_USUARIO = "usuarios/listado.jsp";		
+	public static final String JSP_LISTADO_CURSO = "cursos/listado.jsp";
+	
 	
 	/* Constantes de formularios de Servlets.*/
 	public static final String JSP_FORMULARIO_ALUMNO = "alumnos/alumno.jsp";
@@ -65,7 +71,8 @@ public final class  Constantes {
 	public static final int OP_CREATE = 1;	
 	public static final int OP_READ = 2;	
 	public static final int OP_UPDATE = 3;
-	public static final int OP_DELETE = 4;		
+	public static final int OP_DELETE = 4;	
+	public static final int OP_EXPULSAR = 4;	
 	
 	/* Constantes para identificar los parametros de los atributos de los idiomas.*/
 	public static final int IDIOMA_EUSKERA = 1;
@@ -89,6 +96,7 @@ public final class  Constantes {
 	public static final String PAR_DURACION = "duracion";	
 	public static final String PAR_FINICIO = "finicio";
 	public static final String PAR_FFIN = "ffin";
+	public static final String PAR_SESSIONID ="sessionid";
 	
 	/* */
 	

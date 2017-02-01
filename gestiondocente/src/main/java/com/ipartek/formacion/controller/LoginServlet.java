@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -106,6 +107,42 @@ public class LoginServlet extends HttpServlet {
 			
 			/* Se recoge el idioma del request.*/
 			String idiomaStr = req.getParameter(Constantes.PAR_IDIOMA);
+			
+			/* Se recoge el recuerdame.*/
+			String recuerdame = req.getParameter("recuerdame");		
+			/* Se crea la cookie para el nombre de usuario.*/
+			Cookie cookieNombreUsuario = new Cookie("nombreUsuario",usuarioAdmin);
+			/* Se crea la cookie para el nombre de usuario.*/
+			Cookie cookiePasswordUsuario = new Cookie("passwordUsuario",password);
+			/* Se crea la cookie para el nombre de usuario.*/
+			Cookie cookieIdiomaUsuario = new Cookie("idiomaUsuario",idiomaStr);		
+			/* Se crea la cookie para el recuerdame de usuario.*/
+			Cookie cookieRecuerdameUsuario = new Cookie("recuerdameUsuario",recuerdame);				
+			/* Se comprueba si el check esta marcado.*/
+			if(recuerdame != null){
+				/* Se establece la duración de las cookie para un dia.
+				 * (60seg/min x 60min/hora x 24 horas/dia)*/
+				cookieNombreUsuario.setMaxAge(60 * 60 * 24);
+				cookiePasswordUsuario.setMaxAge(60 * 60 * 24);
+				cookieIdiomaUsuario.setMaxAge(60 * 60 * 24);
+				cookieRecuerdameUsuario.setMaxAge(60 * 60 * 24);
+			}else{
+				/* Se establece la duración de la cookie para un 0 seg,
+				 * es decir si no esta marcado construir se dewstruye.*/
+				cookieNombreUsuario.setMaxAge(0);		
+				cookiePasswordUsuario.setMaxAge(0);
+				cookieIdiomaUsuario.setMaxAge(0);
+				cookieRecuerdameUsuario.setMaxAge(0);
+			}
+			/* Se pasa al response la cookie de nombre de usuario.*/
+			res.addCookie(cookieNombreUsuario);
+			/* Se pasa al response la cookie de password de usuario.*/
+			res.addCookie(cookiePasswordUsuario);
+			/* Se pasa al response la cookie de idioma de usuario.*/
+			res.addCookie(cookieIdiomaUsuario);
+			/* Se pasa al response la cookie de recuerdame de usuario.*/
+			res.addCookie(cookieRecuerdameUsuario);			
+			
 			/* Se guarda el idioma en la sesion.*/
 			int idioma = Integer.parseInt(idiomaStr);
 			/* Se declara la variable para recoger el locale.*/
@@ -138,6 +175,8 @@ public class LoginServlet extends HttpServlet {
 			try {
 				/* Se asigna el nombre de usuario recogido del request.	*/
 				persona.setNombre(usuario);
+				/* Se asigna el id de sesion a la persona.*/
+				persona.setSesionId(session.getId());
 				/* se asigna la persona a la sesion.*/
 				session.setAttribute(Constantes.SESION_PERSONA, persona);
 			} catch (PersonaException e) {

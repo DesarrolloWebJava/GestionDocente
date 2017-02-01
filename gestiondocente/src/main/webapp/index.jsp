@@ -27,8 +27,72 @@
     <jsp:include page="includes/header.jsp"/>   
 	
 	<main>
+		<!-- Estructura if/esle con JSTL 
+		     Se comprueba si la cookie NombreUsuario posee valor.-->
+		<c:choose> 	
+			<c:when test="${not empty cookie.nombreUsuario}">
+				<!-- Se asigna el valor de la cookie a la variale 'name'. -->
+				<c:set var="nombreUsuario" value="${cookie.nombreUsuario.value}"/>
+			</c:when>
+			<c:otherwise>
+				<c:set var="nombreUsuario" value="''"/>
+			</c:otherwise>
+		</c:choose>
+		<!-- Se puede simplificar en una linea:
+		 /*
+		 <c:set var="nombreUsuario" value="${not empty  cookie.nombreUsuario ? cookie.nombreUsuario.value :'' }"/>
+		 */
+		 -->	
+		
+		<!-- Estructura if/esle con JSTL 
+		     Se comprueba si la cookie passwordUsuario posee valor.-->
+		<c:choose> 	
+			<c:when test="${not empty cookie.passwordUsuario}">
+				<!-- Se asigna el valor de la cookie a la variale 'name'. -->
+				<c:set var="passwordUsuario" value="${cookie.passwordUsuario.value}"/>
+			</c:when>
+			<c:otherwise>
+				<c:set var="passwordUsuario" value="''"/>
+			</c:otherwise>
+		</c:choose>
+		
+		<!-- Estructura if/esle con JSTL 
+		     Se comprueba si la cookie IdiomaUsuario posee valor.-->
+		<c:choose> 	
+			<c:when test="${not empty cookie.idiomaUsuario}">
+				<c:choose> 	
+					<c:when test="${cookie.idiomaUsuario.value == 1}">
+						<!-- Se asigna el valor de la cookie a la variale 'name'. -->
+						<c:set var="idiomaEuskera" value=" selected"/>
+					</c:when>
+					<c:when test="${cookie.idiomaUsuario.value == 2}">
+						<!-- Se asigna el valor de la cookie a la variale 'name'. -->
+						<c:set var="idiomaCastellano" value=" selected"/>
+					</c:when>
+					<c:when test="${cookie.idiomaUsuario.value == 3}">
+						<!-- Se asigna el valor de la cookie a la variale 'name'. -->
+						<c:set var="idiomaIngles" value=" selected"/>
+					</c:when>
+				</c:choose>
+			</c:when>
+		</c:choose>	
+		
+		<!-- Estructura if/esle con JSTL 
+		     Se comprueba si la cookie recuerdameUsuario posee valor.-->
+		<c:choose> 	
+			<c:when test="${not empty cookie.recuerdameUsuario}">
+				<!-- Se asigna el valor de la cookie a la variale 'name'. -->
+				<c:set var="recuerdameUsuario" value=" checked"/>
+			</c:when>
+		</c:choose>
+	
+		
+			
 		<!-- Formulario de Login. -->
 		<form action="<%=Constantes.SERVLET_LOGIN %>" method="post">
+			<!-- Se comprueba si tenemos cookie de nombre de usuario. -->
+			
+			
 			<!-- Label para el input de usuario. -->
 			<label for="<%=Constantes.PAR_USUARIO %>">
 				<fmt:message key="index.login.usuario"/>
@@ -38,7 +102,7 @@
 			<input type="text" placeholder=<fmt:message key="index.login.username"/>  
 			       id="<%=Constantes.PAR_USUARIO %>" 
 			       name="<%=Constantes.PAR_USUARIO %>"
-			       value="" />
+			       value="${nombreUsuario}"/>
 			<!-- Label para el input de password. -->
 			<label for="<%=Constantes.PAR_PASSWORD %>">
 				<fmt:message key="index.login.password"/>
@@ -48,25 +112,31 @@
 			<input type="password" placeholder=<fmt:message key="index.login.password"/>  
 			       id="<%=Constantes.PAR_PASSWORD %>" 
 			       name="<%=Constantes.PAR_PASSWORD %>"
-			       value="" />	
+			       value="${passwordUsuario}" />	
+			<!--  Check de recordar contraseña. -->
+			<input type ="checkbox" name="recuerdame" id="recuerdame" ${recuerdameUsuario}>
+			<label for="recuerdame">Recuérdame</label>
+			
 			<!-- Label para el input de idioma. -->
 			<label for="<fmt:message key="index.idioma"/>"></label>
 			<!-- Input Select de idioma.
 				 En el placeholder se coje del fichero de internacionalización. -->
 			<select id="<%=Constantes.PAR_IDIOMA %>" name="<%=Constantes.PAR_IDIOMA %>">
 				<!-- Opción de Castellano. -->
-				<option value="<%=Constantes.IDIOMA_CASTELLANO %>">
+				<option value="<%=Constantes.IDIOMA_CASTELLANO %>"  ${idiomaCastellano}>
 												<fmt:message key="idioma.castellano"/>
 				</option>
 				<!-- Opción de Ingles. -->
-				<option value="<%=Constantes.IDIOMA_INGLES %>">
+				<option value="<%=Constantes.IDIOMA_INGLES %>" ${idiomaIngles}>
 												<fmt:message key="idioma.ingles"/>
 				</option>
 				<!-- Opción de Euskera. -->
-				<option value="<%=Constantes.IDIOMA_EUSKERA %>">
+				<option value="<%=Constantes.IDIOMA_EUSKERA %>" ${idiomaEuskera}>
 												<fmt:message key="idioma.euskera"/>
 				</option>				
 			</select>	
+			
+			
 			<!--  Botón para el envio de los datos del formulario (alumno.*). -->
 			<input type="submit" value="<fmt:message key="index.aceptar"/>"/>
 		</form>

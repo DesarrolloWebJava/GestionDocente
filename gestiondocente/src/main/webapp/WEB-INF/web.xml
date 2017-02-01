@@ -92,4 +92,24 @@
   <listener>
     <listener-class>com.ipartek.formacion.controller.listeners.SessionListener</listener-class>
   </listener>
+  <servlet>
+    <description></description>
+    <display-name>PersonasServlet</display-name>
+    <servlet-name>PersonasServlet</servlet-name>
+    <servlet-class>com.ipartek.formacion.controller.PersonasServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PersonasServlet</servlet-name>
+    <url-pattern>/persona.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UsuarioServlet</display-name>
+    <servlet-name>UsuarioServlet</servlet-name>
+    <servlet-class>com.ipartek.formacion.controller.UsuarioServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UsuarioServlet</servlet-name>
+    <url-pattern>/usuario.do</url-pattern>
+  </servlet-mapping>
 </web-app>
