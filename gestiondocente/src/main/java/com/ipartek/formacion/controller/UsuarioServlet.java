@@ -64,9 +64,7 @@ public class UsuarioServlet extends HttpServlet {
 			
 				rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_USUARIOS);
 				request.setAttribute(Constantes.ATT_LISTADO_USUARIOS, usuarios);
-			
-	
-		
+
 	}
 
 	/**
