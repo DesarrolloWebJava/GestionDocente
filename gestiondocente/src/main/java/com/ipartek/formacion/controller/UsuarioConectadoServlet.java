@@ -36,17 +36,19 @@ public class UsuarioConectadoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
     	List<Persona> personas = null;
+    	ServletContext ctx = null;
     	String sessionId = request.getParameter(Constantes.PAR_SESSION);
     	if (sessionId != null){
     		try{
     			HttpSession session = SessionListener.getHttpSession(sessionId);
     			session.invalidate();
     			rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_USUARIOS);
-    			request.setAttribute(Constantes.PAR_SESSION,null);
+    			//request.setAttribute(Constantes.PAR_SESSION,null);
+    			
     	 		}catch(Exception e){
     			LOG.error(e.getMessage());
     			request.setAttribute(Constantes.ATT_MENSAJE, "No se puede acceder a la información en este momento");
-    			rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_USUARIOS);
+    			rd = request.getRequestDispatcher(Constantes.JSP_HOME);
     			
     		}
     		
@@ -54,7 +56,7 @@ public class UsuarioConectadoServlet extends HttpServlet {
     	else // Se procesa visualizar todo los usuarios conectados
     	{
 		try {
-			ServletContext ctx = request.getSession(false).getServletContext();
+			ctx = request.getSession(false).getServletContext();
 			personas = (List<Persona>) ctx.getAttribute(Constantes.CTX_LISTADO_USUARIOS);
 			request.setAttribute(Constantes.ATT_LISTADO_USUARIOS, personas);
 			rd = request.getRequestDispatcher(Constantes.JSP_LISTADO_USUARIOS);

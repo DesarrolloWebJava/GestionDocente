@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -98,6 +99,34 @@ public class LoginServlet extends HttpServlet {
     	   
     	   // cargaremos la variable de idioma
     	   String lang = request.getParameter(Constantes.PAR_IDIOMA);
+    	   String remenberme = request.getParameter(Constantes.PAR_RECORDAR); // se pone el name del input del jsp como parametro
+    	  // creamos las cookies
+    	   Cookie c_username = new Cookie(Constantes.COOKIE_USER,username); 
+    	   Cookie c_password = new Cookie(Constantes.COOKIE_PASS,password);
+    	   Cookie c_idioma   = new Cookie(Constantes.COOKIE_IDIOMA,lang);
+    	   System.out.println(c_username.getValue());
+    	   System.out.println(c_password.getValue());
+    	   System.out.println(c_idioma.getValue());
+    	   
+    	   if (remenberme != null){ // check marcado
+    		  
+       		   c_username.setMaxAge(60*60*24);
+    		   c_password.setMaxAge(60*60*24);
+    		   c_idioma.setMaxAge(60*60*24);
+    	   }
+    	   else {
+    		   
+    		   c_username.setMaxAge(0);
+    		   c_password.setMaxAge(0);
+    		   c_idioma.setMaxAge(0);
+    	   }
+    	   
+    	   // añadimos la cookie a la respuesta
+    	   
+    	   response.addCookie(c_username);
+    	   response.addCookie(c_password);
+    	   response.addCookie(c_idioma);
+    	   
     	   int idioma = Integer.parseInt(lang);
     	   String locale="";
     	   

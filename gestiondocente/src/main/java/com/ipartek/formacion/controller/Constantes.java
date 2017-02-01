@@ -19,6 +19,12 @@ public class Constantes {
 	
 	public static final String CTX_LISTADO_USUARIOS = "listadoUsuarios";
 	
+	public static final String COOKIE_USER = "username";
+	public static final String COOKIE_PASS = "password";
+	public static final String COOKIE_IDIOMA = "idioma";
+	
+		
+	
 	public static final String SESSION_IDIOMA ="language";
 	public static final String SESSION_PERSONA ="persona";
 		
@@ -56,6 +62,7 @@ public class Constantes {
 	public static final String PAR_USUARIO="user";
 	public static final String PAR_PASSWORD="password";
 	public static final String PAR_SESSION="sessionId";
+	public static final String PAR_RECORDAR="recuerdame";
 
 	
 
