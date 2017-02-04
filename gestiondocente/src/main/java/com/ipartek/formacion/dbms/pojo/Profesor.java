@@ -29,9 +29,9 @@ public class Profesor extends Persona implements Comparable<Profesor> {
 
 	@Override
 	public String toString() {
-		return "Profesor [getnSS()=" + getnSS() + ", getCodigo()=" + getCodigo() + ", getEmail()=" + getEmail()
-				+ ", getDireccion()=" + getDireccion() + ", getDni()=" + getDni() + ", getNombre()=" + getNombre()
-				+ ", getApellidos()=" + getApellidos() + ", getfNacimiento()=" + getfNacimiento() + "]";
+		return "Profesor [ Codigo=" + getCodigo() + ", Nombre=" + getNombre()+ ", DNI=" + getDni() 
+				+  ", Apellidos=" + getApellidos() + ", Fecha Nacimiento=" + getfNacimiento() 
+				+ ", Email=" + getEmail()+ ", Direccion=" + getDireccion() +", Número SS=" + getnSS() + "]";
 	}
 
 	@Override

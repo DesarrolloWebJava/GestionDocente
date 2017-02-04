@@ -86,22 +86,6 @@ public class Curso implements Comparable<Curso>, Serializable {
 	public void setfFin(Date fFin) {
 		this.fFin = fFin;
 	}
-
-	/*public List<Alumno> getAlumnos() {
-		return alumnos;
-	}
-
-	public void setAlumnos(List<Alumno> alumnos) {
-		this.alumnos = alumnos;
-	}
-
-	public Profesor getProfesor() {
-		return profesor;
-	}
-
-	public void setProfesor(Profesor profesor) {
-		this.profesor = profesor;
-	}*/
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -129,8 +113,8 @@ public class Curso implements Comparable<Curso>, Serializable {
 
 	@Override
 	public String toString() {
-		return "Curso [ codigo = " + codigo + ", nombre = " + nombre + ", duracion = " + duracion 
-				+ ", Fecha Inicio = " + Util.formatoFecha(fInicio) + ", Fecha Fin = " + Util.formatoFecha(fFin) + " ]";
+		return "Curso [ CODIGO = " + codigo + ", NOMBRE = " + nombre + ", DURACION = " + duracion 
+				+ ", FECHA INICIO = " + Util.formatoFecha(fInicio) + ", FECHA FIN = " + Util.formatoFecha(fFin) + " ]";
 	}
 	
 	

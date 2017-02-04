@@ -1,3 +1,4 @@
+<%@page import="com.ipartek.formacion.service.Util"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -54,17 +55,10 @@
 		value="<%=alumno.getDireccion()%>">
 	</div>
 	<div>
-		<%
-			String date = "";
-			GregorianCalendar gc = new GregorianCalendar();
-			gc.setTime(alumno.getfNacimiento());
-			date = gc.get(GregorianCalendar.DAY_OF_MONTH)+"/"
-			+(GregorianCalendar.MONTH+1)+"/"+(GregorianCalendar.YEAR);
-		%>
 		<label for="<%=Constantes.PAR_FNACIMIENTO %>">Fecha de nacimiento: </label>
 		<input type="text" placeholder="Introduzca la fecha de nacimiento..." 
 		name="<%=Constantes.PAR_FNACIMIENTO %>" id="<%=Constantes.PAR_FNACIMIENTO %>" 
-		value="<%=date%>">
+		value="<%=Util.formatoFecha(alumno.getfNacimiento())%>">
 	</div>
 	<div>
 		<label for="<%=Constantes.PAR_NHERMANOS %>">Número de hermanos: </label>

@@ -23,11 +23,13 @@ import com.ipartek.formacion.service.exceptions.CursoServiceImpException;
 public class CursoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private CursoService cS;
+    //Variable que almacena las peticiones
     private RequestDispatcher rd;
    
 	public void init() throws ServletException{
     	//Se inicializa CursoServiceImp que contiene los metodos CRUD
     	cS = new CursoServiceImp();
+    	//llama al metodo init del padre
     	super.init();
     }
 	/**
@@ -58,7 +60,7 @@ public class CursoServlet extends HttpServlet {
 				Curso curso = cS.getById(codigo);
 				//Metemos el nuevo curso en la request
 				request.setAttribute(Constantes.ATT_CURSO, curso);
-				//Se redirige a la pagina cursos/curso.jsp
+				//Se prepara la redireccion a la pagina cursos/curso.jsp
 				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_CURSO);
 			}
 				break;

@@ -27,11 +27,10 @@ public class ProfesorServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Recogemos el parametro de lo que queremos hacer: create, delete, update, ...
+		//Recogemos el parametro de lo que queremos hacer de la request: create, delete, update, ...
 		String operacion = request.getParameter(Constantes.PAR_OPERACION);
 		//Variable que controla si es correcto o no el parametro 
 		int op = -1;
-		
 		try{
 			//Cambiamos el valor del parametro de String a Integer
 			op = Integer.parseInt(operacion);
@@ -53,10 +52,10 @@ public class ProfesorServlet extends HttpServlet {
 					codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
 					//Recogemos el profesor que buscamos mediante el codigo y lo guardamos en la variable
 					Profesor profesor = pS.getById(codigo);
-					//Prepara la redireccion al formulario
-					rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
 					//Preparamos la redireccion pasando el alumno
 					request.setAttribute(Constantes.ATT_PROFESOR, profesor);
+					//Prepara la redireccion al formulario
+					rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
 				}
 				break;
 				case Constantes.OP_DELETE:
