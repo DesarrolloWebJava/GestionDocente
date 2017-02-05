@@ -23,18 +23,13 @@ public class UsuariosServlet extends HttpServlet {
 	private static final Logger LOG = Logger.getLogger(UsuariosServlet.class);
 	private static final long serialVersionUID = 1L;
     private RequestDispatcher rd;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UsuariosServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LOG.trace("Metodo doGet de UsuariosServlet");
 		String sessionID = request.getParameter(Constantes.PAR_SESSION_ID);
 		if(sessionID == null){ //Se procesa visualizar todos los usuarios conectados
 			try{
@@ -71,8 +66,8 @@ public class UsuariosServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LOG.trace("Metodo doPost de UsuariosServlet");
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

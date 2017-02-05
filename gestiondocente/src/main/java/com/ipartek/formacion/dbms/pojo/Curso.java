@@ -113,8 +113,8 @@ public class Curso implements Comparable<Curso>, Serializable {
 
 	@Override
 	public String toString() {
-		return "Curso [ CODIGO = " + codigo + ", NOMBRE = " + nombre + ", DURACION = " + duracion 
-				+ ", FECHA INICIO = " + Util.formatoFecha(fInicio) + ", FECHA FIN = " + Util.formatoFecha(fFin) + " ]";
+		return "CURSO [ CÓDIGO = " + codigo + ", NOMBRE = " + nombre + ", DURACIÓN = " + duracion 
+				+ ", FECHA INICIO = " + Util.formatoFecha(fInicio) + ", FECHA FÍN = " + Util.formatoFecha(fFin) + " ]";
 	}
 	
 	

@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Alumno;
 import com.ipartek.formacion.dbms.pojo.Curso;
 import com.ipartek.formacion.dbms.pojo.Profesor;
@@ -14,7 +16,7 @@ import com.ipartek.formacion.service.exceptions.CursoServiceImpException;
  *
  */
 public class CursoServiceImp implements CursoService {
-
+	private static final Logger LOG = Logger.getLogger(CursoServiceImp.class);
 	//Reservamos espacio para una lista de cursos
 	private List<Curso> cursos;
 	//Reservamos espacio para una lista de alumnos
@@ -26,6 +28,7 @@ public class CursoServiceImp implements CursoService {
 	
 	public CursoServiceImp() {
 		super();
+		LOG.trace("Constructor");
 		//Inicializamos la lista
 		cursos = new ArrayList<Curso>();
 		//Creamos una lista de alumnos
@@ -40,6 +43,7 @@ public class CursoServiceImp implements CursoService {
 	 * En este metodo vamos a iniciualizar valores para pruebas
 	 */
 	private void init(){
+		LOG.trace("metodo init");
 		//Creamos un nuevo curso
 		Curso nuevoCurso = new Curso();
 		try{
@@ -47,27 +51,26 @@ public class CursoServiceImp implements CursoService {
 			nuevoCurso.setDuracion(500);
 			String fechaIni = "10/01/2017";
 			String fechaFin = "10/06/2017";
-			String pattern = "dd/MM/yyyy";
-			SimpleDateFormat formatoFecha = new SimpleDateFormat(pattern);
-			nuevoCurso.setfInicio(formatoFecha.parse(fechaIni));
-			nuevoCurso.setfFin(formatoFecha.parse(fechaFin));
-			//Creo 2 alumnos
-			//Alumno alumno = new Alumno();
-			//Alumno alumno2 = new Alumno();
-			//Añado los alumnos a la lista
-			//alumnos.add(alumno);
-			//alumnos.add(alumno2);
-			//Cargo la lista
-			//nuevoCurso.setAlumnos(alumnos);
+			nuevoCurso.setfInicio(Util.parseLatinDate(fechaIni));
+			nuevoCurso.setfFin(Util.parseLatinDate(fechaFin));
+			create(nuevoCurso);
+			nuevoCurso = new Curso();
+			nuevoCurso.setNombre("Programacion Java con Spring");
+			nuevoCurso.setDuracion(800);
+			fechaIni = "18/02/2017";
+			fechaFin = "23/06/2018";
+			nuevoCurso.setfInicio(Util.parseLatinDate(fechaIni));
+			nuevoCurso.setfFin(Util.parseLatinDate(fechaFin));
 			create(nuevoCurso);
 		}catch(Exception e){
 			System.out.println(e.getMessage());
+			LOG.error(e.getMessage());
 		}
-		
 	}
 	
 	@Override
 	public Curso create(Curso curso) {
+		LOG.trace("metodo create");
 		//Incrementamos la variable
 		codigoCurso++;
 		//Le asignamos el valor de la variable estatica al codigo del curso
@@ -80,6 +83,7 @@ public class CursoServiceImp implements CursoService {
 
 	@Override
 	public Curso getById(int codigo) {
+		LOG.trace("metodo getById");
 		//Creamos un nuevo curso nulo para cargar sus valores
 		Curso curso = null;
 		int posicion = -1;
@@ -90,6 +94,7 @@ public class CursoServiceImp implements CursoService {
 			curso = cursos.get(posicion);
 		}catch(CursoServiceImpException e){
 			System.out.println(e.getMessage());
+			LOG.error(e.getMessage());
 			//Creamos un nuevo alumno para evitar nullPointerException
 			curso = new Curso();
 		}
@@ -98,11 +103,13 @@ public class CursoServiceImp implements CursoService {
 
 	@Override
 	public List<Curso> getAll() {
+		LOG.trace("metodo getAll");
 		return cursos;
 	}
 
 	@Override
 	public Curso update(Curso curso) {
+		LOG.trace("metodo update");
 		int posicion = -1;
 		try{
 			//Buscamos la posicion del alumno buscado (si existe)
@@ -111,11 +118,13 @@ public class CursoServiceImp implements CursoService {
 			cursos.set(posicion, curso);
 		}catch(CursoServiceImpException e){
 			System.out.println(e.getMessage());
+			LOG.error(e.getMessage());
 		}
 		return curso;
 	}
 
 	private int buscarCurso(int codigo) throws CursoServiceImpException {
+		LOG.trace("metodo buscarCurso");
 		int i = 0, posicion = -1;
 		boolean encontrado = false;
 		while(encontrado == false && i < cursos.size()){
@@ -142,6 +151,7 @@ public class CursoServiceImp implements CursoService {
 
 	@Override
 	public void delete(int codigo) {
+		LOG.trace("metodo delete");
 		int posicion = -1;
 		try{
 			//Buscamos la posicion del curso por la posicion
@@ -150,6 +160,7 @@ public class CursoServiceImp implements CursoService {
 			cursos.remove(posicion);
 		}catch(CursoServiceImpException e){
 			System.out.println(e.getMessage());
+			LOG.error(e.getMessage());
 		}
 	}
 

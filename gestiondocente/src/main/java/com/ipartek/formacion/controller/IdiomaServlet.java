@@ -9,25 +9,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 /**
  * Servlet implementation class IdiomaServlet
  */
 public class IdiomaServlet extends HttpServlet {
+	private static final Logger LOG = Logger.getLogger(IdiomaServlet.class);
 	private static final long serialVersionUID = 1L;
 	private RequestDispatcher rd;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public IdiomaServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LOG.trace("Metodo doGet de IdiomaServlet");
 		//Recogere el parametro
 		String strCodigo = request.getParameter(Constantes.PAR_IDIOMA);
 		String mensaje = "";
@@ -54,6 +50,7 @@ public class IdiomaServlet extends HttpServlet {
 		}catch(NumberFormatException e){
 			e.printStackTrace();
 			mensaje = "mensaje.error.codigo";
+			LOG.error(e.getMessage());
 		}
 		//Fijare la variable Locale como variable de session
 		
@@ -67,6 +64,7 @@ public class IdiomaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LOG.trace("Metodo doPost de IdiomaServlet");
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

@@ -24,18 +24,12 @@ public class LoginServlet extends HttpServlet {
 	private static final Logger LOG = Logger.getLogger(LoginServlet.class);
 	private static final long serialVersionUID = 1L;
     private RequestDispatcher rd;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LOG.trace("Metodo doGet de LoginServlet");
 		//Nuevo objeto Locale
 //		Locale locale = new Locale("es_ES");
 //		//Obtenemos el atributo lenguaje de la sesion
@@ -67,6 +61,7 @@ public class LoginServlet extends HttpServlet {
 	 * @param request Recibe una request
 	 */
 	private void cerrarSesion(HttpServletRequest request){
+		LOG.trace("Metodo cerrarSesion de LoginServlet");
 		HttpSession session = request.getSession(false);
 		if(session!=null){
 			session.invalidate();
@@ -77,6 +72,7 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LOG.trace("Metodo doPost de LoginServlet");
 		//Recogemos los parametros
 		String username = request.getParameter(Constantes.PAR_USUARIO);
 		String password = request.getParameter(Constantes.PAR_PASSWORD);

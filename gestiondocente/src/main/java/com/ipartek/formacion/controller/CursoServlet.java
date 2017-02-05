@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Curso;
 import com.ipartek.formacion.service.CursoService;
 import com.ipartek.formacion.service.CursoServiceImp;
@@ -21,6 +23,7 @@ import com.ipartek.formacion.service.exceptions.CursoServiceImpException;
  * Servlet implementation class CursoServlet
  */
 public class CursoServlet extends HttpServlet {
+	private static final Logger LOG = Logger.getLogger(CursoServlet.class);
 	private static final long serialVersionUID = 1L;
     private CursoService cS;
     //Variable que almacena las peticiones
@@ -36,6 +39,7 @@ public class CursoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LOG.trace("Metodo doGet de CursoServlet");
 		//Recogemos el parametro de lo que queremos hacer
 		String operacion = request.getParameter(Constantes.PAR_OPERACION);
 		int op = -1;
@@ -45,14 +49,17 @@ public class CursoServlet extends HttpServlet {
 			//Switch que gestiona la redireccion en funcion del parametro
 			switch(op){
 			case Constantes.OP_CREATE:
+				LOG.trace("CREATE");
 				//Se prepara la redireccion a la pagina cursos/curso.jsp
 				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_CURSO);
 				break;
 			case Constantes.OP_READ:
+				LOG.trace("READ");
 				cargarListaCursos(request);
 				break;
 			case Constantes.OP_UPDATE:
 			{
+				LOG.trace("UPDATE");
 				int codigo = -1;
 				//Recogemos el parametro(codigo)
 				codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
@@ -66,6 +73,7 @@ public class CursoServlet extends HttpServlet {
 				break;
 			case Constantes.OP_DELETE:
 			{
+				LOG.trace("DELETE");
 				int codigo = -1;
 				//Recogemos el parametro(codigo)
 				codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
@@ -78,10 +86,11 @@ public class CursoServlet extends HttpServlet {
 			}	
 				break;
 			default:
-					
+				LOG.trace("DEFAULT");	
 				break;
 			}
 		}catch(Exception e){
+			LOG.error(e.getMessage());
 			//En caso de excepcion prepara la redireccion al index
 			response.sendRedirect(Constantes.JSP_HOME);
 			return;
@@ -91,6 +100,7 @@ public class CursoServlet extends HttpServlet {
 	}
 
 	private void cargarListaCursos(HttpServletRequest request) {
+		LOG.trace("Metodo cargarListaCursos de CursoServlet");
 		//Obtenemos los objetos cursos y los metemos en la lista cursos
 		List<Curso> cursos = cS.getAll();
 		//Fijamos la pagina de destino
@@ -103,6 +113,7 @@ public class CursoServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LOG.trace("Metodo doPost de CursoServlet");
 		//Creamos una variable cursos nula
 		Curso curso = null;
 		//Variable que contiene el mensaje
@@ -126,8 +137,9 @@ public class CursoServlet extends HttpServlet {
 			//Cargamos la lista de cursos
 			cargarListaCursos(request);
 		}catch(NullPointerException e){
-			
+			LOG.error(e.getMessage());
 		}catch(Exception e){
+			LOG.error(e.getMessage());
 			mensaje = "Se ha producido un error inesperado. \nContacte con el administrador";
 			response.sendRedirect(Constantes.JSP_HOME);
 			if(codigo == -1){
@@ -155,6 +167,7 @@ public class CursoServlet extends HttpServlet {
 	}
 
     private Curso recogerParametros(HttpServletRequest request) throws Exception {
+    	LOG.trace("Metodo recogerParametros de CursoServlet");
 		//Creamos un nuevo curso
     	Curso curso = new Curso();
 		try{
@@ -163,6 +176,7 @@ public class CursoServlet extends HttpServlet {
 				curso.setNombre(request.getParameter(Constantes.PAR_NOMBRE));
 			}catch(CursoServiceImpException e){
 				e.getMessage();
+				LOG.error(e.getMessage());
 			}
 			curso.setDuracion(Integer.parseInt(request.getParameter(Constantes.PAR_DURACION)));
 			String fechaIni = request.getParameter(Constantes.PAR_FINICIO);
@@ -180,6 +194,7 @@ public class CursoServlet extends HttpServlet {
 		}catch(Exception e){
 			//Generamos una traza
 			e.printStackTrace();
+			LOG.error(e.getMessage());
 			throw new Exception("Los datos no son validos: "+e.getMessage());
 		}
 		return curso;
@@ -187,6 +202,7 @@ public class CursoServlet extends HttpServlet {
     
 	@Override
 	public void destroy() {
+		LOG.trace("CursoServlet destruido");
     	//Le damos valor a nulo
 		this.cS = null;
 		super.destroy();

@@ -55,7 +55,7 @@
 				<label for="<%=Constantes.PAR_FNACIMIENTO %>">Fecha de nacimiento: </label>
 				<input type="text" placeholder="Introduzca una fecha de nacimiento..." 
 				name="<%=Constantes.PAR_FNACIMIENTO %>" id="<%=Constantes.PAR_FNACIMIENTO %>" 
-				value = "<%=Util.formatoFecha(profesor.getfNacimiento())%>">
+				value="<%=Util.formatoFecha(profesor.getfNacimiento())%>">
 			</div>
 			<div>
 				<label for="<%=Constantes.PAR_NSS %>">Número de la SS: </label>

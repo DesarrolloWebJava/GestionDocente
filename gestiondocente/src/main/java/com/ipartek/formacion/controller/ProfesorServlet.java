@@ -8,14 +8,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.dbms.pojo.Profesor;
 import com.ipartek.formacion.service.ProfesorService;
 import com.ipartek.formacion.service.ProfesorServiceImp;
+import com.ipartek.formacion.service.Util;
 
 /**
  * Servlet implementation class ProfesorServlet
  */
 public class ProfesorServlet extends HttpServlet {
+	private static final Logger LOG = Logger.getLogger(ProfesorServlet.class);
 	private static final long serialVersionUID = 1L;
     private ProfesorService pS;
     private RequestDispatcher rd;
@@ -27,6 +32,7 @@ public class ProfesorServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LOG.trace("Metodo doGet de ProfesorServlet");
 		//Recogemos el parametro de lo que queremos hacer de la request: create, delete, update, ...
 		String operacion = request.getParameter(Constantes.PAR_OPERACION);
 		//Variable que controla si es correcto o no el parametro 
@@ -37,15 +43,18 @@ public class ProfesorServlet extends HttpServlet {
 			//Switch para gestionar a donde redirecciona en funcion del parametro
 			switch(op){
 				case Constantes.OP_CREATE:
+					LOG.trace("CREATE");
 					//Prepara la redireccion al formulario
 					rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_PROFESOR);
 				break;
 				case Constantes.OP_READ:
+					LOG.trace("READ");
 					//Carga la lista de profesores
 					cargarListaProfesores(request);
 				break;
 				case Constantes.OP_UPDATE:
 				{
+					LOG.trace("UPPDATE");
 					//Creamos e inicializamos variable
 					int codigo = -1;
 					//Recogemos el parametro(codigo) en la variable que acabamos de crear
@@ -60,6 +69,7 @@ public class ProfesorServlet extends HttpServlet {
 				break;
 				case Constantes.OP_DELETE:
 				{
+					LOG.trace("DELETE");
 					//Creamos e inicializamos variable
 					int codigo = -1;
 					//Recogemos el parametro(codigo) en la variable que acabamos de crear
@@ -73,12 +83,13 @@ public class ProfesorServlet extends HttpServlet {
 				}
 				break;
 				default:
-					
+					LOG.trace("DEFAULT");
 				break;
 			}
 		}catch(Exception e){
 			//En caso de excepcion prepara la redireccion a index.jsp
 			response.sendRedirect(Constantes.JSP_HOME);
+			LOG.error(e.getMessage());
 			return;
 		}
 		//Hace la redireccion
@@ -86,6 +97,7 @@ public class ProfesorServlet extends HttpServlet {
 	}
 
 	private void cargarListaProfesores(HttpServletRequest request) {
+		LOG.trace("Metodo cargarListaProfesores de ProfesorServlet");
 		//Obtenemos los datos de los profesores y los metemos en la variable profesores
 		Map<Integer,Profesor> profesores = pS.getAll();
 		//Prepara la redireccion al listado de profesores
@@ -95,6 +107,7 @@ public class ProfesorServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LOG.trace("Metodo doPost de ProfesorServlet");
 		//Creamos una variable profesor nula
 		Profesor profesor = null;
 		String mensaje = "";
@@ -117,6 +130,8 @@ public class ProfesorServlet extends HttpServlet {
 		}catch(NumberFormatException e){
 			//Si el codigo no es numero...
 			mensaje = "Se ha producido un error inesperado. \nContacte con el administrador";
+			//Otro tipo de log
+			LOG.error(e.getMessage());
 			response.sendRedirect(Constantes.JSP_HOME);
 		}catch(Exception e){
 			//Prepara la redireccion
@@ -125,6 +140,8 @@ public class ProfesorServlet extends HttpServlet {
 			mensaje = e.getMessage();
 			//Genera un fichero de trazas para tener un log y debuggear
 			e.printStackTrace();
+			//Otro tipo de log
+			LOG.error(e.getMessage());
 		}
 		//Prepara la redireccion. Envia el mensaje
 		request.setAttribute(Constantes.ATT_MENSAJE, mensaje);
@@ -134,6 +151,7 @@ public class ProfesorServlet extends HttpServlet {
 
 	
 	private Profesor recogerParametros(HttpServletRequest request) throws Exception {
+		LOG.trace("Metodo recogerParametros de ProfesorServlet");
 		//Creamos una instancia de profesor
 		Profesor profesor = new Profesor();
 		try{
@@ -144,9 +162,7 @@ public class ProfesorServlet extends HttpServlet {
 			profesor.setEmail(request.getParameter(Constantes.PAR_EMAIL));
 			profesor.setDireccion(request.getParameter(Constantes.PAR_DIRECCION));
 			String date = request.getParameter(Constantes.PAR_FNACIMIENTO);
-			String pattern = "dd/MM/yyyy";
-			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-			profesor.setfNacimiento(dateFormat.parse(date));
+			profesor.setfNacimiento(Util.parseLatinDate(date));
 			String nSS_s = request.getParameter(Constantes.PAR_NSS);
 			if(nSS_s != null && !"".equals(nSS_s)){
 				int nss = Integer.parseInt(nSS_s);
@@ -154,6 +170,7 @@ public class ProfesorServlet extends HttpServlet {
 			}
 		}catch(Exception e){
 			//Lanzamos la excepcion
+			LOG.error(e.getMessage());
 			throw new Exception("Los datos no son validos "+e.getMessage());
 		}
 		return profesor;
@@ -161,6 +178,7 @@ public class ProfesorServlet extends HttpServlet {
 
 	@Override
 	public void destroy() {
+		LOG.trace("Destruyendo ProfesorServlet");
 		//Se carga la instancia
 		this.pS = null;
 		super.destroy();

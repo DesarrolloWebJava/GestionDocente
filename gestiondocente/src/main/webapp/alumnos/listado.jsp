@@ -14,32 +14,17 @@
 		 */
 		List<Alumno> alumnos = (List<Alumno>)request.getAttribute(Constantes.ATT_LISTADO_ALUMNOS);
 		%> --%>
+		<!-- Crear alumno -->
 		<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_CREATE %>">Crear Alumno</a>
-		<!-- El items es la lista. 
-		alumno es cada elemento de la lista
-		El foreach recorre cada elemento de la lista -->
+		<!-- El items es la lista. Alumno es cada elemento de la lista. El foreach recorre cada elemento de la lista -->
 		<c:forEach var="alumno" items="${listadoAlumnos}">
 			<!-- Con esto saco el nombre del alumno. Hace un getter -->
 			<div>
-				${alumno.nombre} ${alumno.apellidos} <a href="">Editar</a><a href="">Borrar</a>
+				${alumno.nombre} ${alumno.apellidos } 
+				<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_DELETE %>&<%=Constantes.PAR_CODIGO %>=${alumno.codigo}">Borrar</a>
+				<a href="<%=Constantes.SERVLET_ALUMNO %>?<%=Constantes.PAR_OPERACION %>=<%=Constantes.OP_UPDATE %>&<%=Constantes.PAR_CODIGO %>=${alumno.codigo}">Editar</a> 
 			</div>
 		</c:forEach>
-		
-		<%-- <%
-		 for(Alumno alumno: alumnos){
-			//Boton delete
-			String btn_delete = "<a href='"+Constantes.SERVLET_ALUMNO+"?"
-			+Constantes.PAR_OPERACION+"="+Constantes.OP_DELETE+"&"+Constantes.PAR_CODIGO+"="
-			+alumno.getCodigo()+"'>Borrar</a>";
-			//Boton editar
-			String btn_editar = "<a href='"+Constantes.SERVLET_ALUMNO+"?"+
-					Constantes.PAR_OPERACION+"="+Constantes.OP_UPDATE+"&"+Constantes.PAR_CODIGO+
-					"="+alumno.getCodigo()+"'>Editar</a>";
-			//Mostramos
-			out.println("<p>"+alumno.toString()+" "+btn_editar+" "+ btn_delete + "</p>");
-			
-		} 
-		%> --%> 
 	</main>
 	<%@ include file="../includes/footer.html" %>
 </body>

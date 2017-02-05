@@ -6,8 +6,7 @@
 	<jsp:include page="../includes/header.jsp"></jsp:include>
 	<main>
 		<%
-		/*Esto es un Scriptlet*/
-		/*
+		/*Esto es un Scriptlet
 		 * Recogemos el atributo de la request
 		 * Hacemos el casting porque es un objeto que queremos meter en una lista
 		 */

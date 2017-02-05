@@ -36,10 +36,10 @@ public class Alumno extends Persona implements Comparable<Alumno>, Serializable 
 
 	@Override
 	public String toString() {
-		return "Alumno [Codigo=" + getCodigo() + ", Nombre=" + getNombre() + ", Apellidos=" + getApellidos()
-				+ ", Email=" + getEmail() + ", Direccion=" + getDireccion() + ", DNI="+ getDni() 
-				+ ", Fecha Nacimiento=" + getfNacimiento() +", Activo=" + isActivo() 
-				+ ", Numero de hermanos="+ getnHermanos() +"]";
+		return "ALUMNO [CÓDIGO = " + getCodigo() + ", NOMBRE = " + getNombre() + ", APELLIDOS = " + getApellidos()
+				+ ", EMAIL = " + getEmail() + ", DIRECCIÓN = " + getDireccion() + ", DNI = "+ getDni() 
+				+ ", FECHA NACIMIENTO = " + getfNacimiento() +", ACTIVO = " + isActivo() 
+				+ ", NÚMERO DE HERMANOS = "+ getnHermanos() +" ]";
 	}
 	
 	

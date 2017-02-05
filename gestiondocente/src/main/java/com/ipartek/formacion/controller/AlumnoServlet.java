@@ -22,7 +22,6 @@ public class AlumnoServlet extends HttpServlet {
 	private static final Logger LOG = Logger.getLogger(AlumnoServlet.class);
 	private static final long serialVersionUID = 1L;
 	private AlumnoService aS;
-	//
 	private RequestDispatcher rd;
 	
 	/**
@@ -46,7 +45,7 @@ public class AlumnoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		LOG.trace("Metodo doGet de AlumnoServlet");
 		//Recogemos el parametro de lo que queremos hacer: create, delete, update, ...
 		String operacion = request.getParameter(Constantes.PAR_OPERACION);
 		//Variable que controla si es correcto o no el parametro 
@@ -57,28 +56,32 @@ public class AlumnoServlet extends HttpServlet {
 			//Switch para gestionar a donde redirecciona en funcion del parametro
 			switch(op){
 				case Constantes.OP_CREATE:
-				//Se va a redirigir a la pagina alumnos/alumno.jsp
-				rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
+					LOG.trace("CREATE");
+					//Se va a redirigir a la pagina alumnos/alumno.jsp
+					rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 				break;
 				case Constantes.OP_READ:
-				//Carga la lista de los alumnos
-				cargarListaAlumnos(request);
+					LOG.trace("READ");
+					//Carga la lista de los alumnos
+					cargarListaAlumnos(request);
 				break;
 				case Constantes.OP_UPDATE:
 				{
+					LOG.trace("UPDATE");
 					int codigo = -1;
 					//Recogemos el parametro(codigo)
 					codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
 					//Recogemos el alumno que buscamos mediante el codigo y lo guardamos en la variable alumno
 					Alumno alumno = aS.getByID(codigo);
-					//Se va a redirigir a la pagina alumnos/alumno.jsp
-					rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
-					//Preparamos el redireccionamiento pasando el alumno
+					//Metemos el nuevo alumno en el request
 					request.setAttribute(Constantes.ATT_ALUMNO, alumno);
+					//Se prepara la redireccion a la pagina alumnos/alumno.jsp
+					rd = request.getRequestDispatcher(Constantes.JSP_FORMULARIO_ALUMNO);
 				}
 				break;
 				case Constantes.OP_DELETE:
 				{
+					LOG.trace("DELETE");
 					int codigo = -1;
 					//Recogemos el parametro(codigo)
 					codigo = Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO));
@@ -91,7 +94,7 @@ public class AlumnoServlet extends HttpServlet {
 				}
 				break;
 				default:
-					
+					LOG.trace("DEFAULT");
 				break;
 			}
 		}catch(Exception e){
@@ -106,6 +109,7 @@ public class AlumnoServlet extends HttpServlet {
 	}
 
 	private void cargarListaAlumnos(HttpServletRequest request) {
+		LOG.trace("Metodo cargarAlumnos de AlumnoServlet");
 		// Obtenemos los objetos alumnos y los cargamos en la lista alumnos
 		List<Alumno> alumnos = aS.getAll();
 		// Fijamos la pagina de destino
@@ -115,6 +119,7 @@ public class AlumnoServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LOG.trace("Metodo doPost de AlumnoServlet");
 		//Creamos una variable alumno nula
 		Alumno alumno = null;
 		//Variable que contiene el mensaje
@@ -126,7 +131,7 @@ public class AlumnoServlet extends HttpServlet {
 			//Cargamos la variable con los parametros
 			alumno = recogerParametros(request);
 			//Si existe el codigo...
-			if(alumno.getCodigo() > Alumno.CODIGO_NULO){
+			if(alumno.getCodigo() > alumno.CODIGO_NULO){
 				//UPDATE aS con alumno
 				aS.update(alumno);
 				mensaje = "El alumno ha sido actualizado correctamente";
@@ -136,9 +141,16 @@ public class AlumnoServlet extends HttpServlet {
 				mensaje = "El alumno ha sido creado correctamente";
 			}
 			cargarListaAlumnos(request);
-		}catch (NumberFormatException e){
+		}catch(NumberFormatException e){
+			//Si el codigo no es numero...
+			mensaje = "Se ha producido un error inesperado. \nContacte con el administrador";
+			//Otro tipo de log
+			LOG.error(e.getMessage());
+			response.sendRedirect(Constantes.JSP_HOME);
+		}catch (NullPointerException e){
 			LOG.error(e.getMessage()+" Valor de la variable: "+request.getParameter(Constantes.PAR_CODIGO));
 		} catch (Exception e) {
+			LOG.error(e.getMessage());
 			//Si el codigo es diferente de -1...
 			mensaje = "Se ha producido un error inesperado. \nContacte con el administrador";
 			response.sendRedirect(Constantes.JSP_HOME);
@@ -166,6 +178,7 @@ public class AlumnoServlet extends HttpServlet {
 	}
 	
 	private Alumno recogerParametros(HttpServletRequest request) throws Exception {
+		LOG.trace("Metodo recogerParametro de AlumnoServlet");
 		Alumno alumno = new Alumno();
 		try{
 			alumno.setCodigo(Integer.parseInt(request.getParameter(Constantes.PAR_CODIGO)));
@@ -185,6 +198,7 @@ public class AlumnoServlet extends HttpServlet {
 			SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
 			alumno.setfNacimiento(dateFormat.parse(date));
 		}catch(Exception e){
+			LOG.error(e.getMessage());
 			throw new Exception("Los datos no son validos: "+e.getMessage());
 		}
 		return alumno;
@@ -193,6 +207,7 @@ public class AlumnoServlet extends HttpServlet {
 	//Solo para peticiones de formularios
 	@Override
 	public void destroy() {
+		LOG.trace("AlumnoServlet destruido");
 		this.aS = null;
 		super.destroy();
 	}
